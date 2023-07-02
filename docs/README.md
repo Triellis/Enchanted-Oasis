@@ -4,7 +4,7 @@
 
 -   Admin, Student, and Faculty Authorization.
 -   Admin should be able to add/update/delete courses, faculties, and students.
--   House points tracking system, (idk)
+-   House points tracking system,
 -   Announcements to students and faculties.
 
 ## Student Features
