@@ -1,7 +1,15 @@
 # Index
 
--   [Api Routes Summary](#Api-Routes-Summary)
+-   [Index](#index)
+-   [Api Routes Summary](#api-routes-summary)
     -   [Results](#results)
+    -   [Courses](#courses)
+    -   [Houses](#houses)
+    -   [User](#user)
+    -   [Course Notifications](#course-notifications)
+    -   [Course Materials](#course-materials)
+    -   [Admin Notifications](#admin-notifications)
+    -   [Lectures](#lectures)
 
 # Api Routes Summary
 
