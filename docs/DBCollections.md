@@ -14,6 +14,7 @@
 	seenBy: string[] // array of user ids,
 	seenByCount: number // number of users who ave seen this notification
 	creatorId: string // id of the user who created this notification
+	audience : "Students"| "Faculty" | "Both" // audience of the notification
 }
 ```
 
@@ -28,27 +29,24 @@
 }
 ```
 
-## Student
+## Users
 
 ```typescript
 
 {
 	_id: ObjectID,
 	name: string,
+	role: "Student" | "Faculty" | "Admin",
 	email: string,
 	passwordHash: string,
 	house: string,
 	profilePicture: string,
 	phone: string,
 	rollNumber: string,
-	year: number,
-	semester: number,
+	admissionYear: number,
+
 	courses: string[], // array of course ids
-	attendance: {
-		[courseId: string]: {
-			[lectureId: string]: boolean // true if present, false if absent
-		}
-	},
+
 	notifications: string[], // array of notification ids
 	seenNotifications: string[], // array of notification ids
 	seenNotificationsCount: number // number of notifications seen by this user
@@ -84,24 +82,6 @@
 	},
 	gradePoint: number,
 	gradeLetter: string
-}
-```
-
-## Faulty
-
-```typescript
-
-{
-	_id: ObjectID,
-	name: string,
-	email: string,
-	passwordHash: string,
-	profilePicture: string,
-	phone: string,
-	department: string,
-	notifications: string[], // array of notification ids
-	seenNotifications: string[], // array of notification ids
-	seenNotificationsCount: number // number of notifications seen by this user
 }
 ```
 
@@ -162,5 +142,7 @@
 	seenBy: string[] // array of user ids,
 	seenByCount: number // number of users who ave seen this notification
 	creatorId: string // id of the faculty who created this notification
+	students: string[], // array of student ids
+	faculty: string[] // array of faculty ids
 }
 ```
