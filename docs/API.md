@@ -98,13 +98,14 @@
 
 ## Lectures
 
-| Route Name        | Method | URL Pattern                                                 |
-| ----------------- | ------ | ----------------------------------------------------------- |
-| List Lectures     | GET    | `/api/course/{id}/lecture`                                  |
-| Add Lecture       | POST   | `/api/course/{id}/lecture`                                  |
-| Remove Lecture    | DELETE | `/api/course/{id}/lecture/{lecture}`                        |
-| View Attendance   | GET    | `/api/course/{id}/lecture/{lecture}/attendance`             |
-| Post Attendance   | POST   | `/api/course/{id}/lecture/{lecture}/attendance`             |
-| View Lecture      | GET    | `/api/course/{id}/lecture/{lecture}`                        |
-| Mark Attendance   | POST   | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
-| Unmark Attendance | DELETE | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
+| Route Name             | Method | URL Pattern                                                 |
+| ---------------------- | ------ | ----------------------------------------------------------- |
+| Get Up coming Lectures | GET    | `/api/course/{id}/lecture/upcoming`                         |
+| List Lectures          | GET    | `/api/course/{id}/lecture`                                  |
+| Add Lecture            | POST   | `/api/course/{id}/lecture`                                  |
+| Remove Lecture         | DELETE | `/api/course/{id}/lecture/{lecture}`                        |
+| View Attendance        | GET    | `/api/course/{id}/lecture/{lecture}/attendance`             |
+| Post Attendance        | POST   | `/api/course/{id}/lecture/{lecture}/attendance`             |
+| View Lecture           | GET    | `/api/course/{id}/lecture/{lecture}`                        |
+| Mark Attendance        | POST   | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
+| Unmark Attendance      | DELETE | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
