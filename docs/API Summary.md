@@ -49,7 +49,7 @@
 | Get User       | GET    | `/api/user` |
 | Create User    | POST   | `/api/user` |
 
-# Course Notifications
+## Course Notifications
 
 | Route Name          | Method | URL Pattern                                                    |
 | ------------------- | ------ | -------------------------------------------------------------- |
@@ -61,7 +61,7 @@
 | Get Views           | GET    | `/api/course/{id}/notification/{notificationId}/views `        |
 | Get Viewers         | GET    | `/api/course/{id}/notification/{notificationId}/listViewers  ` |
 
-# Course Materials
+## Course Materials
 
 | Route Name      | Method | URL Pattern                              |
 | --------------- | ------ | ---------------------------------------- |
@@ -71,7 +71,7 @@
 | Edit Material   | PUT    | `/api/course/{id}/Material/{MaterialId}` |
 | Get Material    | GET    | `/api/course/{id}/Material/{MaterialId}` |
 
-# Admin Notifications
+## Admin Notifications
 
 | Route Name          | Method | URL Pattern                                        |
 | ------------------- | ------ | -------------------------------------------------- |
