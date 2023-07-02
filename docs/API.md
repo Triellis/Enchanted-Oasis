@@ -24,3 +24,13 @@
 | list students  | GET    | `/api/course/{id}/student/list`        |
 | Enroll Student | POST   | `/api/course/{id}/enroll`              |
 | Drop Student   | POST   | `/api/course/{id}/drop`                |
+
+## Houses
+
+| Route Name    | Method | URL Pattern                         |
+| ------------- | ------ | ----------------------------------- |
+| Get Data      | GET    | `/api/house/info`                   |
+| List Houses   | GET    | `/api/house/list`                   |
+| Get Members   | GET    | `/api/house/{id}/listMembers`       |
+| Add Member    | POST   | `/api/house/{id}/member`            |
+| Remove Member | DELETE | `/api/house/{id}/member/{memberId}` |
