@@ -11,9 +11,9 @@
 	date: Date,
 	badgeText: string, // badge text
 	badgeColor: string, // badge color
-	seenBy: string[] // array of user ids,
-	seenByCount: number // number of users who ave seen this notification
-	creatorId: string // id of the user who created this notification
+	seenBy: string[], // array of user ids,
+	seenByCount: number, // number of users who ave seen this notification
+	creatorId: string ,// id of the user who created this notification
 	audience : "Students"| "Faculty" | "Both" // audience of the notification
 }
 ```
@@ -139,9 +139,9 @@
 	date: Date,
 	badgeText: string, // badge text
 	badgeColor: string, // badge color
-	seenBy: string[] // array of user ids,
-	seenByCount: number // number of users who ave seen this notification
-	creatorId: string // id of the faculty who created this notification
+	seenBy: string[] ,// array of user ids,
+	seenByCount: number, // number of users who ave seen this notification
+	creatorId: string, // id of the faculty who created this notification
 	students: string[], // array of student ids
 	faculty: string[] // array of faculty ids
 }
