@@ -6,7 +6,7 @@
 
 -   **URL:** `/api/result/list`
 -   **Method:** `GET`
--   **Permissions:** `Teacher` | `Student`
+-   **Permissions:** `Faculty` | `Student`
 
 #### Query Parameters
 
@@ -22,76 +22,141 @@
 #### Response
 
 ```json
-Result[]
+
+{
+	"results":Result[],
+"totalResults":number
+}
 
 
 ```
 
 ```typescript
 type Result = {
-	_id: ObjectID;
-	studentId: string;
 	courseId: string;
-	date: Date;
-	components: {
-		[componentName: string]: {
-			marks: number;
-			weightage: string;
-		};
-	};
 	gradePoint: number;
 	gradeLetter: string;
 	semester: string;
 };
 ```
 
-### List Result Courses
+### Get Result
 
--   **URL:** `/api/result/courses`
+-   **URL:** `/api/result/{id}`
 -   **Method:** `GET`
--   **Permissions:** `Student`
+-   **Permissions:** `Student` | `Faculty`
+
+#### Response
+
+```typescript
+
+{
+	_id: ObjectID,
+	studentId: string,
+	courseId: string,
+	date: Date,
+	components: {
+		[componentName: string]: {
+			marks: number,
+			weightage: string
+		}
+	},
+	gradePoint: number,
+	gradeLetter: string,
+	semester: string
+}
+```
+
+### Post Result
+
+-   **URL:** `/api/result`
+-   **Method:** `POST`
+-   **Permissions:** `Faculty`
+
+#### Request body
+
+```typescript
+
+{
+	_id: ObjectID,
+	studentId: string,
+	courseId: string,
+	date: Date,
+	components: {
+		[componentName: string]: {
+			marks: number,
+			weightage: string
+		}
+	},
+	gradePoint: number,
+	gradeLetter: string,
+	semester: string
+}
+```
+
+#### Response will be status code
+
+### Update Result
+
+-   **URL:** `/api/result/{id}`
+-   **Method:** `PUT`
+-   **Permissions:** `Faculty`
+
+#### Request body
+
+```typescript
+
+{
+	_id: ObjectID,
+	studentId: string,
+	courseId: string,
+	date: Date,
+	components: {
+		[componentName: string]: {
+			marks: number,
+			weightage: string
+		}
+	},
+	gradePoint: number,
+	gradeLetter: string,
+	semester: string
+}
+```
+
+#### Response will be status code
+
+### Delete Result
+
+-   **URL:** `/api/result/{id}`
+-   **Method:** `DELETE`
+-   **Permissions:** `Faculty`
+
+#### Response will be status code
+
+## Courses
+
+### List Courses
+
+-   **URL:** `/api/course/list`
+-   **Method:** `GET`
+-   **Permissions:** `Admin` | `Student`
 
 #### Query Parameters
 
 ```json
 {
-	"semester"?: "string", // this is a filter parameter for faculty
-	"maxResults"?: "number", // this is a pagination parameter default is 10
-	"page"?: "number" // this is a pagination parameter, default is 1
+	"maxResults"?: "number", // pagination parameter default is 10
+	"page"?: "number" // pagination parameter, default is 1
 }
 ```
 
 #### Response
 
 ```json
-{
-	Course[],
 
+{
+	"courses":Course[],
+"totalCourses":number
 }
 
-```
-
-```typescript
-type Course = {
-	_id: ObjectID;
-	name: string;
-	description: string;
-	department: string;
-	credits: number;
-	schedule: {
-		[day: string]: {
-			startTime: Date;
-			endTime: Date;
-		};
-	};
-	faculty: string; // faculty id
-	students: string[]; // array of student ids
-	lectures: string[]; // array of lecture ids
-	gradingScheme: {
-		[gradeLetter: string]: {
-			minMarks: number;
-			maxMarks: number;
-		};
-	};
-};
 ```

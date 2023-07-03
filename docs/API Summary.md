@@ -15,14 +15,13 @@
 
 ## Results
 
-| Route Name    | Method | URL Pattern           |
-| ------------- | ------ | --------------------- |
-| List Results  | GET    | `/api/result/list`    |
-| List Course   | GET    | `/api/result/courses` |
-| Get Result    | GET    | `/api/result/{id}`    |
-| Post Result   | POST   | `/api/result`         |
-| Put Result    | PUT    | `/api/result/{id}`    |
-| Delete Result | DELETE | `/api/result/{id}`    |
+| Route Name    | Method | URL Pattern        |
+| ------------- | ------ | ------------------ |
+| List Results  | GET    | `/api/result/list` |
+| Get Result    | GET    | `/api/result/{id}` |
+| Post Result   | POST   | `/api/result`      |
+| Put Result    | PUT    | `/api/result/{id}` |
+| Delete Result | DELETE | `/api/result/{id}` |
 
 ## Courses
 
@@ -45,18 +44,18 @@
 
 ## Houses
 
-| Route Name     | Method | URL Pattern                         |
-| -------------- | ------ | ----------------------------------- |
-| Get Data       | GET    | `/api/house/info`                   |
-| List Houses    | GET    | `/api/house/list`                   |
-| Get Members    | GET    | `/api/house/{id}/listMembers`       |
-| Add Member     | POST   | `/api/house/{id}/member`            |
-| Remove Member  | DELETE | `/api/house/{id}/member/{memberId}` |
-| Increase pts   | POST   | `/api/house/{id}/increase`          |
-| Decrease pts   | POST   | `/api/house/{id}/decrease`          |
-| Edit House     | PUT    | `/api/house/{id}`                   |
-| Delete House   | DELETE | `/api/house/{id}`                   |
-| ! Create house | POST   | `/api/house`                        |
+| Route Name    | Method | URL Pattern                         |
+| ------------- | ------ | ----------------------------------- |
+| Get Data      | GET    | `/api/house/info`                   |
+| List Houses   | GET    | `/api/house/list`                   |
+| Get Members   | GET    | `/api/house/{id}/listMembers`       |
+| Add Member    | POST   | `/api/house/{id}/member`            |
+| Remove Member | DELETE | `/api/house/{id}/member/{memberId}` |
+| Increase pts  | POST   | `/api/house/{id}/increase`          |
+| Decrease pts  | POST   | `/api/house/{id}/decrease`          |
+| Edit House    | PUT    | `/api/house/{id}`                   |
+| Delete House  | DELETE | `/api/house/{id}`                   |
+| Create house  | POST   | `/api/house`                        |
 
 ## User
 
