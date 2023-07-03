@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-const uri = "your mongodb uri";
+const uri = "mongodb://your mongodb uri";
 const client = new MongoClient(uri);
 export async function GET(request: NextRequest) {
 	const database = client.db("test");
