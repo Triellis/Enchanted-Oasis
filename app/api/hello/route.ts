@@ -1,8 +1,7 @@
 import { MongoClient } from "mongodb";
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextApiRequest) {
+export async function GET(request: NextRequest) {
 	// Replace the uri string with your connection string.
 	const uri = "my mongodb uri";
 

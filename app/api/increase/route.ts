@@ -1,10 +1,9 @@
 import { MongoClient } from "mongodb";
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const uri = "your mongodb uri";
 const client = new MongoClient(uri);
-export async function GET(request: NextApiRequest) {
+export async function GET(request: NextRequest) {
 	const database = client.db("test");
 	const values = database.collection("values");
 	// Replace the uri string with your connection string.
