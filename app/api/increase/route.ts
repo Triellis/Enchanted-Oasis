@@ -2,24 +2,24 @@ import { MongoClient } from "mongodb";
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
+const uri = "your mongodb uri";
+const client = new MongoClient(uri);
 export async function GET(request: NextApiRequest) {
-	// Replace the uri string with your connection string.
-	const uri =
-		"mongodb+srv://sarthak:r3tCrQE2S7luhV3D@cluster0.xa7utbc.mongodb.net/";
-
-	const client = new MongoClient(uri);
-
 	const database = client.db("test");
 	const values = database.collection("values");
+	// Replace the uri string with your connection string.
 
 	// Query for a movie that has the title 'Back to the Future'
+	await values.updateOne({ name: "counter" }, { $inc: { value: 1 } });
+
+	console.time("mongo");
 	const doc = await values.findOne({ name: "counter" });
 	const value = doc!.value;
-	console.log(value);
-
+	console.timeEnd("mongo");
 	// Ensures that the client will close when you finish/error
-	await client.close();
+	// await client.close();
 
+	// client.close();
 	return NextResponse.json(
 		{
 			value,

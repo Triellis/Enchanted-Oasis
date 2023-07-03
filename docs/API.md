@@ -1,111 +1,97 @@
-# Index
-
--   [Index](#index)
--   [Api Routes Summary](#api-routes-summary)
-    -   [Results](#results)
-    -   [Courses](#courses)
-    -   [Houses](#houses)
-    -   [User](#user)
-    -   [Course Notifications](#course-notifications)
-    -   [Course Materials](#course-materials)
-    -   [Admin Notifications](#admin-notifications)
-    -   [Lectures](#lectures)
-
-# Api Routes Summary
+# Api Routes Details
 
 ## Results
 
-| Route Name    | Method | URL Pattern        |
-| ------------- | ------ | ------------------ |
-| List Results  | GET    | `/api/result/list` |
-| Get Result    | GET    | `/api/result/{id}` |
-| Post Result   | POST   | `/api/result`      |
-| Put Result    | PUT    | `/api/result/{id}` |
-| Delete Result | DELETE | `/api/result/{id}` |
+### List Results
 
-## Courses
+-   **URL:** `/api/result/list`
+-   **Method:** `GET`
+-   **Permissions:** `Teacher` | `Student`
 
-| Route Name     | Method | URL Pattern                            |
-| -------------- | ------ | -------------------------------------- |
-| List Courses   | GET    | `/api/course/list`                     |
-| Add Course     | POST   | `/api/course`                          |
-| Get Course     | GET    | `/api/course/{id}`                     |
-| Update Course  | PUT    | `/api/course/{id}`                     |
-| Remove Course  | Delete | `/api/course/{id}`                     |
-| Add Student    | POST   | `/api/course/{id}/student`             |
-| Remove Student | DELETE | `/api/course/{id}/student/{studentId}` |
-| list students  | GET    | `/api/course/{id}/student/list`        |
-| Enroll Student | POST   | `/api/course/{id}/enroll`              |
-| Drop Student   | POST   | `/api/course/{id}/drop`                |
+#### Query Parameters
 
-## Houses
+```json
+{
+	"courseId"?: "string", // filter parameter for student
+	"semester"?: "string", // filter parameter
+	"maxResults"?: "number", // pagination parameter default is 10
+	"page"?: "number" // pagination parameter, default is 1
+}
+```
 
-| Route Name     | Method | URL Pattern                         |
-| -------------- | ------ | ----------------------------------- |
-| Get Data       | GET    | `/api/house/info`                   |
-| List Houses    | GET    | `/api/house/list`                   |
-| Get Members    | GET    | `/api/house/{id}/listMembers`       |
-| Add Member     | POST   | `/api/house/{id}/member`            |
-| Remove Member  | DELETE | `/api/house/{id}/member/{memberId}` |
-| Increase pts   | POST   | `/api/house/{id}/increase`          |
-| Decrease pts   | POST   | `/api/house/{id}/decrease`          |
-| Edit House     | PUT    | `/api/house/{id}`                   |
-| Delete House   | DELETE | `/api/house/{id}`                   |
-| ! Create house | POST   | `/api/house`                        |
+#### Response
 
-## User
+```json
+Result[]
 
-| Route Name     | Method | URL Pattern |
-| -------------- | ------ | ----------- |
-| Update Details | PUT    | `/api/user` |
-| Delete User    | DELETE | `/api/user` |
-| Get User       | GET    | `/api/user` |
-| Create User    | POST   | `/api/user` |
 
-## Course Notifications
+```
 
-| Route Name          | Method | URL Pattern                                                    |
-| ------------------- | ------ | -------------------------------------------------------------- |
-| List Notifications  | GET    | `/api/course/{id}/notification`                                |
-| Add Notification    | POST   | `/api/course/{id}/notification`                                |
-| Remove Notification | DELETE | `/api/course/{id}/notification/{notificationId}`               |
-| Edit Notification   | PUT    | `/api/course/{id}/notification/{notificationId}`               |
-| Get Notification    | GET    | `/api/course/{id}/notification/{notificationId}`               |
-| Get Views           | GET    | `/api/course/{id}/notification/{notificationId}/views `        |
-| Get Viewers         | GET    | `/api/course/{id}/notification/{notificationId}/listViewers  ` |
+```typescript
+type Result = {
+	_id: ObjectID;
+	studentId: string;
+	courseId: string;
+	date: Date;
+	components: {
+		[componentName: string]: {
+			marks: number;
+			weightage: string;
+		};
+	};
+	gradePoint: number;
+	gradeLetter: string;
+	semester: string;
+};
+```
 
-## Course Materials
+### List Result Courses
 
-| Route Name      | Method | URL Pattern                              |
-| --------------- | ------ | ---------------------------------------- |
-| List Materials  | GET    | `/api/course/{id}/Material`              |
-| Add Material    | POST   | `/api/course/{id}/Material`              |
-| Remove Material | DELETE | `/api/course/{id}/Material/{MaterialId}` |
-| Edit Material   | PUT    | `/api/course/{id}/Material/{MaterialId}` |
-| Get Material    | GET    | `/api/course/{id}/Material/{MaterialId}` |
+-   **URL:** `/api/result/courses`
+-   **Method:** `GET`
+-   **Permissions:** `Student`
 
-## Admin Notifications
+#### Query Parameters
 
-| Route Name          | Method | URL Pattern                                        |
-| ------------------- | ------ | -------------------------------------------------- |
-| List Notifications  | GET    | `/api/notification`                                |
-| Add Notification    | POST   | `/api/notification`                                |
-| Remove Notification | DELETE | `/api/notification/{notificationId}`               |
-| Edit Notification   | PUT    | `/api/notification/{notificationId}`               |
-| Get Notification    | GET    | `/api/notification/{notificationId}`               |
-| Get Views           | GET    | `/api/notification/{notificationId}/views `        |
-| Get Viewers         | GET    | `/api/notification/{notificationId}/listViewers  ` |
+```json
+{
+	"semester"?: "string", // this is a filter parameter for faculty
+	"maxResults"?: "number", // this is a pagination parameter default is 10
+	"page"?: "number" // this is a pagination parameter, default is 1
+}
+```
 
-## Lectures
+#### Response
 
-| Route Name             | Method | URL Pattern                                                 |
-| ---------------------- | ------ | ----------------------------------------------------------- |
-| Get Up coming Lectures | GET    | `/api/course/{id}/lecture/upcoming`                         |
-| List Lectures          | GET    | `/api/course/{id}/lecture`                                  |
-| Add Lecture            | POST   | `/api/course/{id}/lecture`                                  |
-| Remove Lecture         | DELETE | `/api/course/{id}/lecture/{lecture}`                        |
-| View Attendance        | GET    | `/api/course/{id}/lecture/{lecture}/attendance`             |
-| Post Attendance        | POST   | `/api/course/{id}/lecture/{lecture}/attendance`             |
-| View Lecture           | GET    | `/api/course/{id}/lecture/{lecture}`                        |
-| Mark Attendance        | POST   | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
-| Unmark Attendance      | DELETE | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
+```json
+{
+	Course[],
+
+}
+
+```
+
+```typescript
+type Course = {
+	_id: ObjectID;
+	name: string;
+	description: string;
+	department: string;
+	credits: number;
+	schedule: {
+		[day: string]: {
+			startTime: Date;
+			endTime: Date;
+		};
+	};
+	faculty: string; // faculty id
+	students: string[]; // array of student ids
+	lectures: string[]; // array of lecture ids
+	gradingScheme: {
+		[gradeLetter: string]: {
+			minMarks: number;
+			maxMarks: number;
+		};
+	};
+};
+```

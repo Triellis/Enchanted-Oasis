@@ -48,6 +48,7 @@
 	courses: string[], // array of course ids
 
 	notifications: string[], // array of notification ids
+	notificationsCount: number, // number of notifications received by this user
 	seenNotifications: string[], // array of notification ids
 	seenNotificationsCount: number // number of notifications seen by this user
 }
@@ -74,6 +75,7 @@
 	_id: ObjectID,
 	studentId: string,
 	courseId: string,
+	date: Date,
 	components: {
 		[componentName: string]: {
 			marks: number,
@@ -81,7 +83,8 @@
 		}
 	},
 	gradePoint: number,
-	gradeLetter: string
+	gradeLetter: string,
+	semester: string
 }
 ```
 
@@ -104,11 +107,13 @@
 	faculty: string, // faculty id
 	students: string[], // array of student ids
 	lectures: string[], // array of lecture ids
-	components: {
-		[componentName: string]: {
-			weightage: number
+	gradingScheme: {
+		[gradeLetter: string]: {
+			minMarks: number,
+			maxMarks: number
 		}
-	}
+
+	},
 }
 ```
 
