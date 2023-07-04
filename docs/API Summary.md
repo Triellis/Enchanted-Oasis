@@ -35,8 +35,8 @@
 | Add Student           | POST   | `/api/course/{id}/student`             |
 | Remove Student        | DELETE | `/api/course/{id}/student/{studentId}` |
 | list students         | GET    | `/api/course/{id}/student/list`        |
-| Enroll Student        | POST   | `/api/course/{id}/enroll`              |
-| Drop Student          | POST   | `/api/course/{id}/drop`                |
+| Enroll Self           | POST   | `/api/course/{id}/enroll`              |
+| UnEnroll Self         | POST   | `/api/course/{id}/unEnroll`            |
 | Read Grading Scheme   | GET    | `/api/course/{id}/gradingScheme`       |
 | Update Grading Scheme | PUT    | `/api/course/{id}/gradingScheme`       |
 | Create Grading Scheme | POST   | `/api/course/{id}/gradingScheme`       |
