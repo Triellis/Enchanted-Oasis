@@ -627,3 +627,182 @@ type Student = {
 -   **Permissions:** `Admin`
 
 #### Response will be status code
+
+## User
+
+### Get User
+
+-   **URL:** `/api/user`
+-   **Method:** `GET`
+-   **Permissions:** `Admin` | `Student` | `Faculty`
+
+#### Response
+
+```typescript
+{
+	name: string,
+	role: "Student" | "Faculty" | "Admin",
+	email: string,
+	house: string,
+	profilePicture: string,
+	phone: string,
+	rollNumber: string,
+	admissionYear: number,
+	courses: string[], // array of course ids
+}
+```
+
+### Update User
+
+-   **URL:** `/api/user`
+-   **Method:** `PUT`
+-   **Permissions:** `Admin` | `Student`
+
+#### Request body
+
+```typescript
+{
+		name: string,
+	role: "Student" | "Faculty" | "Admin",
+	email: string,
+	house: string,
+	profilePicture: string,
+	phone: string,
+	rollNumber: string,
+
+
+}
+```
+
+#### Response will be status code
+
+### Update Password
+
+-   **URL:** `/api/user/password`
+-   **Method:** `PUT`
+-   **Permissions:** `Admin` | `Student`
+
+#### Request body
+
+```typescript
+{
+	oldPassword: string,
+	newPassword: string,
+}
+```
+
+#### Response will be status code
+
+### Delete User
+
+-   **URL:** `/api/user`
+-   **Method:** `DELETE`
+-   **Permissions:** `Admin`
+
+#### Response will be status code
+
+### Create User
+
+-   **URL:** `/api/user`
+-   **Method:** `POST`
+-   **Permissions:** `Admin`
+
+#### Request body
+
+```typescript
+{
+	name: string,
+	role: "Student" | "Faculty" | "Admin",
+	email: string,
+	house: string,
+	profilePicture: string,
+	phone: string,
+	rollNumber: string,
+	admissionYear: number,
+	courses: string[], // array of course ids
+	password: string,
+}
+```
+
+#### Response will be status code
+
+### List Users
+
+-   **URL:** `/api/allUser/list`
+-   **Method:** `GET`
+-   **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"maxResults"?: number, // pagination parameter default is 10
+	"page"?: number // pagination parameter, default is 1
+}
+```
+
+#### Response
+
+```typescript
+
+{
+	"users":User[],
+	"totalUsers":number
+}
+
+```
+
+```typescript
+type User = {
+	_id: ObjectID;
+	name: string;
+	email: string;
+	role: "Student" | "Faculty" | "Admin";
+	house: string;
+	profilePicture: string;
+	phone: string;
+	rollNumber: string;
+	admissionYear: number;
+};
+```
+
+### Search Users
+
+-   **URL:** `/api/allUser/search`
+-   **Method:** `GET`
+-   **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"maxResults"?: number, // pagination parameter default is 10
+	"page"?: number // pagination parameter, default is 1
+	"search"?: string // search parameter
+}
+```
+
+#### Response
+
+```typescript
+
+{
+	"users":User[],
+	"totalUsers":number
+}
+
+```
+
+```typescript
+type User = {
+	_id: ObjectID;
+	name: string;
+	email: string;
+	role: "Student" | "Faculty" | "Admin";
+	house: string;
+	profilePicture: string;
+	phone: string;
+	rollNumber: string;
+	admissionYear: number;
+};
+```
