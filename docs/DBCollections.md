@@ -96,7 +96,6 @@
 	_id: ObjectID,
 	name: string,
 	description:string,
-	department: string,
 	credits: number,
 	schedule:{
 		[day:string]:{
@@ -104,7 +103,7 @@
 			endTime:Date
 		}
 	}
-	faculty: string, // faculty id
+	faculties: string[], // faculty ids
 	students: string[], // array of student ids
 	lectures: string[], // array of lecture ids
 	gradingScheme: {
