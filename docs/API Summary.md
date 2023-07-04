@@ -83,18 +83,17 @@
 | Get Notification                   | GET    | `/api/course/{id}/notification/{notificationId}`               |
 | Get Views                          | GET    | `/api/course/{id}/notification/{notificationId}/views `        |
 | Get Viewers                        | GET    | `/api/course/{id}/notification/{notificationId}/listViewers  ` |
-| Get Number of unread notifications | GET    | `/api/course/{id}/notification/unread`                         |
-| mark notification as read          | POST   | `/api/course/{id}/notification/{notificationId}/read`          |
+| Get Number of unseen notifications | GET    | `/api/course/{id}/notification/unseen`                         |
 
 ## Course Materials
 
 | Route Name      | Method | URL Pattern                              |
 | --------------- | ------ | ---------------------------------------- |
-| List Materials  | GET    | `/api/course/{id}/Material`              |
-| Add Material    | POST   | `/api/course/{id}/Material`              |
-| Remove Material | DELETE | `/api/course/{id}/Material/{MaterialId}` |
-| Edit Material   | PUT    | `/api/course/{id}/Material/{MaterialId}` |
-| Get Material    | GET    | `/api/course/{id}/Material/{MaterialId}` |
+| List materials  | GET    | `/api/course/{id}/material`              |
+| Add material    | POST   | `/api/course/{id}/material`              |
+| Remove material | DELETE | `/api/course/{id}/material/{materialId}` |
+| Edit material   | PUT    | `/api/course/{id}/material/{materialId}` |
+| Get material    | GET    | `/api/course/{id}/material/{materialId}` |
 
 ## Admin Notifications
 
@@ -107,8 +106,7 @@
 | Get Notification                   | GET    | `/api/notification/{notificationId}`               |
 | Get Views                          | GET    | `/api/notification/{notificationId}/views `        |
 | Get Viewers                        | GET    | `/api/notification/{notificationId}/listViewers  ` |
-| Get Number of unread notifications | GET    | `/api/notification/unread`                         |
-| mark notification as read          | POST   | `/api/notification/{notificationId}/read`          |
+| Get Number of unseen notifications | GET    | `/api/notification/unseen`                         |
 
 ## Lectures
 
