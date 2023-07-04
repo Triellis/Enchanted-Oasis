@@ -13,7 +13,19 @@ export async function GET(request: NextRequest) {
 	// Query for a movie that has the title 'Back to the Future'
 	const doc = await values.findOne({ name: "counter" });
 	const value = doc!.value;
-	await values.updateOne({ name: "counter" }, { $set: { value: value + 1 } });
+	const updateStatus = await values.updateOne(
+		{ name: "counter" },
+		{ $inc: { value: 1 } }
+	);
+	if (!updateStatus.acknowledged)
+		return NextResponse.json(
+			{
+				error: "Failed to update",
+			},
+			{
+				status: 500,
+			}
+		);
 
 	console.log(value);
 
