@@ -84,6 +84,7 @@
 | Get Views                          | GET    | `/api/course/{id}/notification/{notificationId}/views `        |
 | Get Viewers                        | GET    | `/api/course/{id}/notification/{notificationId}/listViewers  ` |
 | Get Number of unseen notifications | GET    | `/api/course/{id}/notification/unseen`                         |
+| mark as seen                       | PATCH  | `/api/course/{id}/notification/{notificationId}/seen`          |
 
 ## Course Materials
 
@@ -107,6 +108,7 @@
 | Get Views                          | GET    | `/api/notification/{notificationId}/views `        |
 | Get Viewers                        | GET    | `/api/notification/{notificationId}/listViewers  ` |
 | Get Number of unseen notifications | GET    | `/api/notification/unseen`                         |
+| mark as seen                       | PATCH  | `/api/notification/{notificationId}/seen`          |
 
 ## Lectures
 
@@ -121,3 +123,4 @@
 | View Lecture           | GET    | `/api/course/{id}/lecture/{lecture}`                        |
 | Mark Attendance        | POST   | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
 | Unmark Attendance      | DELETE | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
+| Get Attendance summary | GET    | `/api/attendanceSummary`     |

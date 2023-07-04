@@ -62,7 +62,8 @@
 {
 	_id: ObjectID,
 	courseId: string,
-	date: Date,
+	startTime: Date,
+	endTime: Date,
 	attendance: string[], // array of student ids
 	attendanceCount: number // number of students present
 }

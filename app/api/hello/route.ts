@@ -5,7 +5,7 @@ const uri = process.env.MONGO_URI!;
 const client = new MongoClient(uri);
 const database = client.db("test");
 const values = database.collection("values");
-export async function POST(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
 	// Replace the uri string with your connection string.
 
 	// Query for a movie that has the title 'Back to the Future'

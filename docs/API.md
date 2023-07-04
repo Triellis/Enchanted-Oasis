@@ -807,7 +807,7 @@ type User = {
 };
 ```
 
-## Course notifcations
+## Course notifications
 
 ### List notifications
 
@@ -981,6 +981,14 @@ type User = {
 }
 
 ```
+
+### Mark notification as seen
+
+-   **URL:** `/api/course/{id}/notifications/{notificationId}/seen`
+-   **Method:** `PATCH`
+-   **Permissions:** `Student` | `Faculty`
+
+#### Response will be status code
 
 ## Course Materials
 
@@ -1258,4 +1266,195 @@ type User = {
 	"unseenNotifications":number
 }
 
+```
+
+### mark notification as seen
+
+-   **URL:** `/api/notification/{notificationId}/seen`
+-   **Method:** `PATCH`
+-   **Permissions:** `Admin` | `Faculty` | `Student`
+
+#### Response will be status code
+
+## Lectures
+
+### Get upcoming lectures
+
+-   **URL:** `/api/course/{id}/lecture/upcoming`
+-   **Method:** `GET`
+-   **Permissions:** `Student` | `Faculty`
+
+#### Response
+
+```typescript
+type Lecture = {
+	courseId: string;
+	startTime: Date;
+	endTime: Date;
+};
+```
+
+### Add lecture
+
+-   **URL:** `/api/course/{id}/lecture`
+-   **Method:** `POST`
+
+#### Request body
+
+```typescript
+{
+	startTime: Date;
+	endTime: Date;
+}
+```
+
+#### Response will be status code
+
+## List lectures
+
+-   **URL:** `/api/course/{id}/lecture`
+-   **Method:** `GET`
+-   **Permissions:** `Student` | `Faculty`
+
+#### Query Parameters
+
+```typescript
+{
+	"maxResults"?: number, // pagination parameter default is 10
+	"page"?: number // pagination parameter, default is 1
+}
+```
+
+#### Response
+
+```typescript
+{
+	"lectures":Lecture[],
+	"totalLectures":number
+}
+```
+
+```typescript
+type Lecture = {
+	_id: ObjectID;
+	courseId: string;
+	startTime: Date;
+	endTime: Date;
+};
+```
+
+### Delete lecture
+
+-   **URL:** `/api/course/{id}/lecture/{lectureId}`
+-   **Method:** `DELETE`
+-   **Permissions:** `Faculty`
+
+#### Response will be status code
+
+### View Attendance
+
+-   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+-   **Method:** `GET`
+-   **Permissions:** `Faculty`
+
+#### Response
+
+```typescript
+{
+	"attendance":studentIds[],
+	"totalAttendance":number
+}
+```
+
+### Post Attendance
+
+-   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+-   **Method:** `POST`
+-   **Permissions:** `Faculty`
+
+#### Request body
+
+```typescript
+{
+	"studentIds":string[]
+}
+```
+
+### View Lecture
+
+-   **URL:** `/api/course/{id}/lecture/{lectureId}`
+-   **Method:** `GET`
+-   **Permissions:** `Faculty`
+
+#### Response
+
+```typescript
+
+{
+	"lecture":Lecture
+}
+
+```
+
+```typescript
+type Lecture = {
+	_id: ObjectID;
+	courseId: string;
+	startTime: Date;
+	endTime: Date;
+	attendance: string[]; // array of student ids
+	attendanceCount: number; // number of students present
+};
+```
+
+### Mark attendance
+
+-   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+-   **Method:** `POST`
+-   **Permissions:** `Faculty`
+
+#### Query parameters
+
+```typescript
+{
+	"studentId":string
+}
+```
+
+#### Response will be status code
+
+### Unmark attendance
+
+-   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+-   **Method:** `DELETE`
+-   **Permissions:** `Faculty`
+
+#### Query parameters
+
+```typescript
+{
+	"studentId":string
+}
+```
+
+### Get attendance summary
+
+-   **URL:** `/api/attendanceSummary`
+-   **Method:** `GET`
+-   **Permissions:** `Student`
+
+#### Response
+
+```typescript
+{
+	"attendanceSummary":AttendanceSummary[]
+}
+```
+
+```typescript
+type AttendanceSummary = {
+	courseId: string;
+	attendance: number;
+	totalLectures: number;
+};
 ```
