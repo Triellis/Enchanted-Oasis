@@ -49,7 +49,7 @@
 
 | Route Name    | Method | URL Pattern                         |
 | ------------- | ------ | ----------------------------------- |
-| Get Data      | GET    | `/api/house/info`                   |
+| Get Data      | GET    | `/api/house/{houseId}`              |
 | List Houses   | GET    | `/api/house/list`                   |
 | Get Members   | GET    | `/api/house/{id}/listMembers`       |
 | Add Member    | POST   | `/api/house/{id}/member`            |

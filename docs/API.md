@@ -442,3 +442,10 @@ type Faculty = {
 -   **Permissions:** `Faculty`
 
 #### Response will be status code
+
+## Houses
+
+### List Houses
+
+-   **URL:** `/api/house/list`
+-   
