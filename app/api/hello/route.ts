@@ -9,6 +9,7 @@ export async function POST(request: NextRequest) {
 	// Replace the uri string with your connection string.
 
 	// Query for a movie that has the title 'Back to the Future'
+	let startTime = performance.now();
 	const doc = await values.findOne({ name: "counter" });
 	const value = doc!.value;
 	const updateStatus = await values.updateOne(
@@ -16,7 +17,8 @@ export async function POST(request: NextRequest) {
 		{ $inc: { value: 1 } }
 	);
 
-	console.log(value);
+	let endTime = performance.now();
+	let time = endTime - startTime;
 
 	// Ensures that the client will close when you finish/error
 	// await client.close();
@@ -24,6 +26,7 @@ export async function POST(request: NextRequest) {
 	return NextResponse.json(
 		{
 			value,
+			time,
 		},
 		{
 			status: 200,
