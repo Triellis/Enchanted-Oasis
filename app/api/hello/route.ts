@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
 	// Replace the uri string with your connection string.
 	const uri = process.env.MONGO_URI!;
 
@@ -17,15 +17,6 @@ export async function GET(request: NextRequest) {
 		{ name: "counter" },
 		{ $inc: { value: 1 } }
 	);
-	if (updateStatus.acknowledged)
-		return NextResponse.json(
-			{
-				error: "Failed to update",
-			},
-			{
-				status: 500,
-			}
-		);
 
 	console.log(value);
 
