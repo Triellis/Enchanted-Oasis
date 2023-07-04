@@ -26,6 +26,7 @@
 	_id: ObjectID,
 	name: string,
 	points: number
+	members: string[] // array of student ids
 }
 ```
 

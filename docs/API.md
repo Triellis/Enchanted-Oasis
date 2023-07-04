@@ -479,8 +479,151 @@ type House = {
 };
 ```
 
-### Get House
+### See my house data
 
--   **URL:** `/api/house`
+-   **URL:** `/api/house/my`
 -   **Method:** `GET`
 -   **Permissions:** `Student`
+
+#### Response
+
+```typescript
+{
+	_id: ObjectID;
+	name: string;
+	points: number;
+}
+```
+
+### List members
+
+-   **URL:** `/api/house/{id}/listMembers`
+-   **Method:** `GET`
+-   **Permissions:** `Admin` | `Faculty`
+
+#### Query Parameters
+
+```typescript
+{
+	"maxResults"?: number, // pagination parameter default is 10
+	"page"?: number // pagination parameter, default is 1
+}
+```
+
+#### Response
+
+```typescript
+
+{
+	"students":Student[],
+	"totalStudents":number
+}
+
+```
+
+```typescript
+type Student = {
+	_id: ObjectID;
+	name: string;
+	email: string;
+	rollNo: string;
+};
+```
+
+### Add member
+
+-   **URL:** `/api/house/{id}/member`
+-   **Method:** `POST`
+-   **Permissions:** `Admin`
+
+#### Request body
+
+```typescript
+{
+	memberId: string;
+}
+```
+
+#### Response will be status code
+
+### Remove member
+
+-   **URL:** `/api/house/{id}/member/{memberId}`
+-   **Method:** `DELETE`
+-   **Permissions:** `Admin`
+
+#### Response will be status code
+
+### Add points
+
+-   **URL:** `/api/house/{id}/increase`
+-   **Method:** `POST`
+-   **Permissions:** `Admin`
+
+#### Request body
+
+```typescript
+{
+	points: number;
+}
+```
+
+#### Response will be status code
+
+### Remove points
+
+-   **URL:** `/api/house/{id}/decrease`
+-   **Method:** `POST`
+-   **Permissions:** `Admin`
+
+#### Request body
+
+```typescript
+{
+	points: number;
+}
+```
+
+#### Response will be status code
+
+### Edit House
+
+-   **URL:** `/api/house/{id}`
+-   **Method:** `PUT`
+-   **Permissions:** `Admin`
+
+#### Request body
+
+```typescript
+{
+	name: string;
+}
+```
+
+#### Response will be status code
+
+### Create House
+
+-   **URL:** `/api/house`
+-   **Method:** `POST`
+-   **Permissions:** `Admin`
+
+#### Request body
+
+```typescript
+{
+	name: string;
+	members: string[];
+
+}
+```
+
+#### Response will be status code
+
+### Delete House
+
+-   **URL:** `/api/house/{id}`
+-   **Method:** `DELETE`
+-   **Permissions:** `Admin`
+
+#### Response will be status code
