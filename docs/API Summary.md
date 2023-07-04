@@ -62,14 +62,15 @@
 
 ## User
 
-| Route Name     | Method | URL Pattern           |
-| -------------- | ------ | --------------------- |
-| Update Details | PUT    | `/api/user`           |
-| Delete User    | DELETE | `/api/user`           |
-| Get User       | GET    | `/api/user`           |
-| Create User    | POST   | `/api/user`           |
-| list Users     | GET    | `/api/allUser/list`   |
-| Search Users   | GET    | `/api/allUser/search` |
+| Route Name      | Method | URL Pattern           |
+| --------------- | ------ | --------------------- |
+| Update Details  | PUT    | `/api/user`           |
+| Delete User     | DELETE | `/api/user`           |
+| Get User        | GET    | `/api/user`           |
+| Create User     | POST   | `/api/user`           |
+| Update password | PUT    | `/api/user/password`  |
+| list Users      | GET    | `/api/allUser/list`   |
+| Search Users    | GET    | `/api/allUser/search` |
 
 ## Course Notifications
 
