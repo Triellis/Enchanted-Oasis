@@ -13,6 +13,8 @@ export async function GET(request: NextRequest) {
 	// Query for a movie that has the title 'Back to the Future'
 	const doc = await values.findOne({ name: "counter" });
 	const value = doc!.value;
+	values.updateOne({ name: "counter" }, { $set: { value: value + 1 } });
+
 	console.log(value);
 
 	// Ensures that the client will close when you finish/error
