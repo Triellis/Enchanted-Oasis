@@ -4,7 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import { SessionProvider } from "next-auth/react";
 const darkTheme = createTheme({
 	palette: {
 		mode: "dark",
@@ -19,15 +19,21 @@ export const metadata = {
 
 export default function RootLayout({
 	children,
+	pageProps: { session, ...pageProps },
 }: {
 	children: React.ReactNode;
+	pageProps: { session: any };
 }) {
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<CssBaseline />
-			<html lang="en">
-				<body className={inter.className}>{children}</body>
-			</html>
-		</ThemeProvider>
+		<html lang="en">
+			<body suppressHydrationWarning={true} className={inter.className}>
+				<SessionProvider session={session}>
+					<ThemeProvider theme={darkTheme}>
+						<CssBaseline />
+						{children}
+					</ThemeProvider>
+				</SessionProvider>
+			</body>
+		</html>
 	);
 }
