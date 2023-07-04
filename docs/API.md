@@ -448,4 +448,39 @@ type Faculty = {
 ### List Houses
 
 -   **URL:** `/api/house/list`
--   
+-   **Method:** `GET`
+-   **Permissions:** `Admin` | `Faculty`
+
+#### Query Parameters
+
+```typescript
+{
+	"maxResults"?: number, // pagination parameter default is 10
+	"page"?: number // pagination parameter, default is 1
+}
+```
+
+#### Response
+
+```typescript
+
+{
+	"houses":House[],
+	"totalHouses":number
+}
+
+```
+
+```typescript
+type House = {
+	_id: ObjectID;
+	name: string;
+	points: number;
+};
+```
+
+### Get House
+
+-   **URL:** `/api/house`
+-   **Method:** `GET`
+-   **Permissions:** `Student`

@@ -47,18 +47,18 @@
 
 ## Houses
 
-| Route Name    | Method | URL Pattern                         |
-| ------------- | ------ | ----------------------------------- |
-| Get Data      | GET    | `/api/house/{houseId}`              |
-| List Houses   | GET    | `/api/house/list`                   |
-| Get Members   | GET    | `/api/house/{id}/listMembers`       |
-| Add Member    | POST   | `/api/house/{id}/member`            |
-| Remove Member | DELETE | `/api/house/{id}/member/{memberId}` |
-| Increase pts  | POST   | `/api/house/{id}/increase`          |
-| Decrease pts  | POST   | `/api/house/{id}/decrease`          |
-| Edit House    | PUT    | `/api/house/{id}`                   |
-| Delete House  | DELETE | `/api/house/{id}`                   |
-| Create house  | POST   | `/api/house`                        |
+| Route Name        | Method | URL Pattern                         |
+| ----------------- | ------ | ----------------------------------- |
+| see my house Data | GET    | `/api/house/see`                    |
+| List Houses       | GET    | `/api/house/list`                   |
+| List Members      | GET    | `/api/house/{id}/listMembers`       |
+| Add Member        | POST   | `/api/house/{id}/member`            |
+| Remove Member     | DELETE | `/api/house/{id}/member/{memberId}` |
+| Increase pts      | POST   | `/api/house/{id}/increase`          |
+| Decrease pts      | POST   | `/api/house/{id}/decrease`          |
+| Edit House        | PUT    | `/api/house/{id}`                   |
+| Delete House      | DELETE | `/api/house/{id}`                   |
+| Create house      | POST   | `/api/house`                        |
 
 ## User
 
