@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 		{ name: "counter" },
 		{ $inc: { value: 1 } }
 	);
-	if (!updateStatus.acknowledged)
+	if (updateStatus.acknowledged)
 		return NextResponse.json(
 			{
 				error: "Failed to update",
