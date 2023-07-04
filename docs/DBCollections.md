@@ -147,7 +147,5 @@
 	seenBy: string[] ,// array of user ids,
 	seenByCount: number, // number of users who ave seen this notification
 	creatorId: string, // id of the faculty who created this notification
-	students: string[], // array of student ids
-	faculty: string[] // array of faculty ids
 }
 ```

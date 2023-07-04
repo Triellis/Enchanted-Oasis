@@ -1,15 +1,15 @@
 # Index
 
-- [Index](#index)
-- [Api Routes Summary](#api-routes-summary)
-	- [Results](#results)
-	- [Courses](#courses)
-	- [Houses](#houses)
-	- [User](#user)
-	- [Course Notifications](#course-notifications)
-	- [Course Materials](#course-materials)
-	- [Admin Notifications](#admin-notifications)
-	- [Lectures](#lectures)
+-   [Index](#index)
+-   [Api Routes Summary](#api-routes-summary)
+    -   [Results](#results)
+    -   [Courses](#courses)
+    -   [Houses](#houses)
+    -   [User](#user)
+    -   [Course Notifications](#course-notifications)
+    -   [Course Materials](#course-materials)
+    -   [Admin Notifications](#admin-notifications)
+    -   [Lectures](#lectures)
 
 # Api Routes Summary
 
@@ -84,7 +84,6 @@
 | Get Views                          | GET    | `/api/course/{id}/notification/{notificationId}/views `        |
 | Get Viewers                        | GET    | `/api/course/{id}/notification/{notificationId}/listViewers  ` |
 | Get Number of unread notifications | GET    | `/api/course/{id}/notification/unread`                         |
-| mark notification as read          | POST   | `/api/course/{id}/notification/{notificationId}/read`          |
 
 ## Course Materials
 

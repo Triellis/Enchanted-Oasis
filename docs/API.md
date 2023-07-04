@@ -806,3 +806,92 @@ type User = {
 	admissionYear: number;
 };
 ```
+
+## Course notifcations
+
+### List notifications
+
+-   **URL:** `/api/course/{id}/notifications`
+-   **Method:** `GET`
+-   **Permissions:** `Student` | `Faculty`
+
+#### Query Parameters
+
+```typescript
+{
+	"maxResults"?: number, // pagination parameter default is 10
+	"page"?: number // pagination parameter, default is 1
+}
+```
+
+#### Response
+
+```typescript
+
+{
+	"notifications":Notification[],
+	"totalNotifications":number
+}
+
+```
+
+```typescript
+type Notification = {
+	_id: ObjectID;
+	courseId: string;
+	title: string;
+	body: string; // supports markdown
+	date: Date;
+	badgeText: string; // badge text
+	badgeColor: string; // badge color
+	seenBy?: string[]; // array of user ids,
+	seenByCount?: number; // number of users who ave seen this notification
+	creatorId: string; // id of the faculty who created this notification
+};
+```
+
+### Create notification
+
+-   **URL:** `/api/course/{id}/notifications`
+-   **Method:** `POST`
+-   **Permissions:** `Faculty`
+
+#### Request body
+
+```typescript
+{
+	title: string;
+	body: string; // supports markdown
+	badgeText: string; // badge text
+	badgeColor: string; // badge color
+}
+```
+
+#### Response will be status code
+
+### Delete notification
+
+-   **URL:** `/api/course/{id}/notifications/{notificationId}`
+-   **Method:** `DELETE`
+-   **Permissions:** `Faculty`
+
+#### Response will be status code
+
+### Update notification
+
+-   **URL:** `/api/course/{id}/notifications/{notificationId}`
+-   **Method:** `PUT`
+-   **Permissions:** `Faculty`
+
+#### Request body
+
+```typescript
+{
+	title: string;
+	body: string; // supports markdown
+	badgeText: string; // badge text
+	badgeColor: string; // badge color
+}
+```
+
+#### Response will be status code
