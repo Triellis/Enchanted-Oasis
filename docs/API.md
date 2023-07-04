@@ -37,7 +37,7 @@
 
 {
 	"results":Result[],
-"totalResults":number
+	"totalResults":number
 }
 
 
