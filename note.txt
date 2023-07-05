@@ -1,0 +1,12 @@
+all the references for external images etc here:
+    For the trio image:
+    -https://www.pngwing.com/en/free-png-koaff 
+    
+
+
+
+Not signed in <br />
+        
+        <Button onClick={toggleColorMode}>
+          Toggle {colorMode === "light" ? "Dark" : "Light"}
+        </Button> 

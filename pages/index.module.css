@@ -1,0 +1,50 @@
+/* everything in the main should be in the center of the page */
+.main {
+  padding: 5rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin: auto auto;
+  /* word wrap */
+  word-wrap: break-word;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.txt {
+  font-size: 1.4rem;
+  font-weight: 200;
+  text-align: justify;
+  margin-bottom: 2rem;
+}
+
+.appName {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 1) 5%,
+    rgba(255, 0, 255, 1) 75%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.appNameTxt {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 1) 5%,
+    rgba(255, 0, 255, 1) 75%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  letter-spacing: -1px;
+}
