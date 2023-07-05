@@ -5,7 +5,7 @@ import type { Session } from "next-auth";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { ColorModeScript } from "@chakra-ui/react";
-import { theme } from "./theme";
+import { theme } from "../lib/theme";
 // Use of the <SessionProvider> is mandatory to allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
 
