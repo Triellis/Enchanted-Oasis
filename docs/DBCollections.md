@@ -44,7 +44,6 @@
 	profilePicture: string,
 	phone: string,
 	rollNumber: string,
-	admissionYear: number,
 
 	courses: string[], // array of course ids
 
