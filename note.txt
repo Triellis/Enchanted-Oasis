@@ -3,6 +3,11 @@ all the references for external images etc here:
     -https://www.pngwing.com/en/free-png-koaff 
     
 
+use Drawer for the side bar
+npm i @chakra-ui/icons to install icon packs
+other important stuff here:
+https://chakra-ui.com/docs/components
+
 
 For the color mode toggle:
         <Button onClick={toggleColorMode}>
