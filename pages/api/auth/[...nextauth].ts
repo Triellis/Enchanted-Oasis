@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { validateLogin } from "../../../lib/functions";
+import { getRoleAndId, validateLogin } from "../../../lib/functions";
 
 export const authOptions = {
 	// Configure one or more authentication providers
@@ -41,6 +41,24 @@ export const authOptions = {
 			},
 		}),
 	],
+	callbacks: {
+		async session({
+			session,
+			token,
+			user,
+		}: {
+			session: any;
+			token: any;
+			user: any;
+		}) {
+			// Send properties to the client, like an access_token and user id from a provider.
+			const { role, id } = await getRoleAndId(session.user.email);
+			session.user.id = id;
+			session.user.role = role;
+
+			return session;
+		},
+	},
 };
 
 export default NextAuth(authOptions);

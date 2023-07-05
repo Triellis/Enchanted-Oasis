@@ -1,12 +1,17 @@
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
 export default function IndexPage() {
+	const { data: session } = useSession();
+	const router = useRouter();
+	if (session && session.user) {
+		router.push("/Dashboard/Admin");
+	}
 	return (
 		<>
-			<h1>NextAuth.js Example</h1>
-			<p>
-				This is an example site to demonstrate how to use{" "}
-				<a href="https://next-auth.js.org">NextAuth.js</a> for
-				authentication.
-			</p>
+			Not signed in <br />
+			<button onClick={() => signIn()}>Sign in</button>
 		</>
 	);
 }

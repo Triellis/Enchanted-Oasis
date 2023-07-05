@@ -28,8 +28,21 @@ export async function validateLogin(email: string, password: string) {
 	return {
 		email: user.email,
 		name: user.name,
-		role: user.role,
-		id: user._id,
+
 		image: user.profilePicture,
 	};
+}
+
+export async function getRoleAndId(email: string) {
+	const client = await MongoClient.connect(mongoUri!);
+	const usersCollection = client
+		.db("enchanted-oasis")
+		.collection<UserCol>("Users");
+	const user = await usersCollection.findOne({ email: email });
+
+	client.close();
+	const role = user?.role;
+	const id = user?._id;
+
+	return { role, id };
 }
