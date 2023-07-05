@@ -14,4 +14,4 @@ const theme = extendTheme({
   config,
 });
 
-export default theme;
+export { theme };
