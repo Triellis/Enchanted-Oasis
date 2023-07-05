@@ -4,9 +4,7 @@ all the references for external images etc here:
     
 
 
-
-Not signed in <br />
-        
+For the color mode toggle:
         <Button onClick={toggleColorMode}>
           Toggle {colorMode === "light" ? "Dark" : "Light"}
         </Button> 
