@@ -5,14 +5,12 @@ import { useEffect } from "react";
 import { MySession } from "../lib/types";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-	const session = useSession().data as MySession;
-	const router = useRouter();
-	useEffect(() => {
-		if (!session) {
-			router.push("/");
-		}
-	}, []);
+	const session = useSession();
 
+	const router = useRouter();
+	if (session.status === "unauthenticated") {
+		router.push("/");
+	}
 	return (
 		<>
 			<Head>
@@ -21,7 +19,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			Yo
-			<main>{session?.user.role}</main>
+			<main>
+				<div>{children}</div>
+			</main>
 		</>
 	);
 }
