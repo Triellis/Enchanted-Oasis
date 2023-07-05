@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-
+import { Session } from "next-auth";
 export type UserCol = {
 	_id: ObjectId;
 	name: string;
@@ -18,3 +18,13 @@ export type UserCol = {
 	seenNotifications: string[]; // array of notification ids
 	seenNotificationsCount: number; // number of notifications seen by this user
 };
+
+export type MySession = {
+	user: {
+		id: string;
+		role: string;
+		name: string;
+		email: string;
+		image: string;
+	};
+} | null;

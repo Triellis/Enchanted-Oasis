@@ -2,9 +2,16 @@ import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getRoleAndId, validateLogin } from "../../../lib/functions";
+const secret = process.env.SECRET;
 
+if (!secret) {
+	throw new Error(
+		"Missing SECRET environment variable. Add it and restart the server"
+	);
+}
 export const authOptions = {
 	// Configure one or more authentication providers
+	secret: secret,
 	providers: [
 		CredentialsProvider({
 			// The name to display on the sign in form (e.g. "Sign in with...")
