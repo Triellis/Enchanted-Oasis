@@ -5,8 +5,8 @@
   left: -300px; /* Sidebar initially hidden */
   width: 250px; 
   height: 100vh;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   background-color: rgb(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
   overflow: hidden;

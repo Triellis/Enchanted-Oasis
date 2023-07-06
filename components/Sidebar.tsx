@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import {  } from "@chakra-ui/react";
 import styles from "./Sidebar.module.css";
 
 function Sidebar({ isOpen }: { isOpen: boolean }) {
