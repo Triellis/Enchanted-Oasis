@@ -1,14 +1,14 @@
 # Index
 
--   [Api Routes Summary](#api-routes-summary)
-    -   [Results](#results)
-    -   [Courses](#courses)
-    -   [Houses](#houses)
-    -   [User](#user)
-    -   [Course Notifications](#course-notifications)
-    -   [Course Materials](#course-materials)
-    -   [Admin Notifications](#admin-notifications)
-    -   [Lectures](#lectures)
+- [Api Routes Summary](#api-routes-summary)
+  - [Results](#results)
+  - [Courses](#courses)
+  - [Houses](#houses)
+  - [User](#user)
+  - [Course Notifications](#course-notifications)
+  - [Course Materials](#course-materials)
+  - [Admin Notifications](#admin-notifications)
+  - [Lectures](#lectures)
 
 # Api Routes Details
 
@@ -16,9 +16,9 @@
 
 ### List Results
 
--   **URL:** `/api/result/list`
--   **Method:** `GET`
--   **Permissions:** `Faculty` | `Student`
+- **URL:** `/api/result/list`
+- **Method:** `GET`
+- **Permissions:** `Faculty` | `Student`
 
 #### Query Parameters
 
@@ -45,18 +45,18 @@
 
 ```typescript
 type Result = {
-	courseId: string;
-	gradePoint: number;
-	gradeLetter: string;
-	semester: string;
+  courseId: string;
+  gradePoint: number;
+  gradeLetter: string;
+  semester: string;
 };
 ```
 
 ### Get Result
 
--   **URL:** `/api/result/{id}`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/result/{id}`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response
 
@@ -81,9 +81,9 @@ type Result = {
 
 ### Post Result
 
--   **URL:** `/api/result`
--   **Method:** `POST`
--   **Permissions:** `Faculty`
+- **URL:** `/api/result`
+- **Method:** `POST`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -110,9 +110,9 @@ type Result = {
 
 ### Update Result
 
--   **URL:** `/api/result/{id}`
--   **Method:** `PUT`
--   **Permissions:** `Faculty`
+- **URL:** `/api/result/{id}`
+- **Method:** `PUT`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -139,9 +139,9 @@ type Result = {
 
 ### Delete Result
 
--   **URL:** `/api/result/{id}`
--   **Method:** `DELETE`
--   **Permissions:** `Faculty`
+- **URL:** `/api/result/{id}`
+- **Method:** `DELETE`
+- **Permissions:** `Faculty`
 
 #### Response will be status code
 
@@ -149,9 +149,9 @@ type Result = {
 
 ### List Courses
 
--   **URL:** `/api/course/list`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Student`
+- **URL:** `/api/course/list`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Student`
 
 #### Query Parameters
 
@@ -175,9 +175,9 @@ type Result = {
 
 ### Add Course
 
--   **URL:** `/api/course`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/course`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
@@ -209,9 +209,9 @@ type Result = {
 
 ### Get Course
 
--   **URL:** `/api/course/{id}`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Student`
+- **URL:** `/api/course/{id}`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Student`
 
 #### Response
 
@@ -243,9 +243,9 @@ type Result = {
 
 ### Update Course
 
--   **URL:** `/api/course/{id}`
--   **Method:** `PUT`
--   **Permissions:** `Admin`
+- **URL:** `/api/course/{id}`
+- **Method:** `PUT`
+- **Permissions:** `Admin`
 
 #### Request body
 
@@ -255,17 +255,17 @@ type Result = {
 
 ### Remove Course
 
--   **URL:** `/api/course/{id}`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/course/{id}`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
 ### List Students
 
--   **URL:** `/api/course/{id}/student/list`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Student`
+- **URL:** `/api/course/{id}/student/list`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Student`
 
 #### Query Parameters
 
@@ -289,24 +289,24 @@ type Result = {
 
 ```typescript
 type Student = {
-	_id: ObjectID;
-	name: string;
-	email: string;
-	rollNo: string;
+  _id: ObjectID;
+  name: string;
+  email: string;
+  rollNo: string;
 };
 ```
 
 ### Add Student
 
--   **URL:** `/api/course/{id}/student`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/course/{id}/student`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	studentId: string;
+  studentId: string;
 }
 ```
 
@@ -314,17 +314,17 @@ type Student = {
 
 ### Remove Student
 
--   **URL:** `/api/course/{id}/student/{studentId}`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/course/{id}/student/{studentId}`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
 ### List Faculties
 
--   **URL:** `/api/course/{id}/faculty/list`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Student` | `Faculty`
+- **URL:** `/api/course/{id}/faculty/list`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Query Parameters
 
@@ -348,23 +348,23 @@ type Student = {
 
 ```typescript
 type Faculty = {
-	_id: ObjectID;
-	name: string;
-	email: string;
+  _id: ObjectID;
+  name: string;
+  email: string;
 };
 ```
 
 ### Add Faculty
 
--   **URL:** `/api/course/{id}/faculty`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/course/{id}/faculty`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	facultyId: string;
+  facultyId: string;
 }
 ```
 
@@ -372,33 +372,33 @@ type Faculty = {
 
 ### Remove Faculty
 
--   **URL:** `/api/course/{id}/faculty/{facultyId}`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/course/{id}/faculty/{facultyId}`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
 ### Enroll self
 
--   **URL:** `/api/course/{id}/enroll`
--   **Method:** `POST`
--   **Permissions:** `Student`
+- **URL:** `/api/course/{id}/enroll`
+- **Method:** `POST`
+- **Permissions:** `Student`
 
 #### Response will be status code
 
 ### Unenroll self
 
--   **URL:** `/api/course/{id}/unenroll`
--   **Method:** `POST1
--   **Permissions:** `Student`
+- **URL:** `/api/course/{id}/unenroll`
+- **Method:** `POST1
+- **Permissions:** `Student`
 
 #### Response will be status code
 
 ### Get Grading Scheme
 
--   **URL:** `/api/course/{id}/gradingScheme`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/gradingScheme`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response
 
@@ -413,9 +413,9 @@ type Faculty = {
 
 ### Update Grading Scheme
 
--   **URL:** `/api/course/{id}/gradingScheme`
--   **Method:** `PUT`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/gradingScheme`
+- **Method:** `PUT`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -430,9 +430,9 @@ type Faculty = {
 
 ### Post Grading Scheme
 
--   **URL:** `/api/course/{id}/gradingScheme`
--   **Method:** `POST`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/gradingScheme`
+- **Method:** `POST`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -449,9 +449,9 @@ type Faculty = {
 
 ### Delete Grading Scheme
 
--   **URL:** `/api/course/{id}/gradingScheme`
--   **Method:** `DELETE`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/gradingScheme`
+- **Method:** `DELETE`
+- **Permissions:** `Faculty`
 
 #### Response will be status code
 
@@ -459,9 +459,9 @@ type Faculty = {
 
 ### List Houses
 
--   **URL:** `/api/house/list`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Faculty`
+- **URL:** `/api/house/list`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Faculty`
 
 #### Query Parameters
 
@@ -485,33 +485,33 @@ type Faculty = {
 
 ```typescript
 type House = {
-	_id: ObjectID;
-	name: string;
-	points: number;
+  _id: ObjectID;
+  name: string;
+  points: number;
 };
 ```
 
 ### See my house data
 
--   **URL:** `/api/house/my`
--   **Method:** `GET`
--   **Permissions:** `Student`
+- **URL:** `/api/house/my`
+- **Method:** `GET`
+- **Permissions:** `Student`
 
 #### Response
 
 ```typescript
 {
-	_id: ObjectID;
-	name: string;
-	points: number;
+  _id: ObjectID;
+  name: string;
+  points: number;
 }
 ```
 
 ### List members
 
--   **URL:** `/api/house/{id}/listMembers`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Faculty`
+- **URL:** `/api/house/{id}/listMembers`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Faculty`
 
 #### Query Parameters
 
@@ -535,24 +535,24 @@ type House = {
 
 ```typescript
 type Student = {
-	_id: ObjectID;
-	name: string;
-	email: string;
-	rollNo: string;
+  _id: ObjectID;
+  name: string;
+  email: string;
+  rollNo: string;
 };
 ```
 
 ### Add member
 
--   **URL:** `/api/house/{id}/member`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/house/{id}/member`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	memberId: string;
+  memberId: string;
 }
 ```
 
@@ -560,23 +560,23 @@ type Student = {
 
 ### Remove member
 
--   **URL:** `/api/house/{id}/member/{memberId}`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/house/{id}/member/{memberId}`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
 ### Add points
 
--   **URL:** `/api/house/{id}/increase`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/house/{id}/increase`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	points: number;
+  points: number;
 }
 ```
 
@@ -584,15 +584,15 @@ type Student = {
 
 ### Remove points
 
--   **URL:** `/api/house/{id}/decrease`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/house/{id}/decrease`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	points: number;
+  points: number;
 }
 ```
 
@@ -600,15 +600,15 @@ type Student = {
 
 ### Edit House
 
--   **URL:** `/api/house/{id}`
--   **Method:** `PUT`
--   **Permissions:** `Admin`
+- **URL:** `/api/house/{id}`
+- **Method:** `PUT`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	name: string;
+  name: string;
 }
 ```
 
@@ -616,9 +616,9 @@ type Student = {
 
 ### Create House
 
--   **URL:** `/api/house`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/house`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
@@ -634,9 +634,9 @@ type Student = {
 
 ### Delete House
 
--   **URL:** `/api/house/{id}`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/house/{id}`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
@@ -644,9 +644,9 @@ type Student = {
 
 ### Get User
 
--   **URL:** `/api/user`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Student` | `Faculty`
+- **URL:** `/api/user`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Response
 
@@ -659,16 +659,16 @@ type Student = {
 	profilePicture: string,
 	phone: string,
 	rollNumber: string,
-	admissionYear: number,
-	courses: string[], // array of course ids
+
+
 }
 ```
 
 ### Update User
 
--   **URL:** `/api/user`
--   **Method:** `PUT`
--   **Permissions:** `Admin` | `Student`
+- **URL:** `/api/user`
+- **Method:** `PUT`
+- **Permissions:** `Admin` | `Student`
 
 #### Request body
 
@@ -690,9 +690,9 @@ type Student = {
 
 ### Update Password
 
--   **URL:** `/api/user/password`
--   **Method:** `PUT`
--   **Permissions:** `Admin` | `Student`
+- **URL:** `/api/user/password`
+- **Method:** `PUT`
+- **Permissions:** `Admin` | `Student`
 
 #### Request body
 
@@ -707,17 +707,17 @@ type Student = {
 
 ### Delete User
 
--   **URL:** `/api/user`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/user`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
 ### Create User
 
--   **URL:** `/api/user`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/user`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
@@ -740,9 +740,9 @@ type Student = {
 
 ### List Users
 
--   **URL:** `/api/allUser/list`
--   **Method:** `GET`
--   **Permissions:** `Admin`
+- **URL:** `/api/allUser/list`
+- **Method:** `GET`
+- **Permissions:** `Admin`
 
 #### Query Parameters
 
@@ -766,23 +766,23 @@ type Student = {
 
 ```typescript
 type User = {
-	_id: ObjectID;
-	name: string;
-	email: string;
-	role: "Student" | "Faculty" | "Admin";
-	house: string;
-	profilePicture: string;
-	phone: string;
-	rollNumber: string;
-	admissionYear: number;
+  _id: ObjectID;
+  name: string;
+  email: string;
+  role: "Student" | "Faculty" | "Admin";
+  house: string;
+  profilePicture: string;
+  phone: string;
+  rollNumber: string;
+  admissionYear: number;
 };
 ```
 
 ### Search Users
 
--   **URL:** `/api/allUser/search`
--   **Method:** `GET`
--   **Permissions:** `Admin`
+- **URL:** `/api/allUser/search`
+- **Method:** `GET`
+- **Permissions:** `Admin`
 
 #### Query Parameters
 
@@ -807,15 +807,15 @@ type User = {
 
 ```typescript
 type User = {
-	_id: ObjectID;
-	name: string;
-	email: string;
-	role: "Student" | "Faculty" | "Admin";
-	house: string;
-	profilePicture: string;
-	phone: string;
-	rollNumber: string;
-	admissionYear: number;
+  _id: ObjectID;
+  name: string;
+  email: string;
+  role: "Student" | "Faculty" | "Admin";
+  house: string;
+  profilePicture: string;
+  phone: string;
+  rollNumber: string;
+  admissionYear: number;
 };
 ```
 
@@ -823,9 +823,9 @@ type User = {
 
 ### List notifications
 
--   **URL:** `/api/course/{id}/notifications`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/notifications`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Query Parameters
 
@@ -849,31 +849,31 @@ type User = {
 
 ```typescript
 type Notification = {
-	_id: ObjectID;
-	courseId: string;
-	title: string;
-	body: string; // supports markdown
-	date: Date;
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
-	creatorId: string; // id of the faculty who created this notification
+  _id: ObjectID;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
+  creatorId: string; // id of the faculty who created this notification
 };
 ```
 
 ### Create notification
 
--   **URL:** `/api/course/{id}/notifications`
--   **Method:** `POST`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/notifications`
+- **Method:** `POST`
+- **Permissions:** `Faculty`
 
 #### Request body
 
 ```typescript
 {
-	title: string;
-	body: string; // supports markdown
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
+  title: string;
+  body: string; // supports markdown
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
 }
 ```
 
@@ -881,26 +881,26 @@ type Notification = {
 
 ### Delete notification
 
--   **URL:** `/api/course/{id}/notifications/{notificationId}`
--   **Method:** `DELETE`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/notifications/{notificationId}`
+- **Method:** `DELETE`
+- **Permissions:** `Faculty`
 
 #### Response will be status code
 
 ### Update notification
 
--   **URL:** `/api/course/{id}/notifications/{notificationId}`
--   **Method:** `PUT`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/notifications/{notificationId}`
+- **Method:** `PUT`
+- **Permissions:** `Faculty`
 
 #### Request body
 
 ```typescript
 {
-	title: string;
-	body: string; // supports markdown
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
+  title: string;
+  body: string; // supports markdown
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
 }
 ```
 
@@ -908,30 +908,30 @@ type Notification = {
 
 ### Get notification ( it will mark notification as seen )
 
--   **URL:** `/api/course/{id}/notifications/{notificationId}`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/notifications/{notificationId}`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response
 
 ```typescript
 type Notification = {
-	_id: ObjectID;
-	courseId: string;
-	title: string;
-	body: string; // supports markdown
-	date: Date;
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
-	creatorId: string; // id of the faculty who created this notification
+  _id: ObjectID;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
+  creatorId: string; // id of the faculty who created this notification
 };
 ```
 
 ### Get Views
 
--   **URL:** `/api/course/{id}/notifications/{notificationId}/views`
--   **Method:** `GET`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/notifications/{notificationId}/views`
+- **Method:** `GET`
+- **Permissions:** `Faculty`
 
 #### Response
 
@@ -944,9 +944,9 @@ type Notification = {
 
 ### Get Viewers
 
--   **URL:** `/api/course/{id}/notifications/{notificationId}/listViewers`
--   **Method:** `GET`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/notifications/{notificationId}/listViewers`
+- **Method:** `GET`
+- **Permissions:** `Faculty`
 
 #### Query Parameters
 
@@ -970,19 +970,19 @@ type Notification = {
 
 ```typescript
 type User = {
-	_id: ObjectID;
-	name: string;
-	email: string;
-	role: "Student" | "Faculty" | "Admin";
-	profilePicture: string;
+  _id: ObjectID;
+  name: string;
+  email: string;
+  role: "Student" | "Faculty" | "Admin";
+  profilePicture: string;
 };
 ```
 
 ### get number of unseen notifications
 
--   **URL:** `/api/course/{id}/notifications/unseen`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/notifications/unseen`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response
 
@@ -996,9 +996,9 @@ type User = {
 
 ### Mark notification as seen
 
--   **URL:** `/api/course/{id}/notifications/{notificationId}/seen`
--   **Method:** `PATCH`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/notifications/{notificationId}/seen`
+- **Method:** `PATCH`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response will be status code
 
@@ -1006,9 +1006,9 @@ type User = {
 
 ### List materials
 
--   **URL:** `/api/course/{id}/material`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/material`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Query Parameters
 
@@ -1032,21 +1032,21 @@ type User = {
 
 ```typescript
 type Material = {
-	_id: ObjectID;
-	courseId: string;
-	title: string;
-	body: string; // supports markdown
-	date: Date;
-	attachments: string[]; // array of attachment urls (stored in firebase storage)
-	creatorId: string; // id of the user who created this notification
+  _id: ObjectID;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  attachments: string[]; // array of attachment urls (stored in firebase storage)
+  creatorId: string; // id of the user who created this notification
 };
 ```
 
 ### Create material
 
--   **URL:** `/api/course/{id}/material`
--   **Method:** `POST`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/material`
+- **Method:** `POST`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -1062,17 +1062,17 @@ type Material = {
 
 ### Delete material
 
--   **URL:** `/api/course/{id}/material/{materialId}`
--   **Method:** `DELETE`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/material/{materialId}`
+- **Method:** `DELETE`
+- **Permissions:** `Faculty`
 
 #### Response will be status code
 
 ### Update material
 
--   **URL:** `/api/course/{id}/material/{materialId}`
--   **Method:** `PUT`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/material/{materialId}`
+- **Method:** `PUT`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -1088,21 +1088,21 @@ type Material = {
 
 ### Get material
 
--   **URL:** `/api/course/{id}/material/{materialId}`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/material/{materialId}`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response
 
 ```typescript
 type Material = {
-	_id: ObjectID;
-	courseId: string;
-	title: string;
-	body: string; // supports markdown
-	date: Date;
-	attachments: string[]; // array of attachment urls (stored in firebase storage)
-	creatorId: string; // id of the user who created this notification
+  _id: ObjectID;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  attachments: string[]; // array of attachment urls (stored in firebase storage)
+  creatorId: string; // id of the user who created this notification
 };
 ```
 
@@ -1110,9 +1110,9 @@ type Material = {
 
 ### List notifications
 
--   **URL:** `/api/notification`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Faculty` | `Student`
+- **URL:** `/api/notification`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Faculty` | `Student`
 
 #### Query Parameters
 
@@ -1136,31 +1136,31 @@ type Material = {
 
 ```typescript
 type Notification = {
-	_id: ObjectID;
-	courseId: string;
-	title: string;
-	body: string; // supports markdown
-	date: Date;
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
-	creatorId: string; // id of the faculty who created this notification
+  _id: ObjectID;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
+  creatorId: string; // id of the faculty who created this notification
 };
 ```
 
 ### Create notification
 
--   **URL:** `/api/notification`
--   **Method:** `POST`
--   **Permissions:** `Admin`
+- **URL:** `/api/notification`
+- **Method:** `POST`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	title: string;
-	body: string; // supports markdown
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
+  title: string;
+  body: string; // supports markdown
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
 }
 ```
 
@@ -1168,26 +1168,26 @@ type Notification = {
 
 ### Delete notification
 
--   **URL:** `/api/notification/{notificationId}`
--   **Method:** `DELETE`
--   **Permissions:** `Admin`
+- **URL:** `/api/notification/{notificationId}`
+- **Method:** `DELETE`
+- **Permissions:** `Admin`
 
 #### Response will be status code
 
 ### Update notification
 
--   **URL:** `/api/notification/{notificationId}`
--   **Method:** `PUT`
--   **Permissions:** `Admin`
+- **URL:** `/api/notification/{notificationId}`
+- **Method:** `PUT`
+- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-	title: string;
-	body: string; // supports markdown
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
+  title: string;
+  body: string; // supports markdown
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
 }
 ```
 
@@ -1195,30 +1195,30 @@ type Notification = {
 
 ### Get notification ( it will mark notification as seen )
 
--   **URL:** `/api/notification/{notificationId}`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Faculty` | `Student`
+- **URL:** `/api/notification/{notificationId}`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Faculty` | `Student`
 
 #### Response
 
 ```typescript
 type Notification = {
-	_id: ObjectID;
-	courseId: string;
-	title: string;
-	body: string; // supports markdown
-	date: Date;
-	badgeText: string; // badge text
-	badgeColor: string; // badge color
-	creatorId: string; // id of the faculty who created this notification
+  _id: ObjectID;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
+  creatorId: string; // id of the faculty who created this notification
 };
 ```
 
 ### Get Views
 
--   **URL:** `/api/notification/{notificationId}/views`
--   **Method:** `GET`
--   **Permissions:** `Admin`
+- **URL:** `/api/notification/{notificationId}/views`
+- **Method:** `GET`
+- **Permissions:** `Admin`
 
 #### Response
 
@@ -1231,9 +1231,9 @@ type Notification = {
 
 ### Get Viewers
 
--   **URL:** `/api/notification/{notificationId}/listViewers`
--   **Method:** `GET`
--   **Permissions:** `Admin`
+- **URL:** `/api/notification/{notificationId}/listViewers`
+- **Method:** `GET`
+- **Permissions:** `Admin`
 
 #### Query Parameters
 
@@ -1256,19 +1256,19 @@ type Notification = {
 
 ```typescript
 type User = {
-	_id: ObjectID;
-	name: string;
-	email: string;
-	role: "Student" | "Faculty" | "Admin";
-	profilePicture: string;
+  _id: ObjectID;
+  name: string;
+  email: string;
+  role: "Student" | "Faculty" | "Admin";
+  profilePicture: string;
 };
 ```
 
 ### get number of unseen notifications
 
--   **URL:** `/api/notification/unseen`
--   **Method:** `GET`
--   **Permissions:** `Admin` | `Faculty` | `Student`
+- **URL:** `/api/notification/unseen`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Faculty` | `Student`
 
 #### Response
 
@@ -1282,9 +1282,9 @@ type User = {
 
 ### mark notification as seen
 
--   **URL:** `/api/notification/{notificationId}/seen`
--   **Method:** `PATCH`
--   **Permissions:** `Admin` | `Faculty` | `Student`
+- **URL:** `/api/notification/{notificationId}/seen`
+- **Method:** `PATCH`
+- **Permissions:** `Admin` | `Faculty` | `Student`
 
 #### Response will be status code
 
@@ -1292,31 +1292,31 @@ type User = {
 
 ### Get upcoming lectures
 
--   **URL:** `/api/course/{id}/lecture/upcoming`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/lecture/upcoming`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Response
 
 ```typescript
 type Lecture = {
-	courseId: string;
-	startTime: Date;
-	endTime: Date;
+  courseId: string;
+  startTime: Date;
+  endTime: Date;
 };
 ```
 
 ### Add lecture
 
--   **URL:** `/api/course/{id}/lecture`
--   **Method:** `POST`
+- **URL:** `/api/course/{id}/lecture`
+- **Method:** `POST`
 
 #### Request body
 
 ```typescript
 {
-	startTime: Date;
-	endTime: Date;
+  startTime: Date;
+  endTime: Date;
 }
 ```
 
@@ -1324,9 +1324,9 @@ type Lecture = {
 
 ## List lectures
 
--   **URL:** `/api/course/{id}/lecture`
--   **Method:** `GET`
--   **Permissions:** `Student` | `Faculty`
+- **URL:** `/api/course/{id}/lecture`
+- **Method:** `GET`
+- **Permissions:** `Student` | `Faculty`
 
 #### Query Parameters
 
@@ -1348,26 +1348,26 @@ type Lecture = {
 
 ```typescript
 type Lecture = {
-	_id: ObjectID;
-	courseId: string;
-	startTime: Date;
-	endTime: Date;
+  _id: ObjectID;
+  courseId: string;
+  startTime: Date;
+  endTime: Date;
 };
 ```
 
 ### Delete lecture
 
--   **URL:** `/api/course/{id}/lecture/{lectureId}`
--   **Method:** `DELETE`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/lecture/{lectureId}`
+- **Method:** `DELETE`
+- **Permissions:** `Faculty`
 
 #### Response will be status code
 
 ### View Attendance
 
--   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
--   **Method:** `GET`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+- **Method:** `GET`
+- **Permissions:** `Faculty`
 
 #### Response
 
@@ -1380,9 +1380,9 @@ type Lecture = {
 
 ### Post Attendance
 
--   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
--   **Method:** `POST`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+- **Method:** `POST`
+- **Permissions:** `Faculty`
 
 #### Request body
 
@@ -1394,9 +1394,9 @@ type Lecture = {
 
 ### View Lecture
 
--   **URL:** `/api/course/{id}/lecture/{lectureId}`
--   **Method:** `GET`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/lecture/{lectureId}`
+- **Method:** `GET`
+- **Permissions:** `Faculty`
 
 #### Response
 
@@ -1410,20 +1410,20 @@ type Lecture = {
 
 ```typescript
 type Lecture = {
-	_id: ObjectID;
-	courseId: string;
-	startTime: Date;
-	endTime: Date;
-	attendance: string[]; // array of student ids
-	attendanceCount: number; // number of students present
+  _id: ObjectID;
+  courseId: string;
+  startTime: Date;
+  endTime: Date;
+  attendance: string[]; // array of student ids
+  attendanceCount: number; // number of students present
 };
 ```
 
 ### Mark attendance
 
--   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
--   **Method:** `POST`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+- **Method:** `POST`
+- **Permissions:** `Faculty`
 
 #### Query parameters
 
@@ -1437,9 +1437,9 @@ type Lecture = {
 
 ### Unmark attendance
 
--   **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
--   **Method:** `DELETE`
--   **Permissions:** `Faculty`
+- **URL:** `/api/course/{id}/lecture/{lectureId}/attendance`
+- **Method:** `DELETE`
+- **Permissions:** `Faculty`
 
 #### Query parameters
 
@@ -1451,9 +1451,9 @@ type Lecture = {
 
 ### Get attendance summary
 
--   **URL:** `/api/attendanceSummary`
--   **Method:** `GET`
--   **Permissions:** `Student`
+- **URL:** `/api/attendanceSummary`
+- **Method:** `GET`
+- **Permissions:** `Student`
 
 #### Response
 
@@ -1465,8 +1465,8 @@ type Lecture = {
 
 ```typescript
 type AttendanceSummary = {
-	courseId: string;
-	attendance: number;
-	totalLectures: number;
+  courseId: string;
+  attendance: number;
+  totalLectures: number;
 };
 ```

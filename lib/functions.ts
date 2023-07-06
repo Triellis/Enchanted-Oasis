@@ -1,21 +1,14 @@
-import { MongoClient } from "mongodb";
+import { Collection, MongoClient } from "mongodb";
 import { UserCol } from "./types";
 import md5 from "md5";
-const mongoUri = process.env.MONGO_URI;
 
-if (!mongoUri) {
-  throw new Error(
-    "Please define the MONGO_URI environment variable inside .env"
-  );
-}
-
-export async function validateLogin(email: string, password: string) {
-  const client = await MongoClient.connect(mongoUri!);
-  const usersCollection = client
-    .db("enchanted-oasis")
-    .collection<UserCol>("Users");
+export async function validateLogin(
+  email: string,
+  password: string,
+  usersCollection: Collection<UserCol>
+) {
   const user = await usersCollection.findOne({ email: email });
-  client.close();
+
   const passwordHash = md5(password);
 
   if (!user) {
@@ -33,14 +26,12 @@ export async function validateLogin(email: string, password: string) {
   };
 }
 
-export async function getRoleAndId(email: string) {
-  const client = await MongoClient.connect(mongoUri!);
-  const usersCollection = client
-    .db("enchanted-oasis")
-    .collection<UserCol>("Users");
+export async function getRoleAndId(
+  email: string,
+  usersCollection: Collection<UserCol>
+) {
   const user = await usersCollection.findOne({ email: email });
 
-  client.close();
   const role = user?.role;
   const id = user?._id;
 
