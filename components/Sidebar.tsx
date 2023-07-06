@@ -4,7 +4,7 @@ import styles from "./Sidebar.module.css";
 
 function Sidebar({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
+    <div className={`${styles.sidebar} ${isOpen ? ".open" : ".closed"}`}>
       {/* Sidebar content goes here */}
       <ul className={styles.menu}>
         <li>Menu Item 1</li>
