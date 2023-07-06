@@ -31,7 +31,7 @@ export default function IndexPage() {
           <Stack>
             <CardBody>
               <h1 className={styles.heading}>
-                Welcome to the
+                Welcome to the 
                 <span className={styles.appName}> Enchanted Oasis</span>
               </h1>
 
