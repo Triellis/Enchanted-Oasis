@@ -11,6 +11,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  useColorMode,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -24,11 +25,15 @@ import styles from "./Nav.module.css";
 import { useState } from "react";
 
 const Nav = () => {
+  // for the drawer:
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isSunIcon, setIsSunIcon] = useState(true);
 
+  // for the dark mode - light mode toggle:
+  const [isSunIcon, setIsSunIcon] = useState(true);
+  const { colorMode, toggleColorMode } = useColorMode();
   const modeChange = () => {
     setIsSunIcon((prev) => !prev);
+    toggleColorMode();
   };
 
   return (
@@ -46,15 +51,15 @@ const Nav = () => {
           <InputGroup>
             <Input type="text" placeholder="Search" />
             <InputRightElement pointerEvents="none">
-              <Search2Icon color="gray.300" />
+              <Search2Icon />
             </InputRightElement>
           </InputGroup>
         </FormControl>
       </div>
 
-      {/* Dark Mode - Light Mode toggle */}
-      {/* Avatar */}
+      {/* Last Group of Icons */}
       <div className={styles.endGroup}>
+        {/* Dark Mode - Light Mode toggle */}
         <IconButton
           variant="outline"
           colorScheme="teal"
@@ -64,6 +69,7 @@ const Nav = () => {
           onClick={modeChange}
         />
 
+        {/* Avatar */}
         <Menu>
           <MenuButton>
             <Avatar bg="red.500" />
