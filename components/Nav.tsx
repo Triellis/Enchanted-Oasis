@@ -12,17 +12,24 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import React from "react";
-import styles from "./Nav.module.css";
 import {
   HamburgerIcon,
   SunIcon,
   Search2Icon,
-  ChevronDownIcon,
+  MoonIcon,
 } from "@chakra-ui/icons";
+
+import React from "react";
+import styles from "./Nav.module.css";
+import { useState } from "react";
 
 const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isSunIcon, setIsSunIcon] = useState(true);
+
+  const modeChange = () => {
+    setIsSunIcon((prev) => !prev);
+  };
 
   return (
     <div className={styles.navbar}>
@@ -53,7 +60,8 @@ const Nav = () => {
           colorScheme="teal"
           aria-label="Call Sage"
           fontSize="20px"
-          icon={<SunIcon />}
+          icon={isSunIcon ? <SunIcon /> : <MoonIcon />}
+          onClick={modeChange}
         />
 
         <Menu>
