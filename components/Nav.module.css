@@ -26,12 +26,15 @@
 }
 .customList {
   margin-top: 5px;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-.customList > button:nth-child(even) {
+  padding: 10px;
+  border: transparent;
+  cursor: pointer;
   background-color: rgb(0, 0, 0, 0.2);
 }
-.customList > button:nth-child(even):hover {
-  background-color: rgb(255, 255, 255, 0.1);
+/* children of these custom list*/
+.customList > :last-child {
+  border-radius: 10px;
+}
+.customList > :not(:last-child) {
+  border-radius: 10px;
 }

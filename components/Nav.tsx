@@ -12,6 +12,7 @@ import {
   MenuItem,
   MenuList,
   useColorMode,
+  color,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -79,7 +80,9 @@ function Nav({ onToggle }: { onToggle: () => void }) {
             <MenuItem>Create a Copy</MenuItem>
             <MenuItem>Mark as Draft</MenuItem>
             <MenuItem>Delete</MenuItem>
-            <MenuItem onClick={() => signOut()}>Sign out </MenuItem>
+            <MenuItem onClick={() => signOut()} color={"rgb(255,69,0)"}>
+              Sign out{" "}
+            </MenuItem>
           </MenuList>
         </Menu>
       </div>
