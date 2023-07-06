@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className={styles.content}>
           <Nav onToggle={handleToggle} />
-          <div>{children}</div>
+          <div className={styles.childContent} >{children}</div>
         </div>
       </main>
     </>

@@ -23,7 +23,8 @@
   /* Add your styles for the navbar here */
 }
 
-.children {
+.childContent {
   grid-area: children;
   /* Add your styles for the children pages here */
+  margin: 5px;
 }

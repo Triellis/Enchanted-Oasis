@@ -6,8 +6,8 @@
     left: -250px; /* Sidebar initially hidden */
     width: 250px;
     height: 100vh;
-    background-color: #f3f3f3;
     border-top-right-radius: 20px;
+    background-color: rgb(0, 0, 0, 0.2);
     border-bottom-right-radius: 20px;
     transition: left 0.3s ease-in-out;
   }
