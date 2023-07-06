@@ -3,7 +3,7 @@
 .sidebar {
   position: static;
   left: -300px; /* Sidebar initially hidden */
-  width: 250px;
+  width: 250px; 
   height: 100vh;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -14,7 +14,6 @@
 
 .sidebar.open {
   transform: translateX(0); /* Sidebar shown */
-  width: 250px;
 }
 
 .sidebar.closed {
