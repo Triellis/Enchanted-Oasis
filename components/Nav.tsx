@@ -23,7 +23,7 @@ import {
 import React from "react";
 import styles from "./Nav.module.css";
 import { useState } from "react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const Nav = () => {
   // for the drawer:
@@ -32,6 +32,7 @@ const Nav = () => {
   // for the dark mode - light mode toggle:
   const [isSunIcon, setIsSunIcon] = useState(true);
   const { colorMode, toggleColorMode } = useColorMode();
+  const session = useSession();
   const modeChange = () => {
     setIsSunIcon((prev) => !prev);
     toggleColorMode();
@@ -73,7 +74,7 @@ const Nav = () => {
         {/* Avatar */}
         <Menu>
           <MenuButton>
-            <Avatar bg="red.500" />
+            <Avatar src={session.data?.user?.image} />
           </MenuButton>
           <MenuList className={styles.customList}>
             <MenuItem>Download</MenuItem>
