@@ -14,10 +14,11 @@ import {
   InputGroup,
   InputRightElement,
   Avatar,
+  IconButton,
 } from "@chakra-ui/react";
 import React from "react";
 import styles from "./Nav.module.css";
-import { HamburgerIcon, PhoneIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, SunIcon, Search2Icon } from "@chakra-ui/icons";
 
 const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,20 +34,29 @@ const Nav = () => {
 
       {/* Search Bar */}
       <div className={styles.searchBar}>
-        <FormControl id="search" >
+        <FormControl id="search">
           <InputGroup>
             <Input type="text" placeholder="Search" />
             <InputRightElement pointerEvents="none">
-              <PhoneIcon color="gray.300" />
+              <Search2Icon color="gray.300" />
             </InputRightElement>
           </InputGroup>
         </FormControl>
       </div>
 
-      {/* Avatar */}
-      <div>
+      {/* Dark Mode - Light Mode toggle */}
+        {/* Avatar */}
+      <div className={styles.endGroup}>
+        <IconButton
+          variant="outline"
+          colorScheme="teal"
+          aria-label="Call Sage"
+          fontSize="20px"
+          icon={<SunIcon />}
+        />
         <Avatar bg="red.500" />
       </div>
+
     </div>
   );
 };
