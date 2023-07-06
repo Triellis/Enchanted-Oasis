@@ -10,13 +10,15 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import styles from "./index.module.css";
+import { MySession } from "../lib/types";
 
 export default function IndexPage() {
   const session = useSession();
+  const sessionData = session.data as MySession;
 
   const router = useRouter();
   if (session.status === "authenticated") {
-    router.push("/Dashboard/Admin");
+    router.push(`${sessionData?.user?.role}/Dashboard`);
   }
   const { colorMode, toggleColorMode } = useColorMode();
 

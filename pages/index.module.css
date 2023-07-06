@@ -8,7 +8,6 @@
   width: 80%;
   margin: auto auto;
   flex-direction: column !important;
-  /* word wrap */
   word-wrap: break-word;
 }
 

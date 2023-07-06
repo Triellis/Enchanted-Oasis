@@ -74,7 +74,7 @@ const Nav = () => {
         {/* Avatar */}
         <Menu>
           <MenuButton>
-            <Avatar src={session.data?.user?.image} />
+            <Avatar src={session.data?.user?.image!} />
           </MenuButton>
           <MenuList className={styles.customList}>
             <MenuItem>Download</MenuItem>
