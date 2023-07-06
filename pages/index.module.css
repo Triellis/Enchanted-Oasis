@@ -1,11 +1,11 @@
 /* everything in the main should be in the center of the page */
 .main {
-  padding: 5rem;
+  padding: 40px;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75%;
+  width: 80%;
   margin: auto auto;
   /* word wrap */
   word-wrap: break-word;
