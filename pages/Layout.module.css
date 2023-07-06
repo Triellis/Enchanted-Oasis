@@ -1,0 +1,30 @@
+/* styles.module.css */
+
+.main {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Sidebar and Content columns */
+  grid-template-areas: "sidebar content";
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+  display: grid;
+  grid-template-rows: auto 1fr; /* Nav and Children rows */
+  grid-template-areas: "nav" "children";
+  margin: 10px;
+}
+
+.nav {
+  grid-area: nav;
+  /* Add your styles for the navbar here */
+}
+
+.childContent {
+  grid-area: children;
+  /* Add your styles for the children pages here */
+  margin: 5px;
+}

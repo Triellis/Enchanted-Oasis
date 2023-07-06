@@ -1,0 +1,38 @@
+/* Sidebar.module.css */
+
+.sidebar {
+  position: fixed;
+  left: -300px; /* Sidebar initially hidden */
+  width: 250px;
+  height: 100vh;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgb(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Sidebar shown */
+  width: 250px;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%); /* Sidebar hidden */
+  width: 0;
+}
+
+.toggleButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+
+.menu {
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+  padding: 10px;
+}

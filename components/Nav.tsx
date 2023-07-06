@@ -25,9 +25,8 @@ import styles from "./Nav.module.css";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 
-const Nav = () => {
+function Nav({ onToggle }: { onToggle: () => void }) {
   // for the drawer:
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // for the dark mode - light mode toggle:
   const [isSunIcon, setIsSunIcon] = useState(true);
@@ -42,11 +41,10 @@ const Nav = () => {
     <div className={styles.navbar}>
       {/* Hamburger Icon */}
       <div className={styles.hamButton}>
-        <Button onClick={onOpen}>
+        <Button onClick={onToggle}>
           <HamburgerIcon />
         </Button>
       </div>
-
       {/* Search Bar */}
       <div className={styles.searchBar}>
         <FormControl id="search">
@@ -87,6 +85,6 @@ const Nav = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Nav;
