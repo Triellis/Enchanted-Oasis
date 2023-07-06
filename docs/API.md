@@ -668,7 +668,7 @@ type Student = {
 
 - **URL:** `/api/user`
 - **Method:** `PUT`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Request body
 
@@ -688,7 +688,7 @@ type Student = {
 
 - **URL:** `/api/user/password`
 - **Method:** `PUT`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Request body
 
@@ -706,6 +706,14 @@ type Student = {
 - **URL:** `/api/user`
 - **Method:** `DELETE`
 - **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"userId": string
+}
+```
 
 #### Response will be status code
 
