@@ -9,6 +9,7 @@
   border-bottom-right-radius: 20px;
   background-color: rgb(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  overflow: hidden;
 }
 
 .sidebar.open {
