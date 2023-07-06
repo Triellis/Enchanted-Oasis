@@ -675,12 +675,8 @@ type Student = {
 ```typescript
 {
 		name: string,
-	role: "Student" | "Faculty" | "Admin",
-	email: string,
-	house: string,
 	profilePicture: string,
 	phone: string,
-	rollNumber: string,
 
 
 }

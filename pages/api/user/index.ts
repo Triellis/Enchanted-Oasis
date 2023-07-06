@@ -11,14 +11,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.time("session");
   const session = await getServerSession(req, res, authOptions);
-  console.timeEnd("session");
+
   if (!session) {
     return res.status(403).send("Not logged in");
   }
   if (req.method === "GET") {
     return GET(req, res, session);
+  } else if (req.method === "PUT") {
+    return PUT(req, res, session);
   }
 }
 
@@ -31,7 +32,7 @@ async function GET(
   const usersCollection = db.collection<UserCol>("Users");
 
   const id = session.user.id;
-  console.time("data");
+
   const user = await usersCollection.findOne(
     {
       _id: id,
@@ -45,6 +46,43 @@ async function GET(
       },
     }
   );
-  console.timeEnd("data");
+
+  return res.json(user);
+}
+
+async function PUT(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: Exclude<MySession, null>
+) {
+  const db = client.db("enchanted-oasis");
+  const usersCollection = db.collection<UserCol>("Users");
+  const updateDoc = req.body;
+  const allowedFields = ["name", "phone", "profilePicture"];
+  const updatingFields = Object.keys(updateDoc);
+  for (let f of updatingFields) {
+    if (allowedFields.includes(f)) {
+      continue;
+    } else {
+      return res
+        .status(400)
+        .send(
+          `You can not update field ${f}. fields that are allowed to update are ${allowedFields.join(
+            ", "
+          )}`
+        );
+    }
+  }
+  const id = session.user.id;
+  const user = await usersCollection.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        ...updateDoc,
+      },
+    }
+  );
   return res.json(user);
 }
