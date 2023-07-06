@@ -15,6 +15,7 @@
   display: grid;
   grid-template-rows: auto 1fr; /* Nav and Children rows */
   grid-template-areas: "nav" "children";
+  margin: 10px;
 }
 
 .nav {
