@@ -29,36 +29,38 @@ export default function IndexPage() {
           variant="outline"
         >
           <Stack>
-            <CardBody>
-              <h1 className={styles.heading}>
-                Welcome to the 
-                <span className={styles.appName}> Enchanted Oasis</span>
-              </h1>
+            <div className={styles.imageBodyWrapper}>
+              <CardBody>
+                <h1 className={styles.heading}>
+                  Welcome to the
+                  <span className={styles.appName}> Enchanted Oasis</span>
+                </h1>
 
-              <p className={styles.txt}>
-                <span>
-                  Embark on a magical journey of discovery, where spells and
-                  wonders await. Enter a realm of enchantment and unlock your
-                  true potential. Step into the
-                  <span className={styles.appNameTxt}> Enchanted Oasis </span>
-                  and let the magic unfold.
-                </span>
-              </p>
-            </CardBody>
-
+                <p className={styles.txt}>
+                  <span>
+                    Embark on a magical journey of discovery, where spells and
+                    wonders await. Enter a realm of enchantment and unlock your
+                    true potential. Step into the
+                    <span className={styles.appNameTxt}> Enchanted Oasis </span>
+                    and let the magic unfold.
+                  </span>
+                </p>
+              </CardBody>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src="/assets/image/Trio.png"
+                  alt="Picture of the author"
+                  width={500}
+                  height={500}
+                />
+              </div>
+            </div>
             <CardFooter>
-              <Button colorScheme="orange" onClick={() => signIn()}>
+              <Button size={"lg"} colorScheme="orange" onClick={() => signIn()}>
                 Sign in
               </Button>
             </CardFooter>
           </Stack>
-
-          <Image
-            src="/assets/image/Trio.png"
-            alt="Picture of the author"
-            width={600}
-            height={600}
-          />
         </Card>
       </div>
     </>

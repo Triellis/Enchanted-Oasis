@@ -1,13 +1,13 @@
 import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 import { Button } from "@chakra-ui/react";
-import { signOut } from "next-auth/react";
 export default function Admin() {
+  const session = useSession();
   return (
     <>
       <Layout>
-        <h1>yo</h1>
-        <Button onClick={() => signOut()}>Logout</Button>
+        hello
+        <h1>{session.data?.user?.name}</h1>
       </Layout>
     </>
   );

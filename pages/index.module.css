@@ -7,6 +7,7 @@
   align-items: center;
   width: 80%;
   margin: auto auto;
+  flex-direction: column !important;
   /* word wrap */
   word-wrap: break-word;
 }
@@ -47,4 +48,31 @@
   font-weight: 400;
 
   letter-spacing: -1px;
+}
+
+.imageBodyWrapper {
+  display: flex;
+  flex-direction: row;
+}
+.imageWrapper {
+  animation: float 2000ms ease-in-out infinite;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@media (max-width: 980px) {
+  .imageBodyWrapper {
+    flex-direction: column;
+  }
+  .main {
+    width: 100%;
+  }
 }

@@ -23,6 +23,7 @@ import {
 import React from "react";
 import styles from "./Nav.module.css";
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 
 const Nav = () => {
   // for the drawer:
@@ -61,7 +62,7 @@ const Nav = () => {
       <div className={styles.endGroup}>
         {/* Dark Mode - Light Mode toggle */}
         <IconButton
-          variant="outline"
+          variant="filled"
           colorScheme="teal"
           aria-label="Call Sage"
           fontSize="20px"
@@ -79,7 +80,7 @@ const Nav = () => {
             <MenuItem>Create a Copy</MenuItem>
             <MenuItem>Mark as Draft</MenuItem>
             <MenuItem>Delete</MenuItem>
-            <MenuItem>Attend a Workshop</MenuItem>
+            <MenuItem onClick={() => signOut()}>Sign out </MenuItem>
           </MenuList>
         </Menu>
       </div>
