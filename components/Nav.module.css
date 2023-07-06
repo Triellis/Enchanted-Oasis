@@ -20,8 +20,17 @@
   align-items: center;
   width: 70%;
 }
-.endGroup  {
+.endGroup {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.customList {
+  margin-top: 5px;
+  border-radius: 10px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.customList > button:nth-child(even) {
+  background-color: rgb(0, 0, 0, 0.2);
 }
