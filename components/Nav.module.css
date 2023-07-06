@@ -34,3 +34,6 @@
 .customList > button:nth-child(even) {
   background-color: rgb(0, 0, 0, 0.2);
 }
+.customList > button:nth-child(even):hover {
+  background-color: rgb(255, 255, 255, 0.1);
+}
