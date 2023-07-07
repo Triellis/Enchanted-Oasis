@@ -22,18 +22,6 @@
   transform: scale(0.9);
 }
 
-.searchBar {
-  display: flex;
-  align-items: center;
-  min-width: 5%;
-  max-width: 70%;
-  flex: 1;
-  padding: 0 1em;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-.searchBar:active {
-  transform: scale(0.99);
-}
 .endGroup {
   display: flex;
   align-items: flex-end;

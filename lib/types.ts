@@ -28,3 +28,13 @@ export type MySession = {
     image: string;
   };
 } | null;
+
+export type UserDataOnClient = Exclude<
+  UserCol,
+  | "courses"
+  | "notifications"
+  | "seenNotifications"
+  | "notificationsCount"
+  | "seenNotificationsCount"
+  | "passwordHash"
+>;

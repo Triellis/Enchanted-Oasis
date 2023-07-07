@@ -47,17 +47,6 @@ function Nav({ onToggle }: { onToggle: () => void }) {
           <HamburgerIcon />
         </Button>
       </div>
-      {/* Search Bar */}
-      <div className={styles.searchBar}>
-        <FormControl id="search">
-          <InputGroup>
-            <Input type="text" placeholder="Search" />
-            <InputRightElement pointerEvents="none">
-              <Search2Icon />
-            </InputRightElement>
-          </InputGroup>
-        </FormControl>
-      </div>
 
       {/* Last Group of Icons */}
       <div className={styles.endGroup}>
