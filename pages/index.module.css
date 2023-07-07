@@ -77,3 +77,8 @@
     width: 100%;
   }
 }
+
+/* signin button effects */
+.btn:active {
+  transform: scale(0.9);
+}
