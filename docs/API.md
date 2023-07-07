@@ -734,8 +734,6 @@ type Student = {
 	profilePicture: string,
 	phone: string,
 	rollNumber: string,
-	admissionYear: number,
-	courses: string[], // array of course ids
 	password: string,
 }
 ```
@@ -754,6 +752,7 @@ type Student = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"role"?: "Student" | "Faculty" | "Both"// filter by role
 }
 ```
 
@@ -778,7 +777,6 @@ type User = {
   profilePicture: string;
   phone: string;
   rollNumber: string;
-  admissionYear: number;
 };
 ```
 

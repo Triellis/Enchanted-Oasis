@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import { Session } from "next-auth";
 import { clientPromise } from "../../../lib/DB";
-
+import md5 from "md5";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,8 +22,10 @@ export default async function handler(
     return PUT(req, res, session);
   } else if (req.method === "DELETE") {
     return DELETE(req, res, session);
+  } else if (req.method === "POST") {
+    return POST(req, res, session);
   } else {
-    res.status(405);
+    res.status(405).send("Method not allowed");
   }
 }
 
@@ -47,6 +49,7 @@ async function GET(
         notificationsCount: 0,
         seenNotifications: 0,
         seenNotificationsCount: 0,
+        passwordHash: 0,
       },
     }
   );
@@ -116,4 +119,48 @@ async function DELETE(
     return res.status(500).send("Something went wrong");
   }
   return res.status(200).send("User deleted");
+}
+
+async function POST(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: Exclude<MySession, null>
+) {
+  if (session.user.role !== "Admin") {
+    return res.status(403).send("Not authorized");
+  }
+  const body = req.body;
+
+  const neededFields = [
+    "name",
+    "phone",
+    "email",
+    "role",
+    "rollNumber",
+    "password",
+  ];
+
+  const fields = Object.keys(body);
+  for (let f of neededFields) {
+    if (fields.includes(f)) {
+      continue;
+    } else {
+      return res.status(400).send(`You need to provide ${f} in body`);
+    }
+  }
+
+  body.passwordHash = md5(body.password);
+  delete body.password;
+
+  const db = (await clientPromise).db("enchanted-oasis");
+  const usersCollection = db.collection<UserCol>("Users");
+  if ((await usersCollection.countDocuments({ email: body.email })) !== 0) {
+    return res.status(400).send("User with this email already exists");
+  }
+  const user = req.body;
+  const insertRes = await usersCollection.insertOne(user);
+  if (!insertRes.acknowledged) {
+    return res.status(500).send("Something went wrong");
+  }
+  return res.status(200).send("User created");
 }
