@@ -1,7 +1,7 @@
 /* make a navbar */
 .navbar {
-  background-color: rgb(0, 0, 0, 0.2);
   font-family: Arial, Helvetica, sans-serif;
+  background-color: hsl(var(--b2));
   /* margin: 10px; */
   display: flex;
   flex-direction: row;
@@ -9,6 +9,8 @@
   padding: 5px;
   border-radius: 10px;
   padding-inline: 10px;
+  position: sticky;
+  width: 100%;
 }
 
 .hamButton {
@@ -23,7 +25,10 @@
 .searchBar {
   display: flex;
   align-items: center;
-  width: 70%;
+  min-width: 5%;
+  max-width: 70%;
+  flex: 1;
+  padding: 0 1em;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .searchBar:active {
@@ -31,8 +36,11 @@
 }
 .endGroup {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 10px;
+  justify-content: end;
+  align-self: flex-end;
+  justify-content: flex-end;
 }
 
 .clicky {
@@ -49,44 +57,22 @@
 .clickyMode:active {
   transform: scale(1.2);
 }
-
-.customList {
-  margin-top: 5px;
-  padding: 10px;
-  border: transparent;
-  cursor: pointer;
-  background-color: rgb(0, 0, 0, 0.2) !important;
-  list-style: none;
+.menuItem {
+  padding: 0.8em !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+  border-radius: 0.8em;
+  background-color: hsl(var(--b1)) !important;
 }
 
+.menuItem:hover {
+  background-color: hsl(var(--p)) !important;
+  color: hsl(var(--pc));
+}
+.menuItem:hover:nth-last-child(1) {
+  background-color: red !important;
+  color: white;
+}
 /* for the children of these which are the links */
-.customList li {
-  padding: 2px;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-bottom: 5px;
-}
-.customList li:hover {
-  background-color: rgb(0, 0, 0, 0.4) !important;
-}
-.customList li:active {
-  /* animation  */
-  background-color: rgb(0, 0, 0, 0.6) !important;
-  transform: scale(0.9);
-}
-
-.customList li:last-child {
-  color: rgb(255, 69, 0);
-  background-color: rgb(0, 0, 0, 0.3) !important;
-}
-.customList li:last-child:hover {
-  background-color: rgb(255, 69, 0) !important;
-  color: rgb(0, 0, 0);
-}
-.customList li:last-child:active {
-  /* animation  */
-  background-color: rgb(255, 69, 0) !important;
-  color: rgb(0, 0, 0);
-  transform: scale(0.9);
-}

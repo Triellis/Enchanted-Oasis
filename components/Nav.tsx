@@ -74,17 +74,26 @@ function Nav({ onToggle }: { onToggle: () => void }) {
 
         {/* Avatar */}
         <Menu>
-          <MenuButton className={styles.clicky}  >
+          <MenuButton className={styles.clicky}>
             <Avatar src={session.data?.user?.image!} />
           </MenuButton>
-          <MenuList className={styles.customList} boxSize={""}>
-            <li>Download</li>
-            <li>Create a Copy</li>
-            <li>Mark as Draft</li>
-            <li>Delete</li>
-            <li onClick={() => signOut()} color={"rgb(255,69,0)"}>
+          <MenuList
+            backgroundColor={"hsl(var(--b2))"}
+            className={styles.customList}
+            boxSize={""}
+            borderRadius={"2xl"}
+          >
+            <MenuItem className={styles.menuItem}>Download</MenuItem>
+            <MenuItem className={styles.menuItem}>Create a Copy</MenuItem>
+            <MenuItem className={styles.menuItem}>Mark as Draft</MenuItem>
+            <MenuItem className={styles.menuItem}>Delete</MenuItem>
+            <MenuItem
+              className={styles.menuItem}
+              onClick={() => signOut()}
+              color={"rgb(255,69,0)"}
+            >
               Sign out{" "}
-            </li>
+            </MenuItem>
           </MenuList>
         </Menu>
       </div>

@@ -7,6 +7,20 @@ import styles from "./Layout.module.css";
 import Nav from "../components/Nav";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import SidebarItem from "../components/SidebarItem";
+import { MySession } from "../lib/types";
+
+const navItems: {
+  [key: string]: {
+    text: string;
+    linkTo: string;
+  }[];
+} = {
+  Admin: [
+    { text: "Dashboard", linkTo: "/Admin/Dashboard" },
+    { text: "Users", linkTo: "/Admin/Users" },
+  ],
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const session = useSession();
@@ -16,11 +30,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     router.push("/");
   }
 
+  const data = session.data as MySession;
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const handleToggle = () => {
     setIsSidebarOpen((prev) => !prev);
   };
-
   return (
     <>
       <Head>
@@ -30,7 +45,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <main className={styles.main}>
         <div className={styles.sidebar}>
-          <Sidebar isOpen={isSidebarOpen} />
+          <Sidebar isOpen={isSidebarOpen}>
+            {data &&
+              navItems[data?.user.role!].map((i) => {
+                return <SidebarItem {...i} />;
+              })}
+          </Sidebar>
         </div>
         <div className={styles.content}>
           <Nav onToggle={handleToggle} />

@@ -2,8 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { Menu, MenuList } from "@chakra-ui/react";
 import styles from "./Sidebar.module.css";
+import SidebarItem from "./SidebarItem";
 
-function Sidebar({ isOpen }: { isOpen: boolean }) {
+function Sidebar({
+  isOpen,
+  children,
+}: {
+  isOpen: boolean;
+  children: React.ReactNode;
+}) {
   return (
     // contraction and retraction of sidebar
     <div
@@ -15,16 +22,11 @@ function Sidebar({ isOpen }: { isOpen: boolean }) {
         <div>
           <h1 className={styles.appName}>Enchanted Oasis</h1>
           <br />
-          <ul>
-            <li>Hello there</li>
-            <li>Hello there</li>
-            <li>Hello there</li>
-            <li>Hello there</li>
-          </ul>
+          <nav>{children}</nav>
         </div>
 
         {/* Footer of the sidebar */}
-        <div className={styles.out} >
+        <div className={styles.out}>
           <li>Logout</li>
         </div>
       </div>

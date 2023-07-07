@@ -8,7 +8,7 @@ import { ColorModeScript } from "@chakra-ui/react";
 import { theme } from "../lib/theme";
 // Use of the <SessionProvider> is mandatory to allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
-
+import "../styles/global.css";
 export default function App({
   Component,
   pageProps: { session, ...pageProps },

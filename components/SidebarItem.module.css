@@ -1,0 +1,23 @@
+.item {
+  /* background-color: hsl(var(--b1)); */
+  /* padding: 0.8em; */
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  left: 0;
+  padding: 1em;
+  border: 1px solid hsl(var(--nc) / 20%);
+  transition: background-color 100ms ease;
+  margin: 0.5em 0;
+}
+
+.item:hover {
+  background-color: hsl(var(--p));
+  color: hsl(var(--pc));
+}
+.active {
+  background-color: hsl(var(--p));
+  color: hsl(var(--pc));
+}

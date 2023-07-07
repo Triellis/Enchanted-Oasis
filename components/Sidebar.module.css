@@ -6,9 +6,10 @@
   height: 100vh;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  background-color: rgb(0, 0, 0, 0.2);
+
+  background-color: hsl(var(--b2));
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-  overflow: hidden;
+  /* overflow-y: scroll; */
 }
 .sidebar.open {
   transform: translateX(0); /* Sidebar shown */
@@ -16,6 +17,7 @@
 .sidebar.closed {
   transform: translateX(-100%); /* Sidebar hidden */
   width: 0;
+  overflow: hidden;
 }
 
 /* menu inside the sidebar */
@@ -39,17 +41,11 @@
   font-size: 1.1rem;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.menu li:hover {
-  background-color: rgb(0, 0, 0, 0.3);
-}
-/* for the animation effect */
-.menu li:active {
-  background-color: rgb(0, 0, 0, 0.4);
-  transform: scale(0.9);
-}
+
 /* for the logout button */
 .out li:last-child {
   color: rgb(255, 69, 0);
+  border: red 1px solid;
   background-color: rgb(0, 0, 0, 0.3) !important;
 }
 .out li:last-child:hover {
