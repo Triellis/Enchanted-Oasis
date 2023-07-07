@@ -48,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Sidebar isOpen={isSidebarOpen}>
             {data &&
               navItems[data?.user.role!].map((i) => {
-                return <SidebarItem {...i} />;
+                return <SidebarItem {...i} key={i.linkTo} />;
               })}
           </Sidebar>
         </div>
