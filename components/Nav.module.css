@@ -41,11 +41,18 @@
   padding: 2px;
   text-align: center;
   border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 5px;
 }
 .customList li:hover {
   background-color: rgb(0, 0, 0, 0.4) !important;
 }
-/* last child of customList */
+.customList li:active {
+  /* animation  */
+  background-color: rgb(0, 0, 0, 0.6) !important;
+  transform: scale(0.9);
+}
+
 .customList li:last-child {
   color: rgb(255, 69, 0);
   background-color: rgb(0, 0, 0, 0.3) !important;
@@ -53,4 +60,10 @@
 .customList li:last-child:hover {
   background-color: rgb(255, 69, 0) !important;
   color: rgb(0, 0, 0);
+}
+.customList li:last-child:active {
+  /* animation  */
+  background-color: rgb(255, 69, 0) !important;
+  color: rgb(0, 0, 0);
+  transform: scale(0.9);
 }
