@@ -37,3 +37,7 @@ export async function getRoleAndId(
 
   return { role, id };
 }
+
+export function capitalizeFirstLetter(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}

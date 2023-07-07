@@ -668,19 +668,15 @@ type Student = {
 
 - **URL:** `/api/user`
 - **Method:** `PUT`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Request body
 
 ```typescript
 {
 		name: string,
-	role: "Student" | "Faculty" | "Admin",
-	email: string,
-	house: string,
 	profilePicture: string,
 	phone: string,
-	rollNumber: string,
 
 
 }
@@ -692,7 +688,7 @@ type Student = {
 
 - **URL:** `/api/user/password`
 - **Method:** `PUT`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Request body
 
@@ -710,6 +706,14 @@ type Student = {
 - **URL:** `/api/user`
 - **Method:** `DELETE`
 - **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"userId": string
+}
+```
 
 #### Response will be status code
 
@@ -730,8 +734,6 @@ type Student = {
 	profilePicture: string,
 	phone: string,
 	rollNumber: string,
-	admissionYear: number,
-	courses: string[], // array of course ids
 	password: string,
 }
 ```
@@ -750,6 +752,7 @@ type Student = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"role"?: "Student" | "Faculty" | "Both"// filter by role
 }
 ```
 
@@ -757,10 +760,9 @@ type Student = {
 
 ```typescript
 
-{
-	"users":User[],
-	"totalUsers":number
-}
+User[],
+
+
 
 ```
 
@@ -774,7 +776,6 @@ type User = {
   profilePicture: string;
   phone: string;
   rollNumber: string;
-  admissionYear: number;
 };
 ```
 
@@ -790,7 +791,8 @@ type User = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
-	"search"?: string // search parameter
+	"searchQuery"?: string // search parameter
+	"role"?: "Student" | "Faculty" | "Both"// filter by role
 }
 ```
 
@@ -798,10 +800,9 @@ type User = {
 
 ```typescript
 
-{
-	"users":User[],
-	"totalUsers":number
-}
+
+	User[]
+
 
 ```
 

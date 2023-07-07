@@ -7,10 +7,8 @@ import { mongoUri } from "../../../lib/DB";
 import { MongoClient } from "mongodb";
 import { UserCol } from "../../../lib/types";
 const secret = process.env.SECRET;
-import { client } from "../../../lib/DB";
-const usersCollection = client
-  .db("enchanted-oasis")
-  .collection<UserCol>("Users");
+import { clientPromise } from "../../../lib/DB";
+
 if (!secret) {
   throw new Error(
     "Missing SECRET environment variable. Add it and restart the server"
@@ -37,7 +35,10 @@ export const authOptions = {
       },
       async authorize(credentials: any, req: any) {
         // Add logic here to look up the user from the credentials supplied
-        console.log(credentials);
+        // console.log(credentials);
+        const usersCollection = (await clientPromise)
+          .db("enchanted-oasis")
+          .collection<UserCol>("Users");
         const user = await validateLogin(
           credentials.email,
           credentials.password,
@@ -66,6 +67,9 @@ export const authOptions = {
       token: any;
       user: any;
     }) {
+      const usersCollection = (await clientPromise)
+        .db("enchanted-oasis")
+        .collection<UserCol>("Users");
       // Send properties to the client, like an access_token and user id from a provider.
       const { role, id } = await getRoleAndId(
         session.user.email,
