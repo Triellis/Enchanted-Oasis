@@ -3,7 +3,7 @@
 .sidebar {
   position: static;
   left: -300px; /* Sidebar initially hidden */
-  width: 250px; 
+  width: 250px;
   height: 100vh;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -11,11 +11,9 @@
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
   overflow: hidden;
 }
-
 .sidebar.open {
   transform: translateX(0); /* Sidebar shown */
 }
-
 .sidebar.closed {
   transform: translateX(-100%); /* Sidebar hidden */
   width: 0;
@@ -29,10 +27,25 @@
 }
 
 .menu {
-  padding: 0;
+  padding: 15px;
   list-style: none;
 }
-
 .menu li {
   padding: 10px;
+}
+
+/* getting the EO font style */
+.appName {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 1) 5%,
+    rgba(255, 0, 255, 1) 75%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-align: center;
 }

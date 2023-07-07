@@ -10,10 +10,12 @@
   border-radius: 10px;
   padding-inline: 10px;
 }
+
 .hamButton {
   display: flex;
   align-items: center;
 }
+
 .searchBar {
   display: flex;
   align-items: center;
@@ -24,17 +26,31 @@
   align-items: center;
   gap: 10px;
 }
+
 .customList {
   margin-top: 5px;
   padding: 10px;
   border: transparent;
   cursor: pointer;
-  background-color: rgb(0, 0, 0, 0.2);
+  background-color: rgb(0, 0, 0, 0.2) !important;
+  list-style: none;
 }
-/* children of these custom list*/
-.customList > :last-child {
-  border-radius: 10px;
+
+/* for the children of these which are the links */
+.customList li {
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px;
 }
-.customList > :not(:last-child) {
-  border-radius: 10px;
+.customList li:hover {
+  background-color: rgb(0, 0, 0, 0.4) !important;
+}
+/* last child of customList */
+.customList li:last-child {
+  color: rgb(255, 69, 0);
+  background-color: rgb(0, 0, 0, 0.3) !important;
+}
+.customList li:last-child:hover {
+  background-color: rgb(255, 69, 0) !important;
+  color: rgb(0, 0, 0);
 }
