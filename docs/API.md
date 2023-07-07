@@ -740,45 +740,6 @@ type Student = {
 
 #### Response will be status code
 
-### List Users
-
-- **URL:** `/api/allUser/list`
-- **Method:** `GET`
-- **Permissions:** `Admin`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-	"role"?: "Student" | "Faculty" | "Both"// filter by role
-}
-```
-
-#### Response
-
-```typescript
-
-User[],
-
-
-
-```
-
-```typescript
-type User = {
-  _id: ObjectID;
-  name: string;
-  email: string;
-  role: "Student" | "Faculty" | "Admin";
-  house: string;
-  profilePicture: string;
-  phone: string;
-  rollNumber: string;
-};
-```
-
 ### Search Users
 
 - **URL:** `/api/allUser/search`
@@ -816,7 +777,6 @@ type User = {
   profilePicture: string;
   phone: string;
   rollNumber: string;
-  admissionYear: number;
 };
 ```
 

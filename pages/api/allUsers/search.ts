@@ -39,7 +39,7 @@ async function GET(
   const page = query.page ? parseInt(query.page as string) || 1 : 1;
   let role: any = query.role ? (query.role as string) : "Student";
   const searchQuery = query.searchQuery as string;
-  if (!searchQuery) {
+  if (searchQuery === undefined) {
     return res.status(400).send("No searchQuery provided in the query");
   }
 

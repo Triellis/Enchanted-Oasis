@@ -69,7 +69,6 @@
 | Get User        | GET    | `/api/user`           |
 | Create User     | POST   | `/api/user`           |
 | Update password | PUT    | `/api/user/password`  |
-| list Users      | GET    | `/api/allUser/list`   |
 | Search Users    | GET    | `/api/allUser/search` |
 
 ## Course Notifications
@@ -123,4 +122,4 @@
 | View Lecture           | GET    | `/api/course/{id}/lecture/{lecture}`                        |
 | Mark Attendance        | POST   | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
 | Unmark Attendance      | DELETE | `/api/course/{id}/lecture/{lecture}/attendance/{studentId}` |
-| Get Attendance summary | GET    | `/api/attendanceSummary`     |
+| Get Attendance summary | GET    | `/api/attendanceSummary`                                    |
