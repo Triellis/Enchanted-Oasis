@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     router.push("/");
   }
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const handleToggle = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className={styles.content}>
           <Nav onToggle={handleToggle} />
-          <div className={styles.childContent} >{children}</div>
+          <div className={styles.childContent}>{children}</div>
         </div>
       </main>
     </>

@@ -30,6 +30,7 @@
     rgba(255, 0, 255, 1) 75%
   );
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2.5rem;
   font-weight: 800;
@@ -42,6 +43,7 @@
     rgba(255, 0, 255, 1) 75%
   );
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 1.4rem;
   font-weight: 400;

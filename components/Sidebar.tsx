@@ -1,16 +1,33 @@
 import React from "react";
 import { useState } from "react";
+import { Menu, MenuList } from "@chakra-ui/react";
 import styles from "./Sidebar.module.css";
 
 function Sidebar({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className={`${styles.sidebar} ${isOpen ? ".open" : ".closed"}`}>
+    // contraction and retraction of sidebar
+    <div
+      className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}
+    >
       {/* Sidebar content goes here */}
-      <ul className={styles.menu}>
-        <li>Menu Item 1</li>
-        <li>Menu Item 2</li>
-        <li>Menu Item 3</li>
-      </ul>
+      <div className={styles.menu}>
+        {/* Header of sidebar */}
+        <div>
+          <h1 className={styles.appName}>Enchanted Oasis</h1>
+          <br />
+          <ul>
+            <li>Hello there</li>
+            <li>Hello there</li>
+            <li>Hello there</li>
+            <li>Hello there</li>
+          </ul>
+        </div>
+
+        {/* Footer of the sidebar */}
+        <div className={styles.out} >
+          <li>Logout</li>
+        </div>
+      </div>
     </div>
   );
 }
