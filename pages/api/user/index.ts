@@ -5,7 +5,7 @@ import { MySession, UserCol } from "../../../lib/types";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import { Session } from "next-auth";
-import { client } from "../../../lib/DB";
+import { clientPromise } from "../../../lib/DB";
 
 export default async function handler(
   req: NextApiRequest,
@@ -32,7 +32,7 @@ async function GET(
   res: NextApiResponse,
   session: Exclude<MySession, null>
 ) {
-  const db = client.db("enchanted-oasis");
+  const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
 
   const id = session.user.id;
@@ -59,7 +59,7 @@ async function PUT(
   res: NextApiResponse,
   session: Exclude<MySession, null>
 ) {
-  const db = client.db("enchanted-oasis");
+  const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
   const updateDoc = req.body;
   const allowedFields = ["name", "phone", "profilePicture"];
@@ -100,7 +100,7 @@ async function DELETE(
     return res.status(403).send("Not authorized");
   }
 
-  const db = client.db("enchanted-oasis");
+  const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
   const userId = req.query.userId as string;
   if (!userId) {
