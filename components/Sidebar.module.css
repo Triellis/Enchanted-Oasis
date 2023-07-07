@@ -48,6 +48,21 @@
   background-color: rgb(0, 0, 0, 0.4);
   transform: scale(0.9);
 }
+/* for the logout button */
+.out li:last-child {
+  color: rgb(255, 69, 0);
+  background-color: rgb(0, 0, 0, 0.3) !important;
+}
+.out li:last-child:hover {
+  background-color: rgb(255, 69, 0) !important;
+  color: rgb(0, 0, 0);
+}
+.out li:last-child:active {
+  /* animation  */
+  background-color: rgb(255, 69, 0) !important;
+  color: rgb(0, 0, 0);
+  transform: scale(0.9);
+}
 
 /* getting the EO font style */
 .appName {

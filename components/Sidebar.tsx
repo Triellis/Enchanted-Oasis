@@ -24,7 +24,7 @@ function Sidebar({ isOpen }: { isOpen: boolean }) {
         </div>
 
         {/* Footer of the sidebar */}
-        <div>
+        <div className={styles.out} >
           <li>Logout</li>
         </div>
       </div>
