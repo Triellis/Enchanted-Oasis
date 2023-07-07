@@ -73,7 +73,7 @@ export default function Users() {
       componentToRender = (
         <>
           {users.map((user) => (
-            <UserListItem userData={user} />
+            <UserListItem userData={user} key={user._id} />
           ))}
         </>
       );
