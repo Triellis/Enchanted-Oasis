@@ -69,11 +69,12 @@ function Nav({ onToggle }: { onToggle: () => void }) {
           fontSize="20px"
           icon={isSunIcon ? <SunIcon /> : <MoonIcon />}
           onClick={modeChange}
+          className={styles.clickyMode}
         />
 
         {/* Avatar */}
         <Menu>
-          <MenuButton>
+          <MenuButton className={styles.clicky}  >
             <Avatar src={session.data?.user?.image!} />
           </MenuButton>
           <MenuList className={styles.customList} boxSize={""}>
