@@ -760,10 +760,9 @@ type Student = {
 
 ```typescript
 
-{
-	"users":User[],
-	"totalUsers":number
-}
+User[],
+
+
 
 ```
 
@@ -792,7 +791,8 @@ type User = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
-	"search"?: string // search parameter
+	"searchQuery"?: string // search parameter
+	"role"?: "Student" | "Faculty" | "Both"// filter by role
 }
 ```
 
@@ -800,10 +800,9 @@ type User = {
 
 ```typescript
 
-{
-	"users":User[],
-	"totalUsers":number
-}
+
+	User[]
+
 
 ```
 
