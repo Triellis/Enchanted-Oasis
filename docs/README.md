@@ -21,3 +21,8 @@ Hogwarts faces a noticeable absence of a dedicated online portal that allows stu
 - Attendance system
 - Being able to view/add/delete students
 - Notifications for upcoming events and examinations.
+
+# Tech Stack
+
+- Frontend: NextJS (ReactJS) + ChakraUI
+- Backend: NextJS serverless functions + MongoDB Atlas
