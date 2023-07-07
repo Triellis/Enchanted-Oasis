@@ -12,6 +12,8 @@ import {
   MenuItem,
   MenuList,
   useColorMode,
+  color,
+  MenuGroup,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -25,9 +27,8 @@ import styles from "./Nav.module.css";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 
-const Nav = () => {
+function Nav({ onToggle }: { onToggle: () => void }) {
   // for the drawer:
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // for the dark mode - light mode toggle:
   const [isSunIcon, setIsSunIcon] = useState(true);
@@ -42,11 +43,10 @@ const Nav = () => {
     <div className={styles.navbar}>
       {/* Hamburger Icon */}
       <div className={styles.hamButton}>
-        <Button onClick={onOpen}>
+        <Button onClick={onToggle}>
           <HamburgerIcon />
         </Button>
       </div>
-
       {/* Search Bar */}
       <div className={styles.searchBar}>
         <FormControl id="search">
@@ -76,17 +76,19 @@ const Nav = () => {
           <MenuButton>
             <Avatar src={session.data?.user?.image!} />
           </MenuButton>
-          <MenuList className={styles.customList}>
-            <MenuItem>Download</MenuItem>
-            <MenuItem>Create a Copy</MenuItem>
-            <MenuItem>Mark as Draft</MenuItem>
-            <MenuItem>Delete</MenuItem>
-            <MenuItem onClick={() => signOut()}>Sign out </MenuItem>
+          <MenuList className={styles.customList} boxSize={""}>
+            <li>Download</li>
+            <li>Create a Copy</li>
+            <li>Mark as Draft</li>
+            <li>Delete</li>
+            <li onClick={() => signOut()} color={"rgb(255,69,0)"}>
+              Sign out{" "}
+            </li>
           </MenuList>
         </Menu>
       </div>
     </div>
   );
-};
+}
 
 export default Nav;

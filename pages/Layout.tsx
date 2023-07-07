@@ -2,7 +2,11 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+
+import styles from "./Layout.module.css";
 import Nav from "../components/Nav";
+import Sidebar from "../components/Sidebar";
+import { useState } from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const session = useSession();
@@ -11,6 +15,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   if (session.status === "unauthenticated") {
     router.push("/");
   }
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const handleToggle = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   return (
     <>
       <Head>
@@ -18,9 +28,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Cool! " />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Nav />
-        <div>{children}</div>
+      <main className={styles.main}>
+        <div className={styles.sidebar}>
+          <Sidebar isOpen={isSidebarOpen} />
+        </div>
+        <div className={styles.content}>
+          <Nav onToggle={handleToggle} />
+          <div className={styles.childContent}>{children}</div>
+        </div>
       </main>
     </>
   );

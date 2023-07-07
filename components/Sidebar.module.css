@@ -1,0 +1,66 @@
+/* sidebar  */
+.sidebar {
+  position: static;
+  left: -300px; /* Sidebar initially hidden */
+  width: 250px;
+  height: 100vh;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: rgb(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  overflow: hidden;
+}
+.sidebar.open {
+  transform: translateX(0); /* Sidebar shown */
+}
+.sidebar.closed {
+  transform: translateX(-100%); /* Sidebar hidden */
+  width: 0;
+}
+
+/* menu inside the sidebar */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px;
+}
+
+
+/* list inside the menu */
+.menu li {
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.menu li:hover {
+  background-color: rgb(0, 0, 0, 0.3);
+}
+/* for the animation effect */
+.menu li:active {
+  background-color: rgb(0, 0, 0, 0.4);
+  transform: scale(0.9);
+}
+
+/* getting the EO font style */
+.appName {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 1) 5%,
+    rgba(255, 0, 255, 1) 75%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-align: center;
+}
