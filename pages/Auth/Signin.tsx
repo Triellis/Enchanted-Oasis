@@ -22,6 +22,7 @@ export default function SignIn({
   return (
     <div className={styles.container}>
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
       <label>
         Email
         <input
