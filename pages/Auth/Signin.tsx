@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 
-import styles from "./signin.module.css";
+import styles from "./Signin.module.css";
 
 export default function SignIn({
   csrfToken,
