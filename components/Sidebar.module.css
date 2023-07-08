@@ -30,29 +30,18 @@
 }
 
 /* list inside the menu */
-.menu li {
-  margin-bottom: 10px;
-  list-style: none;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: rgb(0, 0, 0, 0.2);
-  cursor: pointer;
-  text-align: center;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
 
 /* for the logout button */
-.out li:last-child {
+.logOut {
   color: rgb(255, 69, 0);
   border: red 1px solid;
-  background-color: rgb(0, 0, 0, 0.3) !important;
+  background-color: hsl(var(--b2)) !important;
 }
-.out li:last-child:hover {
+.logOut:hover {
   background-color: rgb(255, 69, 0) !important;
   color: rgb(0, 0, 0);
 }
-.out li:last-child:active {
+.logOut:active {
   /* animation  */
   background-color: rgb(255, 69, 0) !important;
   color: rgb(0, 0, 0);

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Menu, MenuList } from "@chakra-ui/react";
 import styles from "./Sidebar.module.css";
 import SidebarItem from "./SidebarItem";
+import sideBarItemStyles from "./SidebarItem.module.css";
+import classNames from "classnames";
 
 function Sidebar({
   isOpen,
@@ -26,9 +28,9 @@ function Sidebar({
         </div>
 
         {/* Footer of the sidebar */}
-        <div className={styles.out}>
-          <li>Logout</li>
-        </div>
+        <button className={classNames(styles.logOut, sideBarItemStyles.item)}>
+          Logout
+        </button>
       </div>
     </div>
   );
