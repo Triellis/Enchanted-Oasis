@@ -46,14 +46,15 @@ async function GET(
   if (
     role.toLowerCase() !== "student" &&
     role.toLowerCase() !== "faculty" &&
-    role.toLowerCase() !== "both"
+    role.toLowerCase() !== "admin" &&
+    role.toLowerCase() !== "all"
   ) {
     return res
       .status(400)
-      .send("Invalid role, must be student, faculty, or both");
+      .send("Invalid role, must be student, faculty, admin or all");
   }
   role = capitalizeFirstLetter(role);
-  role = role === "Both" ? { $in: ["Student", "Faculty"] } : role;
+  role = role === "All" ? { $in: ["Student", "Faculty", "Admin"] } : role;
 
   const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");

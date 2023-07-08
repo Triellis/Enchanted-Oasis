@@ -753,7 +753,7 @@ type Student = {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
 	"searchQuery"?: string // search parameter
-	"role"?: "Student" | "Faculty" | "Both"// filter by role
+	"role"?: "Student" | "Faculty" | "Admin" | "All"// filter by role
 }
 ```
 
