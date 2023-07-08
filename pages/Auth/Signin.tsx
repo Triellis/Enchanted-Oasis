@@ -51,7 +51,7 @@ export default function SignIn({
               placeholder="Enter password"
             />
             <InputRightElement width="3rem">
-              <Button size="sm" onClick={handleClick}>
+              <Button size="sm" onClick={handleClick} className={styles.clicky}>
                 {!show ? <ViewIcon /> : <ViewOffIcon />}
               </Button>
             </InputRightElement>

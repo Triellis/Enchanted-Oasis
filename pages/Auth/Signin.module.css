@@ -7,11 +7,6 @@
   gap: 10px;
 }
 
-.container label {
-  color: white;
-  font-size: 20px;
-}
-
 .fillForm {
   display: flex;
   flex-direction: column;
@@ -23,25 +18,29 @@
   border-radius: 20px;
   width: 300px; /* Set the width of the form */
 }
-
 .fillForm label {
   color: white;
   font-size: 15px;
   width: 100%;
 }
-
 .fillForm p {
   margin-bottom: 5px;
   margin-top: 5px;
 }
-
 .fillForm input {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: transparent;
+  padding: 10px;
+  width: 100%;
+  font-size: 15px;
   transition: all 0.2s ease-in-out;
 }
-
-.fillForm input:focus {
-  outline: none;
-  background-color: rgba(0, 0, 0, 0.5);
+.clicky {
+  transition: all 0.4s ease-in-out;
+}
+.clicky:active {
+  scale: 0.9;
 }
 
 .submitBtn {
