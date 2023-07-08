@@ -38,7 +38,7 @@ import Image from "next/image";
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function useSearch(searchQuery: string, role: string, page: number) {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
     fetcher
   );
@@ -46,6 +46,7 @@ function useSearch(searchQuery: string, role: string, page: number) {
     users: data as ReceivedUserDataOnClient[],
     isLoading,
     error: error,
+    mutate,
   };
 }
 
@@ -60,7 +61,14 @@ async function postUser(newUserData: SentUserDataFromClient) {
   return res;
 }
 
-function UserListItem({ userData }: { userData: ReceivedUserDataOnClient }) {
+function UserListItem({
+  userData,
+  mutate,
+}: {
+  userData: ReceivedUserDataOnClient;
+  mutate: () => void;
+}) {
+  const toast = useToast();
   return (
     <div className={styles.userListItem}>
       <div>
@@ -69,6 +77,42 @@ function UserListItem({ userData }: { userData: ReceivedUserDataOnClient }) {
         <Badge colorScheme={userData.role == "Student" ? "blue" : "red"}>
           {userData.role}
         </Badge>
+        <Button
+          colorScheme="red"
+          size="sm"
+          variant="outline"
+          ml={2}
+          onClick={async () => {
+            const res = await fetch(
+              `
+			 /api/user?userId=${userData._id}
+			`,
+              {
+                method: "DELETE",
+              }
+            );
+            if (res.ok) {
+              toast({
+                title: "User deleted",
+                description: `User ${userData.name} deleted`,
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+              });
+            } else {
+              toast({
+                title: "Error",
+                description: `User ${userData.name} could not be deleted`,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+            }
+            mutate();
+          }}
+        >
+          Delete
+        </Button>
       </div>
     </div>
   );
@@ -76,13 +120,17 @@ function UserListItem({ userData }: { userData: ReceivedUserDataOnClient }) {
 
 export default function Users() {
   const session = useSession();
-  const { mutate } = useSWRConfig();
+
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [role, setRole] = useState("student");
   const [page, setPage] = useState(1);
 
-  const { users, isLoading, error } = useSearch(searchQuery, role, page);
+  const { users, isLoading, error, mutate } = useSearch(
+    searchQuery,
+    role,
+    page
+  );
 
   const [newUserData, setNewUserData] = useState<SentUserDataFromClient>({
     name: "",
@@ -117,7 +165,11 @@ export default function Users() {
       componentToRender = (
         <>
           {users.map((user) => (
-            <UserListItem userData={user} key={user._id.toString()} />
+            <UserListItem
+              mutate={mutate}
+              userData={user}
+              key={user._id.toString()}
+            />
           ))}
         </>
       );
