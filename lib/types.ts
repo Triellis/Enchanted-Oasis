@@ -1,9 +1,11 @@
 import { ObjectId } from "mongodb";
 import { Session } from "next-auth";
+
+export type Role = "Student" | "Faculty" | "Admin";
 export type UserCol = {
   _id: ObjectId;
   name: string;
-  role: "Student" | "Faculty" | "Admin";
+  role: Role;
   email: string;
   passwordHash: string;
   house: string;
@@ -29,7 +31,7 @@ export type MySession = {
   };
 } | null;
 
-export type ReceivedUserDataOnClient = Exclude<
+export type ReceivedUserDataOnClient = Omit<
   UserCol,
   | "courses"
   | "notifications"
@@ -38,7 +40,7 @@ export type ReceivedUserDataOnClient = Exclude<
   | "seenNotificationsCount"
   | "passwordHash"
 >;
-export type SentUserDataFromClient = Exclude<
+export type SentUserDataFromClient = Omit<
   UserCol,
   | "courses"
   | "notifications"
@@ -46,6 +48,7 @@ export type SentUserDataFromClient = Exclude<
   | "notificationsCount"
   | "seenNotificationsCount"
   | "passwordHash"
+  | "_id"
 > & {
   password: string;
 };
