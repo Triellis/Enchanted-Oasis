@@ -62,15 +62,6 @@ export default function IndexPage() {
                 size={"lg"}
                 onClick={() => signIn()}
                 className={styles.btn}
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(0, 255, 255, 1) 5%, rgba(255, 0, 255, 1) 75%)",
-                  border: "none",
-                  color: "white",
-                  padding: "20px 40px",
-                  fontSize: "1.2rem",
-                  // Add any additional styles here
-                }}
               >
                 Sign in
               </Button>
