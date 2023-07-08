@@ -51,7 +51,7 @@ function UserListItem({ userData }: { userData: ReceivedUserDataOnClient }) {
   return (
     <div className={styles.userListItem}>
       <div>
-        <span>{userData.name}</span>
+        <span>{userData.name}{` `}</span>
         <Badge colorScheme={userData.role == "Student" ? "blue" : "red"}>
           {userData.role}
         </Badge>

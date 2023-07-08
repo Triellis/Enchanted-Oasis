@@ -11,6 +11,7 @@
   padding-inline: 10px;
   position: sticky;
   width: 100%;
+  z-index: 3;
 }
 
 .hamButton {
