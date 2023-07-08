@@ -57,6 +57,7 @@
 }
 .imageWrapper {
   animation: float 2000ms ease-in-out infinite;
+  margin-right:10px ;
 }
 @keyframes float {
   0% {
