@@ -15,3 +15,5 @@ jobs:
 
       - name: Git Semantic Version
         uses: PaulHatch/semantic-version@v5.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
