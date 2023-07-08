@@ -1,4 +1,4 @@
-name: Versioning Workflow
+name: Release
 
 on:
   push:
@@ -6,37 +6,40 @@ on:
       - main
 
 jobs:
-  build-and-release:
+  release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set Up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 14
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build Project
-        run: npm run build
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        with:
-          tag_name: v${{ github.run_number }}
-          release_name: Release v${{ github.run_number }}
-          body: |
-            Changes in this release:
-            ${{ steps.generate_changelog.outputs.changelog }}
-
-      - name: Generate Changelog
-        id: generate_changelog
+      - name: Determine version
+        id: determine_version
         run: |
-          previousTag=$(git describe --tags --abbrev=0)
-          changelog=$(git log --pretty=format:"- %s (%an)" $previousTag..HEAD)
-          echo "::set-output name=changelog::$changelog"
+          LATEST_TAG=$(git describe --abbrev=0 --tags)
+          COMMIT_MESSAGES=$(git log --format=%s $LATEST_TAG..HEAD)
+          VERSION_TYPE=""
+          if [[ $COMMIT_MESSAGES == *"feat"* ]]; then
+            VERSION_TYPE="minor"
+          elif [[ $COMMIT_MESSAGES == *"fix"* ]]; then
+            VERSION_TYPE="patch"
+          else
+            VERSION_TYPE="build"
+          fi
+          echo "::set-output name=version_type::$VERSION_TYPE"
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          npm version ${{ steps.determine_version.outputs.version_type }} --no-git-tag-version
+
+      - name: Push tags
+        run: git push origin --tags
