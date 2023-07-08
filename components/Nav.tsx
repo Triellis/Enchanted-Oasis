@@ -70,7 +70,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
             backgroundColor={"hsl(var(--b2))"}
             className={styles.customList}
             boxSize={""}
-            borderRadius={"2xl"}
+            borderRadius={"var(--rounded-box)"}
           >
             <MenuItem className={styles.menuItem}>Download</MenuItem>
             <MenuItem className={styles.menuItem}>Create a Copy</MenuItem>

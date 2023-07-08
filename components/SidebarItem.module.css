@@ -1,7 +1,7 @@
 .item {
   /* background-color: hsl(var(--b1)); */
   /* padding: 0.8em; */
-  border-radius: 10px;
+  border-radius: var(--rounded-btn);
   display: flex;
   justify-content: center;
   width: 100%;
