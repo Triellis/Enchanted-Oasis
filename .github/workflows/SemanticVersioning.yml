@@ -1,4 +1,4 @@
-name: Release
+name: Semantic Versioning
 
 on:
   push:
@@ -6,40 +6,12 @@ on:
       - main
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Determine version
-        id: determine_version
-        run: |
-          LATEST_TAG=$(git describe --abbrev=0 --tags)
-          COMMIT_MESSAGES=$(git log --format=%s $LATEST_TAG..HEAD)
-          VERSION_TYPE=""
-          if [[ $COMMIT_MESSAGES == *"feat"* ]]; then
-            VERSION_TYPE="minor"
-          elif [[ $COMMIT_MESSAGES == *"fix"* ]]; then
-            VERSION_TYPE="patch"
-          else
-            VERSION_TYPE="build"
-          fi
-          echo "::set-output name=version_type::$VERSION_TYPE"
-
-      - name: Bump version
-        id: bump_version
-        run: |
-          npm version ${{ steps.determine_version.outputs.version_type }} --no-git-tag-version
-
-      - name: Push tags
-        run: git push origin --tags
+      - name: Git Semantic Version
+        uses: PaulHatch/semantic-version@v5.0.3
