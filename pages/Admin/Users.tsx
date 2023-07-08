@@ -13,7 +13,7 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import {
   ReceivedUserDataOnClient,
   Role,
@@ -76,10 +76,14 @@ function UserListItem({ userData }: { userData: ReceivedUserDataOnClient }) {
 
 export default function Users() {
   const session = useSession();
+  const { mutate } = useSWRConfig();
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [role, setRole] = useState("student");
-  const { users, isLoading, error } = useSearch(searchQuery, role, 1);
+  const [page, setPage] = useState(1);
+
+  const { users, isLoading, error } = useSearch(searchQuery, role, page);
+
   const [newUserData, setNewUserData] = useState<SentUserDataFromClient>({
     name: "",
     email: "",
@@ -90,7 +94,6 @@ export default function Users() {
     profilePicture: "",
     rollNumber: "",
   });
-
   const toast = useToast();
 
   let componentToRender;
@@ -149,6 +152,22 @@ export default function Users() {
           </RadioGroup>
           {componentToRender}
         </div>
+        <Button
+          onClick={() => {
+            if (page > 1) setPage(page - 1);
+          }}
+        >
+          {"<"}
+        </Button>
+        <span>{page}</span>
+        <Button
+          onClick={() => {
+            if (users.length == 10) setPage(page + 1);
+          }}
+        >
+          {">"}
+        </Button>
+
         <Button onClick={onOpen}>add </Button>
 
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -290,6 +309,7 @@ export default function Users() {
                       duration: 5000,
                       isClosable: true,
                     });
+                    mutate("/api/users");
                   } else {
                     toast({
                       title: "User creation failed",
