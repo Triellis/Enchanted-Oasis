@@ -1,4 +1,3 @@
-import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {
@@ -9,8 +8,10 @@ import {
   CardFooter,
   Stack,
 } from "@chakra-ui/react";
-import styles from "./index.module.css";
 import { MySession } from "../lib/types";
+
+import styles from "./index.module.css";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function IndexPage() {
   const session = useSession();

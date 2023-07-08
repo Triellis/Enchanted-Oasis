@@ -2,11 +2,15 @@ import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from "next";
+
 import { getCsrfToken } from "next-auth/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
+
+import styles from "./signin.module.css";
+
 export default function SignIn({
   csrfToken,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -14,8 +18,9 @@ export default function SignIn({
   const [password, setPassword] = useState("");
   const toast = useToast();
   const router = useRouter();
+
   return (
-    <>
+    <div className={styles.container}>
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <label>
         Email
@@ -42,7 +47,9 @@ export default function SignIn({
             password,
             redirect: false,
           });
+
           console.log(res);
+
           if (res?.status !== 200) {
             toast({
               title: "Wrong Email Or Password ",
@@ -57,7 +64,7 @@ export default function SignIn({
       >
         Sign in
       </button>
-    </>
+    </div>
   );
 }
 
