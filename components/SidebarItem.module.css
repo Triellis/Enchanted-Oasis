@@ -3,19 +3,19 @@
   display: flex;
   justify-content: center;
   width: 100%;
-
   left: 0;
   padding: 1em;
   border: 1px solid hsl(var(--nc) / 20%);
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   margin: 0.5em 0;
 }
-
 .item:hover {
-  background-color: hsl(var(--p));
+  background-color: hsl(var(--pf));
   color: hsl(var(--pc));
+  scale: 1.05;
 }
 .active {
   background-color: hsl(var(--p));
+  scale: 1.05;
   color: hsl(var(--pc));
 }

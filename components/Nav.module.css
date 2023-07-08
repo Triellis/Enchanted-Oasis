@@ -61,7 +61,7 @@
   color: hsl(var(--pc));
 }
 .menuItem:hover:nth-last-child(1) {
-  background-color: red !important;
+  background-color: rgb(255, 69, 0) !important;
   color: white;
 }
 /* for the children of these which are the links */
