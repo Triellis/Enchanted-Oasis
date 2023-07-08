@@ -9,6 +9,7 @@ import {
   Radio,
   RadioGroup,
   Stack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import useSWR from "swr";
 import { UserDataOnClient } from "../../lib/types";
@@ -17,7 +18,16 @@ import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import styles from "./Users.module.css";
 import { Input } from "@chakra-ui/react";
-import { PhoneIcon, Search2Icon } from "@chakra-ui/icons";
+import { Search2Icon } from "@chakra-ui/icons";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function useSearch(searchQuery: string, role: string, page: number) {
@@ -48,7 +58,7 @@ function UserListItem({ userData }: { userData: UserDataOnClient }) {
 export default function Users() {
   const session = useSession();
   const [searchQuery, setSearchQuery] = useState("");
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [role, setRole] = useState("student");
   const { users, isLoading, error } = useSearch(searchQuery, role, 1);
   const toast = useToast();
@@ -73,7 +83,7 @@ export default function Users() {
       componentToRender = (
         <>
           {users.map((user) => (
-            <UserListItem userData={user} key={user._id} />
+            <UserListItem userData={user} key={user._id.toString()} />
           ))}
         </>
       );
@@ -102,11 +112,29 @@ export default function Users() {
             <Stack direction="row">
               <Radio value="Student">Student</Radio>
               <Radio value="Faculty">Faculty</Radio>
-              <Radio value="Both">Both</Radio>
+              <Radio value="Admin">Admin</Radio>
+              <Radio value="All">All</Radio>
             </Stack>
           </RadioGroup>
           {componentToRender}
         </div>
+        <Button onClick={onOpen}>add </Button>
+
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody></ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant="ghost">Secondary Action</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Layout>
     </>
   );
