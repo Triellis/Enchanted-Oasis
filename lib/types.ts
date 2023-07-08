@@ -29,7 +29,7 @@ export type MySession = {
   };
 } | null;
 
-export type UserDataOnClient = Exclude<
+export type ReceivedUserDataOnClient = Exclude<
   UserCol,
   | "courses"
   | "notifications"
@@ -38,3 +38,14 @@ export type UserDataOnClient = Exclude<
   | "seenNotificationsCount"
   | "passwordHash"
 >;
+export type SentUserDataFromClient = Exclude<
+  UserCol,
+  | "courses"
+  | "notifications"
+  | "seenNotifications"
+  | "notificationsCount"
+  | "seenNotificationsCount"
+  | "passwordHash"
+> & {
+  password: string;
+};

@@ -3,6 +3,8 @@ import Layout from "../Layout";
 import {
   Button,
   FormControl,
+  FormHelperText,
+  FormLabel,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -12,7 +14,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import useSWR from "swr";
-import { UserDataOnClient } from "../../lib/types";
+import {
+  ReceivedUserDataOnClient,
+  SentUserDataFromClient,
+} from "../../lib/types";
 import { useState } from "react";
 import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
@@ -36,13 +41,13 @@ function useSearch(searchQuery: string, role: string, page: number) {
     fetcher
   );
   return {
-    users: data as UserDataOnClient[],
+    users: data as ReceivedUserDataOnClient[],
     isLoading,
     error: error,
   };
 }
 
-function UserListItem({ userData }: { userData: UserDataOnClient }) {
+function UserListItem({ userData }: { userData: ReceivedUserDataOnClient }) {
   return (
     <div className={styles.userListItem}>
       <div>
@@ -61,7 +66,10 @@ export default function Users() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [role, setRole] = useState("student");
   const { users, isLoading, error } = useSearch(searchQuery, role, 1);
+  const [newUserData, setNewUserData] = useState<SentUserDataFromClient>();
+
   const toast = useToast();
+
   let componentToRender;
   if (isLoading) {
     componentToRender = <div>Loading...</div>;
@@ -123,9 +131,29 @@ export default function Users() {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader>Create new user</ModalHeader>
             <ModalCloseButton />
-            <ModalBody></ModalBody>
+            <ModalBody>
+              <FormControl>
+                <FormLabel>Name</FormLabel>
+                <Input type="Text" />
+                <FormLabel>Role</FormLabel>
+                <RadioGroup defaultValue="Student">
+                  <Stack spacing={5} direction="row">
+                    <Radio value="Student">Student</Radio>
+                    <Radio value="Faculty">Faculty</Radio>
+                    <Radio value="Admin">Admin</Radio>
+                  </Stack>
+                  {/* Text for now, in future we will retrive all the houses  */}
+                  <FormLabel>House</FormLabel>
+                  <Input type="text" />
+                  <FormLabel>Email address</FormLabel>
+                  <Input type="email" />
+                  <FormLabel>Password</FormLabel>
+                  <Input type="password" />
+                </RadioGroup>
+              </FormControl>
+            </ModalBody>
 
             <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={onClose}>
