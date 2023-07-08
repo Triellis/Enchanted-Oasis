@@ -13,18 +13,6 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import useSWR, { useSWRConfig } from "swr";
-import {
-  ReceivedUserDataOnClient,
-  Role,
-  SentUserDataFromClient,
-} from "../../lib/types";
-import { useState } from "react";
-import { Badge } from "@chakra-ui/react";
-import { useToast } from "@chakra-ui/react";
-import styles from "./Users.module.css";
-import { Input } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -34,6 +22,20 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+
+import useSWR, { useSWRConfig } from "swr";
+import {
+  ReceivedUserDataOnClient,
+  Role,
+  SentUserDataFromClient,
+} from "../../lib/types";
+
+import { useState } from "react";
+import { Badge } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
+import styles from "./Users.module.css";
+import { Input } from "@chakra-ui/react";
+import { Search2Icon } from "@chakra-ui/icons";
 import Image from "next/image";
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -182,6 +184,7 @@ export default function Users() {
     <>
       <Layout>
         <div className={styles.wrapper}>
+          {/* search bar */}
           <div className={styles.searchBar}>
             <FormControl id="search">
               <InputGroup>
@@ -196,6 +199,8 @@ export default function Users() {
               </InputGroup>
             </FormControl>
           </div>
+
+          {/* Radio buttons */}
           <RadioGroup onChange={setRole} value={role}>
             <Stack direction="row">
               <Radio value="Student">Student</Radio>
@@ -204,8 +209,12 @@ export default function Users() {
               <Radio value="All">All</Radio>
             </Stack>
           </RadioGroup>
+          
+          {/* list of users */}
           {componentToRender}
         </div>
+
+        {/* Pagination */}
         <Button
           onClick={() => {
             if (page > 1) setPage(page - 1);
@@ -221,9 +230,11 @@ export default function Users() {
         >
           {">"}
         </Button>
-
+        
+        {/* Adding new users */}
         <Button onClick={onOpen}>add </Button>
-
+        
+        {/* Modal window to add new users */}
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
