@@ -1,41 +1,66 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f5f5f5;
+  align-items: center;
+  height: 100vh;
+  gap: 10px;
 }
 
 .container label {
+  color: white;
+  font-size: 20px;
+}
+
+.fillForm {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 20px;
+  width: 300px; /* Set the width of the form */
 }
 
-.container input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.fillForm label {
+  color: white;
+  font-size: 15px;
+  width: 100%;
 }
 
-.container button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  background-color: #007bff;
-  color: #fff;
+.fillForm p {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.fillForm input {
+  transition: all 0.2s ease-in-out;
+}
+
+.fillForm input:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.submitBtn {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+  font-size: 15px;
   cursor: pointer;
+  margin-top: 5px;
+  transition: all 0.2s ease-in-out;
 }
-
-.container button:hover {
-  background-color: #0056b3;
+.submitBtn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
-.container button:active {
-  background-color: #00438a;
+.submitBtn:active {
+  background-color: rgba(0, 0, 0, 0.7);
+  scale: 0.9;
 }
