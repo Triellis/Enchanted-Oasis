@@ -1,0 +1,15 @@
+.userListItem {
+  padding: 2px;
+  width: 80%;
+  border-radius: 8px;
+  background-color: hsl(var(--b2));
+  transition: all 0.3s ease;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

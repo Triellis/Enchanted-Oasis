@@ -63,6 +63,65 @@ async function postUser(newUserData: SentUserDataFromClient) {
   return res;
 }
 
+// function UserListItem({
+//   userData,
+//   mutate,
+// }: {
+//   userData: ReceivedUserDataOnClient;
+//   mutate: () => void;
+// }) {
+//   const toast = useToast();
+
+//   const handleDelete = async () => {
+//     try {
+//       const res = await fetch(`/api/user?userId=${userData._id}`, {
+//         method: "DELETE",
+//       });
+//       if (res.ok) {
+//         toast({
+//           title: "User deleted",
+//           description: `User ${userData.name} deleted`,
+//           status: "success",
+//           duration: 9000,
+//           isClosable: true,
+//         });
+//       } else {
+//         toast({
+//           title: "Error",
+//           description: `User ${userData.name} could not be deleted`,
+//           status: "error",
+//           duration: 5000,
+//           isClosable: true,
+//         });
+//       }
+//       mutate();
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+
+//   return (
+//     <li className={styles.userListItem}>
+//       <div className={styles.userInfo}>
+//         <span>
+//           {userData.name}{" "}
+//           <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
+//             {userData.role}
+//           </Badge>
+//         </span>
+//         <Button
+//           colorScheme="red"
+//           size="sm"
+//           variant="outline"
+//           onClick={handleDelete}
+//         >
+//           Delete
+//         </Button>
+//       </div>
+//     </li>
+//   );
+// }
+
 function UserListItem({
   userData,
   mutate,
@@ -71,54 +130,54 @@ function UserListItem({
   mutate: () => void;
 }) {
   const toast = useToast();
+
+  const handleDelete = async () => {
+    const res = await fetch(`/api/user?userId=${userData._id}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      toast({
+        title: "User deleted",
+        description: `User ${userData.name} deleted`,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: `User ${userData.name} could not be deleted`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    mutate();
+  };
+
   return (
-    <div className={styles.userListItem}>
-      <div>
-        <span>
-          {userData.name}
-          {` `}
+    <li className={styles.userListItem}>
+      <div className={styles.userInfo}>
+        <span className={styles.name}>{userData.name}</span>
+        <span className={styles.role}>
+          <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
+            {userData.role}
+          </Badge>
         </span>
-        <Badge colorScheme={userData.role == "Student" ? "blue" : "red"}>
-          {userData.role}
-        </Badge>
+        <span className={styles.email}>{userData.email}</span>
+        <span className={styles.phone}>{userData.phone}</span>
+        <span className={styles.rollNumber}>{userData.rollNumber}</span>
+        <span className={styles.house}>{userData.house}</span>
         <Button
           colorScheme="red"
           size="sm"
           variant="outline"
-          ml={2}
-          onClick={async () => {
-            const res = await fetch(
-              `
-			 /api/user?userId=${userData._id}
-			`,
-              {
-                method: "DELETE",
-              }
-            );
-            if (res.ok) {
-              toast({
-                title: "User deleted",
-                description: `User ${userData.name} deleted`,
-                status: "success",
-                duration: 9000,
-                isClosable: true,
-              });
-            } else {
-              toast({
-                title: "Error",
-                description: `User ${userData.name} could not be deleted`,
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-              });
-            }
-            mutate();
-          }}
+          onClick={handleDelete}
         >
           Delete
         </Button>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -183,6 +242,7 @@ export default function Users() {
   return (
     <>
       <Layout>
+        {/* header */}
         <div className={styles.wrapper}>
           {/* search bar */}
           <div className={styles.searchBar}>
@@ -209,31 +269,33 @@ export default function Users() {
               <Radio value="All">All</Radio>
             </Stack>
           </RadioGroup>
-          
+
           {/* list of users */}
           {componentToRender}
         </div>
 
-        {/* Pagination */}
-        <Button
-          onClick={() => {
-            if (page > 1) setPage(page - 1);
-          }}
-        >
-          {"<"}
-        </Button>
-        <span>{page}</span>
-        <Button
-          onClick={() => {
-            if (users.length == 10) setPage(page + 1);
-          }}
-        >
-          {">"}
-        </Button>
-        
-        {/* Adding new users */}
-        <Button onClick={onOpen}>add </Button>
-        
+        <div className={styles.botBar} >
+          {/* Pagination */}
+          <Button
+            onClick={() => {
+              if (page > 1) setPage(page - 1);
+            }}
+          >
+            {"<"}
+          </Button>
+          <span>{page}</span>
+          <Button
+            onClick={() => {
+              if (users.length == 10) setPage(page + 1);
+            }}
+          >
+            {">"}
+          </Button>
+
+          {/* Adding new users */}
+          <Button onClick={onOpen}>add </Button>
+        </div>
+
         {/* Modal window to add new users */}
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
