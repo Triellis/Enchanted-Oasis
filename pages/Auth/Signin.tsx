@@ -6,14 +6,16 @@ import { getCsrfToken } from "next-auth/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
+import { useToast } from "@chakra-ui/react";
 export default function SignIn({
   csrfToken,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const toast = useToast();
+  const router = useRouter();
   return (
-    <form method="post" action="/api/auth/callback/credentials">
+    <>
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <label>
         Email
@@ -34,19 +36,28 @@ export default function SignIn({
         />
       </label>
       <button
-        type="submit"
         onClick={async () => {
           const res = await signIn("credentials", {
             email,
             password,
-            callbackUrl: "/",
+            redirect: false,
           });
           console.log(res);
+          if (res?.status !== 200) {
+            toast({
+              title: "Wrong Email Or Password ",
+              status: "error",
+              duration: 5000,
+              isClosable: true,
+            });
+          } else {
+            router.push("/");
+          }
         }}
       >
         Sign in
       </button>
-    </form>
+    </>
   );
 }
 

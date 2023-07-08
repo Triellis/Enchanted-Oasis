@@ -14,7 +14,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions);
-  console.log(session.user.role);
+
   if (!session) {
     return res.status(403).send("Not logged in");
   } else if (session.user.role !== "Admin" && session.user.role !== "Faculty") {
