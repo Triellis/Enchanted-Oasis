@@ -1,6 +1,4 @@
 .item {
-  /* background-color: hsl(var(--b1)); */
-  /* padding: 0.8em; */
   border-radius: var(--rounded-btn);
   display: flex;
   justify-content: center;
@@ -9,7 +7,7 @@
   left: 0;
   padding: 1em;
   border: 1px solid hsl(var(--nc) / 20%);
-  transition: background-color 100ms ease;
+  transition: background-color 0.3s ease;
   margin: 0.5em 0;
 }
 

@@ -50,17 +50,6 @@ function Nav({ onToggle }: { onToggle: () => void }) {
 
       {/* Last Group of Icons */}
       <div className={styles.endGroup}>
-        {/* Dark Mode - Light Mode toggle */}
-        <IconButton
-          variant="filled"
-          colorScheme="teal"
-          aria-label="Call Sage"
-          fontSize="20px"
-          icon={isSunIcon ? <SunIcon /> : <MoonIcon />}
-          onClick={modeChange}
-          className={styles.clickyMode}
-        />
-
         {/* Avatar */}
         <Menu>
           <MenuButton className={styles.clicky}>
