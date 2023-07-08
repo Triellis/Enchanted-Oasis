@@ -38,7 +38,7 @@ export default function SignIn({
       <div className={styles.fillForm}>
         <label>
           <p>Email</p>
-          <InputGroup size="md">
+          <InputGroup size="lg">
             <Input
               pr="4.5rem"
               placeholder="Enter email"
@@ -49,7 +49,7 @@ export default function SignIn({
         </label>
         <label>
           <p>Password</p>
-          <InputGroup size="md">
+          <InputGroup size="lg">
             <Input
               pr="4.5rem"
               type={show ? "text" : "password"}
@@ -57,8 +57,8 @@ export default function SignIn({
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <InputRightElement width="3rem">
-              <Button size="sm" onClick={handleClick} className={styles.clicky}>
+            <InputRightElement width="3rem" className={styles.clicky}>
+              <Button size="lg" onClick={handleClick}>
                 {!show ? <ViewIcon /> : <ViewOffIcon />}
               </Button>
             </InputRightElement>

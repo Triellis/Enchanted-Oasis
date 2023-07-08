@@ -16,28 +16,34 @@
   background-color: rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 20px;
-  width: 300px; /* Set the width of the form */
+  max-width: 80%;
+  min-width: 40%;
+  min-height: 40%;
 }
 .fillForm label {
   color: white;
-  font-size: 15px;
+  font-size: 20px;
   width: 100%;
 }
 .fillForm p {
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 1px;
+  margin-top: 10px;
 }
 .fillForm input {
   background-color: rgba(0, 0, 0, 0.3);
-  color: white;
+  color: whitesmoke;
   border: transparent;
-  padding: 10px;
+  padding: 30px ;
   width: 100%;
-  font-size: 15px;
+  font-size: 20px;
   transition: all 0.2s ease-in-out;
+  height: 4rem;
 }
 .clicky {
+  display: flex;
   transition: all 0.4s ease-in-out;
+  margin-right: 10px;
+  margin-top: 8px;
 }
 .clicky:active {
   scale: 0.9;
@@ -48,12 +54,12 @@
   color: white;
   border: transparent;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   width: 50%;
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 20px;
   transition: all 0.2s ease-in-out;
 }
 .submitBtn:hover {
