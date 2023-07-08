@@ -39,7 +39,12 @@ export default function SignIn({
         <label>
           <p>Email</p>
           <InputGroup size="md">
-            <Input pr="4.5rem" placeholder="Enter email" />
+            <Input
+              pr="4.5rem"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
           </InputGroup>
         </label>
         <label>
@@ -49,6 +54,8 @@ export default function SignIn({
               pr="4.5rem"
               type={show ? "text" : "password"}
               placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
             />
             <InputRightElement width="3rem">
               <Button size="sm" onClick={handleClick} className={styles.clicky}>
