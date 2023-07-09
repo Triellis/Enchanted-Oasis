@@ -35,7 +35,7 @@
   padding: 5px !important;
   background-color: hsl(var(--b3));
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.8fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.8fr 1fr;
   align-items: center;
   gap: 50px;
   padding: 0 1em;
@@ -52,7 +52,7 @@
 }
 .userInfo {
   display: grid;
-  grid-template-columns: 1.5fr 0.5fr 1.5fr 1fr 1fr 0.8fr 1fr;
+  grid-template-columns: 2fr 0.5fr 1.5fr 1fr 1fr 0.8fr 1fr;
   align-items: center;
   gap: 50px;
 }
