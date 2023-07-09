@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Stack,
   useDisclosure,
+  Divider,
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -261,7 +262,7 @@ export default function Users() {
           </div>
 
           {/* Radio buttons */}
-          <RadioGroup onChange={setRole} value={role}>
+          <RadioGroup onChange={setRole} value={role} className={styles.radGrp}>
             <Stack direction="row">
               <Radio value="Student">Student</Radio>
               <Radio value="Faculty">Faculty</Radio>
@@ -274,7 +275,10 @@ export default function Users() {
           {componentToRender}
         </div>
 
-        <div className={styles.botBar} >
+        {/* divider */}
+        <Divider orientation="horizontal" paddingBlock={"5px"} />
+
+        <div className={styles.botBar}>
           {/* Pagination */}
           <Button
             onClick={() => {

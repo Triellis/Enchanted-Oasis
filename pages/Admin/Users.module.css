@@ -1,3 +1,20 @@
+/* for the entire page: */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+/* for the radio buttons / tabs */
+.radGrp {
+  flex-direction: row;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* for the search bar: */
 .searchBar {
   display: flex;
   align-items: center;
@@ -6,19 +23,13 @@
   justify-content: center;
   padding: 0 1em;
   transition: all 0.3s ease, transform 0.3s ease;
-  margin-top: 1em;
+  margin-top: 5px;
 }
 .searchBar:active {
   transform: scale(0.99);
 }
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-}
 
+/* the table of entires */
 .userListItem {
   padding: 3px;
   border-radius: 8px;
@@ -59,11 +70,10 @@
   grid-column: 7;
 }
 
-.botBar{
+.botBar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1em;
   margin-top: 1em;
-  margin-bottom: 1em;
 }
