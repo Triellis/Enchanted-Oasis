@@ -8,10 +8,36 @@
 }
 
 /* for the radio buttons / tabs */
-.radGrp {
-  flex-direction: row;
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: calc(min-content + 50px);
+  position: relative; /* Add position relative to create stacking context */
+}
+.tabList {
+  padding-inline: 5px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  position: relative; /* Add position relative to create stacking context */
+  z-index: 1; /* Add z-index to ensure tab items appear above the indicator */
+}
+.tabIndicator {
+  border-radius: 5px;
+  bottom: 1.6em;
+  height: 70%;
+  transition: all 0.3s ease;
+  transform: translateY(70%);
 }
 
 /* for the search bar: */
@@ -35,11 +61,10 @@
   padding: 5px !important;
   background-color: hsl(var(--b3));
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.8fr 1fr;
-  align-items: center;
+  grid-template-columns: 2fr 0.5fr 1.5fr 1fr 1fr 0.8fr 1fr;
   gap: 50px;
-  padding: 0 1em;
   width: 100%;
+  list-style: none;
 }
 .userListItem {
   padding: 3px;
@@ -55,6 +80,7 @@
   grid-template-columns: 2fr 0.5fr 1.5fr 1fr 1fr 0.8fr 1fr;
   align-items: center;
   gap: 50px;
+  padding-inline: 5px;
 }
 .name {
   grid-column: 1;

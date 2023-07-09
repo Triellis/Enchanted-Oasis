@@ -13,6 +13,12 @@ import {
   Stack,
   useDisclosure,
   Divider,
+  TabPanel,
+  Tab,
+  TabIndicator,
+  TabList,
+  TabPanels,
+  Tabs,
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -262,26 +268,64 @@ export default function Users() {
             </FormControl>
           </div>
 
+          {/* Tabs */}
+          <Tabs
+            className={styles.tabGrp}
+            position="relative"
+            variant="unstyled"
+            defaultIndex={0}
+            onChange={(index) => {
+              if (index === 0) {
+                setRole("Student");
+              } else if (index === 1) {
+                setRole("Faculty");
+              } else if (index === 2) {
+                setRole("Admin");
+              } else if (index === 3) {
+                setRole("All");
+              }
+            }}
+          >
+            <TabList className={styles.tabList}>
+              <Tab>Student</Tab>
+              <Tab>Faculty</Tab>
+              <Tab>Admin</Tab>
+              <Tab>All</Tab>
+            </TabList>
+            <TabIndicator
+              className={styles.tabIndicator}
+              backgroundColor={
+                role === "Student"
+                  ? "blue.600"
+                  : role === "Faculty"
+                  ? "green.600"
+                  : role === "Admin"
+                  ? "red.600"
+                  : "gray.600"
+              }
+            />
+          </Tabs>
+
           {/* Radio buttons */}
-          <RadioGroup onChange={setRole} value={role} className={styles.radGrp}>
+          {/* <RadioGroup onChange={setRole} value={role} className={styles.radGrp}>
             <Stack direction="row">
               <Radio value="Student">Student</Radio>
               <Radio value="Faculty">Faculty</Radio>
               <Radio value="Admin">Admin</Radio>
               <Radio value="All">All</Radio>
             </Stack>
-          </RadioGroup>
+          // </RadioGroup> */}
 
           {/* list of users */}
-          <thead className={styles.tableHead}>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Roll Number</th>
-            <th>House</th>
-            <th>Actions</th>
-          </thead>
+          <div className={styles.tableHead}>
+            <li>Name</li>
+            <li>Role</li>
+            <li>Email</li>
+            <li>Phone</li>
+            <li>Roll Number</li>
+            <li>House</li>
+            <li>Actions</li>
+          </div>
           {componentToRender}
         </div>
 
