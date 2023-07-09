@@ -4,7 +4,7 @@ on: push
 jobs:
   first-job:
   # where it will run
-  run-on: windows-latest
+  runs-on: windows-latest
   steps:
     - run: node --version
     - run: npm --version
