@@ -42,8 +42,9 @@ import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import styles from "./Users.module.css";
 import { Input } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
+import { DeleteIcon, Search2Icon, EditIcon } from "@chakra-ui/icons";
 import Image from "next/image";
+import classNames from "classnames";
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function useSearch(searchQuery: string, role: string, page: number) {
@@ -175,14 +176,12 @@ function UserListItem({
         <span className={styles.phone}>{userData.phone}</span>
         <span className={styles.rollNumber}>{userData.rollNumber}</span>
         <span className={styles.house}>{userData.house}</span>
-        <Button
-          colorScheme="red"
-          size="sm"
-          variant="outline"
-          onClick={handleDelete}
-        >
-          Delete
-        </Button>
+        <button className={classNames(styles.deleteButton, styles.btnGroup)}>
+          <DeleteIcon onClick={handleDelete} />
+        </button>
+        <button className={classNames(styles.editButton, styles.btnGroup)}>
+          <EditIcon />
+        </button>
       </div>
     </li>
   );
@@ -324,6 +323,7 @@ export default function Users() {
             <li>Phone</li>
             <li>Roll Number</li>
             <li>House</li>
+            <li></li>
             <li>Actions</li>
           </div>
           {componentToRender}
