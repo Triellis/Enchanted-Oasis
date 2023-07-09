@@ -1,7 +1,7 @@
 # trigger:
 on: push
 # array of jobs
-job:
+jobs:
   first-job:
   # where it will run
   run-on: windows-latest
