@@ -3,8 +3,8 @@ on: push
 # array of jobs
 jobs:
   first-job:
-  # where it will run
-  runs-on: windows-latest
-  steps:
-    - run: node --version
-    - run: npm --version
+    # where it will run
+    runs-on: windows-latest
+    steps:
+      - run: node --version
+      - run: npm --version
