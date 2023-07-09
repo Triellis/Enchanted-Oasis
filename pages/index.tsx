@@ -30,6 +30,7 @@ export default function IndexPage() {
           direction={{ base: "column", sm: "row" }}
           overflow="hidden"
           variant="outline"
+          background={"hsl(var(--b3))"}
         >
           <Stack>
             <div className={styles.imageBodyWrapper}>
