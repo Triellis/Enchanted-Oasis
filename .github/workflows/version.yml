@@ -1,0 +1,10 @@
+# trigger:
+on: push
+# array of jobs
+job:
+  first-job:
+  # where it will run
+  run-on: windows-latest
+  steps:
+    - run: node --version
+    - run: npm --version
