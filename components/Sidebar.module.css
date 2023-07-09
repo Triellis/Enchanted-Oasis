@@ -32,7 +32,7 @@
 /* for the logout button */
 .logOut {
   color: rgb(255, 69, 0);
-  border: red 1px solid;
+  border: rgb(255, 69, 0) 1px solid !important;
   background-color: hsl(var(--b2)) !important;
 }
 .logOut:hover {

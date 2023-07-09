@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5em;
+  gap: 0.3em;
 }
 
 /* for the radio buttons / tabs */
@@ -30,6 +30,17 @@
 }
 
 /* the table of entires */
+.tableHead {
+  border-radius: 10px;
+  padding: 5px !important;
+  background-color: hsl(var(--b3));
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.8fr 1fr;
+  align-items: center;
+  gap: 50px;
+  padding: 0 1em;
+  width: 100%;
+}
 .userListItem {
   padding: 3px;
   border-radius: 8px;

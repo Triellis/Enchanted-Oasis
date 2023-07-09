@@ -206,6 +206,7 @@ export default function Users() {
     profilePicture: "",
     rollNumber: "",
   });
+
   const toast = useToast();
 
   let componentToRender;
@@ -272,6 +273,15 @@ export default function Users() {
           </RadioGroup>
 
           {/* list of users */}
+          <thead className={styles.tableHead}>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Roll Number</th>
+            <th>House</th>
+            <th>Actions</th>
+          </thead>
           {componentToRender}
         </div>
 
