@@ -447,18 +447,18 @@ export default function Users() {
                 <GridItem colSpan={2}>
                   <FormControl>
                     {/* Profile Picture */}
-                    <FormLabel>Profile Picture</FormLabel>
-                    <form className={styles.picIn}>
-                      <input
-                        type="file"
-                        onChange={(e) => {
-                          setNewUserData({
-                            ...newUserData,
-                            profilePicture: e.target.value,
-                          });
-                        }}
-                      />
-                    </form>
+                      <FormLabel>Profile Picture</FormLabel>
+                      <form className={styles.picIn}>
+                        <input
+                          type="file"
+                          onChange={(e) => {
+                            setNewUserData({
+                              ...newUserData,
+                              profilePicture: e.target.value,
+                            });
+                          }}
+                        />
+                      </form>
                   </FormControl>
                 </GridItem>
                 <GridItem className={styles.quarThree} colSpan={2}>
@@ -530,6 +530,7 @@ export default function Users() {
                 Close
               </Button>
               <Button
+                color={"bl"}
                 className={styles.modalAdd}
                 onClick={async () => {
                   const res = await postUser(newUserData);

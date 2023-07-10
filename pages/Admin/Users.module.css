@@ -185,15 +185,17 @@
 
 .picIn {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  width: calc;
-  height: 180px;
-  cursor: pointer;
+  height: 200px;
   border-radius: 10px;
   border: 2px dashed hsl(var(--pf));
+}
+.picIn > * {
+  /* center it */
+  margin-left: 80px;
 }
 
 /* use grid !!!!!! */
