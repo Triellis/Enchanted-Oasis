@@ -19,6 +19,13 @@ import {
   TabList,
   TabPanels,
   Tabs,
+  Center,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -42,7 +49,12 @@ import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import styles from "./Users.module.css";
 import { Input } from "@chakra-ui/react";
-import { DeleteIcon, Search2Icon, EditIcon } from "@chakra-ui/icons";
+import {
+  DeleteIcon,
+  Search2Icon,
+  EditIcon,
+  ChevronDownIcon,
+} from "@chakra-ui/icons";
 import Image from "next/image";
 import classNames from "classnames";
 // @ts-ignore
@@ -305,16 +317,6 @@ export default function Users() {
             />
           </Tabs>
 
-          {/* Radio buttons */}
-          {/* <RadioGroup onChange={setRole} value={role} className={styles.radGrp}>
-            <Stack direction="row">
-              <Radio value="Student">Student</Radio>
-              <Radio value="Faculty">Faculty</Radio>
-              <Radio value="Admin">Admin</Radio>
-              <Radio value="All">All</Radio>
-            </Stack>
-          // </RadioGroup> */}
-
           {/* list of users */}
           <div className={styles.tableHead}>
             <li>Name</li>
@@ -351,139 +353,184 @@ export default function Users() {
           </Button>
 
           {/* Adding new users */}
-          <Button onClick={onOpen}>add </Button>
+          <Button onClick={onOpen}>Add</Button>
         </div>
 
         {/* Modal window to add new users */}
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} size={"4xl"}>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Create new user</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              <FormControl>
-                <FormLabel>Name</FormLabel>
-                <Input
-                  type="Text"
-                  value={newUserData.name}
-                  onChange={(e) =>
-                    setNewUserData({ ...newUserData, name: e.target.value })
-                  }
-                />
-                <FormLabel>Role</FormLabel>
-                <RadioGroup defaultValue="Student">
-                  <Stack spacing={5} direction="row">
-                    <Radio
-                      value="Student"
+            <ModalBody className={styles.modalBody}>
+              <Grid
+                templateRows="repeat(1, 1fr)"
+                templateColumns="repeat(4, 1fr)"
+                gap={4}
+              >
+                <GridItem colSpan={2}>
+                  {/* Name */}
+                  <FormControl>
+                    <div className={styles.quarter}>
+                      <FormLabel>Name</FormLabel>
+                      <Input
+                        type="Text"
+                        value={newUserData.name}
+                        onChange={(e) =>
+                          setNewUserData({
+                            ...newUserData,
+                            name: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    {/* Role and House */}
+                    <div className={styles.randh}>
+                      <FormLabel>Role</FormLabel>
+                      <RadioGroup defaultValue="Student">
+                        <Stack>
+                          <Radio
+                            value="Student"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                role: e.target.value as Role,
+                              })
+                            }
+                          >
+                            Student
+                          </Radio>
+                          <Radio
+                            value="Faculty"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                role: e.target.value as Role,
+                              })
+                            }
+                          >
+                            Faculty
+                          </Radio>
+                          <Radio
+                            value="Admin"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                role: e.target.value as Role,
+                              })
+                            }
+                          >
+                            Admin
+                          </Radio>
+                        </Stack>
+                      </RadioGroup>
+
+                      {/* divider */}
+                      <Center height={"140px"}>
+                        <Divider orientation="vertical" />
+                      </Center>
+
+                      {/* House */}
+                      <FormLabel>House</FormLabel>
+                      <RadioGroup>
+                        <Stack>
+                          <Radio value="Gryffindor">Gryffindor</Radio>
+                          <Radio value="Ravenclaw">Ravenclaw</Radio>
+                          <Radio value="Slytherin">Slytherin</Radio>
+                          <Radio value="Hufflepuff">Hufflepuff</Radio>
+                        </Stack>
+                      </RadioGroup>
+                    </div>
+                  </FormControl>
+                </GridItem>
+                <GridItem colSpan={2}>
+                  <FormControl>
+                    {/* Profile Picture */}
+                    <FormLabel>Profile Picture</FormLabel>
+                    <form className={styles.picIn}>
+                      <input
+                        type="file"
+                        onChange={(e) => {
+                          setNewUserData({
+                            ...newUserData,
+                            profilePicture: e.target.value,
+                          });
+                        }}
+                      />
+                    </form>
+                  </FormControl>
+                </GridItem>
+                <GridItem className={styles.quarThree} colSpan={2}>
+                  <div className={styles.quarter}>
+                    <FormLabel>Email address</FormLabel>
+                    <Input
+                      type="email"
                       onChange={(e) =>
                         setNewUserData({
                           ...newUserData,
-                          role: e.target.value as Role,
+                          email: e.target.value,
                         })
                       }
-                    >
-                      Student
-                    </Radio>
-                    <Radio
-                      value="Faculty"
-                      onChange={(e) =>
+                    />
+                  </div>
+                  <div className={styles.quarter}>
+                    {/* Password */}
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                      type="password"
+                      onChange={(e) => {
                         setNewUserData({
                           ...newUserData,
-                          role: e.target.value as Role,
-                        })
-                      }
-                    >
-                      Faculty
-                    </Radio>
-                    <Radio
-                      value="Admin"
-                      onChange={(e) =>
-                        setNewUserData({
-                          ...newUserData,
-                          role: e.target.value as Role,
-                        })
-                      }
-                    >
-                      Admin
-                    </Radio>
-                  </Stack>
-                  {/* Text for now, in future we will retrive all the houses  */}
-                  <FormLabel>House</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) =>
-                      setNewUserData({
-                        ...newUserData,
-                        house: e.target.value,
-                      })
-                    }
-                  />
-                  <FormLabel>Email address</FormLabel>
-                  <Input
-                    type="email"
-                    onChange={(e) =>
-                      setNewUserData({
-                        ...newUserData,
-                        email: e.target.value,
-                      })
-                    }
-                  />
-                  <FormLabel>Password</FormLabel>
-                  <Input
-                    type="password"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        password: e.target.value,
-                      });
-                    }}
-                  />
-                  <FormLabel>Phone</FormLabel>
-                  <Input
-                    type="number"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        phone: e.target.value,
-                      });
-                    }}
-                  />
-                  <FormLabel>profilePicture</FormLabel>
-                  <Input
-                    type="file"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        profilePicture: e.target.value,
-                      });
-                    }}
-                  />
-                  <FormLabel>Roll Number</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        rollNumber: e.target.value,
-                      });
-                    }}
-                  />
-                </RadioGroup>
-              </FormControl>
+                          password: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </GridItem>
+                <GridItem colSpan={2}>
+                  <FormControl>
+                    <div className={styles.quarter}>
+                      <FormLabel>Roll Number</FormLabel>
+                      <Input
+                        type="text"
+                        onChange={(e) => {
+                          setNewUserData({
+                            ...newUserData,
+                            rollNumber: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div className={styles.quarter}>
+                      <FormLabel>Phone</FormLabel>
+                      <Input
+                        type="number"
+                        onChange={(e) => {
+                          setNewUserData({
+                            ...newUserData,
+                            phone: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                  </FormControl>
+                </GridItem>
+              </Grid>
             </ModalBody>
 
-            <ModalFooter>
+            <ModalFooter className={styles.modalFooter}>
               <Button
                 colorScheme="red"
-                variant={"ghost"}
-                mr={3}
                 onClick={onClose}
+                className={styles.modalClose}
               >
                 Close
               </Button>
               <Button
-                colorScheme="blue"
-                variant="solid"
+                className={styles.modalAdd}
                 onClick={async () => {
                   const res = await postUser(newUserData);
                   if (res.status == 200) {
