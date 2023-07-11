@@ -26,5 +26,6 @@
 .childContent {
   grid-area: children;
   /* Add your styles for the children pages here */
-  margin: 5px;
+  margin-block: 10px;
+  margin-inline: 5px;
 }
