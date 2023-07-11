@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  gap: 1em;
+}
+
+.banner {
+  max-height: 600px;
+}
+/* small devices the width is 80px */
+@media (max-width: 480px) {
+  .banner {
+    width: 80px;
+  }
+}
+
+.content {
+  gap: 1em;
+}
+.content > * {
+  width: 100% ;
+}
