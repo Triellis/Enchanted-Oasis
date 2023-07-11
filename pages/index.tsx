@@ -22,7 +22,8 @@ export default function IndexPage() {
     router.push(`${sessionData?.user?.role}/Dashboard`);
   }
   const { colorMode, toggleColorMode } = useColorMode();
-
+  
+  // THE LANDING PAGE
   return (
     <>
       <div className={styles.main}>
