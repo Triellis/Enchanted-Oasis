@@ -1,7 +1,7 @@
 /* sidebar */
 .sidebar {
   left: -300px; /* Sidebar initially hidden */
-
+  width: 400px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   background-color: hsl(var(--b2));
@@ -34,7 +34,7 @@
 /* Responsive modifications */
 @media (max-width: 768px) {
   .sidebar {
-    width: 100px;
+    width: 250px;
     border-radius: 0;
     left: 0;
     transform: translateX(-100%);
