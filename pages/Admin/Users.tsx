@@ -203,16 +203,6 @@ export default function Users() {
           </Tabs>
 
           {/* list of users */}
-          <div className={styles.tableHead}>
-            <li>Name</li>
-            <li>Role</li>
-            <li>Email</li>
-            <li>Phone</li>
-            <li>Roll Number</li>
-            <li>House</li>
-            <li></li>
-            <li>Actions</li>
-          </div>
           {componentToRender}
         </div>
 
