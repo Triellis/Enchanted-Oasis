@@ -45,9 +45,9 @@ async function POST(
   };
 
   const db = (await clientPromise).db("enchanted-oasis");
-  const usersCollection = db.collection<HouseCol>("Houses");
+  const HousesCollection = db.collection<HouseCol>("Houses");
 
-  const insertResponse = await usersCollection.insertOne(house);
+  const insertResponse = await HousesCollection.insertOne(house);
 
   if (!insertResponse.acknowledged) {
     return res.status(500).json("House creation failed");

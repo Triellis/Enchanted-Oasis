@@ -32,9 +32,9 @@ async function GET(
   }
 
   const db = (await clientPromise).db("enchanted-oasis");
-  const usersCollection = db.collection<HouseCol>("Houses");
+  const HousesCollection = db.collection<HouseCol>("Houses");
 
-  const houses = await usersCollection.find({}).toArray();
+  const houses = await HousesCollection.find({}).toArray();
 
   return res.status(200).json(houses);
 }

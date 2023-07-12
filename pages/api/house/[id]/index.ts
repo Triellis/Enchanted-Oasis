@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]";
-import { HouseCol, MySession } from "../../../../lib/types";
-import { clientPromise } from "../../../../lib/DB";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { HouseCol, MySession } from "@/lib/types";
+import { clientPromise } from "@/lib/DB";
 import { ObjectId } from "mongodb";
 
 export default async function handler(
@@ -34,9 +34,9 @@ async function DELETE(
     return res.status(400).send("Missing query parameter: id");
   }
   const db = (await clientPromise).db("enchanted-oasis");
-  const usersCollection = db.collection<HouseCol>("Houses");
+  const HousesCollection = db.collection<HouseCol>("Houses");
 
-  const deleteStatus = await usersCollection.deleteOne({
+  const deleteStatus = await HousesCollection.deleteOne({
     _id: new ObjectId(id),
   });
 
@@ -70,9 +70,9 @@ async function PUT(
   }
 
   const db = (await clientPromise).db("enchanted-oasis");
-  const usersCollection = db.collection<HouseCol>("Houses");
+  const HousesCollection = db.collection<HouseCol>("Houses");
 
-  const insertResponse = await usersCollection.updateOne(
+  const insertResponse = await HousesCollection.updateOne(
     { _id: new ObjectId(id) },
     { $set: body }
   );
