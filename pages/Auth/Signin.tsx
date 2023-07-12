@@ -75,8 +75,6 @@ export default function SignIn({
                 redirect: false,
               });
 
-              console.log(res);
-
               if (res?.status !== 200) {
                 toast({
                   title: "Wrong Email Or Password ",

@@ -38,3 +38,10 @@
 body {
   background-color: hsl(var(--b1)) !important;
 }
+
+body,
+html,
+#__next {
+  /* min-height: min-content; */
+  height: 100%;
+}

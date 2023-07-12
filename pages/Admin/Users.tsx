@@ -57,6 +57,7 @@ import {
 } from "@chakra-ui/icons";
 import Image from "next/image";
 import classNames from "classnames";
+import UserListItem from "../../components/UserListItem";
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function useSearch(searchQuery: string, role: string, page: number) {
@@ -81,122 +82,6 @@ async function postUser(newUserData: SentUserDataFromClient) {
     body: JSON.stringify(newUserData),
   });
   return res;
-}
-
-// function UserListItem({
-//   userData,
-//   mutate,
-// }: {
-//   userData: ReceivedUserDataOnClient;
-//   mutate: () => void;
-// }) {
-//   const toast = useToast();
-
-//   const handleDelete = async () => {
-//     try {
-//       const res = await fetch(`/api/user?userId=${userData._id}`, {
-//         method: "DELETE",
-//       });
-//       if (res.ok) {
-//         toast({
-//           title: "User deleted",
-//           description: `User ${userData.name} deleted`,
-//           status: "success",
-//           duration: 9000,
-//           isClosable: true,
-//         });
-//       } else {
-//         toast({
-//           title: "Error",
-//           description: `User ${userData.name} could not be deleted`,
-//           status: "error",
-//           duration: 5000,
-//           isClosable: true,
-//         });
-//       }
-//       mutate();
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <li className={styles.userListItem}>
-//       <div className={styles.userInfo}>
-//         <span>
-//           {userData.name}{" "}
-//           <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
-//             {userData.role}
-//           </Badge>
-//         </span>
-//         <Button
-//           colorScheme="red"
-//           size="sm"
-//           variant="outline"
-//           onClick={handleDelete}
-//         >
-//           Delete
-//         </Button>
-//       </div>
-//     </li>
-//   );
-// }
-
-function UserListItem({
-  userData,
-  mutate,
-}: {
-  userData: ReceivedUserDataOnClient;
-  mutate: () => void;
-}) {
-  const toast = useToast();
-
-  const handleDelete = async () => {
-    const res = await fetch(`/api/user?userId=${userData._id}`, {
-      method: "DELETE",
-    });
-    if (res.ok) {
-      toast({
-        title: "User deleted",
-        description: `User ${userData.name} deleted`,
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-    } else {
-      toast({
-        title: "Error",
-        description: `User ${userData.name} could not be deleted`,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-    mutate();
-  };
-
-  return (
-    <li className={styles.userListItem}>
-      <div className={styles.userInfo}>
-        <span className={styles.name}>{userData.name}</span>
-        <span className={styles.role}>
-          <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
-            {userData.role}
-          </Badge>
-        </span>
-        <span className={styles.email}>{userData.email}</span>
-        <span className={styles.phone}>{userData.phone}</span>
-        <span className={styles.rollNumber}>{userData.rollNumber}</span>
-        <span className={styles.house}>{userData.house}</span>
-        <button className={classNames(styles.deleteButton, styles.btnGroup)}>
-          <DeleteIcon onClick={handleDelete} />
-        </button>
-        <button className={classNames(styles.editButton, styles.btnGroup)}>
-          <EditIcon />
-        </button>
-      </div>
-    </li>
-  );
 }
 
 export default function Users() {
@@ -447,18 +332,18 @@ export default function Users() {
                 <GridItem colSpan={2}>
                   <FormControl>
                     {/* Profile Picture */}
-                      <FormLabel>Profile Picture</FormLabel>
-                      <form className={styles.picIn}>
-                        <input
-                          type="file"
-                          onChange={(e) => {
-                            setNewUserData({
-                              ...newUserData,
-                              profilePicture: e.target.value,
-                            });
-                          }}
-                        />
-                      </form>
+                    <FormLabel>Profile Picture</FormLabel>
+                    <form className={styles.picIn}>
+                      <input
+                        type="file"
+                        onChange={(e) => {
+                          setNewUserData({
+                            ...newUserData,
+                            profilePicture: e.target.value,
+                          });
+                        }}
+                      />
+                    </form>
                   </FormControl>
                 </GridItem>
                 <GridItem className={styles.quarThree} colSpan={2}>

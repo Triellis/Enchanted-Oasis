@@ -54,8 +54,6 @@
 .searchBar:active {
   transform: scale(0.99);
 }
-
-/* the table of entires */
 .tableHead {
   border-radius: 10px;
   padding: 10px !important;
@@ -66,79 +64,6 @@
   width: 100%;
   list-style: none;
   align-items: center;
-}
-.userListItem {
-  padding: 3px;
-  border-radius: 8px;
-  background-color: hsl(var(--b2));
-  transition: all 0.3s ease;
-  cursor: pointer;
-  list-style-type: none;
-  width: 100%;
-}
-.userInfo {
-  display: grid;
-  grid-template-columns: 2fr 0.5fr 1.5fr 1fr 1fr 0.8fr 0.25fr 0.25fr;
-  align-items: center;
-  gap: 10px;
-  padding-inline: 5px;
-}
-.name {
-  grid-column: 1;
-}
-.role {
-  grid-column: 2;
-}
-.email {
-  grid-column: 3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.phone {
-  grid-column: 4;
-}
-.rollNumber {
-  grid-column: 5;
-}
-.house {
-  grid-column: 6;
-}
-.Button {
-  grid-column: 7;
-}
-/* for the actions buttons in the end */
-.btnGroup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 2px;
-  transition: all 0.3s ease;
-}
-.deleteButton {
-  margin: 2px;
-  transition: all 0.3s ease;
-  background-color: hsl(var(--er));
-}
-.deleteButton:hover {
-  background-color: hsl(var(--erc));
-  color: hsl(var(--pch));
-}
-.deleteButton:active {
-  transform: scale(0.9);
-}
-.editButton {
-  margin: 2px;
-  transition: all 0.3s ease;
-  background-color: hsl(var(--in));
-}
-.editButton:hover {
-  background-color: hsl(var(--inc));
-}
-.editButton:active {
-  transform: scale(0.9);
 }
 
 /* for the buttons at the end of the page */
@@ -172,7 +97,6 @@
 .quarter {
   margin-bottom: 10px;
 }
-
 
 .randh {
   display: flex;
