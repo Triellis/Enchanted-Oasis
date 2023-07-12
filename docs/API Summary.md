@@ -50,8 +50,8 @@
 | Route Name        | Method | URL Pattern                         |
 | ----------------- | ------ | ----------------------------------- |
 | See My House Data | GET    | `/api/house/my`                     |
-| List Houses       | GET    | `/api/house/list`                   |
-| List Members      | GET    | `/api/house/{id}/listMembers`       |
+| Search Houses     | GET    | `/api/house/search`                 |
+| Search Members    | GET    | `/api/house/{id}/searchMembers`     |
 | Add Member        | POST   | `/api/house/{id}/member`            |
 | Remove Member     | DELETE | `/api/house/{id}/member/{memberId}` |
 | Increase pts      | POST   | `/api/house/{id}/increase`          |

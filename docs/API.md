@@ -457,9 +457,9 @@ type Faculty = {
 
 ## Houses
 
-### List Houses
+### Search Houses
 
-- **URL:** `/api/house/list`
+- **URL:** `/api/house/search`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Faculty`
 
@@ -469,6 +469,7 @@ type Faculty = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"searchQuery"?: string // search query
 }
 ```
 
@@ -507,9 +508,9 @@ type House = {
 }
 ```
 
-### List members
+### Search members
 
-- **URL:** `/api/house/{id}/listMembers`
+- **URL:** `/api/house/{id}/searchMembers`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Faculty`
 
@@ -519,6 +520,7 @@ type House = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"searchQuery"?: string // search query
 }
 ```
 
