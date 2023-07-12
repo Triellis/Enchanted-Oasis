@@ -65,6 +65,7 @@
   cursor: pointer;
   margin-top: 20px;
   transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
 }
 .submitBtn:hover {
   background-color: hsl(var(--sf)) !important;
