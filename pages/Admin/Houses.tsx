@@ -18,7 +18,7 @@ function Houses() {
       <Layout>
         <div className={style.housePage}>
           <Grid
-            templateColumns="repeat(2, 1fr)"
+            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
             templateRows="repeat(2, 1fr)"
             gap={2}
           >

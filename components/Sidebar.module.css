@@ -1,4 +1,4 @@
-/* sidebar  */
+/* sidebar */
 .sidebar {
   position: static;
   left: -300px; /* Sidebar initially hidden */
@@ -11,9 +11,11 @@
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
   /* overflow-y: scroll; */
 }
+
 .sidebar.open {
   transform: translateX(0); /* Sidebar shown */
 }
+
 .sidebar.closed {
   transform: translateX(-100%); /* Sidebar hidden */
   width: 0;
@@ -27,6 +29,26 @@
   justify-content: space-between;
   height: 100%;
   padding: 15px;
+}
+
+/* Responsive modifications */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100px;
+    border-radius: 0;
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+    width: 0;
+    overflow: hidden;
+  }
 }
 
 /* for the logout button */
