@@ -52,3 +52,9 @@ export type SentUserDataFromClient = Omit<
 > & {
   password: string;
 };
+
+export type HouseCol = {
+  _id: ObjectId;
+  name: string;
+  points: number;
+};
