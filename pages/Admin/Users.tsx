@@ -424,6 +424,76 @@ export default function Users() {
                 color={"bl"}
                 className={styles.modalAdd}
                 onClick={async () => {
+                  // validation logic:
+                  if (newUserData.name.trim() == "") {
+                    toast({
+                      title: "Name field empty",
+                      description: "Please enter a name",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  } else if (newUserData.email.trim() == "") {
+                    toast({
+                      title: "Email field empty",
+                      description: "Please enter an email",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  } else if (newUserData.password.trim() == "") {
+                    toast({
+                      title: "Password field empty",
+                      description: "Please enter a password",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  } else if (newUserData.rollNumber.trim() == "") {
+                    toast({
+                      title: "Roll Number field empty",
+                      description: "Please enter a roll number",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  } else if (newUserData.phone.trim() == "") {
+                    toast({
+                      title: "Phone field empty",
+                      description: "Please enter a phone number",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  } else if (!newUserData.role) {
+                    toast({
+                      title: "Role field empty",
+                      description: "Please select a role",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  }
+                  // for images
+                  else if (newUserData.profilePicture == "") {
+                    toast({
+                      title: "Profile Picture field empty",
+                      description: "Please select a profile picture",
+                      status: "error",
+                      duration: 5000,
+                      isClosable: true,
+                    });
+                    return;
+                  } else {
+                    // validation successful
+                  }
+
                   const res = await postUser(newUserData);
                   if (res.status == 200) {
                     toast({
