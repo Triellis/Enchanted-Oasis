@@ -40,7 +40,7 @@
   height: 4rem;
 }
 .fillForm input:focus {
-  background-color: rgb(0 , 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.5);
 }
 
 .clicky {
@@ -54,7 +54,7 @@
 }
 
 .submitBtn {
-  background-color: hsl(var(--su));
+  background-color: hsl(var(--s)) !important;
   color: white;
   border: transparent;
   border-radius: 10px;
@@ -67,7 +67,7 @@
   transition: all 0.2s ease-in-out;
 }
 .submitBtn:hover {
-  background-color: hsl(var(--suc));
+  background-color: hsl(var(--sf)) !important;
 }
 .submitBtn:active {
   scale: 0.9;

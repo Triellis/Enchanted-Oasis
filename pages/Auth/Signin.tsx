@@ -66,30 +66,31 @@ export default function SignIn({
         </label>
 
         {/* end button part */}
-        <div className={styles.submitBtn}>
-          <button
-            onClick={async () => {
-              const res = await signIn("credentials", {
-                email,
-                password,
-                redirect: false,
-              });
 
-              if (res?.status !== 200) {
-                toast({
-                  title: "Wrong Email Or Password ",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-              } else {
-                router.push("/");
-              }
-            }}
-          >
-            Sign in
-          </button>
-        </div>
+        <Button
+          className={styles.submitBtn}
+          onClick={async () => {
+            console.log("working");
+            const res = await signIn("credentials", {
+              email,
+              password,
+              redirect: false,
+            });
+
+            if (res?.status !== 200) {
+              toast({
+                title: "Wrong Email Or Password ",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+            } else {
+              router.push("/");
+            }
+          }}
+        >
+          Sign in
+        </Button>
       </div>
     </div>
   );
