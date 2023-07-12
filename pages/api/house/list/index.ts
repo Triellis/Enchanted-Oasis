@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
 import { HouseCol, MySession } from "../../../../lib/types";
 import { clientPromise } from "../../../../lib/DB";
-import { ObjectId } from "mongodb";
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,7 +27,6 @@ async function GET(
   res: NextApiResponse,
   session: MySession
 ) {
-  const { body } = req;
   if (session?.user.role !== "Admin" && session?.user.role !== "Faculty") {
     return res.status(403).send("Not an Admin or Faculty");
   }
