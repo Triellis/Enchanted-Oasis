@@ -247,7 +247,22 @@ export default function Users() {
         </div>
 
         {/* Modal window to add new users */}
-        <Modal isOpen={isOpen} onClose={onClose} size={"4xl"}>
+        <Modal
+          isOpen={isOpen}
+          onClose={() => {
+            setNewUserData({
+              name: "",
+              email: "",
+              password: "",
+              rollNumber: "",
+              phone: "",
+              role: "Student",
+              profilePicture: "",
+              house: "" // Add the missing property here
+            });
+          }}
+          size={"4xl"}
+        >
           {/* <ModalOverlay /> */}
           {overlay}
           <ModalContent>
