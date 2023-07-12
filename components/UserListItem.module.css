@@ -30,11 +30,16 @@
     gap: 10px;
   }
 }
-
+.role{
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
 .email {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis ;
+  align-items: center;
 }
 /* for the actions buttons in the end */
 .btnGroup {
