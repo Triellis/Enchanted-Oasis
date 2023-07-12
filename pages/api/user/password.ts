@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient, ObjectId } from "mongodb";
-import { mongoUri } from "../../../../lib/DB";
-import { MySession, UserCol } from "../../../../lib/types";
+import { mongoUri } from "../../../lib/DB";
+import { MySession, UserCol } from "../../../lib/types";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../auth/[...nextauth]";
+import { authOptions } from "../auth/[...nextauth]";
 import { Session } from "next-auth";
-import { clientPromise } from "../../../../lib/DB";
+import { clientPromise } from "../../../lib/DB";
 import md5 from "md5";
 
 export default async function handler(
