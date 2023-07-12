@@ -457,21 +457,11 @@ type Faculty = {
 
 ## Houses
 
-### Search Houses
+### list Houses
 
-- **URL:** `/api/house/search`
+- **URL:** `/api/house/list`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-	"searchQuery"?: string // search query
-}
-```
 
 #### Response
 
@@ -479,7 +469,7 @@ type Faculty = {
 
 {
 	"houses":House[],
-	"totalHouses":number
+
 }
 
 ```
