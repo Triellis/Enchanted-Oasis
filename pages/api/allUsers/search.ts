@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient, ObjectId } from "mongodb";
 import { mongoUri } from "../../../lib/DB";
-import { MySession, UserCol } from "../../../lib/types";
+import { MySession, UserCol, userProjection } from "../../../lib/types";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import { Session } from "next-auth";
@@ -71,16 +71,7 @@ async function GET(
         ],
       },
       {
-        projection: {
-          _id: 1,
-          name: 1,
-          phone: 1,
-          email: 1,
-          house: 1,
-          role: 1,
-          profilePicture: 1,
-          rollNumber: 1,
-        },
+        projection: userProjection,
       }
     )
     .skip((page - 1) * maxResults)

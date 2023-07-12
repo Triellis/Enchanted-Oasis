@@ -58,3 +58,14 @@ export type HouseCol = {
   name: string;
   points: number;
 };
+
+export const userProjection = {
+  _id: 1,
+  name: 1,
+  phone: 1,
+  email: 1,
+  house: 1,
+  role: 1,
+  profilePicture: 1,
+  rollNumber: 1,
+};
