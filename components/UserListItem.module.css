@@ -69,3 +69,15 @@
 .editButton:active {
   transform: scale(0.9);
 }
+
+.del{
+  background-color: hsl(var(--er)) !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.del:hover{
+  color: hsl(var(--erc));
+}
+.del:active{
+  transform: scale(0.9);
+}
