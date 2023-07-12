@@ -18,7 +18,7 @@
 }
 ```
 
-## House
+## Houses
 
 ```typescript
 
@@ -26,7 +26,7 @@
 	_id: ObjectID,
 	name: string,
 	points: number
-	members: string[] // array of student ids
+
 }
 ```
 

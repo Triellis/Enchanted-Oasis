@@ -626,9 +626,7 @@ type Student = {
 
 ```typescript
 {
-	name: string;
-	members: string[];
-
+  name: string;
 }
 ```
 
