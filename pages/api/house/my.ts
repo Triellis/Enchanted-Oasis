@@ -25,20 +25,30 @@ async function GET(
   res: NextApiResponse,
   session: MySession
 ) {
-  if (session?.user.role !== "Admin" && session?.user.role !== "Faculty") {
-    return res.status(403).send("Not an Admin or Faculty");
-  }
-
   const db = (await clientPromise).db("enchanted-oasis");
   const housesCollection = db.collection<HouseCol>("Houses");
   const usersCollection = db.collection<UserCol>("Users");
+  const pipeline = [
+    { $match: { _id: session?.user.id } }, // Match the user ID
+    { $project: { house: 1 } }, // Include only the house property
+    {
+      $lookup: {
+        // Perform a join with the houses collection
+        from: "Houses",
+        localField: "house",
+        foreignField: "name",
+        as: "houseDocument",
+      },
+    },
+    { $unwind: "$houseDocument" }, // Unwind the houseDocument array
+    { $replaceRoot: { newRoot: "$houseDocument" } }, // Replace the root with the house document
+  ];
 
-  const houses = await housesCollection
-    .find({})
-    .sort({
-      points: -1,
-    })
-    .toArray();
+  const house = await usersCollection.aggregate(pipeline).toArray();
 
-  return res.status(200).json(houses);
+  if (house.length === 0) {
+    return res.status(200).send("You are not in any house");
+  }
+
+  return res.status(200).send(house);
 }
