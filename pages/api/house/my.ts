@@ -46,8 +46,8 @@ async function GET(
   const house = await usersCollection.aggregate(pipeline).toArray();
 
   if (house.length === 0) {
-    return res.status(200).send("You are not in any house");
+    return res.status(204).send("You are not in any house");
   }
 
-  return res.status(200).send(house);
+  return res.status(200).send(house[0]);
 }
