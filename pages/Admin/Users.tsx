@@ -58,6 +58,8 @@ import {
 import Image from "next/image";
 import classNames from "classnames";
 import UserListItem from "../../components/UserListItem";
+import React from "react";
+
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function useSearch(searchQuery: string, role: string, page: number) {
@@ -143,8 +145,11 @@ export default function Users() {
     }
   }
 
-  // for the confirm delete modal:
-  
+  // for the new overlay when the modal is opened:
+  function OverlayOne() {
+    return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
+  }
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
   return (
     <>
@@ -231,12 +236,20 @@ export default function Users() {
           </Button>
 
           {/* Adding new users */}
-          <Button onClick={onOpen}>Add</Button>
+          <Button
+            onClick={() => {
+              onOpen();
+              setOverlay(<OverlayOne />);
+            }}
+          >
+            Add
+          </Button>
         </div>
 
         {/* Modal window to add new users */}
         <Modal isOpen={isOpen} onClose={onClose} size={"4xl"}>
-          <ModalOverlay />
+          {/* <ModalOverlay /> */}
+          {overlay}
           <ModalContent>
             <ModalHeader>Create new user</ModalHeader>
             <ModalCloseButton />
