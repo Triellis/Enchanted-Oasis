@@ -558,7 +558,7 @@ type Student = {
 
 #### Response will be status code
 
-### Add points
+### Increase points
 
 - **URL:** `/api/house/{id}/increase`
 - **Method:** `POST`
@@ -574,7 +574,7 @@ type Student = {
 
 #### Response will be status code
 
-### Remove points
+### Decrease points
 
 - **URL:** `/api/house/{id}/decrease`
 - **Method:** `POST`
