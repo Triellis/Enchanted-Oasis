@@ -534,7 +534,7 @@ type Student = {
 };
 ```
 
-### Add member
+### ~~Add member~~
 
 - **URL:** `/api/house/{id}/member`
 - **Method:** `POST`
@@ -550,7 +550,7 @@ type Student = {
 
 #### Response will be status code
 
-### Remove member
+### ~~Remove member~~
 
 - **URL:** `/api/house/{id}/member/{memberId}`
 - **Method:** `DELETE`
