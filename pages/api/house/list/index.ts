@@ -34,7 +34,11 @@ async function GET(
   const db = (await clientPromise).db("enchanted-oasis");
   const HousesCollection = db.collection<HouseCol>("Houses");
 
-  const houses = await HousesCollection.find({}).toArray();
+  const houses = await HousesCollection.find({})
+    .sort({
+      points: -1,
+    })
+    .toArray();
 
   return res.status(200).json(houses);
 }
