@@ -51,9 +51,9 @@
 | ----------------- | ------ | ----------------------------------- |
 | See My House Data | GET    | `/api/house/my`                     |
 | List Houses       | GET    | `/api/house/list`                   |
-| List Members      | GET    | `/api/house/{id}/listMembers`       |
-| Add Member        | POST   | `/api/house/{id}/member`            |
-| Remove Member     | DELETE | `/api/house/{id}/member/{memberId}` |
+| Search Members    | GET    | `/api/house/{id}/searchMembers`     |
+| ~~Add Member~~    | POST   | `/api/house/{id}/member`            |
+| ~~Remove Member~~ | DELETE | `/api/house/{id}/member/{memberId}` |
 | Increase pts      | POST   | `/api/house/{id}/increase`          |
 | Decrease pts      | POST   | `/api/house/{id}/decrease`          |
 | Edit House        | PUT    | `/api/house/{id}`                   |

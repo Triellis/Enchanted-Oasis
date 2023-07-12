@@ -457,20 +457,11 @@ type Faculty = {
 
 ## Houses
 
-### List Houses
+### list Houses
 
 - **URL:** `/api/house/list`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-}
-```
 
 #### Response
 
@@ -478,7 +469,7 @@ type Faculty = {
 
 {
 	"houses":House[],
-	"totalHouses":number
+
 }
 
 ```
@@ -507,9 +498,9 @@ type House = {
 }
 ```
 
-### List members
+### Search members
 
-- **URL:** `/api/house/{id}/listMembers`
+- **URL:** `/api/house/{id}/searchMembers`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Faculty`
 
@@ -519,6 +510,7 @@ type House = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"searchQuery"?: string // search query
 }
 ```
 
@@ -542,7 +534,7 @@ type Student = {
 };
 ```
 
-### Add member
+### ~~Add member~~
 
 - **URL:** `/api/house/{id}/member`
 - **Method:** `POST`
@@ -558,7 +550,7 @@ type Student = {
 
 #### Response will be status code
 
-### Remove member
+### ~~Remove member~~
 
 - **URL:** `/api/house/{id}/member/{memberId}`
 - **Method:** `DELETE`
@@ -566,7 +558,7 @@ type Student = {
 
 #### Response will be status code
 
-### Add points
+### Increase points
 
 - **URL:** `/api/house/{id}/increase`
 - **Method:** `POST`
@@ -582,7 +574,7 @@ type Student = {
 
 #### Response will be status code
 
-### Remove points
+### Decrease points
 
 - **URL:** `/api/house/{id}/decrease`
 - **Method:** `POST`
@@ -624,9 +616,7 @@ type Student = {
 
 ```typescript
 {
-	name: string;
-	members: string[];
-
+  name: string;
 }
 ```
 
