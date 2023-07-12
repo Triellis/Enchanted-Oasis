@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { HouseCol, MySession } from "../../../lib/types";
-import { clientPromise } from "../../../lib/DB";
+import { HouseCol, MySession, UserCol } from "@/lib/types";
+import { clientPromise } from "@/lib/DB";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,8 +12,6 @@ export default async function handler(
 
   if (!session) {
     return res.status(403).send("Not logged in");
-  } else if (session.user.role !== "Admin" && session.user.role !== "Faculty") {
-    return res.status(403).send("Not an Admin or Faculty");
   }
   if (req.method === "GET") {
     return GET(req, res, session);
@@ -33,6 +31,7 @@ async function GET(
 
   const db = (await clientPromise).db("enchanted-oasis");
   const housesCollection = db.collection<HouseCol>("Houses");
+  const usersCollection = db.collection<UserCol>("Users");
 
   const houses = await housesCollection
     .find({})

@@ -34,9 +34,9 @@ async function DELETE(
     return res.status(400).send("Missing query parameter: id");
   }
   const db = (await clientPromise).db("enchanted-oasis");
-  const HousesCollection = db.collection<HouseCol>("Houses");
+  const housesCollection = db.collection<HouseCol>("Houses");
 
-  const deleteStatus = await HousesCollection.deleteOne({
+  const deleteStatus = await housesCollection.deleteOne({
     _id: new ObjectId(id),
   });
 
@@ -70,9 +70,9 @@ async function PUT(
   }
 
   const db = (await clientPromise).db("enchanted-oasis");
-  const HousesCollection = db.collection<HouseCol>("Houses");
+  const housesCollection = db.collection<HouseCol>("Houses");
 
-  const insertResponse = await HousesCollection.updateOne(
+  const insertResponse = await housesCollection.updateOne(
     { _id: new ObjectId(id) },
     { $set: body }
   );

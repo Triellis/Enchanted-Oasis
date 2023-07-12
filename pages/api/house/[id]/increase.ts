@@ -32,9 +32,9 @@ async function POST(
     return res.status(400).send("Missing query parameter: id");
   }
   const db = (await clientPromise).db("enchanted-oasis");
-  const HousesCollection = db.collection<HouseCol>("Houses");
+  const housesCollection = db.collection<HouseCol>("Houses");
 
-  const updateStatus = await HousesCollection.updateOne(
+  const updateStatus = await housesCollection.updateOne(
     {
       _id: new ObjectId(id),
     },

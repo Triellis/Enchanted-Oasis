@@ -32,8 +32,8 @@ async function POST(
     return res.status(400).send("Missing query parameter: id");
   }
   const db = (await clientPromise).db("enchanted-oasis");
-  const HousesCollection = db.collection<HouseCol>("Houses");
-  const house = await HousesCollection.findOne({
+  const housesCollection = db.collection<HouseCol>("Houses");
+  const house = await housesCollection.findOne({
     _id: new ObjectId(id),
   });
   if (!house) {
@@ -44,7 +44,7 @@ async function POST(
     return res.status(400).send("House points are already 0");
   }
 
-  const updateStatus = await HousesCollection.updateOne(
+  const updateStatus = await housesCollection.updateOne(
     {
       _id: new ObjectId(id),
     },
