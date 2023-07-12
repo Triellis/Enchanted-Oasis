@@ -1,8 +1,23 @@
-import { Avatar, Badge, useToast } from "@chakra-ui/react";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  useToast,
+  Text,
+} from "@chakra-ui/react";
 import { ReceivedUserDataOnClient } from "../lib/types";
 import classNames from "classnames";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import styles from "./UserListItem.module.css";
+import React from "react";
 export default function UserListItem({
   userData,
   mutate,
@@ -68,6 +83,14 @@ export default function UserListItem({
     );
   }
 
+  // function to ask for modal for confirmation:
+  function OverlayOne() {
+    return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
+  }
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
+
   return (
     <li className={styles.userListItem}>
       <div className={styles.userInfo}>
@@ -77,12 +100,41 @@ export default function UserListItem({
 
         {compoenentToRender}
 
-        <button className={classNames(styles.deleteButton, styles.btnGroup)}>
-          <DeleteIcon onClick={handleDelete} />
-        </button>
         <button className={classNames(styles.editButton, styles.btnGroup)}>
           <EditIcon />
         </button>
+
+        <button className={classNames(styles.deleteButton, styles.btnGroup)}>
+          <DeleteIcon
+            onClick={() => {
+              setOverlay(<OverlayOne />);
+              onOpen();
+            }}
+          />
+        </button>
+
+        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+          {overlay}
+          <ModalContent>
+            <ModalHeader>Confirm Delete</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Text>
+                {" "}
+                Are you sure you want to delete the user:{" "}
+                <span style={{ fontWeight: "bold", color: "hsl(var(--er)" }}>
+                  {userData.name}
+                </span>{" "}
+                ?
+              </Text>
+            </ModalBody>
+            <ModalFooter>
+              <Button className={styles.del} onClick={handleDelete}>
+                Delete
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </div>
     </li>
   );
