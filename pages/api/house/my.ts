@@ -26,7 +26,6 @@ async function GET(
   session: MySession
 ) {
   const db = (await clientPromise).db("enchanted-oasis");
-  const housesCollection = db.collection<HouseCol>("Houses");
   const usersCollection = db.collection<UserCol>("Users");
   const pipeline = [
     { $match: { _id: session?.user.id } }, // Match the user ID
