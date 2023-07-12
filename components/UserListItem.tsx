@@ -38,6 +38,36 @@ export default function UserListItem({
 
   const isSmall = window.innerWidth < 768;
 
+  let compoenentToRender;
+  if (isSmall) {
+    compoenentToRender = (
+      <span className={styles.responsiveBlock}>
+        <span className={styles.name}>{userData.name}</span>
+        <span className={styles.role}>
+          <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
+            {userData.role}
+          </Badge>
+        </span>
+        <span className={styles.email}>{userData.email}</span>
+      </span>
+    );
+  } else {
+    compoenentToRender = (
+      <span className={styles.responsiveBlock}>
+        <span className={styles.name}>{userData.name}</span>
+        <span className={styles.role}>
+          <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
+            {userData.role}
+          </Badge>
+        </span>
+        <span className={styles.email}>{userData.email}</span>
+        <span className={styles.phone}>{userData.phone}</span>
+        <span className={styles.rollNumber}>{userData.rollNumber}</span>
+        <span className={styles.house}>{userData.house}</span>
+      </span>
+    );
+  }
+
   return (
     <li className={styles.userListItem}>
       <div className={styles.userInfo}>
@@ -45,30 +75,7 @@ export default function UserListItem({
           <Avatar bg="teal.500" />
         </span>
 
-        {isSmall ? (
-          <span className={styles.responsiveBlock}>
-            <span className={styles.name}>{userData.name}</span>
-            <span className={styles.role}>
-              <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
-                {userData.role}
-              </Badge>
-            </span>
-            <span className={styles.email}>{userData.email}</span>
-          </span>
-        ) : (
-          <span className={styles.responsiveBlock}>
-            <span className={styles.name}>{userData.name}</span>
-            <span className={styles.role}>
-              <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
-                {userData.role}
-              </Badge>
-            </span>
-            <span className={styles.email}>{userData.email}</span>
-            <span className={styles.phone}>{userData.phone}</span>
-            <span className={styles.rollNumber}>{userData.rollNumber}</span>
-            <span className={styles.house}>{userData.house}</span>
-          </span>
-        )}
+        {compoenentToRender}
 
         <button className={classNames(styles.deleteButton, styles.btnGroup)}>
           <DeleteIcon onClick={handleDelete} />
