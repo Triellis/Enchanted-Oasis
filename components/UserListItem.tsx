@@ -1,4 +1,4 @@
-import { Badge, useToast } from "@chakra-ui/react";
+import { Avatar, Badge, useToast } from "@chakra-ui/react";
 import { ReceivedUserDataOnClient } from "../lib/types";
 import classNames from "classnames";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
@@ -39,6 +39,9 @@ export default function UserListItem({
   return (
     <li className={styles.userListItem}>
       <div className={styles.userInfo}>
+        <span>
+          <Avatar bg="teal.500" />
+        </span>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
           <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
