@@ -17,3 +17,33 @@
 .housePic:active {
   transform: scale(0.9);
 }
+.rankDisplay {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 1px solid;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  backdrop-filter: blur(150px);
+}
+
+.rankDisplay::before {
+  content: "# ";
+  font-weight: bold;
+}
+
+.housePoints {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.housePoints::after {
+  content: " points";
+  font-weight: lighter;
+  font-family: monospace;
+}
