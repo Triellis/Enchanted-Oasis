@@ -1,26 +1,14 @@
 // Use the JS library to create a bucket.
-import { createClient } from "@supabase/supabase-js";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./auth/[...nextauth]";
 import { MySession } from "@/lib/types";
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
 import { IncomingForm } from "formidable";
 // you might want to use regular 'fs' and not a promise one
 import { promises as fs } from "fs";
+import { supabase } from "@/lib/supabase";
 // Set up multer middleware
 
 // Create the API route handler using next-connect
-
-if (!SUPABASE_URL) {
-  throw new Error("Missing env.SUPABASE_URL");
-}
-if (!SUPABASE_ANON_KEY) {
-  throw new Error("Missing env.SUPABASE_ANON_KEY");
-}
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default async function handler(
   req: NextApiRequest,
@@ -56,25 +44,34 @@ async function POST(
   // read file from the temporary path
   //@ts-ignore
 
-  const contents = await fs.readFile(formData?.files.file[0].filepath, {
-    encoding: "utf8",
-  });
   // await fs.writeFile("profile pic3.jpg", contents);
-  //@ts-ignore
 
-  const file = await fs.open(formData?.files.file[0].filepath, "r");
-  const fileData = await file.readFile();
-  //   console.log(contents);
   //@ts-ignore
-  console.log(formData?.files.file[0].filepath);
-  const { data, error } = await supabase.storage
+  const file = await fs.open(formData?.files.pic[0].filepath, "r");
+  const fileData = await file.readFile();
+  //@ts-ignore
+  console.log(formData.fields);
+
+  //   console.log(formData.files.file[0].originalFilename);
+  //   //@ts-ignore
+  //   console.log(formData?.files.file[0].filepath);
+  const { data: uploadData, error } = await supabase.storage
     .from("enchanted-oasis")
-    //@ts-ignore
-    .upload("profile pic2.jpg", fileData);
+    .upload(
+      //@ts-ignore
+      "profile pics/" + formData.files.file[0].originalFilename,
+      fileData
+    );
   if (error) {
     console.log(error);
   }
-  res.status(200).json("k");
+
+  const { data } = supabase.storage
+    .from("enchanted-oasis")
+    .getPublicUrl(uploadData!.path, {
+      download: true,
+    });
+  res.status(200).json({ url: data.publicUrl, error });
 }
 export const config = {
   api: {

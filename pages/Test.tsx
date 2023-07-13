@@ -11,14 +11,16 @@ const FileUploader = () => {
   const handleSubmit = async () => {
     if (file) {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("pic", file);
+      formData.append("name", "test");
 
       try {
         const response = await fetch("/api/test", {
           method: "POST",
           body: formData,
         });
-
+        const json = await response.json();
+        console.log(json);
         if (response.ok) {
           // File successfully uploaded
           console.log("File uploaded successfully");
