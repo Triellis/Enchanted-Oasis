@@ -129,7 +129,12 @@ export default function UserListItem({
           }}
         />
 
-        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        <Modal
+          isCentered
+          isOpen={isOpen}
+          onClose={onClose}
+          size={{ sm: "2xl", base: "xs", lg: "3xl" }}
+        >
           {overlay}
           <ModalContent>
             <ModalHeader>Confirm Delete</ModalHeader>
