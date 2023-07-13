@@ -9,7 +9,7 @@
 }
 .userInfo {
   display: grid;
-  grid-template-columns: 0.1fr 1fr 0.1fr 0.1fr;
+  grid-template-columns: 0.1fr 1fr 0.05fr 0.05fr;
   align-items: center;
   gap: 10px;
   padding-inline: 5px;
@@ -17,7 +17,7 @@
 
 .responsiveBlock {
   display: grid;
-  grid-template-columns: 2fr 0.5fr 2fr 1fr 1fr 0.8fr;
+  grid-template-columns: 2fr 0.8fr 2fr 1fr 1fr 0.8fr;
   align-items: center;
   gap: 10px;
 }
@@ -51,7 +51,6 @@
   margin: 2px;
   transition: all 0.3s ease;
 }
-
 .deleteButton,
 .editButton {
   margin: 2px;
