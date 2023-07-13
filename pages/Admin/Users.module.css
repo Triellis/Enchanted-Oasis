@@ -80,7 +80,6 @@
 }
 
 /* CSS for the modal */
-
 .modalFooter {
   display: flex;
   gap: 1em;
@@ -103,7 +102,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: 0.3em;
   height: 100%;
 }
 
@@ -121,5 +120,4 @@
   /* center it */
   margin-left: 80px;
 }
-
 /* use grid !!!!!! */

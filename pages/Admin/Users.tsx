@@ -16,7 +16,7 @@ import {
   TabList,
   Tabs,
   Center,
-  Grid,
+  SimpleGrid,
   GridItem,
 } from "@chakra-ui/react";
 import {
@@ -244,7 +244,8 @@ export default function Users() {
               house: "", // Add the missing property here
             });
           }}
-          size={"4xl"}
+          // responsive:
+          size={{ sm: "2xl", base: "xs", lg: "3xl" }}
         >
           {/* <ModalOverlay /> */}
           {overlay}
@@ -252,11 +253,7 @@ export default function Users() {
             <ModalHeader>Create new user</ModalHeader>
             <ModalCloseButton />
             <ModalBody className={styles.modalBody}>
-              <Grid
-                templateRows="repeat(1, 1fr)"
-                templateColumns="repeat(4, 1fr)"
-                gap={4}
-              >
+              <SimpleGrid columns={{ base: 1, lg: 4 }} gap={4}>
                 <GridItem colSpan={2}>
                   {/* Name */}
                   <FormControl>
@@ -407,7 +404,7 @@ export default function Users() {
                     </div>
                   </FormControl>
                 </GridItem>
-              </Grid>
+              </SimpleGrid>
             </ModalBody>
 
             <ModalFooter className={styles.modalFooter}>
