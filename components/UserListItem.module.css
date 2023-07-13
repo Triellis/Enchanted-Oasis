@@ -21,18 +21,6 @@
   align-items: center;
   gap: 10px;
 }
-/* now the same for smaller devices */
-@media (max-width: 768px) {
-  .responsiveBlock {
-    align-items: center;
-    display: grid;
-    grid-template-columns: 2fr 0.5fr;
-    gap: 10px;
-  }
-  .role {
-    margin-top: 50%;
-  }
-}
 .role {
   display: flex;
   align-items: center;
@@ -47,6 +35,25 @@
   border: 2px solid;
   border-radius: 5px !important;
   padding: 5px;
+}
+/* now the same for smaller devices */
+@media (max-width: 768px) {
+  .responsiveBlock {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    gap: 1px;
+    font-size: 14px;
+  }
+  .role {
+    margin-top: 50%;
+  }
+  .roleLabel {
+    border: 2px solid;
+    border-radius: 5px !important;
+    padding: 5px;
+    font-size: 10px !important;
+  }
 }
 /* for the actions buttons in the end */
 .btnGroup {
