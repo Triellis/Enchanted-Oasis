@@ -9,6 +9,10 @@
   margin: auto auto;
   flex-direction: column !important;
   word-wrap: break-word;
+
+  background-image: url(/assets/image/bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .heading {
@@ -57,7 +61,7 @@
 }
 .imageWrapper {
   animation: float 2000ms ease-in-out infinite;
-  margin-right:10px ;
+  margin-right: 10px;
 }
 @keyframes float {
   0% {
@@ -80,6 +84,16 @@
 }
 
 /* signin button effects */
+.btn:hover {
+  background-color: hsl(var(--sf)) !important;
+}
 .btn:active {
   transform: scale(0.9);
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 10px !important;
+  /* border: 1px solid rgba(0, 0, 0, 0.3) !important; */
 }

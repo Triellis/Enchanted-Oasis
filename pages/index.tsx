@@ -26,15 +26,12 @@ export default function IndexPage() {
   // THE LANDING PAGE
   return (
     <>
-      {/* for background image  */}
-      <Image alt="bg" fill src="/assets/image/bg.png" />
-
       <div className={styles.main}>
         <Card
           direction={{ base: "column", sm: "row" }}
           overflow="hidden"
-          variant="outline"
-          background={"hsl(var(--b3))"}
+          // variant="outline"
+          className={styles.card}
         >
           <Stack>
             <div className={styles.imageBodyWrapper}>
@@ -68,6 +65,7 @@ export default function IndexPage() {
                 size={"lg"}
                 onClick={() => signIn()}
                 className={styles.btn}
+                backgroundColor={"hsl(var(--s))"} 
               >
                 Sign in
               </Button>
