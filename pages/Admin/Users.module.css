@@ -54,18 +54,16 @@
 .searchBar:active {
   transform: scale(0.99);
 }
-.tableHead {
-  border-radius: 10px;
-  padding: 10px !important;
+.tableHead{
   background-color: hsl(var(--b3));
-  display: grid;
-  grid-template-columns: 2fr 0.5fr 1.5fr 1fr 1fr 0.8fr 0.09fr 0.5fr;
-  gap: 10px;
   width: 100%;
-  list-style: none;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 0.75fr 2.1fr 0.8fr 2fr 1fr 0.9fr 0.99fr 0.2fr 0.05fr;
   align-items: center;
+  gap: 20px;
+  padding: 5px;
 }
-
 /* for the buttons at the end of the page */
 .botBar {
   display: flex;

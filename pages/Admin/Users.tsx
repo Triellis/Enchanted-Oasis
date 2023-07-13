@@ -192,7 +192,19 @@ export default function Users() {
               }
             />
           </Tabs>
+          
 
+          {/* Table header here only for large devices: */}
+          <div className={styles.tableHead}>
+            <div className={styles.profilePicture}>Profile</div>
+            <div className={styles.name}>Name</div>
+            <div className={styles.role}>Role</div> 
+            <div className={styles.email}>Email</div>
+            <div className={styles.phone}>Phone</div>
+            <div className={styles.rollNumber}>Roll No.</div>
+            <div className={styles.house}>House</div>
+            <div className={styles.actions}>Actions</div>
+          </div>
           {/* list of users */}
           {componentToRender}
         </div>
