@@ -1,14 +1,18 @@
 /* everything in the main should be in the center of the page */
 .main {
-  padding: 40px;
+  /* padding: 5em; */
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  margin: auto auto;
+  width: 100%;
+
   flex-direction: column !important;
   word-wrap: break-word;
+  height: 100%;
+  background-image: url(/assets/image/bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .heading {
@@ -57,7 +61,7 @@
 }
 .imageWrapper {
   animation: float 2000ms ease-in-out infinite;
-  margin-right:10px ;
+  margin-right: 10px;
 }
 @keyframes float {
   0% {
@@ -76,10 +80,34 @@
   }
   .main {
     width: 100%;
+    height: auto;
+  }
+
+  .txt,
+  .appNameTxt {
+    font-size: 1em;
+  }
+
+  .heading,
+  .appName {
+    font-size: 1.3em;
   }
 }
 
 /* signin button effects */
+.btn:hover {
+  background-color: hsl(var(--sf)) !important;
+}
 .btn:active {
   transform: scale(0.9);
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 10px !important;
+  width: 80%;
+  margin: 3em 0;
+
+  /* border: 1px solid rgba(0, 0, 0, 0.3) !important; */
 }

@@ -22,16 +22,15 @@ export default function IndexPage() {
     router.push(`${sessionData?.user?.role}/Dashboard`);
   }
   const { colorMode, toggleColorMode } = useColorMode();
-  
+
   // THE LANDING PAGE
   return (
     <>
       <div className={styles.main}>
         <Card
           direction={{ base: "column", sm: "row" }}
-          overflow="hidden"
           variant="outline"
-          background={"hsl(var(--b3))"}
+          className={styles.card}
         >
           <Stack>
             <div className={styles.imageBodyWrapper}>
@@ -65,6 +64,7 @@ export default function IndexPage() {
                 size={"lg"}
                 onClick={() => signIn()}
                 className={styles.btn}
+                backgroundColor={"hsl(var(--s))"}
               >
                 Sign in
               </Button>
