@@ -258,7 +258,7 @@ export default function Users() {
               phone: "",
               role: "Student",
               profilePicture: "",
-              house: "" // Add the missing property here
+              house: "", // Add the missing property here
             });
           }}
           size={"4xl"}
@@ -341,10 +341,50 @@ export default function Users() {
                       <FormLabel>House</FormLabel>
                       <RadioGroup>
                         <Stack>
-                          <Radio value="Gryffindor">Gryffindor</Radio>
-                          <Radio value="Ravenclaw">Ravenclaw</Radio>
-                          <Radio value="Slytherin">Slytherin</Radio>
-                          <Radio value="Hufflepuff">Hufflepuff</Radio>
+                          <Radio
+                            value="Gryffindor"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                house: e.target.value,
+                              })
+                            }
+                          > 
+                            Gryffindor
+                          </Radio>
+                          <Radio
+                            value="Ravenclaw"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                house: e.target.value,
+                              })
+                            }
+                          >
+                            Ravenclaw
+                          </Radio>
+                          <Radio
+                            value="Slytherin"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                house: e.target.value,
+                              })
+                            }
+                          >
+                            Slytherin
+                          </Radio>
+                          <Radio
+                            value="Hufflepuff"
+                            onChange={(e) =>
+                              setNewUserData({
+                                ...newUserData,
+                                house: e.target.value,
+                              })
+                            }
+                          >
+                            Hufflepuff
+                          </Radio>
                         </Stack>
                       </RadioGroup>
                     </div>
