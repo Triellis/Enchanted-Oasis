@@ -59,9 +59,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import UserListItem from "../../components/UserListItem";
 import React from "react";
-
-// @ts-ignore
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { fetcher } from "@/lib/functions";
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
@@ -258,7 +256,7 @@ export default function Users() {
               phone: "",
               role: "Student",
               profilePicture: "",
-              house: "" // Add the missing property here
+              house: "", // Add the missing property here
             });
           }}
           size={"4xl"}
