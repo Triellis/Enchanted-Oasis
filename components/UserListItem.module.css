@@ -41,7 +41,11 @@
   text-overflow: ellipsis;
   align-items: center;
 }
-
+.roleLabel {
+  border: 2px solid;
+  border-radius: 5px !important;
+  padding: 5px;
+}
 /* for the actions buttons in the end */
 .btnGroup {
   display: flex;
