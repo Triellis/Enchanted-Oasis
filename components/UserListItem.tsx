@@ -136,7 +136,7 @@ export default function UserListItem({
           size={{ sm: "2xl", base: "xs", lg: "3xl" }}
         >
           {overlay}
-          <ModalContent>
+          <ModalContent bg={"hsl(var(--b1))"}>
             <ModalHeader>Confirm Delete</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
