@@ -29,8 +29,7 @@ export default function IndexPage() {
       <div className={styles.main}>
         <Card
           direction={{ base: "column", sm: "row" }}
-          overflow="hidden"
-          // variant="outline"
+          variant="outline"
           className={styles.card}
         >
           <Stack>
@@ -65,7 +64,7 @@ export default function IndexPage() {
                 size={"lg"}
                 onClick={() => signIn()}
                 className={styles.btn}
-                backgroundColor={"hsl(var(--s))"} 
+                backgroundColor={"hsl(var(--s))"}
               >
                 Sign in
               </Button>
