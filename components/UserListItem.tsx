@@ -53,6 +53,14 @@ export default function UserListItem({
   };
 
   const isSmall = window.innerWidth < 768;
+  let roleColor = "gray";
+  if (userData.role === "Student") {
+    roleColor = "blue";
+  } else if (userData.role === "Admin") {
+    roleColor = "red";
+  } else if (userData.role === "Faculty") {
+    roleColor = "green";
+  }
 
   let compoenentToRender;
   if (isSmall) {
@@ -60,9 +68,7 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
-            {userData.role}
-          </Badge>
+          <Badge colorScheme={roleColor}>{userData.role}</Badge>
         </span>
         <span className={styles.email}>{userData.email}</span>
       </span>
@@ -72,9 +78,7 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={userData.role === "Student" ? "blue" : "red"}>
-            {userData.role}
-          </Badge>
+          <Badge colorScheme={roleColor}>{userData.role}</Badge>
         </span>
         <span className={styles.email}>{userData.email}</span>
         <span className={styles.phone}>{userData.phone}</span>
