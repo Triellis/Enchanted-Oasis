@@ -12,10 +12,11 @@ import {
   useDisclosure,
   useToast,
   Text,
+  IconButton,
 } from "@chakra-ui/react";
 import { ReceivedUserDataOnClient } from "../lib/types";
 import classNames from "classnames";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import styles from "./UserListItem.module.css";
 import React from "react";
 export default function UserListItem({
@@ -94,24 +95,35 @@ export default function UserListItem({
   return (
     <li className={styles.userListItem}>
       <div className={styles.userInfo}>
+        {/* profile picture */}
         <span>
           <Avatar bg="teal.500" />
         </span>
 
+        {/* remaining components which changes visibility as per screen size */}
         {compoenentToRender}
 
-        <button className={classNames(styles.editButton, styles.btnGroup)}>
-          <EditIcon />
-        </button>
+        {/* Info button */}
+        <IconButton
+          isRound
+          variant="outline"
+          aria-label="Call Sage"
+          icon={<InfoOutlineIcon />}
+          className={classNames(styles.editButton, styles.btnGroup)}
+        />
 
-        <button className={classNames(styles.deleteButton, styles.btnGroup)}>
-          <DeleteIcon
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          />
-        </button>
+        {/* Edit IconButton */}
+        <IconButton
+          isRound
+          variant="outline"
+          aria-label="Call Sage"
+          icon={<DeleteIcon />}
+          className={classNames(styles.deleteButton, styles.btnGroup)}
+          onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+          }}
+        />
 
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
           {overlay}

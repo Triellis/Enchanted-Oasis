@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { Menu, MenuList } from "@chakra-ui/react";
 import styles from "./Sidebar.module.css";
 import SidebarItem from "./SidebarItem";
 import sideBarItemStyles from "./SidebarItem.module.css";
 import classNames from "classnames";
+import { signOut } from "next-auth/react";
 
 function Sidebar({
   isOpen,
@@ -27,8 +26,11 @@ function Sidebar({
           <nav>{children}</nav>
         </div>
 
-        {/* Footer of the sidebar */}
-        <button className={classNames(styles.logOut, sideBarItemStyles.item)}>
+        {/* Footer of the sidebar! */}
+        <button
+          className={classNames(styles.logOut, sideBarItemStyles.item)}
+          onClick={() => signOut()}
+        >
           Logout
         </button>
       </div>

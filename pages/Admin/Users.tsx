@@ -3,27 +3,19 @@ import Layout from "../Layout";
 import {
   Button,
   FormControl,
-  FormHelperText,
   FormLabel,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
   Radio,
   RadioGroup,
   Stack,
   useDisclosure,
   Divider,
-  TabPanel,
   Tab,
   TabIndicator,
   TabList,
-  TabPanels,
   Tabs,
   Center,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Grid,
   GridItem,
 } from "@chakra-ui/react";
@@ -37,7 +29,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-import useSWR, { useSWRConfig } from "swr";
+import useSWR from "swr";
 import {
   ReceivedUserDataOnClient,
   Role,
@@ -45,23 +37,13 @@ import {
 } from "../../lib/types";
 
 import { useState } from "react";
-import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import styles from "./Users.module.css";
 import { Input } from "@chakra-ui/react";
-import {
-  DeleteIcon,
-  Search2Icon,
-  EditIcon,
-  ChevronDownIcon,
-} from "@chakra-ui/icons";
-import Image from "next/image";
-import classNames from "classnames";
+import { Search2Icon } from "@chakra-ui/icons";
 import UserListItem from "../../components/UserListItem";
 import React from "react";
-
-// @ts-ignore
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { fetcher } from "@/lib/functions";
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
@@ -188,6 +170,7 @@ export default function Users() {
               } else if (index === 3) {
                 setRole("All");
               }
+              setPage(1); // Set the page state to 1 on click
             }}
           >
             <TabList className={styles.tabList}>
@@ -258,7 +241,7 @@ export default function Users() {
               phone: "",
               role: "Student",
               profilePicture: "",
-              house: "" // Add the missing property here
+              house: "", // Add the missing property here
             });
           }}
           size={"4xl"}

@@ -11,14 +11,13 @@ export default function Admin() {
       <Layout>
         {/* greetings part */}
         <div className={styles.greeting}>
-      <span>
-        Welcome <span className={styles.name}>{name}</span>!{' '}
-      </span>
-      Let{' '}
-      <span className={styles.glowingText}>Lumos</span>{' '}
-      illuminate your path at our
-      <span className={styles.appName}> Enchanted Oasis!</span>
-    </div>
+          <span>
+            Welcome <span className={styles.name}>{name}</span>!{" "}
+          </span>
+          Let <span className={styles.glowingText}>Lumos</span> illuminate your
+          path at our
+          <span className={styles.appName}> Enchanted Oasis!</span>
+        </div>
       </Layout>
     </>
   );
