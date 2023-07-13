@@ -26,14 +26,16 @@
   .responsiveBlock {
     align-items: center;
     display: grid;
-    grid-template-columns: 2fr 0.5fr 2fr;
+    grid-template-columns: 2fr 0.5fr;
     gap: 10px;
+  }
+  .role {
+    margin-top: 50%;
   }
 }
 .role {
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
 }
 .email {
   white-space: nowrap;
