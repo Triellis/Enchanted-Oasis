@@ -26,7 +26,7 @@ function Sidebar({
           <nav>{children}</nav>
         </div>
 
-        {/* Footer of the sidebar */}
+        {/* Footer of the sidebar! */}
         <button
           className={classNames(styles.logOut, sideBarItemStyles.item)}
           onClick={() => signOut()}
