@@ -40,6 +40,7 @@ export default function SignIn({
           <p>Email</p>
           <InputGroup size="lg">
             <Input
+              variant={"outline"}
               pr="4.5rem"
               placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
