@@ -68,7 +68,9 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={roleColor}>{userData.role}</Badge>
+          <Badge colorScheme={roleColor} className={styles.roleLabel}>
+            {userData.role}
+          </Badge>
         </span>
         <span className={styles.email}>{userData.email}</span>
       </span>
@@ -78,7 +80,9 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={roleColor}>{userData.role}</Badge>
+          <Badge colorScheme={roleColor} className={styles.roleLabel}>
+            {userData.role}
+          </Badge>
         </span>
         <span className={styles.email}>{userData.email}</span>
         <span className={styles.phone}>{userData.phone}</span>
@@ -129,9 +133,14 @@ export default function UserListItem({
           }}
         />
 
-        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        <Modal
+          isCentered
+          isOpen={isOpen}
+          onClose={onClose}
+          size={{ sm: "2xl", base: "xs", lg: "3xl" }}
+        >
           {overlay}
-          <ModalContent>
+          <ModalContent bg={"hsl(var(--b1))"}>
             <ModalHeader>Confirm Delete</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
