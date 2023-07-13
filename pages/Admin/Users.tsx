@@ -251,7 +251,7 @@ export default function Users() {
           {overlay}
           <ModalContent>
             <ModalHeader>Create new user</ModalHeader>
-            <ModalCloseButton />
+            <ModalCloseButton onClick={onClose} />
             <ModalBody className={styles.modalBody}>
               <SimpleGrid columns={{ base: 1, lg: 4 }} gap={4}>
                 <GridItem colSpan={2}>
