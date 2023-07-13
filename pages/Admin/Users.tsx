@@ -249,7 +249,7 @@ export default function Users() {
         >
           {/* <ModalOverlay /> */}
           {overlay}
-          <ModalContent>
+          <ModalContent bg={"hsl(var(--b1))"}>
             <ModalHeader>Create new user</ModalHeader>
             <ModalCloseButton onClick={onClose} />
             <ModalBody className={styles.modalBody}>
