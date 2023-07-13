@@ -1,10 +1,13 @@
 .userListItem {
-  padding: 3px;
-  border-radius: 8px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--n));
   background-color: hsl(var(--b2));
   transition: all 0.3s ease;
   cursor: pointer;
   list-style-type: none;
+  margin: 5px;
   width: 100%;
 }
 .userInfo {
@@ -42,9 +45,9 @@
   align-items: center;
 }
 .roleLabel {
-  border: 2px solid;
-  border-radius: 5px !important;
-  padding: 5px;
+  /* border: 1px solid; */
+  border-radius: 0.5em !important;
+  padding: 2px 5px !important;
 }
 /* for the actions buttons in the end */
 .btnGroup {
@@ -59,14 +62,14 @@
 .deleteButton {
   margin: 2px;
   transition: all 0.2s ease;
-  border: 2px solid hsl(var(--er)) !important;
+  border: 1px solid hsl(var(--er)) !important;
   padding: 10px 20px;
   color: hsl(var(--er)) !important;
 }
 .editButton {
   margin: 2px;
   transition: all 0.2s ease;
-  border: 2px solid hsl(var(--in)) !important;
+  border: 1px solid hsl(var(--in)) !important;
   padding: 10px 20px;
   color: hsl(var(--in)) !important;
 }

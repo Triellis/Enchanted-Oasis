@@ -62,9 +62,9 @@ export default function UserListItem({
     roleColor = "green";
   }
 
-  let compoenentToRender;
+  let componentToRender;
   if (isSmall) {
-    compoenentToRender = (
+    componentToRender = (
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
@@ -76,7 +76,7 @@ export default function UserListItem({
       </span>
     );
   } else {
-    compoenentToRender = (
+    componentToRender = (
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
@@ -109,7 +109,7 @@ export default function UserListItem({
         </span>
 
         {/* remaining components which changes visibility as per screen size */}
-        {compoenentToRender}
+        {componentToRender}
 
         {/* Info button */}
         <IconButton

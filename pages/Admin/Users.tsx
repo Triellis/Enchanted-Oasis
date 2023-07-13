@@ -183,19 +183,20 @@ export default function Users() {
               <Tab>Student</Tab>
               <Tab>Faculty</Tab>
               <Tab>Admin</Tab>
+              <TabIndicator
+                zIndex={-1}
+                className={styles.tabIndicator}
+                backgroundColor={
+                  role === "Student"
+                    ? "blue.600"
+                    : role === "Faculty"
+                    ? "green.600"
+                    : role === "Admin"
+                    ? "red.600"
+                    : "gray.600"
+                }
+              />
             </TabList>
-            <TabIndicator
-              className={styles.tabIndicator}
-              backgroundColor={
-                role === "Student"
-                  ? "blue.600"
-                  : role === "Faculty"
-                  ? "green.600"
-                  : role === "Admin"
-                  ? "red.600"
-                  : "gray.600"
-              }
-            />
           </Tabs>
 
           {/* list of users */}
