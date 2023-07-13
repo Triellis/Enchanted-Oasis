@@ -12,6 +12,7 @@ import {
   useDisclosure,
   useToast,
   Text,
+  IconButton,
 } from "@chakra-ui/react";
 import { ReceivedUserDataOnClient } from "../lib/types";
 import classNames from "classnames";
@@ -103,20 +104,26 @@ export default function UserListItem({
         {compoenentToRender}
 
         {/* Info button */}
-        <button className={classNames(styles.editButton, styles.btnGroup)}>
-          <InfoOutlineIcon />
-        </button>
+        <IconButton
+          isRound
+          variant="outline"
+          aria-label="Call Sage"
+          icon={<InfoOutlineIcon />}
+          className={classNames(styles.editButton, styles.btnGroup)}
+        />
 
-        {/* Edit button */}
-        <button
+        {/* Edit IconButton */}
+        <IconButton
+          isRound
+          variant="outline"
+          aria-label="Call Sage"
+          icon={<DeleteIcon />}
           className={classNames(styles.deleteButton, styles.btnGroup)}
           onClick={() => {
             setOverlay(<OverlayOne />);
             onOpen();
           }}
-        >
-          <DeleteIcon />
-        </button>
+        />
 
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
           {overlay}

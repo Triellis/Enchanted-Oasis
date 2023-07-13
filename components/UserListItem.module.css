@@ -52,34 +52,30 @@
   margin: 2px;
   transition: all 0.3s ease;
 }
-.deleteButton,
+.deleteButton {
+  margin: 2px;
+  transition: all 0.2s ease;
+  border: 2px solid hsl(var(--er)) !important;
+  padding: 10px 20px;
+  color: hsl(var(--er)) !important;
+}
 .editButton {
   margin: 2px;
-  transition: all 0.3s ease;
-  background-color: transparent;
-  border: 2px solid;
-  border-radius: 50px;
+  transition: all 0.2s ease;
+  border: 2px solid hsl(var(--in)) !important;
   padding: 10px 20px;
-}
-.deleteButton {
-  border-color: hsl(var(--er));
+  color: hsl(var(--in)) !important;
 }
 .deleteButton:hover {
-  background-color: hsl(var(--er));
+  background-color: hsl(var(--erc)) !important;
 }
-.editButton {
-  border-color: hsl(var(--in));
-}
+
 .editButton:hover {
-  background-color: hsl(var(--in));
+  background-color: hsl(var(--inc)) !important;
 }
-.deleteButton:active{
-  transform: scale(0.9);
-  background-color: hsl(var(--erc));
-}
+.deleteButton:active,
 .editButton:active {
   transform: scale(0.9);
-  background-color: hsl(var(--inc));
 }
 
 /* for the delete button in the modal */
