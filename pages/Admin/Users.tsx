@@ -3,27 +3,19 @@ import Layout from "../Layout";
 import {
   Button,
   FormControl,
-  FormHelperText,
   FormLabel,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
   Radio,
   RadioGroup,
   Stack,
   useDisclosure,
   Divider,
-  TabPanel,
   Tab,
   TabIndicator,
   TabList,
-  TabPanels,
   Tabs,
   Center,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Grid,
   GridItem,
 } from "@chakra-ui/react";
@@ -37,7 +29,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-import useSWR, { useSWRConfig } from "swr";
+import useSWR from "swr";
 import {
   ReceivedUserDataOnClient,
   Role,
@@ -45,18 +37,10 @@ import {
 } from "../../lib/types";
 
 import { useState } from "react";
-import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import styles from "./Users.module.css";
 import { Input } from "@chakra-ui/react";
-import {
-  DeleteIcon,
-  Search2Icon,
-  EditIcon,
-  ChevronDownIcon,
-} from "@chakra-ui/icons";
-import Image from "next/image";
-import classNames from "classnames";
+import { Search2Icon } from "@chakra-ui/icons";
 import UserListItem from "../../components/UserListItem";
 import React from "react";
 
@@ -188,6 +172,7 @@ export default function Users() {
               } else if (index === 3) {
                 setRole("All");
               }
+              setPage(1); // Set the page state to 1 on click
             }}
           >
             <TabList className={styles.tabList}>
@@ -341,50 +326,10 @@ export default function Users() {
                       <FormLabel>House</FormLabel>
                       <RadioGroup>
                         <Stack>
-                          <Radio
-                            value="Gryffindor"
-                            onChange={(e) =>
-                              setNewUserData({
-                                ...newUserData,
-                                house: e.target.value,
-                              })
-                            }
-                          > 
-                            Gryffindor
-                          </Radio>
-                          <Radio
-                            value="Ravenclaw"
-                            onChange={(e) =>
-                              setNewUserData({
-                                ...newUserData,
-                                house: e.target.value,
-                              })
-                            }
-                          >
-                            Ravenclaw
-                          </Radio>
-                          <Radio
-                            value="Slytherin"
-                            onChange={(e) =>
-                              setNewUserData({
-                                ...newUserData,
-                                house: e.target.value,
-                              })
-                            }
-                          >
-                            Slytherin
-                          </Radio>
-                          <Radio
-                            value="Hufflepuff"
-                            onChange={(e) =>
-                              setNewUserData({
-                                ...newUserData,
-                                house: e.target.value,
-                              })
-                            }
-                          >
-                            Hufflepuff
-                          </Radio>
+                          <Radio value="Gryffindor">Gryffindor</Radio>
+                          <Radio value="Ravenclaw">Ravenclaw</Radio>
+                          <Radio value="Slytherin">Slytherin</Radio>
+                          <Radio value="Hufflepuff">Hufflepuff</Radio>
                         </Stack>
                       </RadioGroup>
                     </div>
