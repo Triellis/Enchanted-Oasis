@@ -41,6 +41,7 @@
   text-overflow: ellipsis;
   align-items: center;
 }
+
 /* for the actions buttons in the end */
 .btnGroup {
   display: flex;
@@ -81,7 +82,7 @@
   background-color: hsl(var(--inc));
 }
 
-
+/* for the delete button in the modal */
 .del {
   background-color: hsl(var(--er)) !important;
   cursor: pointer;
