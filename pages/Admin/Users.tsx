@@ -58,13 +58,18 @@ function useSearch(searchQuery: string, role: string, page: number) {
 }
 
 async function postUser(newUserData: SentUserDataFromClient) {
+  const formData = new FormData();
+  for (const key in newUserData) {
+    // @ts-ignore
+    formData.append(key, newUserData[key]);
+  }
+
   const res = await fetch("/api/user", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newUserData),
+
+    body: formData,
   });
+
   return res;
 }
 
@@ -89,7 +94,7 @@ export default function Users() {
     house: "",
     password: "",
     phone: "",
-    profilePicture: "",
+    profilePicture: null,
     rollNumber: "",
   });
 
@@ -240,7 +245,7 @@ export default function Users() {
               rollNumber: "",
               phone: "",
               role: "Student",
-              profilePicture: "",
+              profilePicture: null,
               house: "", // Add the missing property here
             });
           }}
@@ -340,7 +345,7 @@ export default function Users() {
                         onChange={(e) => {
                           setNewUserData({
                             ...newUserData,
-                            profilePicture: e.target.value,
+                            profilePicture: e.target.files![0],
                           });
                         }}
                       />
@@ -412,6 +417,8 @@ export default function Users() {
                 className={styles.modalAdd}
                 onClick={async () => {
                   // validation logic:
+                  console.log("x");
+
                   if (newUserData.name.trim() == "") {
                     toast({
                       title: "Name field empty",
@@ -468,7 +475,7 @@ export default function Users() {
                     return;
                   }
                   // for images
-                  else if (newUserData.profilePicture == "") {
+                  else if (newUserData.profilePicture === null) {
                     toast({
                       title: "Profile Picture field empty",
                       description: "Please select a profile picture",

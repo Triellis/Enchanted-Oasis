@@ -15,12 +15,16 @@
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@supabase/auth-helpers-nextjs": "^0.7.2",
+    "@supabase/supabase-js": "^2.26.0",
     "classnames": "^2.3.2",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
+    "formidable": "^3.5.0",
     "framer-motion": "^10.12.18",
     "md5": "^2.3.0",
     "mongodb": "5.6",
+    "multer": "^1.4.5-lts.1",
     "next": "13.4.8",
     "next-auth": "^4.22.1",
     "react": "18.2.0",
@@ -28,7 +32,10 @@
     "swr": "^2.2.0"
   },
   "devDependencies": {
+    "@types/busboy": "^1.5.0",
+    "@types/formidable": "^3.4.0",
     "@types/md5": "^2.3.2",
+    "@types/multer": "^1.4.7",
     "@types/node": "^20.3.3",
     "@types/react": "^18.2.14",
     "typescript": "^5.1.6"

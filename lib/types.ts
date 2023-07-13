@@ -49,8 +49,10 @@ export type SentUserDataFromClient = Omit<
   | "seenNotificationsCount"
   | "passwordHash"
   | "_id"
+  | "profilePicture"
 > & {
   password: string;
+  profilePicture: File | null;
 };
 
 export type HouseCol = {

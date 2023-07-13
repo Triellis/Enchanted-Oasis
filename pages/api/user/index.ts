@@ -7,6 +7,8 @@ import { authOptions } from "../auth/[...nextauth]";
 import { Session } from "next-auth";
 import { clientPromise } from "../../../lib/DB";
 import md5 from "md5";
+import { IncomingForm } from "formidable";
+import { getFileUrl } from "@/lib/supabase";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -129,7 +131,28 @@ async function POST(
   if (session.user.role !== "Admin") {
     return res.status(403).send("Not authorized");
   }
-  const body = req.body;
+  //   const body = req.body;
+
+  const formData: {
+    fields: {
+      name: string;
+      phone: string;
+      email: string;
+      role: string;
+      rollNumber: string;
+      password: string;
+    };
+    files: {
+      profilePicture: any[];
+    };
+  } = await new Promise((resolve, reject) => {
+    const form = new IncomingForm();
+
+    form.parse(req, (err, fields: any, files: any) => {
+      if (err) return reject(err);
+      resolve({ fields, files });
+    });
+  });
 
   const neededFields = [
     "name",
@@ -140,7 +163,7 @@ async function POST(
     "password",
   ];
 
-  const fields = Object.keys(body);
+  const fields = Object.keys(formData.fields);
   for (let f of neededFields) {
     if (fields.includes(f)) {
       continue;
@@ -148,19 +171,35 @@ async function POST(
       return res.status(400).send(`You need to provide ${f} in body`);
     }
   }
-
-  body.passwordHash = md5(body.password);
-  delete body.password;
+  const userDoc = {
+    _id: new ObjectId(),
+    name: formData.fields.name[0],
+    phone: formData.fields.phone[0],
+    email: formData.fields.email[0],
+    role: formData.fields.role[0],
+    rollNumber: formData.fields.rollNumber[0],
+    profilePicture: await getFileUrl(
+      formData.files.profilePicture[0].filepath,
+      "profile pic",
+      formData.files.profilePicture[0].originalFilename
+    ),
+    passwordHash: md5(formData.fields.password[0]),
+  };
 
   const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
-  if ((await usersCollection.countDocuments({ email: body.email })) !== 0) {
+  if ((await usersCollection.countDocuments({ email: userDoc.email })) !== 0) {
     return res.status(400).send("User with this email already exists");
   }
-  const user = req.body;
-  const insertRes = await usersCollection.insertOne(user);
+
+  const insertRes = await usersCollection.insertOne(userDoc as any);
   if (!insertRes.acknowledged) {
     return res.status(500).send("Something went wrong");
   }
   return res.status(200).send("User created");
 }
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
