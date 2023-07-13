@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "log": "git log --pretty=format:\"%C(auto)%h %C(auto)%d %C(auto)%an %C(auto)%s\" --decorate --graph"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
