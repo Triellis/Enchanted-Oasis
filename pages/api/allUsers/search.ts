@@ -74,6 +74,7 @@ async function GET(
         projection: userProjection,
       }
     )
+    .sort({ _id: -1 })
     .skip((page - 1) * maxResults)
     .limit(maxResults)
     .toArray();
