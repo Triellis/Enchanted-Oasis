@@ -30,7 +30,7 @@
     gap: 10px;
   }
 }
-.role{
+.role {
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
@@ -38,7 +38,7 @@
 .email {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis ;
+  text-overflow: ellipsis;
   align-items: center;
 }
 /* for the actions buttons in the end */
@@ -51,38 +51,46 @@
   margin: 2px;
   transition: all 0.3s ease;
 }
-.deleteButton {
-  margin: 2px;
-  transition: all 0.3s ease;
-  background-color: hsl(var(--er));
-}
-.deleteButton:hover {
-  background-color: hsl(var(--erc));
-  color: hsl(var(--pch));
-}
-.deleteButton:active {
-  transform: scale(0.9);
-}
+
+.deleteButton,
 .editButton {
   margin: 2px;
   transition: all 0.3s ease;
-  background-color: hsl(var(--in));
+  background-color: transparent;
+  border: 2px solid;
+  border-radius: 50px;
+  padding: 10px 20px;
+}
+.deleteButton {
+  border-color: hsl(var(--er));
+}
+.deleteButton:hover {
+  background-color: hsl(var(--er));
+}
+.editButton {
+  border-color: hsl(var(--in));
 }
 .editButton:hover {
-  background-color: hsl(var(--inc));
+  background-color: hsl(var(--in));
+}
+.deleteButton:active{
+  transform: scale(0.9);
+  background-color: hsl(var(--erc));
 }
 .editButton:active {
   transform: scale(0.9);
+  background-color: hsl(var(--inc));
 }
 
-.del{
+
+.del {
   background-color: hsl(var(--er)) !important;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.del:hover{
-  color: hsl(var(--erc));
+.del:hover {
+  background-color: hsl(var(--erc)) !important;
 }
-.del:active{
+.del:active {
   transform: scale(0.9);
 }

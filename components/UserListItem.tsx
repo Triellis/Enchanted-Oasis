@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { ReceivedUserDataOnClient } from "../lib/types";
 import classNames from "classnames";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import styles from "./UserListItem.module.css";
 import React from "react";
 export default function UserListItem({
@@ -94,23 +94,28 @@ export default function UserListItem({
   return (
     <li className={styles.userListItem}>
       <div className={styles.userInfo}>
+        {/* profile picture */}
         <span>
           <Avatar bg="teal.500" />
         </span>
 
+        {/* remaining components which changes visibility as per screen size */}
         {compoenentToRender}
 
+        {/* Info button */}
         <button className={classNames(styles.editButton, styles.btnGroup)}>
-          <EditIcon />
+          <InfoOutlineIcon />
         </button>
 
-        <button className={classNames(styles.deleteButton, styles.btnGroup)}>
-          <DeleteIcon
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          />
+        {/* Edit button */}
+        <button
+          className={classNames(styles.deleteButton, styles.btnGroup)}
+          onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+          }}
+        >
+          <DeleteIcon />
         </button>
 
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
