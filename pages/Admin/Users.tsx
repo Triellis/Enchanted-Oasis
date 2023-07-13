@@ -349,7 +349,7 @@ export default function Users() {
                                 house: e.target.value,
                               })
                             }
-                          >
+                          > 
                             Gryffindor
                           </Radio>
                           <Radio
