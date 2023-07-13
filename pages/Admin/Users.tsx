@@ -162,22 +162,22 @@ export default function Users() {
             defaultIndex={0}
             onChange={(index) => {
               if (index === 0) {
-                setRole("Student");
-              } else if (index === 1) {
-                setRole("Faculty");
-              } else if (index === 2) {
-                setRole("Admin");
-              } else if (index === 3) {
                 setRole("All");
+              } else if (index === 1) {
+                setRole("Student");
+              } else if (index === 2) {
+                setRole("Faculty");
+              } else if (index === 3) {
+                setRole("Admin");
               }
               setPage(1); // Set the page state to 1 on click
             }}
           >
             <TabList className={styles.tabList}>
+              <Tab>All</Tab>
               <Tab>Student</Tab>
               <Tab>Faculty</Tab>
               <Tab>Admin</Tab>
-              <Tab>All</Tab>
             </TabList>
             <TabIndicator
               className={styles.tabIndicator}
@@ -192,19 +192,7 @@ export default function Users() {
               }
             />
           </Tabs>
-          
 
-          {/* Table header here only for large devices: */}
-          <div className={styles.tableHead}>
-            <div className={styles.profilePicture}>Profile</div>
-            <div className={styles.name}>Name</div>
-            <div className={styles.role}>Role</div> 
-            <div className={styles.email}>Email</div>
-            <div className={styles.phone}>Phone</div>
-            <div className={styles.rollNumber}>Roll No.</div>
-            <div className={styles.house}>House</div>
-            <div className={styles.actions}>Actions</div>
-          </div>
           {/* list of users */}
           {componentToRender}
         </div>

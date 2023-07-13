@@ -54,16 +54,7 @@
 .searchBar:active {
   transform: scale(0.99);
 }
-.tableHead{
-  background-color: hsl(var(--b3));
-  width: 100%;
-  border-radius: 5px;
-  display: grid;
-  grid-template-columns: 0.75fr 2.1fr 0.8fr 2fr 1fr 0.9fr 0.99fr 0.2fr 0.05fr;
-  align-items: center;
-  gap: 20px;
-  padding: 5px;
-}
+
 /* for the buttons at the end of the page */
 .botBar {
   display: flex;
