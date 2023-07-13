@@ -172,6 +172,7 @@ export default function Users() {
               } else if (index === 3) {
                 setRole("All");
               }
+              setPage(1); // Set the page state to 1 on click
             }}
           >
             <TabList className={styles.tabList}>
