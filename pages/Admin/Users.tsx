@@ -29,7 +29,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-import useSWR, { useSWRConfig } from "swr";
+import useSWR from "swr";
 import {
   ReceivedUserDataOnClient,
   Role,
@@ -37,18 +37,10 @@ import {
 } from "../../lib/types";
 
 import { useState } from "react";
-import { Badge } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import styles from "./Users.module.css";
 import { Input } from "@chakra-ui/react";
-import {
-  DeleteIcon,
-  Search2Icon,
-  EditIcon,
-  ChevronDownIcon,
-} from "@chakra-ui/icons";
-import Image from "next/image";
-import classNames from "classnames";
+import { Search2Icon } from "@chakra-ui/icons";
 import UserListItem from "../../components/UserListItem";
 import React from "react";
 
