@@ -22,10 +22,13 @@ export default function IndexPage() {
     router.push(`${sessionData?.user?.role}/Dashboard`);
   }
   const { colorMode, toggleColorMode } = useColorMode();
-  
+
   // THE LANDING PAGE
   return (
     <>
+      {/* for background image  */}
+      <Image alt="bg" fill src="/assets/image/bg.png" />
+
       <div className={styles.main}>
         <Card
           direction={{ base: "column", sm: "row" }}
