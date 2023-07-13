@@ -105,7 +105,7 @@ export default function UserListItem({
       <div className={styles.userInfo}>
         {/* profile picture */}
         <span>
-          <Avatar bg="teal.500" />
+          <Avatar src={userData.profilePicture} />
         </span>
 
         {/* remaining components which changes visibility as per screen size */}
