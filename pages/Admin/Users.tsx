@@ -43,9 +43,7 @@ import { Input } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import UserListItem from "../../components/UserListItem";
 import React from "react";
-
-// @ts-ignore
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { fetcher } from "@/lib/functions";
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
