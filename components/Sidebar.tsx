@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { Menu, MenuList } from "@chakra-ui/react";
 import styles from "./Sidebar.module.css";
 import SidebarItem from "./SidebarItem";
 import sideBarItemStyles from "./SidebarItem.module.css";
