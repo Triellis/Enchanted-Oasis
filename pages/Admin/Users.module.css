@@ -80,7 +80,6 @@
 }
 
 /* CSS for the modal */
-
 .modalFooter {
   display: flex;
   gap: 1em;
@@ -103,7 +102,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: 0.3em;
   height: 100%;
 }
 
@@ -122,4 +121,15 @@
   margin-left: 80px;
 }
 
-/* use grid !!!!!! */
+/* for the button to add the user */
+.modalAdd {
+  background-color: hsl(var(--p)) !important;
+  transition: all 0.2s ease-in-out;
+  border-color: transparent !important;
+}
+.modalAdd:hover {
+  background-color: hsl(var(--pf)) !important;
+}
+.modalAdd:active {
+  transform: scale(0.98);
+}

@@ -129,9 +129,14 @@ export default function UserListItem({
           }}
         />
 
-        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        <Modal
+          isCentered
+          isOpen={isOpen}
+          onClose={onClose}
+          size={{ sm: "2xl", base: "xs", lg: "3xl" }}
+        >
           {overlay}
-          <ModalContent>
+          <ModalContent bg={"hsl(var(--b1))"}>
             <ModalHeader>Confirm Delete</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
