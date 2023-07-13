@@ -6,10 +6,11 @@ import { authOptions } from "./auth/[...nextauth]";
 import { MySession } from "@/lib/types";
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
-import multer from "multer";
 
+import { IncomingForm } from "formidable";
+// you might want to use regular 'fs' and not a promise one
+import { promises as fs } from "fs";
 // Set up multer middleware
-const upload = multer({ dest: "uploads/" }); // Set the destination folder to store uploaded files
 
 // Create the API route handler using next-connect
 
@@ -42,15 +43,41 @@ async function POST(
   res: NextApiResponse,
   session?: MySession
 ) {
-  await upload.single("file")(req, res);
+  //@ts-ignore
+  const formData = await new Promise((resolve, reject) => {
+    const form = new IncomingForm();
+
+    form.parse(req, (err, fields, files) => {
+      if (err) return reject(err);
+      resolve({ fields, files });
+    });
+  });
+
+  // read file from the temporary path
   //@ts-ignore
 
-  const file = req.file;
+  const contents = await fs.readFile(formData?.files.file[0].filepath, {
+    encoding: "utf8",
+  });
+  // await fs.writeFile("profile pic3.jpg", contents);
+  //@ts-ignore
+
+  const file = await fs.open(formData?.files.file[0].filepath, "r");
+  const fileData = await file.readFile();
+  //   console.log(contents);
+  //@ts-ignore
+  console.log(formData?.files.file[0].filepath);
   const { data, error } = await supabase.storage
     .from("enchanted-oasis")
-    .upload("profile pics", file);
+    //@ts-ignore
+    .upload("profile pic2.jpg", fileData);
   if (error) {
     console.log(error);
   }
-  res.status(200).json({ data, error });
+  res.status(200).json("k");
 }
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
