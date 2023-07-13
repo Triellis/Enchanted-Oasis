@@ -409,14 +409,6 @@ export default function Users() {
 
             <ModalFooter className={styles.modalFooter}>
               <Button
-                colorScheme="red"
-                onClick={onClose}
-                className={styles.modalClose}
-              >
-                Close
-              </Button>
-              <Button
-                color={"bl"}
                 className={styles.modalAdd}
                 onClick={async () => {
                   // validation logic:
