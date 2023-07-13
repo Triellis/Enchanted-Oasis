@@ -10,8 +10,8 @@
   margin: 0.5em 0;
 }
 .item:hover {
-  background-color: hsl(var(--pf));
-  color: hsl(var(--pc));
+  /* background-color: hsl(var(--pf)); */
+  /* color: hsl(var(--pc)); */
   scale: 1.05;
 }
 .active {
