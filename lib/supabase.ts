@@ -9,7 +9,7 @@ if (!SUPABASE_ANON_KEY) {
   throw new Error("Missing env.SUPABASE_ANON_KEY");
 }
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+const bucketName = "enchanted-oasis";
 export async function getFileUrl(
   filepath: any,
   bucketFolder: string,
@@ -17,12 +17,12 @@ export async function getFileUrl(
 ): Promise<string> {
   const file = await fs.open(filepath, "r");
   const fileData = await file.readFile();
-
+  originalFilename = originalFilename.replace(/ /g, "_");
   //   console.log(formData.files.file[0].originalFilename);
   //   //@ts-ignore
   //   console.log(formData?.files.file[0].filepath);
   const { data: uploadData, error } = await supabase.storage
-    .from("enchanted-oasis")
+    .from(bucketName)
     .upload(bucketFolder + "/" + originalFilename, fileData);
   if (error) {
     console.log(error);
@@ -32,4 +32,22 @@ export async function getFileUrl(
     .from("enchanted-oasis")
     .getPublicUrl(uploadData!.path);
   return data.publicUrl;
+}
+
+export async function deleteFile(fileUrl: string) {
+  // Extract the filename from the image URL
+  const fileUrlArr = fileUrl.split("/");
+
+  const bucketNameIndex = fileUrlArr.indexOf(bucketName) + 1;
+  const fileName = decodeURI(fileUrlArr.slice(bucketNameIndex).join("/"));
+
+  console.log(fileName);
+  // Delete the file from Supabase storage
+  const { error } = await supabase.storage.from(bucketName).remove([fileName]);
+
+  if (error) {
+    return 500;
+  } else {
+    return 200;
+  }
 }

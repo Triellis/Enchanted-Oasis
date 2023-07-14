@@ -8,7 +8,7 @@ import { Session } from "next-auth";
 import { clientPromise } from "../../../lib/DB";
 import md5 from "md5";
 import { IncomingForm } from "formidable";
-import { getFileUrl } from "@/lib/supabase";
+import { deleteFile, getFileUrl } from "@/lib/supabase";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -106,16 +106,22 @@ async function DELETE(
   }
 
   const db = (await clientPromise).db("enchanted-oasis");
+
   const usersCollection = db.collection<UserCol>("Users");
   const userId = req.query.userId as string;
   if (!userId) {
     return res.status(400).send("Provide userId in query params");
   }
+  const user = await usersCollection.findOne({
+    _id: new ObjectId(userId),
+  });
+  const fileDelete = await deleteFile(user!.profilePicture);
   const deleteRes = await usersCollection.deleteOne({
     _id: new ObjectId(userId),
   });
-
-  if (deleteRes.deletedCount === 0) {
+  if (fileDelete === 500) {
+    return res.status(500).send("Something went wrong, profile not deleted");
+  } else if (deleteRes.deletedCount === 0) {
     return res.status(404).send("User not found");
   } else if (!deleteRes.acknowledged) {
     return res.status(500).send("Something went wrong");
