@@ -3,11 +3,8 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  useDisclosure,
 } from "@chakra-ui/react";
 import styles from "./SearchBar.module.css";
-
-import { useState } from "react";
 
 import { fetcher } from "@/lib/functions";
 import useSWR from "swr";
