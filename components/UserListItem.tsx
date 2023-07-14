@@ -158,7 +158,7 @@ export default function UserListItem({
 
           {/* Content */}
           <Portal>
-            <PopoverContent>
+            <PopoverContent className={styles.popMain}>
               <PopoverBody className={styles.popContent}>
                 {/* first half */}
                 <div className={styles.popPic}>
@@ -191,7 +191,7 @@ export default function UserListItem({
                 </div>
               </PopoverBody>
               <PopoverFooter className={styles.popFoot}>
-                <Button colorScheme="blue">Button</Button>
+                <Button className={styles.popEdit} >Button</Button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>
