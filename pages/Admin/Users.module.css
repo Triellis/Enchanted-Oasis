@@ -125,6 +125,9 @@
   transform: scale(0.98);
 }
 @media (max-width: 768px) {
+  div.tableHeader {
+    display: none;
+  }
 }
 
 .tableHeader {
