@@ -147,6 +147,7 @@ async function POST(
       role: string;
       rollNumber: string;
       password: string;
+      house: string;
     };
     files: {
       profilePicture: any[];
@@ -167,6 +168,7 @@ async function POST(
     "role",
     "rollNumber",
     "password",
+    "house",
   ];
 
   const fields = Object.keys(formData.fields);
@@ -185,6 +187,7 @@ async function POST(
     email: formData.fields.email[0],
     role: formData.fields.role[0],
     rollNumber: formData.fields.rollNumber[0],
+    house: formData.fields.house[0],
     profilePicture: await getFileUrl(
       formData.files.profilePicture[0].filepath,
       "profile pic/" + newId.toString(),

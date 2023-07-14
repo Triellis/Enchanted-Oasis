@@ -25,12 +25,13 @@ export async function getFileUrl(
     .from(bucketName)
     .upload(bucketFolder + "/" + originalFilename, fileData);
   if (error) {
-    console.log(error);
+    throw error;
   }
 
   const { data } = await supabase.storage
     .from("enchanted-oasis")
     .getPublicUrl(uploadData!.path);
+  file.close();
   return data.publicUrl;
 }
 
