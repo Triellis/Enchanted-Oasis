@@ -112,6 +112,7 @@ export default function NewUserModal({
                     <Stack>
                       {["Student", "Faculty", "Admin"].map((role) => (
                         <Radio
+                          key={role}
                           value={role}
                           onChange={(e) =>
                             setNewUserData({
@@ -137,6 +138,7 @@ export default function NewUserModal({
                     <Stack>
                       {houses.map((house) => (
                         <Radio
+                          key={house}
                           value={house}
                           onChange={(e) =>
                             setNewUserData({
