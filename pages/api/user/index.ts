@@ -8,7 +8,7 @@ import { Session } from "next-auth";
 import { clientPromise } from "../../../lib/DB";
 import md5 from "md5";
 import { IncomingForm } from "formidable";
-import { getFileUrl } from "@/lib/supabase";
+import { deleteFile, getFileUrl } from "@/lib/supabase";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -106,16 +106,22 @@ async function DELETE(
   }
 
   const db = (await clientPromise).db("enchanted-oasis");
+
   const usersCollection = db.collection<UserCol>("Users");
   const userId = req.query.userId as string;
   if (!userId) {
     return res.status(400).send("Provide userId in query params");
   }
+  const user = await usersCollection.findOne({
+    _id: new ObjectId(userId),
+  });
+  const fileDelete = await deleteFile(user!.profilePicture);
   const deleteRes = await usersCollection.deleteOne({
     _id: new ObjectId(userId),
   });
-
-  if (deleteRes.deletedCount === 0) {
+  if (fileDelete === 500) {
+    return res.status(500).send("Something went wrong, profile not deleted");
+  } else if (deleteRes.deletedCount === 0) {
     return res.status(404).send("User not found");
   } else if (!deleteRes.acknowledged) {
     return res.status(500).send("Something went wrong");
@@ -141,6 +147,7 @@ async function POST(
       role: string;
       rollNumber: string;
       password: string;
+      house: string;
     };
     files: {
       profilePicture: any[];
@@ -161,6 +168,7 @@ async function POST(
     "role",
     "rollNumber",
     "password",
+    "house",
   ];
 
   const fields = Object.keys(formData.fields);
@@ -171,16 +179,18 @@ async function POST(
       return res.status(400).send(`You need to provide ${f} in body`);
     }
   }
+  const newId = new ObjectId();
   const userDoc = {
-    _id: new ObjectId(),
+    _id: newId,
     name: formData.fields.name[0],
     phone: formData.fields.phone[0],
     email: formData.fields.email[0],
     role: formData.fields.role[0],
     rollNumber: formData.fields.rollNumber[0],
+    house: formData.fields.house[0],
     profilePicture: await getFileUrl(
       formData.files.profilePicture[0].filepath,
-      "profile pic",
+      "profile pic/" + newId.toString(),
       formData.files.profilePicture[0].originalFilename
     ),
     passwordHash: md5(formData.fields.password[0]),
