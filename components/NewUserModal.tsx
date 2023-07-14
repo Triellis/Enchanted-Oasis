@@ -18,30 +18,51 @@ import {
   ModalFooter,
   Button,
   ModalOverlay,
+  useToast,
 } from "@chakra-ui/react";
 
 import styles from "./NewUserModal.module.css";
+import { Role, SentUserDataFromClient } from "@/lib/types";
 
 interface NewUserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  postUser: (userData: any) => Promise<Response>;
   mutate: (url: string) => void;
+  newUserData: SentUserDataFromClient;
+  setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
 }
 
 function OverlayOne() {
   return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
 }
 
-function NewUserModal({
+async function postUser(newUserData: SentUserDataFromClient) {
+  const formData = new FormData();
+  for (const key in newUserData) {
+    // @ts-ignore
+    formData.append(key, newUserData[key]);
+  }
+
+  const res = await fetch("/api/user", {
+    method: "POST",
+
+    body: formData,
+  });
+
+  return res;
+}
+
+export default function NewUserModal({
   isOpen,
   onClose,
-  postUser,
   mutate,
+  newUserData,
+  setNewUserData,
 }: NewUserModalProps) {
   // for the overlay
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
-
+  const toast = useToast();
+  const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"];
   return (
     <Modal
       isOpen={isOpen}
@@ -89,39 +110,19 @@ function NewUserModal({
                   <FormLabel>Role</FormLabel>
                   <RadioGroup defaultValue="Student">
                     <Stack>
-                      <Radio
-                        value="Student"
-                        onChange={(e) =>
-                          setNewUserData({
-                            ...newUserData,
-                            role: e.target.value as Role,
-                          })
-                        }
-                      >
-                        Student
-                      </Radio>
-                      <Radio
-                        value="Faculty"
-                        onChange={(e) =>
-                          setNewUserData({
-                            ...newUserData,
-                            role: e.target.value as Role,
-                          })
-                        }
-                      >
-                        Faculty
-                      </Radio>
-                      <Radio
-                        value="Admin"
-                        onChange={(e) =>
-                          setNewUserData({
-                            ...newUserData,
-                            role: e.target.value as Role,
-                          })
-                        }
-                      >
-                        Admin
-                      </Radio>
+                      {["Student", "Faculty", "Admin"].map((role) => (
+                        <Radio
+                          value={role}
+                          onChange={(e) =>
+                            setNewUserData({
+                              ...newUserData,
+                              role: e.target.value as Role,
+                            })
+                          }
+                        >
+                          {role}
+                        </Radio>
+                      ))}
                     </Stack>
                   </RadioGroup>
 
@@ -134,10 +135,19 @@ function NewUserModal({
                   <FormLabel>House</FormLabel>
                   <RadioGroup>
                     <Stack>
-                      <Radio value="Gryffindor">Gryffindor</Radio>
-                      <Radio value="Ravenclaw">Ravenclaw</Radio>
-                      <Radio value="Slytherin">Slytherin</Radio>
-                      <Radio value="Hufflepuff">Hufflepuff</Radio>
+                      {houses.map((house) => (
+                        <Radio
+                          value={house}
+                          onChange={(e) =>
+                            setNewUserData({
+                              ...newUserData,
+                              house: e.target.value,
+                            })
+                          }
+                        >
+                          {house}
+                        </Radio>
+                      ))}
                     </Stack>
                   </RadioGroup>
                 </div>
@@ -225,75 +235,23 @@ function NewUserModal({
             className={styles.modalAdd}
             onClick={async () => {
               // validation logic:
-              console.log("x");
-
-              if (newUserData.name.trim() == "") {
-                toast({
-                  title: "Name field empty",
-                  description: "Please enter a name",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              } else if (newUserData.email.trim() == "") {
-                toast({
-                  title: "Email field empty",
-                  description: "Please enter an email",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              } else if (newUserData.password.trim() == "") {
-                toast({
-                  title: "Password field empty",
-                  description: "Please enter a password",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              } else if (newUserData.rollNumber.trim() == "") {
-                toast({
-                  title: "Roll Number field empty",
-                  description: "Please enter a roll number",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              } else if (newUserData.phone.trim() == "") {
-                toast({
-                  title: "Phone field empty",
-                  description: "Please enter a phone number",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              } else if (!newUserData.role) {
-                toast({
-                  title: "Role field empty",
-                  description: "Please select a role",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              }
-              // for images
-              else if (newUserData.profilePicture === null) {
-                toast({
-                  title: "Profile Picture field empty",
-                  description: "Please select a profile picture",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                return;
-              } else {
-                // validation successful
+              for (let field of Object.keys(newUserData)) {
+                try {
+                  console.log((newUserData as any)[field].trim());
+                } catch {
+                  console.log(field, "err");
+                }
+                if (!(newUserData as any)[field]) {
+                  console.log(newUserData);
+                  toast({
+                    title: `${field} field empty`,
+                    description: `Please enter a ${field}`,
+                    status: "error",
+                    duration: 5000,
+                    isClosable: true,
+                  });
+                  return;
+                }
               }
 
               const res = await postUser(newUserData);
@@ -324,5 +282,3 @@ function NewUserModal({
     </Modal>
   );
 }
-
-export default NewUserModal;
