@@ -204,7 +204,7 @@ export default function Users() {
               <span>Profile</span>
             </span>
             <div className={styles.tableHeadersMain}>
-              <span>name</span>
+              <span>Name</span>
               <span>Role</span>
               <span>Email</span>
               <span>Phone</span>
