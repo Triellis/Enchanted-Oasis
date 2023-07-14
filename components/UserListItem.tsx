@@ -144,7 +144,7 @@ export default function UserListItem({
         {componentToRender}
 
         {/* Info button with popOver */}
-        <Popover placement="bottom-start">
+        <Popover placement="auto-end">
           {/* Trigger -> info button */}
           <PopoverTrigger>
             <IconButton
@@ -191,7 +191,7 @@ export default function UserListItem({
                 </div>
               </PopoverBody>
               <PopoverFooter className={styles.popFoot}>
-                <Button className={styles.popEdit} >Button</Button>
+                <Button className={styles.popEdit}>Edit User</Button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>

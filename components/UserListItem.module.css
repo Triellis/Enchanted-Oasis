@@ -149,14 +149,14 @@
   margin-top: 1em;
   margin-bottom: -1em !important;
 }
-.popEdit{
+.popEdit {
   background-color: hsl(var(--s)) !important;
   transition: all 0.3s ease;
   padding: 1.1em !important;
 }
-.popEdit:hover{
+.popEdit:hover {
   background-color: hsl(var(--inc)) !important;
 }
-.popEdit:active{
+.popEdit:active {
   transform: scale(0.9);
 }
