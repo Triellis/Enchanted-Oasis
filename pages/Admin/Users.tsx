@@ -184,6 +184,23 @@ export default function Users() {
             </TabList>
           </Tabs>
 
+          <div className={styles.tableHeader}>
+            <span>
+              <span>Profile</span>
+            </span>
+            <div className={styles.tableHeadersMain}>
+              <span>Name</span>
+              <span>Role</span>
+              <span>Email</span>
+              <span>Phone</span>
+              <span>Roll No.</span>
+              <span>House</span>
+            </div>
+            <span>Info</span>
+            <span>Remove</span>
+          </div>
+          <Divider orientation="horizontal" paddingBlock={"5px"} />
+
           {/* list of users */}
           {componentToRender}
         </div>

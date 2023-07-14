@@ -19,6 +19,15 @@ import classNames from "classnames";
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import styles from "./UserListItem.module.css";
 import React from "react";
+
+function handleResize(setIsSmall: any) {
+  if (window.innerWidth < 768) {
+    setIsSmall(true);
+  } else {
+    setIsSmall(false);
+  }
+}
+
 export default function UserListItem({
   userData,
   mutate,
@@ -52,7 +61,17 @@ export default function UserListItem({
     mutate();
   };
 
-  const isSmall = window.innerWidth < 768;
+  const [isSmall, setIsSmall] = React.useState(false);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", () => handleResize(setIsSmall));
+    handleResize(setIsSmall);
+
+    return () => {
+      window.removeEventListener("resize", () => handleResize(setIsSmall));
+    };
+  }, []);
+
   let roleColor = "gray";
   if (userData.role === "Student") {
     roleColor = "blue";
