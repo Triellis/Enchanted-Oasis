@@ -47,9 +47,7 @@ export type SentUserDataFromClient = Omit<
   UserCol,
   | "courses"
   | "notifications"
-  | "seenNotifications"
-  | "notificationsCount"
-  | "seenNotificationsCount"
+  | "unseenNotificationsCount"
   | "passwordHash"
   | "_id"
   | "profilePicture"
