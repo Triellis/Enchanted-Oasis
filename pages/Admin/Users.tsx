@@ -27,6 +27,7 @@ import { fetcher } from "@/lib/functions";
 import UserListItem from "../../components/UserListItem";
 import NewUserModal from "@/components/NewUserModal";
 import TabsComponent from "@/components/TabsComponent";
+import Pagination from "@/components/Pagination";
 
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -154,26 +155,12 @@ export default function Users() {
         {/* divider */}
         <Divider orientation="horizontal" paddingBlock={"5px"} />
 
-        <div className={styles.botBar}>
-          {/* Pagination */}
-          <Button
-            onClick={() => {
-              if (page > 1) setPage(page - 1);
-            }}
-          >
-            {"<"}
-          </Button>
-          <span>{page}</span>
-          <Button
-            onClick={() => {
-              if (users.length == 10) setPage(page + 1);
-            }}
-          >
-            {">"}
-          </Button>
-
+        {/* pagination */}
+        <div className={styles.botBar} >
+          <Pagination page={page} setPage={setPage} users={users} />
           {/* Adding new users */}
           <Button
+            className={styles.clicky}
             onClick={() => {
               onOpen();
               setOverlay(<OverlayOne />);
