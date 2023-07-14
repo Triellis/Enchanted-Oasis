@@ -236,13 +236,7 @@ export default function NewUserModal({
             onClick={async () => {
               // validation logic:
               for (let field of Object.keys(newUserData)) {
-                try {
-                  console.log((newUserData as any)[field].trim());
-                } catch {
-                  console.log(field, "err");
-                }
                 if (!(newUserData as any)[field]) {
-                  console.log(newUserData);
                   toast({
                     title: `${field} field empty`,
                     description: `Please enter a ${field}`,
