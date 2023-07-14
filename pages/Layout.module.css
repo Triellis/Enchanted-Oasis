@@ -11,6 +11,7 @@
   grid-template-areas: "nav" "children";
   /* margin: 10px; */
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100%;
   padding: 1em;
 }
