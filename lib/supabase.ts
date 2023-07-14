@@ -41,7 +41,6 @@ export async function deleteFile(fileUrl: string) {
   const bucketNameIndex = fileUrlArr.indexOf(bucketName) + 1;
   const fileName = decodeURI(fileUrlArr.slice(bucketNameIndex).join("/"));
 
-  console.log(fileName);
   // Delete the file from Supabase storage
   const { error } = await supabase.storage.from(bucketName).remove([fileName]);
 
