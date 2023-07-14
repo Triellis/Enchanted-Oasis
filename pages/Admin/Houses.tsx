@@ -33,9 +33,9 @@ function HouseCard({
             <Image
               src={`/assets/image/Houses/${house.name[0]}.png`}
               alt={house.name}
-              width={400}
+              width={window.innerWidth < 450 ? window.innerWidth - 50 : 450}
+              style={{ borderRadius: 10 }}
               height={0}
-              style={{ borderRadius: "10px" }}
             />
             <div className={styles.rankDisplay}>{rank}</div>
             <div className={styles.housePoints}>{house.points}</div>

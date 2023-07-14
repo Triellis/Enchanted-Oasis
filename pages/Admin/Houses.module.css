@@ -5,6 +5,8 @@
   margin: 0 auto;
   height: 100%;
   font-size: 1.2rem;
+  width: max-content;
+  overflow-x: hidden;
 }
 
 .housePic {
