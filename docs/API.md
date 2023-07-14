@@ -1112,7 +1112,8 @@ type Notification = {
   title: string;
   body: string; // supports markdown
   badgeText: string; // badge text
-  badgeColor: string; // badge color
+  badgeColor: string; // badge color in hex code (eg: #ffffff)
+  audience: "All" | "Faculty" | "Student";
 }
 ```
 
