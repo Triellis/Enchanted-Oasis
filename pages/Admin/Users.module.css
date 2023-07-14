@@ -140,6 +140,8 @@
   padding-inline: 5px;
   gap: 10px;
   background-color: hsl(var(--b2));
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 20%);
   grid-template-columns: 0.1fr 1fr 0.05fr 0.05fr;
 }
 

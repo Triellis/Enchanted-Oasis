@@ -12,6 +12,9 @@
   position: sticky;
   width: 100%;
   z-index: 3;
+  top: 0;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 30%);
 }
 
 .hamButton {
