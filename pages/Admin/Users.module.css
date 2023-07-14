@@ -7,7 +7,7 @@
   gap: 0.3em;
 }
 
-/* for the radio buttons / tabs */
+/* for the tabs */
 .tabGrp {
   background-color: hsl(var(--b3));
   border-radius: 10px;

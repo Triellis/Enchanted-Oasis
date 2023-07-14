@@ -144,45 +144,8 @@ export default function Users() {
             </FormControl>
           </div>
 
-          {/* Tabs */}
-          <Tabs
-            className={styles.tabGrp}
-            position="relative"
-            variant="unstyled"
-            defaultIndex={0}
-            onChange={(index) => {
-              if (index === 0) {
-                setRole("All");
-              } else if (index === 1) {
-                setRole("Student");
-              } else if (index === 2) {
-                setRole("Faculty");
-              } else if (index === 3) {
-                setRole("Admin");
-              }
-              setPage(1); // Set the page state to 1 on click
-            }}
-          >
-            <TabList className={styles.tabList}>
-              <Tab>All</Tab>
-              <Tab>Student</Tab>
-              <Tab>Faculty</Tab>
-              <Tab>Admin</Tab>
-              <TabIndicator
-                zIndex={-1}
-                className={styles.tabIndicator}
-                backgroundColor={
-                  role === "Student"
-                    ? "blue.600"
-                    : role === "Faculty"
-                    ? "green.600"
-                    : role === "Admin"
-                    ? "red.600"
-                    : "gray.600"
-                }
-              />
-            </TabList>
-          </Tabs>
+          {/* Tabs here*/}
+         
 
           <div className={styles.tableHeader}>
             <span>
