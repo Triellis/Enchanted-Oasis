@@ -83,5 +83,5 @@ export type AdminNotificationCol = {
   seenBy: string[]; // array of user ids,
   seenByCount: number; // number of users who ave seen this notification
   creatorId: ObjectId; // id of the user who created this notification
-  audience: "Students" | "Faculty" | "Both"; // audience of the notification
+  audience: "Students" | "Faculty" | "All"; // audience of the notification
 };
