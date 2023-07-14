@@ -31,18 +31,15 @@ function useSearch(searchQuery: string, role: string, page: number) {
   };
 }
 
-export default function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [role, setRole] = useState("All");
-  const [page, setPage] = useState(1);
+interface SearchBarProps {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<String>>;
+}
 
-  const { users, isLoading, error, mutate } = useSearch(
-    searchQuery,
-    role,
-    page
-  );
-
+export default function SearchBar({
+  searchQuery,
+  setSearchQuery,
+}: SearchBarProps) {
   return (
     <div className={styles.searchBar}>
       <FormControl id="search">
