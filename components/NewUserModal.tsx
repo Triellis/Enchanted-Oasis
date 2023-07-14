@@ -27,7 +27,7 @@ import { Role, SentUserDataFromClient } from "@/lib/types";
 interface NewUserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mutate: (url: string) => void;
+  mutate: () => void;
   newUserData: SentUserDataFromClient;
   setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
 }
@@ -259,7 +259,8 @@ export default function NewUserModal({
                   duration: 5000,
                   isClosable: true,
                 });
-                mutate("/api/users");
+                mutate();
+                onClose();
               } else {
                 toast({
                   title: "User creation failed",
