@@ -664,9 +664,10 @@ type Student = {
 
 ```typescript
 {
-		name: string,
+	name?: string,
 	profilePicture: string,
 	phone: string,
+	userId?: string,
 
 
 }
