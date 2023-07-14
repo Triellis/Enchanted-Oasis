@@ -64,11 +64,50 @@ async function PUT(
   res: NextApiResponse,
   session: Exclude<MySession, null>
 ) {
+  const formData: {
+    fields: {
+      [key: string]: any;
+    };
+    files: {
+      profilePicture?: any[];
+    };
+  } = await new Promise((resolve, reject) => {
+    const form = new IncomingForm();
+
+    form.parse(req, (err, fields: any, files: any) => {
+      if (err) return reject(err);
+      resolve({ fields, files });
+    });
+  });
+
+  const userId = formData.fields.userId?.length
+    ? formData.fields.userId[0]
+    : session.user.id;
+  const allowedFields = ["phone", "profilePicture"];
+  if (session.user.role === "admin") {
+    allowedFields.push("name");
+  }
+  const userDoc: {
+    [key: string]: any;
+  } = {};
+
+  for (let f of Object.keys(formData.fields)) {
+    if (formData.fields[f].length) {
+      userDoc[f] = formData.fields[f][0];
+    }
+  }
+  if (formData.files.profilePicture?.length) {
+    userDoc.profilePicture = await getFileUrl(
+      formData.files.profilePicture[0].filepath,
+      "profile pic/" + userId.toString(),
+      formData.files.profilePicture[0].originalFilename
+    );
+  }
+
   const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
-  const updateDoc = req.body;
-  const allowedFields = ["name", "phone", "profilePicture"];
-  const updatingFields = Object.keys(updateDoc);
+
+  const updatingFields = Object.keys(userDoc);
   for (let f of updatingFields) {
     if (allowedFields.includes(f)) {
       continue;
@@ -82,14 +121,14 @@ async function PUT(
         );
     }
   }
-  const id = session.user.id;
+
   const user = await usersCollection.updateOne(
     {
-      _id: id,
+      _id: userId,
     },
     {
       $set: {
-        ...updateDoc,
+        ...userDoc,
       },
     }
   );
@@ -208,6 +247,7 @@ async function POST(
   }
   return res.status(200).send("User created");
 }
+
 export const config = {
   api: {
     bodyParser: false,
