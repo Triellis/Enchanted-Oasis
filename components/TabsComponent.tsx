@@ -3,6 +3,7 @@ import styles from "./TabsComponent.module.css";
 import { useState } from "react";
 
 interface TabsComponentProps {
+  role: string;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setRole: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -10,9 +11,8 @@ interface TabsComponentProps {
 export default function TabsComponent({
   setPage,
   setRole,
+  role,
 }: TabsComponentProps) {
-  const [role, setTabRole] = useState("All");
-
   return (
     <Tabs
       className={styles.tabGrp}
@@ -20,17 +20,17 @@ export default function TabsComponent({
       variant="unstyled"
       defaultIndex={0}
       onChange={(index) => {
+        console.log(role);
         if (index === 0) {
-          setTabRole("All");
+          setRole("All");
         } else if (index === 1) {
-          setTabRole("Student");
+          setRole("Student");
         } else if (index === 2) {
-          setTabRole("Faculty");
+          setRole("Faculty");
         } else if (index === 3) {
-          setTabRole("Admin");
+          setRole("Admin");
         }
         setPage(1); // Set the page state to 1 on click
-        setRole(role); // Set the role state based on the clicked tab
       }}
     >
       <TabList className={styles.tabList}>

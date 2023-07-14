@@ -128,7 +128,7 @@ export default function Users() {
           </div>
 
           {/* Tabs here*/}
-          <TabsComponent setRole={setRole} setPage={setPage} />
+          <TabsComponent role={role} setRole={setRole} setPage={setPage} />
 
           <div className={styles.tableHeader}>
             <span>
