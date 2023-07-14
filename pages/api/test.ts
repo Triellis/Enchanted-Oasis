@@ -49,29 +49,11 @@ async function POST(
   //@ts-ignore
   const file = await fs.open(formData?.files.pic[0].filepath, "r");
   const fileData = await file.readFile();
+  file.close();
   //@ts-ignore
-  console.log(formData.fields);
+  console.table(formData);
 
-  //   console.log(formData.files.file[0].originalFilename);
-  //   //@ts-ignore
-  //   console.log(formData?.files.file[0].filepath);
-  const { data: uploadData, error } = await supabase.storage
-    .from("enchanted-oasis")
-    .upload(
-      //@ts-ignore
-      "profile pics/" + formData.files.file[0].originalFilename,
-      fileData
-    );
-  if (error) {
-    console.log(error);
-  }
-
-  const { data } = supabase.storage
-    .from("enchanted-oasis")
-    .getPublicUrl(uploadData!.path, {
-      download: true,
-    });
-  res.status(200).json({ url: data.publicUrl, error });
+  res.status(200).json("t");
 }
 export const config = {
   api: {
