@@ -3,31 +3,15 @@ import Layout from "../Layout";
 import {
   Button,
   FormControl,
-  FormLabel,
   InputGroup,
   InputLeftElement,
-  Radio,
-  RadioGroup,
-  Stack,
   useDisclosure,
   Divider,
-  Tab,
-  TabIndicator,
-  TabList,
-  Tabs,
-  Center,
-  SimpleGrid,
-  GridItem,
-} from "@chakra-ui/react";
-import {
-  Modal,
   ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  useToast,
+  Input,
 } from "@chakra-ui/react";
+import { Search2Icon } from "@chakra-ui/icons";
 
 import useSWR from "swr";
 import {
@@ -36,15 +20,14 @@ import {
   SentUserDataFromClient,
 } from "../../lib/types";
 
-import { useState } from "react";
-import { useToast } from "@chakra-ui/react";
+import React, { useState } from "react";
 import styles from "./Users.module.css";
-import { Input } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
-import UserListItem from "../../components/UserListItem";
-import React from "react";
 import { fetcher } from "@/lib/functions";
+
+import UserListItem from "../../components/UserListItem";
 import NewUserModal from "@/components/NewUserModal";
+import TabsComponent from "@/components/TabsComponent";
+
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
@@ -145,7 +128,7 @@ export default function Users() {
           </div>
 
           {/* Tabs here*/}
-         
+          <TabsComponent setRole={setRole} setPage={setPage} />
 
           <div className={styles.tableHeader}>
             <span>
