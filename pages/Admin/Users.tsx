@@ -72,7 +72,11 @@ export default function Users() {
   if (isLoading) {
     componentToRender = <div>Loading...</div>;
   }
-  if (error) {
+  if (
+    error &&
+    error.message !==
+      "Unexpected token 'N', \"Not logged in\" is not valid JSON"
+  ) {
     toast({
       title: error.name,
       description: error.message,
@@ -80,6 +84,7 @@ export default function Users() {
       duration: 9000,
       isClosable: true,
     });
+
     componentToRender = <div> {error.message}</div>;
   }
   if (users) {
