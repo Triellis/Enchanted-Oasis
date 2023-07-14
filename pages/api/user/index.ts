@@ -171,8 +171,9 @@ async function POST(
       return res.status(400).send(`You need to provide ${f} in body`);
     }
   }
+  const newId = new ObjectId();
   const userDoc = {
-    _id: new ObjectId(),
+    _id: newId,
     name: formData.fields.name[0],
     phone: formData.fields.phone[0],
     email: formData.fields.email[0],
@@ -180,7 +181,7 @@ async function POST(
     rollNumber: formData.fields.rollNumber[0],
     profilePicture: await getFileUrl(
       formData.files.profilePicture[0].filepath,
-      "profile pic",
+      "profile pic/" + newId.toString(),
       formData.files.profilePicture[0].originalFilename
     ),
     passwordHash: md5(formData.fields.password[0]),
