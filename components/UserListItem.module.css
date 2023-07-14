@@ -24,19 +24,9 @@
   align-items: center;
   gap: 10px;
 }
-/* now the same for smaller devices */
-@media (max-width: 768px) {
-  .responsiveBlock {
-    align-items: center;
-    display: grid;
-    grid-template-columns: 2fr 0.5fr 2fr;
-    gap: 10px;
-  }
-}
 .role {
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
 }
 .email {
   white-space: nowrap;
@@ -48,6 +38,25 @@
   /* border: 1px solid; */
   border-radius: 0.5em !important;
   padding: 2px 5px !important;
+}
+/* now the same for smaller devices */
+@media (max-width: 768px) {
+  .responsiveBlock {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    gap: 1px;
+    font-size: 14px;
+  }
+  .role {
+    margin-top: 50%;
+  }
+  .roleLabel {
+    border: 2px solid;
+    border-radius: 5px !important;
+    padding: 5px;
+    font-size: 10px !important;
+  }
 }
 /* for the actions buttons in the end */
 .btnGroup {
