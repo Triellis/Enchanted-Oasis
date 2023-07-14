@@ -1228,7 +1228,7 @@ type User = {
 ```typescript
 
 {
-	"unseenNotifications":number
+	"unseenNotificationsCount":number
 }
 
 ```
