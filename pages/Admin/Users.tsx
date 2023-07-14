@@ -78,7 +78,7 @@ export default function Users() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState("All");
   const [page, setPage] = useState(1);
 
   const { users, isLoading, error, mutate } = useSearch(
