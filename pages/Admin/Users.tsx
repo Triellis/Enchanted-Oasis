@@ -3,31 +3,15 @@ import Layout from "../Layout";
 import {
   Button,
   FormControl,
-  FormLabel,
   InputGroup,
   InputLeftElement,
-  Radio,
-  RadioGroup,
-  Stack,
   useDisclosure,
   Divider,
-  Tab,
-  TabIndicator,
-  TabList,
-  Tabs,
-  Center,
-  SimpleGrid,
-  GridItem,
-} from "@chakra-ui/react";
-import {
-  Modal,
   ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  useToast,
+  Input,
 } from "@chakra-ui/react";
+import { Search2Icon } from "@chakra-ui/icons";
 
 import useSWR from "swr";
 import {
@@ -36,15 +20,14 @@ import {
   SentUserDataFromClient,
 } from "../../lib/types";
 
-import { useState } from "react";
-import { useToast } from "@chakra-ui/react";
+import React, { useState } from "react";
 import styles from "./Users.module.css";
-import { Input } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
-import UserListItem from "../../components/UserListItem";
-import React from "react";
 import { fetcher } from "@/lib/functions";
+
+import UserListItem from "../../components/UserListItem";
 import NewUserModal from "@/components/NewUserModal";
+import TabsComponent from "@/components/TabsComponent";
+
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
@@ -144,45 +127,8 @@ export default function Users() {
             </FormControl>
           </div>
 
-          {/* Tabs */}
-          <Tabs
-            className={styles.tabGrp}
-            position="relative"
-            variant="unstyled"
-            defaultIndex={0}
-            onChange={(index) => {
-              if (index === 0) {
-                setRole("All");
-              } else if (index === 1) {
-                setRole("Student");
-              } else if (index === 2) {
-                setRole("Faculty");
-              } else if (index === 3) {
-                setRole("Admin");
-              }
-              setPage(1); // Set the page state to 1 on click
-            }}
-          >
-            <TabList className={styles.tabList}>
-              <Tab>All</Tab>
-              <Tab>Student</Tab>
-              <Tab>Faculty</Tab>
-              <Tab>Admin</Tab>
-              <TabIndicator
-                zIndex={-1}
-                className={styles.tabIndicator}
-                backgroundColor={
-                  role === "Student"
-                    ? "blue.600"
-                    : role === "Faculty"
-                    ? "green.600"
-                    : role === "Admin"
-                    ? "red.600"
-                    : "gray.600"
-                }
-              />
-            </TabList>
-          </Tabs>
+          {/* Tabs here*/}
+          <TabsComponent role={role} setRole={setRole} setPage={setPage} />
 
           <div className={styles.tableHeader}>
             <span>
