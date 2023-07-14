@@ -4,7 +4,6 @@ import {
   InputGroup,
   InputLeftElement,
   useDisclosure,
-  useToast,
 } from "@chakra-ui/react";
 import styles from "./SearchBar.module.css";
 
@@ -32,7 +31,7 @@ function useSearch(searchQuery: string, role: string, page: number) {
   };
 }
 
-export default function SearchBar(   ) {
+export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [role, setRole] = useState("All");
