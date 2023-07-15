@@ -169,7 +169,6 @@ async function GET(
     (key) => new ObjectId(key)
   );
 
-  console.log(userNotifIds);
   let notifProjection;
   if (session?.user.role === "Admin") {
     notifProjection = {
@@ -186,7 +185,7 @@ async function GET(
   notifications = await notificationCollection
     .find({ _id: { $in: userNotifIds } }, { projection: notifProjection })
     .toArray();
-  console.log(notifications);
+
   const notificationsWithSeen: AdminNotificationOnClient[] = notifications
     .map((notification) => {
       let seen = false;
