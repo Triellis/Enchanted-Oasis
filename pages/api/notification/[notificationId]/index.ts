@@ -43,7 +43,7 @@ async function DELETE(
     $pull: {
       notifications: { [notificationId]: { $exists: true } },
     } as UpdateFilter<UserCol>["notifications"],
-    // $inc: { unseenNotificationsCount: -1 },
+    $inc: { unseenNotificationsCount: -1 },
   };
   const deleteResponse = await notificationCollection.deleteOne({
     _id: new ObjectId(notificationId),
