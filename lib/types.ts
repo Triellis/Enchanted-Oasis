@@ -15,16 +15,19 @@ export type UserCol = {
 
   courses: string[]; // array of course ids
 
-  notifications: string[]; // array of notification ids
-  notificationsCount: number; // number of notifications received by this user
-  seenNotifications: string[]; // array of notification ids
-  seenNotificationsCount: number; // number of notifications seen by this user
+  notifications: {
+    [notificationId: string]: {
+      seen: boolean;
+    };
+  }; // array of notification ids
+
+  unseenNotificationsCount: number; // number of notifications not seen by this user
 };
 
 export type MySession = {
   user: {
     id: ObjectId;
-    role: string;
+    role: Role;
     name: string;
     email: string;
     image: string;
@@ -44,9 +47,7 @@ export type SentUserDataFromClient = Omit<
   UserCol,
   | "courses"
   | "notifications"
-  | "seenNotifications"
-  | "notificationsCount"
-  | "seenNotificationsCount"
+  | "unseenNotificationsCount"
   | "passwordHash"
   | "_id"
   | "profilePicture"
@@ -70,4 +71,21 @@ export const userProjection = {
   role: 1,
   profilePicture: 1,
   rollNumber: 1,
+};
+
+export type AdminNotificationCol = {
+  _id: ObjectId;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
+  seenBy: string[]; // array of user ids,
+  seenByCount: number; // number of users who ave seen this notification
+  creatorId: ObjectId; // id of the user who created this notification
+  audience: "Students" | "Faculty" | "All"; // audience of the notification
+};
+
+export type AdminNotificationOnClient = Omit<AdminNotificationCol, "seenBy"> & {
+  seen: boolean;
 };
