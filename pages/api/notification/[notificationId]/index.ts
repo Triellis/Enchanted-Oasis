@@ -37,6 +37,10 @@ async function DELETE(
     db.collection<AdminNotificationCol>("AdminNotifications");
 
   const usersCollection = db.collection<UserCol>("Users");
+  const updateResponse = await usersCollection.updateMany(
+    { [`notifications.${notificationId}.seen`]: { $eq: false } },
+    { $inc: { unseenNotificationsCount: -1 } }
+  );
   let filter = {
     [`notifications.${notificationId}`]: { $exists: true },
   };
@@ -45,15 +49,14 @@ async function DELETE(
     $unset: {
       ["notifications." + notificationId]: "",
     } as UpdateFilter<UserCol>["notifications"],
-    $inc: { unseenNotificationsCount: -1 },
   };
   const deleteResponse = await notificationCollection.deleteOne({
     _id: new ObjectId(notificationId),
   });
-  const updateResponse = await usersCollection.updateMany(filter, update);
+  const updateResponse2 = await usersCollection.updateMany(filter, update);
   if (deleteResponse.deletedCount === 0) {
     return res.status(404).json("Notification not found");
-  } else if (!updateResponse.acknowledged) {
+  } else if (!updateResponse2.acknowledged || !updateResponse.acknowledged) {
     return res
       .status(500)
       .json("Notification deletion failed, could not delete them from users");
