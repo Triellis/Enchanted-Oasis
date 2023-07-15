@@ -60,6 +60,7 @@ async function POST(
     badgeColor,
     audience,
     creatorId: session.user.id,
+    creatorName: session.user.name,
     seenBy: [],
     date: new Date(),
     seenByCount: 0,

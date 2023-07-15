@@ -809,6 +809,7 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -991,6 +992,7 @@ type Material = {
   date: Date;
   attachments: string[]; // array of attachment urls (stored in firebase storage)
   creatorId: string; // id of the user who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -1055,6 +1057,7 @@ type Material = {
   date: Date;
   attachments: string[]; // array of attachment urls (stored in firebase storage)
   creatorId: string; // id of the user who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -1096,6 +1099,7 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -1165,6 +1169,7 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
