@@ -55,8 +55,11 @@ async function GET(
     return res.status(404).send("Notification not found");
   }
   const usersCollection = db.collection<UserCol>("Users");
-  const seenBy = notifDoc.seenBy.map((i) => new ObjectId(i));
-  const viewersList = await usersCollection
+  const seenBy = notifDoc.seenBy
+    .map((i) => new ObjectId(i))
+    .slice(skip, skip + maxResults);
+
+  let viewersList = await usersCollection
     .find(
       { _id: { $in: seenBy } },
       {
@@ -64,5 +67,9 @@ async function GET(
       }
     )
     .toArray();
+  viewersList = viewersList
+    .sort((a, b) => seenBy.indexOf(a._id) - seenBy.indexOf(b._id))
+    .reverse();
+
   return res.status(200).json(viewersList);
 }
