@@ -114,3 +114,49 @@
 .del:active {
   transform: scale(0.9);
 }
+
+/* for the popOver: */
+.popMain {
+  /* sanded glass background */
+  background-color: rgb(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 0.5em !important;
+  border: 1px solid hsl(var(--n)) !important;
+  padding: 1em;
+}
+.popContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.popInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.popLabel {
+  font-size: 0.8em;
+  color: hsl(var(--pc) / 50%);
+}
+.popValue {
+  font-weight: bold;
+}
+.popFoot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: -1em !important;
+}
+.popEdit {
+  background-color: hsl(var(--s)) !important;
+  transition: all 0.3s ease;
+  padding: 1.1em !important;
+}
+.popEdit:hover {
+  background-color: hsl(var(--sf)) !important;
+}
+.popEdit:active {
+  transform: scale(0.9);
+}

@@ -19,14 +19,16 @@ import {
   Role,
   SentUserDataFromClient,
 } from "../../lib/types";
+import { fetcher } from "@/lib/functions";
 
 import React, { useState } from "react";
 import styles from "./Users.module.css";
-import { fetcher } from "@/lib/functions";
 
 import UserListItem from "../../components/UserListItem";
 import NewUserModal from "@/components/NewUserModal";
 import TabsComponent from "@/components/TabsComponent";
+import Pagination from "@/components/Pagination";
+import SearchBar from "@/components/SearchBar";
 
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -117,7 +119,7 @@ export default function Users() {
         {/* header */}
         <div className={styles.wrapper}>
           {/* search bar */}
-          <div className={styles.searchBar}>
+          {/* <div className={styles.searchBar}>
             <FormControl id="search">
               <InputGroup>
                 <InputLeftElement pointerEvents="none">
@@ -130,7 +132,11 @@ export default function Users() {
                 />
               </InputGroup>
             </FormControl>
-          </div>
+          </div> */}
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
 
           {/* Tabs here*/}
           <TabsComponent role={role} setRole={setRole} setPage={setPage} />
@@ -159,26 +165,12 @@ export default function Users() {
         {/* divider */}
         <Divider orientation="horizontal" paddingBlock={"5px"} />
 
+        {/* pagination */}
         <div className={styles.botBar}>
-          {/* Pagination */}
-          <Button
-            onClick={() => {
-              if (page > 1) setPage(page - 1);
-            }}
-          >
-            {"<"}
-          </Button>
-          <span>{page}</span>
-          <Button
-            onClick={() => {
-              if (users.length == 10) setPage(page + 1);
-            }}
-          >
-            {">"}
-          </Button>
-
+          <Pagination page={page} setPage={setPage} users={users} />
           {/* Adding new users */}
           <Button
+            className={styles.clicky}
             onClick={() => {
               onOpen();
               setOverlay(<OverlayOne />);
