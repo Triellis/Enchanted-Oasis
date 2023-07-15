@@ -137,7 +137,11 @@ export default function UserListItem({
       <div className={styles.userInfo}>
         {/* profile picture */}
         <span>
-          <Avatar src={userData.profilePicture} />
+          <Avatar
+            size={isSmall ? "md" : "lg"}
+            className={styles.profilePic}
+            src={userData.profilePicture}
+          />
         </span>
 
         {/* remaining components which changes visibility as per screen size */}
@@ -161,9 +165,11 @@ export default function UserListItem({
             <PopoverContent className={styles.popMain}>
               <PopoverBody className={styles.popContent}>
                 {/* first half */}
-                <div className={styles.popPic}>
-                  <Avatar src={userData.profilePicture} size="2xl" />
-                </div>
+                <Avatar
+                  className={styles.profilePic}
+                  src={userData.profilePicture}
+                  size="2xl"
+                />
 
                 {/* second half */}
                 <div className={styles.popInfo}>
