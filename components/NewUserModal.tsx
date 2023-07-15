@@ -165,12 +165,23 @@ export default function NewUserModal({
               <FormControl>
                 {/* Profile Picture */}
                 <FormLabel>Profile Picture</FormLabel>
-                <form className={styles.picIn}>
+                <div className={styles.picIn}>
+                  {/* message */}
+                  {imageName === "No Image Selected" && (
+                    <p className={styles.uploadText}>Upload an image</p>
+                  )}
+
+                  {/* label for the image name */}
+                  <label
+                    htmlFor="myFileInput"
+                    className={styles.customFileLabel}
+                  >
+                    {imageName}
+                  </label>
                   <input
                     type="file"
                     id="myFileInput"
                     className={styles.customFileInput}
-                    // event listener
                     onChange={(e) => {
                       setNewUserData({
                         ...newUserData,
@@ -184,13 +195,7 @@ export default function NewUserModal({
                       }
                     }}
                   />
-                  <label
-                    htmlFor="myFileInput"
-                    className={styles.customFileLabel}
-                  >
-                    {imageName}
-                  </label>
-                </form>
+                </div>
               </FormControl>
             </GridItem>
             <GridItem className={styles.quarThree} colSpan={2}>
