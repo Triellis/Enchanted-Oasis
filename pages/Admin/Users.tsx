@@ -128,7 +128,10 @@ export default function Users() {
               </InputGroup>
             </FormControl>
           </div> */}
-
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
 
           {/* Tabs here*/}
           <TabsComponent role={role} setRole={setRole} setPage={setPage} />

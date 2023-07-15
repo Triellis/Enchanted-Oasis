@@ -20,6 +20,7 @@ function useSearch(searchQuery: string, role: string, page: number) {
     `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
     fetcher
   );
+
   return {
     users: data as ReceivedUserDataOnClient[],
     isLoading,
@@ -30,7 +31,7 @@ function useSearch(searchQuery: string, role: string, page: number) {
 
 interface SearchBarProps {
   searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<String>>;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function SearchBar({
