@@ -1075,6 +1075,7 @@ type Material = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"unreadOnly":boolean // show unread only if true
 }
 ```
 
@@ -1084,7 +1085,7 @@ type Material = {
 
 {
 	"notifications":Notification[],
-	"totalNotifications":number
+
 }
 
 ```
@@ -1100,6 +1101,7 @@ type Notification = {
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
   creatorName: string; // name of the user who created this notification
+  unseen: boolean; // true if the notification is unseen by the user
 };
 ```
 
