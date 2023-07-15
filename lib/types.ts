@@ -27,7 +27,7 @@ export type UserCol = {
 export type MySession = {
   user: {
     id: ObjectId;
-    role: string;
+    role: Role;
     name: string;
     email: string;
     image: string;
@@ -84,4 +84,8 @@ export type AdminNotificationCol = {
   seenByCount: number; // number of users who ave seen this notification
   creatorId: ObjectId; // id of the user who created this notification
   audience: "Students" | "Faculty" | "All"; // audience of the notification
+};
+
+export type AdminNotificationOnClient = Omit<AdminNotificationCol, "seenBy"> & {
+  seen: boolean;
 };
