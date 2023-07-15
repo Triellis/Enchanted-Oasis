@@ -67,8 +67,13 @@ async function GET(
       }
     )
     .toArray();
+  const seenByStrings = seenBy.map((i) => i.toString());
   viewersList = viewersList
-    .sort((a, b) => seenBy.indexOf(a._id) - seenBy.indexOf(b._id))
+    .sort(
+      (a, b) =>
+        seenByStrings.indexOf(a._id.toString()) -
+        seenByStrings.indexOf(b._id.toString())
+    )
     .reverse();
 
   return res.status(200).json(viewersList);
