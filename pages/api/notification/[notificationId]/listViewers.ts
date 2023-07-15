@@ -64,6 +64,5 @@ async function GET(
       }
     )
     .toArray();
-  console.log(seenBy);
   return res.status(200).json(viewersList);
 }
