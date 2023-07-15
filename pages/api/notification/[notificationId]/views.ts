@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { AdminNotificationCol, MySession, UserCol } from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
-import { ObjectId, UpdateFilter } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(
   req: NextApiRequest,
