@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 0.5em;
+  transition: all 0.3s ease;
+}
+
+.banner {
+  flex: 0.6;
+}
+@media (max-width: 767px) {
+  .banner {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.houseB {
+  width: 100%;
+  object-fit: fill;
+  margin-top: 0.3em;
+}
+.content {
+  flex: 4;
+}
+.Header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.3em;
+  margin: 0.3em;
+}
+
+.details {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+  height: 30%;
+  align-items: flex-start;
+  margin-top: 1em;
+}
+@media (max-width: 767px) {
+  .details {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    height: 80%;
+    align-items: flex-start;
+  }
+}
+
+.detailsItem {
+  width: 100%;
+}
+.label {
+  margin-left: 1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.contentBox {
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+.text {
+  font-size: 1.2em;
+}
