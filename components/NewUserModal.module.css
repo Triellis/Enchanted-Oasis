@@ -25,31 +25,38 @@
   height: 100%;
 }
 
-.picIn{
+.picIn {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.3em;
+
   height: 200px;
-  border-radius: 0.5em;
-  border: 2px dashed hsl(var(--p));
+  border-radius: 10px;
+  border: 2px dashed hsl(var(--pf));
 }
 .customFileInput {
-  display: none;
+  opacity: 0; /* Hide the default file input */
+  position: absolute;
+  z-index: -1;
 }
 .customFileLabel {
-  display: inline-block;
-  background-color: hsl(var(--pf));
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
   cursor: pointer;
 }
-.customFileLabel:hover {
-  /* background-color: red; */
+.customFileLabel::after {
+  content: "Browse"; /* Text or icon for the file browse button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  background: hsl(var(--pf));
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
 }
-
+.customFileInput:focus + .custom-file-label {
+  /* Styling when the file input is in focus */
+  outline: 2px solid blue;
+}
 
 /* for the button to add the user */
 .modalAdd {
