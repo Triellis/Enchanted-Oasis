@@ -155,7 +155,7 @@
   padding: 1.1em !important;
 }
 .popEdit:hover {
-  background-color: hsl(var(--inc)) !important;
+  background-color: hsl(var(--sf)) !important;
 }
 .popEdit:active {
   transform: scale(0.9);
