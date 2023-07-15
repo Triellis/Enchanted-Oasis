@@ -27,7 +27,6 @@
 
 .picIn {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -35,9 +34,23 @@
   border-radius: 10px;
   border: 2px dashed hsl(var(--pf));
 }
-.picIn > * {
-  /* center it */
-  margin-left: 80px;
+.customFileInput {
+  opacity: 0; /* Hide the default file input */
+  position: absolute;
+  z-index: -1;
+}
+.customFileLabel {
+  cursor: pointer;
+}
+.customFileLabel::after {
+  content: "Choose File"; /* Text or icon for the file browse button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsl(var(--pf));
+  margin-top: 1em;
+  padding: 5px 10px;
+  border-radius: 0.5em;
 }
 
 /* for the button to add the user */
