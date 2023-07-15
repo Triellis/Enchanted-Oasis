@@ -2,14 +2,14 @@
 
 - [Index](#index)
 - [Api Routes Summary](#api-routes-summary)
-	- [Results](#results)
-	- [Courses](#courses)
-	- [Houses](#houses)
-	- [User](#user)
-	- [Course Notifications](#course-notifications)
-	- [Course Materials](#course-materials)
-	- [Admin Notifications](#admin-notifications)
-	- [Lectures](#lectures)
+  - [Results](#results)
+  - [Courses](#courses)
+  - [Houses](#houses)
+  - [User](#user)
+  - [Course Notifications](#course-notifications)
+  - [Course Materials](#course-materials)
+  - [Admin Notifications](#admin-notifications)
+  - [Lectures](#lectures)
 
 # Api Routes Summary
 
@@ -102,7 +102,7 @@
 | List Notifications                 | GET    | `/api/notification`                                |
 | Add Notification                   | POST   | `/api/notification`                                |
 | Remove Notification                | DELETE | `/api/notification/{notificationId}`               |
-| Edit Notification                  | PUT    | `/api/notification/{notificationId}`               |
+| ~~Edit Notification~~              | PUT    | `/api/notification/{notificationId}`               |
 | Get Notification                   | GET    | `/api/notification/{notificationId}`               |
 | Get Views                          | GET    | `/api/notification/{notificationId}/views `        |
 | Get Viewers                        | GET    | `/api/notification/{notificationId}/listViewers  ` |

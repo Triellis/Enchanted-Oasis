@@ -1127,7 +1127,7 @@ type Notification = {
 
 #### Response will be status code
 
-### Update notification
+### ~~Update notification~~
 
 - **URL:** `/api/notification/{notificationId}`
 - **Method:** `PUT`
@@ -1141,6 +1141,7 @@ type Notification = {
   body: string; // supports markdown
   badgeText: string; // badge text
   badgeColor: string; // badge color
+  audience: "All" | "Faculty" | "Student";
 }
 ```
 
