@@ -36,12 +36,12 @@ async function DELETE(
 
   const usersCollection = db.collection<UserCol>("Users");
   let filter = {
-    notifications: { $elemMatch: { [notificationId]: { $exists: true } } },
+    [`notifications.${notificationId}`]: { $exists: true },
   };
 
   const update = {
-    $pull: {
-      notifications: { [notificationId]: { $exists: true } },
+    $unset: {
+      ["notifications." + notificationId]: "",
     } as UpdateFilter<UserCol>["notifications"],
     $inc: { unseenNotificationsCount: -1 },
   };
@@ -49,8 +49,9 @@ async function DELETE(
     _id: new ObjectId(notificationId),
   });
   const updateResponse = await usersCollection.updateMany(filter, update);
-
-  if (!updateResponse.acknowledged) {
+  if (deleteResponse.deletedCount === 0) {
+    return res.status(404).json("Notification not found");
+  } else if (!updateResponse.acknowledged) {
     return res
       .status(500)
       .json("Notification deletion failed, could not delete them from users");

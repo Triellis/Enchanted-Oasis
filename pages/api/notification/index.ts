@@ -82,15 +82,14 @@ async function POST(
   }
 
   const update = {
-    $addToSet: {
-      notifications: {
-        [notifID.toString()]: {
-          seen: false,
-        },
+    $set: {
+      [`notifications.${[notifID.toString()]}`]: {
+        seen: false,
       },
-    } as UpdateFilter<UserCol>["notifications"],
+    },
+
     $inc: { unseenNotificationsCount: 1 },
-  }; // Replace 'myArrayField' with your field name
+  } as UpdateFilter<UserCol>["notifications"]; // Replace 'myArrayField' with your field name
 
   const options = { upsert: true };
 
@@ -102,6 +101,12 @@ async function POST(
 
   if (!insertResponse.acknowledged) {
     return res.status(500).json("Notification creation failed");
+  } else if (!updateResponse.acknowledged) {
+    return res
+      .status(500)
+      .json(
+        "users collection update failed, notification created but not sent to users"
+      );
   }
   return res.status(200).json("Notification created successfully");
 }
