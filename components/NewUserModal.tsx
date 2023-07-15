@@ -166,6 +166,12 @@ export default function NewUserModal({
                 {/* Profile Picture */}
                 <FormLabel>Profile Picture</FormLabel>
                 <form className={styles.picIn}>
+                  <label
+                    htmlFor="myFileInput"
+                    className={styles.customFileLabel}
+                  >
+                    {imageName}
+                  </label>
                   <input
                     type="file"
                     id="myFileInput"
@@ -184,12 +190,6 @@ export default function NewUserModal({
                       }
                     }}
                   />
-                  <label
-                    htmlFor="myFileInput"
-                    className={styles.customFileLabel}
-                  >
-                    {imageName}
-                  </label>
                 </form>
               </FormControl>
             </GridItem>

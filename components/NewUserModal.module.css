@@ -43,19 +43,14 @@
   cursor: pointer;
 }
 .customFileLabel::after {
-  content: "Browse"; /* Text or icon for the file browse button */
+  content: "Choose File"; /* Text or icon for the file browse button */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
   background: hsl(var(--pf));
+  margin-top: 1em;
   padding: 5px 10px;
-  border-radius: 5px;
-  margin-left: 10px;
-}
-.customFileInput:focus + .custom-file-label {
-  /* Styling when the file input is in focus */
-  outline: 2px solid blue;
+  border-radius: 0.5em;
 }
 
 /* for the button to add the user */
