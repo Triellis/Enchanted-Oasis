@@ -3,7 +3,7 @@ import React from "react";
 
 import styles from "./Profile.module.css";
 import Layout from "../Layout";
-import { Avatar, Button, Divider } from "@chakra-ui/react";
+import { Avatar, Badge, Button, Divider } from "@chakra-ui/react";
 
 export default function Profile() {
   const isAdmin = false;
@@ -27,65 +27,42 @@ export default function Profile() {
           )}
 
           <div className={styles.content}>
-            
             {/* Profile picture */}
-            <div className={styles.Header}>
-              <Avatar size={{ sm: "xl", base: "lg", lg: "2xl" }} />
-            </div>
 
-
-            {/* Details */}
-            <div className={styles.details}>
-              <div className={styles.detailsItem}>
-                <label htmlFor="name" className={styles.label}>
-                  Name:
-                </label>
-                <div className={styles.contentBox}>
-                  <span id="name" className={styles.text}>
-                    John Doe
-                  </span>
-                </div>
+            <div>
+              <div className={styles.avatar}>
+                <Avatar size={{ sm: "xl", base: "lg", lg: "2xl" }} />
               </div>
-              <div className={styles.detailsItem}>
-                <label htmlFor="role" className={styles.label}>
-                  Role:
-                </label>
-                <div className={styles.contentBox}>
-                  <span id="role" className={styles.text}>
+              <div className={styles.primaryInfo}>
+                {/* Name */}
+                <div className={styles.name}>
+                  <h1>John Doe</h1>
+                </div>
+                {/* Email */}
+                <div className={styles.email}>
+                  <h2>johndoe@gmail.com</h2>
+                </div>
+                {/* Role */}
+                <div className={styles.role}>
+                  <Badge colorScheme="teal" className={styles.badge}>
                     Student
-                  </span>
+                  </Badge>
                 </div>
               </div>
-              <div className={styles.detailsItem}>
-                <label htmlFor="email" className={styles.label}>
-                  Email:
-                </label>
-                <div className={styles.contentBox}>
-                  <span id="email" className={styles.text}>
-                    johndoe@example.com
-                  </span>
-                </div>
-              </div>
-              <div className={styles.detailsItem}>
-                <label htmlFor="phone" className={styles.label}>
-                  Phone:
-                </label>
-                <div className={styles.contentBox}>
-                  <span id="phone" className={styles.text}>
-                    123-456-7890
-                  </span>
-                </div>
-              </div>
-              <div className={styles.detailsItem}>
-                <label htmlFor="rollNumber" className={styles.label}>
-                  Roll Number:
-                </label>
-                <div className={styles.contentBox}>
-                  <span id="rollNumber" className={styles.text}>
-                    123456
-                  </span>
-                </div>
-              </div>
+            </div>
+          </div>
+
+          {/* other information */}
+          <div className={styles.otherInfo}>
+            {/* Roll number */}
+            <div className={styles.roll}>
+              <h3>Roll Number</h3>
+              <p>123456789</p>
+            </div>
+            {/* Phone number */}
+            <div className={styles.phone}>
+              <h3>Phone Number</h3>
+              <p>123456789</p>
             </div>
           </div>
         </div>
