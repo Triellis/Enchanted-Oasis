@@ -66,8 +66,15 @@
   margin-top: 1em;
   transition: all 0.3s ease;
 }
-.botBar:active {
-  transform: scale(0.9);
+.clicky {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
 }
 
 /* CSS for the modal */
