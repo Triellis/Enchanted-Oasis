@@ -4,7 +4,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { AdminNotificationCol, MySession, UserCol } from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { ObjectId, UpdateFilter } from "mongodb";
-
+import { markAsSeen } from "./seen";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -16,6 +16,8 @@ export default async function handler(
   }
   if (req.method === "DELETE") {
     return DELETE(req, res, session);
+  } else if (req.method === "GET") {
+    return GET(req, res, session);
   } else {
     return res.status(405).send("Method not allowed");
   }
@@ -63,4 +65,38 @@ async function DELETE(
       );
   }
   return res.status(200).json("Notification deleted successfully");
+}
+
+async function GET(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: MySession
+) {
+  let projection;
+  if (session?.user.role === "Admin") {
+    projection = {
+      seenBy: 0,
+    };
+  } else {
+    projection = {
+      seenBy: 0,
+      seenByCount: 0,
+    };
+  }
+
+  const { userUpdate, noficUpdate, notifDoc } = await markAsSeen(req, session);
+
+  if (!notifDoc) {
+    return res.status(404).send("Notification does not exists");
+  }
+
+  if (!userUpdate.acknowledged || !noficUpdate.acknowledged) {
+    return res.status(500).json("Something went while marking as seen");
+  }
+
+  for (let k of Object.keys(projection)) {
+    delete notifDoc[k as keyof AdminNotificationCol];
+  }
+
+  return res.status(200).json(notifDoc);
 }

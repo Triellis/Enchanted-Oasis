@@ -21,11 +21,7 @@ export default async function handler(
   }
 }
 
-async function PATCH(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  session: MySession
-) {
+export async function markAsSeen(req: NextApiRequest, session: MySession) {
   const userId = new ObjectId(session!.user.id);
   const notificationId = req.query.notificationId as string;
   const db = (await clientPromise).db("enchanted-oasis");
@@ -34,9 +30,6 @@ async function PATCH(
   const notifDoc = await notificationCollection.findOne({
     _id: new ObjectId(notificationId),
   });
-  if (!notifDoc) {
-    return res.status(404).json("Notification not found");
-  }
 
   const usersCollection = db.collection<UserCol>("Users");
   const userUpdate = await usersCollection.updateOne(
@@ -66,7 +59,18 @@ async function PATCH(
     }
   );
 
-  if (!userUpdate.acknowledged || !noficUpdate.acknowledged) {
+  return { userUpdate, noficUpdate, notifDoc };
+}
+
+async function PATCH(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: MySession
+) {
+  const { userUpdate, noficUpdate, notifDoc } = await markAsSeen(req, session);
+  if (!notifDoc) {
+    return res.status(404).send("Notification not found");
+  } else if (!userUpdate.acknowledged || !noficUpdate.acknowledged) {
     return res.status(500).json("Something went wrong");
   }
 
