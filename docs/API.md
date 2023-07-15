@@ -1179,7 +1179,7 @@ type Notification = {
 ```typescript
 {
 
-	"totalViews":number
+	"seenByCount":number
 }
 ```
 
