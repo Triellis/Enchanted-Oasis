@@ -21,9 +21,11 @@ import {
   Search2Icon,
   MoonIcon,
 } from "@chakra-ui/icons";
+import styles from "./Nav.module.css";
+
+import Link from "next/link";
 
 import React from "react";
-import styles from "./Nav.module.css";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 
@@ -61,12 +63,14 @@ function Nav({ onToggle }: { onToggle: () => void }) {
             boxSize={""}
             borderRadius={"var(--rounded-box)"}
           >
-            <MenuItem className={styles.menuItem}>Download</MenuItem>
+            <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
+              <MenuItem className={styles.menuItem}>My Profile</MenuItem>
+            </Link>
             <MenuItem className={styles.menuItem}>Create a Copy</MenuItem>
             <MenuItem className={styles.menuItem}>Mark as Draft</MenuItem>
             <MenuItem className={styles.menuItem}>Delete</MenuItem>
             <MenuItem
-              className={styles.menuItem}
+              className={styles.menuOut}
               onClick={() => signOut()}
               color={"rgb(255,69,0)"}
             >

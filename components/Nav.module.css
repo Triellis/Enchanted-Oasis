@@ -58,12 +58,21 @@
   border-radius: 0.8em;
   background-color: hsl(var(--b1)) !important;
 }
-
 .menuItem:hover {
   background-color: hsl(var(--p)) !important;
   color: hsl(var(--pc));
 }
-.menuItem:hover:nth-last-child(1) {
+
+.menuOut{
+  padding: 0.8em !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+  border-radius: 0.8em;
+  background-color: hsl(var(--b1)) !important;
+}
+.menuOut:hover{
   background-color: rgb(255, 69, 0) !important;
   color: white;
 }
