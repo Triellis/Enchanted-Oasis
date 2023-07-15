@@ -66,7 +66,7 @@ export default function NewUserModal({
   const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"];
 
   // for the name of the profile picture
-  const [imageName, setImageName] = useState("");
+  const [imageName, setImageName] = useState("No Image Selected");
 
   return (
     <Modal
@@ -179,8 +179,8 @@ export default function NewUserModal({
                       if (e.target.files![0]) {
                         setImageName(e.target.files![0].name);
                       } else {
-                        setImageName("");
-                      } 
+                        setImageName("No Image Selected");
+                      }
                     }}
                   />
                   <label
