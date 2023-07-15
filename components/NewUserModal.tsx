@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -67,22 +67,23 @@ export default function NewUserModal({
 
   // for the name of the profile picture
   const [imageName, setImageName] = useState("No Image Selected");
-
+  useEffect(() => {
+    setImageName("No Image Selected");
+    setNewUserData({
+      name: "",
+      email: "",
+      password: "",
+      rollNumber: "",
+      phone: "",
+      role: "Student",
+      profilePicture: null,
+      house: "", // Add the missing property here
+    });
+  }, [isOpen]);
   return (
     <Modal
       isOpen={isOpen}
-      onClose={() => {
-        setNewUserData({
-          name: "",
-          email: "",
-          password: "",
-          rollNumber: "",
-          phone: "",
-          role: "Student",
-          profilePicture: null,
-          house: "", // Add the missing property here
-        });
-      }}
+      onClose={onClose}
       // responsive:
       size={{ sm: "2xl", base: "xs", lg: "3xl" }}
     >
