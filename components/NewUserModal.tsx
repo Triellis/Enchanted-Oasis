@@ -23,6 +23,7 @@ import {
 
 import styles from "./NewUserModal.module.css";
 import { Role, SentUserDataFromClient } from "@/lib/types";
+import { profile } from "console";
 
 interface NewUserModalProps {
   isOpen: boolean;
@@ -63,6 +64,10 @@ export default function NewUserModal({
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const toast = useToast();
   const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"];
+
+  // for the name of the profile picture
+  const [imageName, setImageName] = useState("");
+
   return (
     <Modal
       isOpen={isOpen}
@@ -162,13 +167,28 @@ export default function NewUserModal({
                 <form className={styles.picIn}>
                   <input
                     type="file"
+                    id="myFileInput"
+                    className={styles.customFileInput}
+                    // event listener
                     onChange={(e) => {
                       setNewUserData({
                         ...newUserData,
                         profilePicture: e.target.files![0],
                       });
+
+                      if (e.target.files![0]) {
+                        setImageName(e.target.files![0].name);
+                      } else {
+                        setImageName("");
+                      } 
                     }}
                   />
+                  <label
+                    htmlFor="myFileInput"
+                    className={styles.customFileLabel}
+                  >
+                    {imageName}
+                  </label>
                 </form>
               </FormControl>
             </GridItem>
