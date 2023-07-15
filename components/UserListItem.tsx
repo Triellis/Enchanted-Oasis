@@ -13,6 +13,15 @@ import {
   useToast,
   Text,
   IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
+  Portal,
 } from "@chakra-ui/react";
 import { ReceivedUserDataOnClient } from "../lib/types";
 import classNames from "classnames";
@@ -61,8 +70,8 @@ export default function UserListItem({
     mutate();
   };
 
+  // for dynamic rendering of components as per screen size
   const [isSmall, setIsSmall] = React.useState(false);
-
   React.useEffect(() => {
     window.addEventListener("resize", () => handleResize(setIsSmall));
     handleResize(setIsSmall);
@@ -119,6 +128,10 @@ export default function UserListItem({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
+  const isStudent = userData.role === "Student";
+  const isAdmin = userData.role === "Admin";
+  const isFaculty = userData.role === "Faculty";
+
   return (
     <li className={styles.userListItem}>
       <div className={styles.userInfo}>
@@ -130,14 +143,59 @@ export default function UserListItem({
         {/* remaining components which changes visibility as per screen size */}
         {componentToRender}
 
-        {/* Info button */}
-        <IconButton
-          isRound
-          variant="outline"
-          aria-label="Call Sage"
-          icon={<InfoOutlineIcon />}
-          className={classNames(styles.editButton, styles.btnGroup)}
-        />
+        {/* Info button with popOver */}
+        <Popover placement="auto-end">
+          {/* Trigger -> info button */}
+          <PopoverTrigger>
+            <IconButton
+              isRound
+              variant="outline"
+              aria-label="Call Sage"
+              icon={<InfoOutlineIcon />}
+              className={classNames(styles.editButton, styles.btnGroup)}
+            />
+          </PopoverTrigger>
+
+          {/* Content */}
+          <Portal>
+            <PopoverContent className={styles.popMain}>
+              <PopoverBody className={styles.popContent}>
+                {/* first half */}
+                <div className={styles.popPic}>
+                  <Avatar src={userData.profilePicture} size="2xl" />
+                </div>
+
+                {/* second half */}
+                <div className={styles.popInfo}>
+                  {/* Roll number (only visible to students) */}
+                  {isStudent && (
+                    <>
+                      <span className={styles.popLabel}>Roll:</span>
+                      <span className={styles.popValue}>
+                        {userData.rollNumber}
+                      </span>
+                    </>
+                  )}
+
+                  {/* House (not visible to admins) */}
+                  {!isAdmin && (
+                    <>
+                      <span className={styles.popLabel}>House:</span>
+                      <span className={styles.popValue}>{userData.house}</span>
+                    </>
+                  )}
+
+                  {/* Phone */}
+                  <span className={styles.popLabel}>Phone:</span>
+                  <span className={styles.popValue}>{userData.phone}</span>
+                </div>
+              </PopoverBody>
+              <PopoverFooter className={styles.popFoot}>
+                <Button className={styles.popEdit}>Edit User</Button>
+              </PopoverFooter>
+            </PopoverContent>
+          </Portal>
+        </Popover>
 
         {/* Edit IconButton */}
         <IconButton
