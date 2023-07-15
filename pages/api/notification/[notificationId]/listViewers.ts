@@ -8,7 +8,7 @@ import {
   userProjection,
 } from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
-import { ObjectId, UpdateFilter } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(
   req: NextApiRequest,
