@@ -457,11 +457,27 @@ type Faculty = {
 
 ## Houses
 
+### Get House
+
+- **URL:** `/api/house/{id}`
+- **Method:** `GET`
+- **Permissions:** `Admin` | `Faculty` | `Student`
+
+#### Response
+
+```typescript
+{
+  _id: ObjectID;
+  name: string;
+  points: number;
+}
+```
+
 ### list Houses
 
 - **URL:** `/api/house/list`
 - **Method:** `GET`
-- **Permissions:** `Admin` | `Faculty`
+- **Permissions:** `Admin` | `Faculty` | `Student`
 
 #### Response
 

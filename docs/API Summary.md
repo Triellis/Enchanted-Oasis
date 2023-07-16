@@ -2,14 +2,14 @@
 
 - [Index](#index)
 - [Api Routes Summary](#api-routes-summary)
-  - [Results](#results)
-  - [Courses](#courses)
-  - [Houses](#houses)
-  - [User](#user)
-  - [Course Notifications](#course-notifications)
-  - [Course Materials](#course-materials)
-  - [Admin Notifications](#admin-notifications)
-  - [Lectures](#lectures)
+	- [Results](#results)
+	- [Courses](#courses)
+	- [Houses](#houses)
+	- [User](#user)
+	- [Course Notifications](#course-notifications)
+	- [Course Materials](#course-materials)
+	- [Admin Notifications](#admin-notifications)
+	- [Lectures](#lectures)
 
 # Api Routes Summary
 
@@ -59,6 +59,7 @@
 | Edit House        | PUT    | `/api/house/{id}`                   |
 | Delete House      | DELETE | `/api/house/{id}`                   |
 | Create house      | POST   | `/api/house`                        |
+| Get House         | GET    | `/api/house/{id}`                   |
 
 ## User
 
