@@ -1,4 +1,4 @@
-import { Button, Image } from "@chakra-ui/react";
+import { Button, Image, useToast } from "@chakra-ui/react";
 import styles from "./HousePage.module.css";
 import Layout from "../../../Layout";
 import { useRouter } from "next/router";
@@ -36,7 +36,46 @@ function useHouse(id: string) {
   };
 }
 
-function HousePlate({ house }: { house: HouseCol }) {
+async function changePoints(
+  mode: "Increase" | "Decrease",
+  id: string,
+  toast: any,
+  mutateHouse: any
+) {
+  const res = await fetch(
+    `http://localhost:3000/api/house/${id}/${mode.toLowerCase()}`,
+    {
+      method: "POST",
+    }
+  );
+  if (res.ok) {
+    toast({
+      title: `Points ${mode}d`,
+      description: `Points ${mode}d by 1`,
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    mutateHouse();
+  } else {
+    toast({
+      title: "Error",
+      description: await res.text(),
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+}
+
+function HousePlate({
+  house,
+  mutateHouse,
+}: {
+  house: HouseCol;
+  mutateHouse: any;
+}) {
+  const toast = useToast();
   return (
     <div className={styles.housePlate}>
       <span
@@ -51,8 +90,20 @@ function HousePlate({ house }: { house: HouseCol }) {
           <span className={styles.housePoints}>{house.points}</span>
         </div>
         <span className={styles.editHouseButtons}>
-          <Button>+</Button>
-          <Button>-</Button>
+          <Button
+            onClick={() =>
+              changePoints("Increase", house._id.toString(), toast, mutateHouse)
+            }
+          >
+            +
+          </Button>
+          <Button
+            onClick={() =>
+              changePoints("Decrease", house._id.toString(), toast, mutateHouse)
+            }
+          >
+            -
+          </Button>
           <Button>Edit</Button>
         </span>
       </div>
@@ -98,7 +149,9 @@ function HousePage() {
 
         {/* Remaining contnet beside it */}
         <div className={styles.wrapper}>
-          {!isHouseLoading && <HousePlate house={house} />}
+          {!isHouseLoading && (
+            <HousePlate mutateHouse={mutateHouse} house={house} />
+          )}
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
