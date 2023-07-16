@@ -172,17 +172,16 @@ export default function Users() {
           {/* Adding new users */}
         </div>
 
-        <div className={styles.addUserButton}>
-          <Button
-            className={styles.btn}
-            onClick={() => {
-              onOpen();
-              setOverlay(<OverlayOne />);
-            }}
-          >
-            <AddIcon className={styles.icon} />
-          </Button>
-        </div>
+        <button
+          className={styles.addUserButton}
+          onClick={() => {
+            onOpen();
+            setOverlay(<OverlayOne />);
+          }}
+        >
+          <AddIcon className={styles.icon} />
+          Add{" "}
+        </button>
 
         {/* Modal window to add new users */}
         <NewUserModal
