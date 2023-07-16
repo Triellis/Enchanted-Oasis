@@ -1,0 +1,31 @@
+@media (max-width: 768px) {
+  div.tableHeader {
+    display: none;
+  }
+}
+
+.tableHeader {
+  display: grid;
+  width: 100%;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid hsl(var(--n));
+  align-items: center;
+  padding-inline: 5px;
+  gap: 10px;
+  background-color: hsl(var(--b2));
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 20%);
+  grid-template-columns: 0.1fr 1fr 0.05fr 0.05fr;
+}
+
+.tableHeadersMain {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 2fr 1fr 1fr 0.8fr;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 5px;
+}
+.tableHeader > span {
+  width: 100%;
+}
