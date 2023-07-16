@@ -195,6 +195,8 @@ export default function EditUserModal({
         </ModalBody>
 
         <ModalFooter className={styles.modalFooter}>
+          <Button onClick={onEditModalClose}>Discard Changes</Button>
+
           <Button
             className={styles.modalAdd}
             onClick={async () => {
@@ -234,7 +236,7 @@ export default function EditUserModal({
               }
             }}
           >
-            Add
+            Save Changes
           </Button>
         </ModalFooter>
       </ModalContent>
