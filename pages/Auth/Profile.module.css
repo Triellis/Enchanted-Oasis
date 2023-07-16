@@ -66,6 +66,26 @@
 .clicky:active {
   transform: scale(0.99);
 }
+
+.editProf {
+  border: hsl(var(--s)) 1px solid !important;
+  color: hsl(var(--s)) !important;
+}
+
+.editProf:hover {
+  background-color: hsl(var(--s)) !important;
+  color: hsl(var(--sc)) !important;
+}
+
+.changePassword {
+  border: hsl(var(--er)) 1px solid !important;
+  color: hsl(var(--er)) !important;
+}
+
+.changePassword:hover {
+  background-color: hsl(var(--er)) !important;
+  color: hsl(var(--erc)) !important;
+}
 .phone > div:nth-child(2),
 .roll > div:nth-child(2),
 .house > div:nth-child(2) {
