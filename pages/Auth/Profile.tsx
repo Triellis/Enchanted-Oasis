@@ -52,7 +52,7 @@ export default function Profile() {
             {/* phone */}
             <div className={styles.phone}>
               <div>Phone Number</div>
-              <Text ml="1">
+              <Text>
                 {" "}
                 <PhoneIcon /> +91 9876543210
               </Text>
@@ -61,7 +61,7 @@ export default function Profile() {
             {/* roll number */}
             <div className={styles.roll}>
               <div>Roll Number</div>
-              <Text ml="1">
+              <Text>
                 {" "}
                 <AtSignIcon /> HG2240041
               </Text>
@@ -70,7 +70,7 @@ export default function Profile() {
             {/* house */}
             <div className={styles.house}>
               <div>House</div>
-              <Text ml="1">
+              <Text>
                 {" "}
                 <ArrowRightIcon />
                 {house}
