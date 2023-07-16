@@ -106,7 +106,7 @@ async function PUT(
 
   const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
-  console.log(userDoc);
+
   delete userDoc["userId"];
   if (userDoc["oldPicture"]) {
     await deleteFile(userDoc["oldPicture"]);
