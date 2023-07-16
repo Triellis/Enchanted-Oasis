@@ -23,11 +23,15 @@ import {
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-import { ReceivedUserDataOnClient } from "../lib/types";
-import classNames from "classnames";
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
+
 import styles from "./UserListItem.module.css";
+import { ReceivedUserDataOnClient } from "../lib/types";
+
+import classNames from "classnames";
 import React from "react";
+
+import EditUserModal from "./EditUserModal";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {
@@ -196,6 +200,8 @@ export default function UserListItem({
                   <span className={styles.popValue}>{userData.phone}</span>
                 </div>
               </PopoverBody>
+
+              {/* Edit user button */}
               <PopoverFooter className={styles.popFoot}>
                 <Button className={styles.popEdit}>Edit User</Button>
               </PopoverFooter>
