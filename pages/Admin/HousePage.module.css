@@ -1,21 +1,175 @@
 .main {
   display: flex;
-  gap: 1em;
-}
-
-.banner {
-  max-height: 600px;
-}
-/* small devices the width is 80px */
-@media (max-width: 480px) {
-  .banner {
-    width: 80px;
   }
-}
 
 .content {
   gap: 1em;
 }
 .content > * {
   width: 100% ;
+}
+
+/* for the entire page: */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+/* for the tabs */
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid hsl(var(--n));
+  padding: 0.4em;
+}
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: calc(min-content + 50px);
+  position: relative; /* Add position relative to create stacking context */
+}
+.tabList {
+  padding-inline: 5px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  position: relative; /* Add position relative to create stacking context */
+  z-index: 1; /* Add z-index to ensure tab items appear above the indicator */
+}
+.tabIndicator {
+  border-radius: 5px;
+  bottom: 1.6em;
+  height: 70%;
+  transition: all 0.3s ease;
+  transform: translateY(70%);
+}
+
+/* for the search bar: */
+.searchBar {
+  display: flex;
+  align-items: center;
+  min-width: 5%;
+  width: 70%;
+  justify-content: center;
+  padding: 0 1em;
+  transition: all 0.3s ease, transform 0.3s ease;
+  margin-top: 5px;
+}
+.searchBar:active {
+  transform: scale(0.99);
+}
+
+/* for the buttons at the end of the page */
+.botBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 1em;
+  transition: all 0.3s ease;
+}
+.clicky {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
+}
+
+/* CSS for the modal */
+.modalFooter {
+  display: flex;
+  gap: 1em;
+  justify-content: center !important;
+}
+.modalFooter > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.quarter {
+  margin-bottom: 10px;
+}
+
+.randh {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  height: 100%;
+}
+
+.picIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  border-radius: 10px;
+  border: 2px dashed hsl(var(--pf));
+}
+.picIn > * {
+  /* center it */
+  margin-left: 80px;
+}
+
+/* for the button to add the user */
+.modalAdd {
+  background-color: hsl(var(--p)) !important;
+  transition: all 0.2s ease-in-out;
+  border-color: transparent !important;
+}
+.modalAdd:hover {
+  background-color: hsl(var(--pf)) !important;
+}
+.modalAdd:active {
+  transform: scale(0.98);
+}
+@media (max-width: 768px) {
+  div.tableHeader {
+    display: none;
+  }
+}
+
+.tableHeader {
+  display: grid;
+  width: 100%;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid hsl(var(--n));
+  align-items: center;
+  padding-inline: 5px;
+  gap: 10px;
+  background-color: hsl(var(--b2));
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 20%);
+  grid-template-columns: 0.1fr 1fr 0.05fr 0.05fr;
+}
+
+.tableHeadersMain {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 2fr 1fr 1fr 0.8fr;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 5px;
+}
+.tableHeader > span {
+  width: 100%;
 }

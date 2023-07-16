@@ -6,13 +6,26 @@ interface TabsComponentProps {
   role: string;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setRole: React.Dispatch<React.SetStateAction<string>>;
+  isHousePage?: boolean;
 }
 
 export default function TabsComponent({
   setPage,
   setRole,
   role,
+  isHousePage,
 }: TabsComponentProps) {
+  const [visibleTabs, setVisibleTabs] = useState(isHousePage);
+
+  const tabs = [
+    { label: "All", role: "All" },
+    { label: "Student", role: "Student" },
+    { label: "Faculty", role: "Faculty" },
+    { label: "Admin", role: "Admin" },
+  ];
+
+  const filteredTabs = visibleTabs ? tabs.slice(0, 3) : tabs;
+
   return (
     <Tabs
       className={styles.tabGrp}
@@ -20,24 +33,14 @@ export default function TabsComponent({
       variant="unstyled"
       defaultIndex={0}
       onChange={(index) => {
-        console.log(role);
-        if (index === 0) {
-          setRole("All");
-        } else if (index === 1) {
-          setRole("Student");
-        } else if (index === 2) {
-          setRole("Faculty");
-        } else if (index === 3) {
-          setRole("Admin");
-        }
-        setPage(1); // Set the page state to 1 on click
+        setRole(filteredTabs[index].role);
+        setPage(1);
       }}
     >
       <TabList className={styles.tabList}>
-        <Tab>All</Tab>
-        <Tab>Student</Tab>
-        <Tab>Faculty</Tab>
-        <Tab>Admin</Tab>
+        {filteredTabs.map((tab, index) => (
+          <Tab key={index}>{tab.label}</Tab>
+        ))}
         <TabIndicator
           zIndex={-1}
           className={styles.tabIndicator}
