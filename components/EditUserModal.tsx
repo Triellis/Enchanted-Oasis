@@ -63,7 +63,6 @@ export default function EditUserModal({
   // for the overlay
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const toast = useToast();
-  const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"];
 
   // for the name of the profile picture
   const [imageName, setImageName] = useState("No Image Selected");
@@ -110,55 +109,6 @@ export default function EditUserModal({
                       })
                     }
                   />
-                </div>
-
-                {/* Role and House */}
-                <div className={styles.randh}>
-                  <FormLabel>Role</FormLabel>
-                  <RadioGroup defaultValue="Student">
-                    <Stack>
-                      {["Student", "Faculty", "Admin"].map((role) => (
-                        <Radio
-                          key={role}
-                          value={role}
-                          onChange={(e) =>
-                            setNewUserData({
-                              ...newUserData,
-                              role: e.target.value as Role,
-                            })
-                          }
-                        >
-                          {role}
-                        </Radio>
-                      ))}
-                    </Stack>
-                  </RadioGroup>
-
-                  {/* divider */}
-                  <Center height={"140px"}>
-                    <Divider orientation="vertical" />
-                  </Center>
-
-                  {/* House */}
-                  <FormLabel>House</FormLabel>
-                  <RadioGroup>
-                    <Stack>
-                      {houses.map((house) => (
-                        <Radio
-                          key={house}
-                          value={house}
-                          onChange={(e) =>
-                            setNewUserData({
-                              ...newUserData,
-                              house: e.target.value,
-                            })
-                          }
-                        >
-                          {house}
-                        </Radio>
-                      ))}
-                    </Stack>
-                  </RadioGroup>
                 </div>
               </FormControl>
             </GridItem>

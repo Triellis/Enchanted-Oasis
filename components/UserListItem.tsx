@@ -222,6 +222,7 @@ export default function UserListItem({
           }}
         />
 
+        {/* Delete user confirmation modal */}
         <Modal
           isCentered
           isOpen={isOpen}
@@ -249,6 +250,9 @@ export default function UserListItem({
             </ModalFooter>
           </ModalContent>
         </Modal>
+
+        {/* Edit user modal */}
+        
       </div>
     </li>
   );
