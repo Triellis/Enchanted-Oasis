@@ -6,7 +6,6 @@
   justify-content: center;
   gap: 0.3em;
 }
-
 /* for the tabs */
 .tabGrp {
   background-color: hsl(var(--b3));
@@ -65,16 +64,6 @@
   gap: 1em;
   margin-top: 1em;
   transition: all 0.3s ease;
-}
-.clicky {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.clicky:hover {
-  transform: scale(1.1);
-}
-.clicky:active {
-  transform: scale(0.99);
 }
 
 /* CSS for the modal */
@@ -161,4 +150,21 @@
 }
 .tableHeader > span {
   width: 100%;
+}
+
+.addUserButton {
+  position: fixed;
+  bottom: 15px;
+  right: 25px;
+  padding: 10px;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  
+}
+.addUserButton:hover {
+  transform: scale(1.1);
+}
+.addUserButton:active {
+  transform: scale(0.99);
 }

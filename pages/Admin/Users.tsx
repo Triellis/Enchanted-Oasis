@@ -11,7 +11,7 @@ import {
   useToast,
   Input,
 } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
+import { AddIcon, Search2Icon } from "@chakra-ui/icons";
 
 import useSWR from "swr";
 import {
@@ -169,6 +169,9 @@ export default function Users() {
         <div className={styles.botBar}>
           <Pagination page={page} setPage={setPage} users={users} />
           {/* Adding new users */}
+        </div>
+
+        <div className={styles.addUserButton}>
           <Button
             className={styles.clicky}
             onClick={() => {
@@ -176,7 +179,9 @@ export default function Users() {
               setOverlay(<OverlayOne />);
             }}
           >
-            Add
+            <span>
+              <AddIcon />
+            </span>
           </Button>
         </div>
 
