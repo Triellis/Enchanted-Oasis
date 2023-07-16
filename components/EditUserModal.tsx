@@ -21,16 +21,17 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import styles from "./NewUserModal.module.css";
-import { Role, SentUserDataFromClient } from "@/lib/types";
+import styles from "./EditUserModal.module.css";
+import { SentUserDataFromClient } from "@/lib/types";
 import { profile } from "console";
 
-interface NewUserModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface EditUserModalProps {
+  isEditModalOpen: boolean;
+  onEditModalClose: () => void;
   mutate: () => void;
   newUserData: SentUserDataFromClient;
   setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
+  editMode: boolean;
 }
 
 function OverlayOne() {
@@ -53,37 +54,37 @@ async function postUser(newUserData: SentUserDataFromClient) {
   return res;
 }
 
-export default function NewUserModal({
-  isOpen,
-  onClose,
+export default function EditUserModal({
+  isEditModalOpen,
+  onEditModalClose,
   mutate,
   newUserData,
   setNewUserData,
-}: NewUserModalProps) {
+  editMode,
+}: EditUserModalProps) {
   // for the overlay
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const toast = useToast();
-  const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"];
 
   // for the name of the profile picture
   const [imageName, setImageName] = useState("No Image Selected");
   useEffect(() => {
     setImageName("No Image Selected");
     setNewUserData({
-      name: "",
-      email: "",
+      name: newUserData.name,
+      email: newUserData.email,
       password: "",
-      rollNumber: "",
-      phone: "",
-      role: "Student",
+      rollNumber: newUserData.rollNumber,
+      phone: newUserData.phone,
+      role: newUserData.role,
       profilePicture: null,
-      house: "", // Add the missing property here
+      house: newUserData.house, // Add the missing property here
     });
-  }, [isOpen]);
+  }, [isEditModalOpen]);
   return (
     <Modal
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={isEditModalOpen}
+      onClose={onEditModalClose}
       scrollBehavior="inside"
       // responsive:
       size={{ sm: "2xl", base: "xs", lg: "3xl" }}
@@ -92,7 +93,7 @@ export default function NewUserModal({
       {overlay}
       <ModalContent bg={"hsl(var(--b1))"}>
         <ModalHeader>Create new user</ModalHeader>
-        <ModalCloseButton onClick={onClose} />
+        <ModalCloseButton onClick={onEditModalClose} />
         <ModalBody className={styles.modalBody}>
           <SimpleGrid columns={{ base: 1, lg: 4 }} gap={4}>
             <GridItem colSpan={2}>
@@ -112,53 +113,33 @@ export default function NewUserModal({
                   />
                 </div>
 
-                {/* Role and House */}
-                <div className={styles.randh}>
-                  <FormLabel>Role</FormLabel>
-                  <RadioGroup defaultValue="Student">
-                    <Stack>
-                      {["Student", "Faculty", "Admin"].map((role) => (
-                        <Radio
-                          key={role}
-                          value={role}
-                          onChange={(e) =>
-                            setNewUserData({
-                              ...newUserData,
-                              role: e.target.value as Role,
-                            })
-                          }
-                        >
-                          {role}
-                        </Radio>
-                      ))}
-                    </Stack>
-                  </RadioGroup>
+                {/* Phone Number */}
+                <div className={styles.quarter}>
+                  <FormLabel>Phone</FormLabel>
+                  <Input
+                    type="number"
+                    value={newUserData.phone}
+                    onChange={(e) => {
+                      setNewUserData({
+                        ...newUserData,
+                        phone: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
 
-                  {/* divider */}
-                  <Center height={"140px"}>
-                    <Divider orientation="vertical" />
-                  </Center>
-
-                  {/* House */}
-                  <FormLabel>House</FormLabel>
-                  <RadioGroup>
-                    <Stack>
-                      {houses.map((house) => (
-                        <Radio
-                          key={house}
-                          value={house}
-                          onChange={(e) =>
-                            setNewUserData({
-                              ...newUserData,
-                              house: e.target.value,
-                            })
-                          }
-                        >
-                          {house}
-                        </Radio>
-                      ))}
-                    </Stack>
-                  </RadioGroup>
+                <div className={styles.quarter}>
+                  <FormLabel>Email address</FormLabel>
+                  <Input
+                    type="email"
+                    value={newUserData.email}
+                    onChange={(e) =>
+                      setNewUserData({
+                        ...newUserData,
+                        email: e.target.value,
+                      })
+                    }
+                  />
                 </div>
               </FormControl>
             </GridItem>
@@ -175,6 +156,7 @@ export default function NewUserModal({
                   </label>
                   <input
                     type="file"
+                    // value={newUserData.profilePicture}
                     id="myFileInput"
                     className={styles.customFileInput}
                     // event listener
@@ -196,22 +178,11 @@ export default function NewUserModal({
             </GridItem>
             <GridItem className={styles.quarThree} colSpan={2}>
               <div className={styles.quarter}>
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="email"
-                  onChange={(e) =>
-                    setNewUserData({
-                      ...newUserData,
-                      email: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className={styles.quarter}>
                 {/* Password */}
-                <FormLabel>Password</FormLabel>
+                <FormLabel>New password</FormLabel>
                 <Input
                   type="password"
+                  value={newUserData.password}
                   onChange={(e) => {
                     setNewUserData({
                       ...newUserData,
@@ -222,39 +193,14 @@ export default function NewUserModal({
               </div>
             </GridItem>
             <GridItem colSpan={2}>
-              <FormControl>
-                <div className={styles.quarter}>
-                  <FormLabel>Roll Number</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        rollNumber: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-
-                {/* Phone Number */}
-                <div className={styles.quarter}>
-                  <FormLabel>Phone</FormLabel>
-                  <Input
-                    type="number"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        phone: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-              </FormControl>
+              <FormControl>{/* temporary */}</FormControl>
             </GridItem>
           </SimpleGrid>
         </ModalBody>
 
         <ModalFooter className={styles.modalFooter}>
+          <Button onClick={onEditModalClose}>Discard Changes</Button>
+
           <Button
             className={styles.modalAdd}
             onClick={async () => {
@@ -282,7 +228,7 @@ export default function NewUserModal({
                   isClosable: true,
                 });
                 mutate();
-                onClose();
+                onEditModalClose();
               } else {
                 toast({
                   title: "User creation failed",
@@ -294,7 +240,7 @@ export default function NewUserModal({
               }
             }}
           >
-            Add
+            Save Changes
           </Button>
         </ModalFooter>
       </ModalContent>
