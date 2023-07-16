@@ -91,11 +91,10 @@ function HousePage() {
     <Layout>
       <div className={styles.main}>
         {/* Banner in the start */}
-        <div>
+        <div className={styles.banner}>
           <Image
             src={`/assets/image/Banners/${banner}.png`}
             alt="Gryffindor"
-            className={styles.banner}
           />
         </div>
 
