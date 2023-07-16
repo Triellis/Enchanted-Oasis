@@ -27,11 +27,11 @@ export default function Profile() {
             {/* profile */}
             <Avatar
               src="https://bit.ly/sage-adebayo"
-              size={{ base: "lg", md: "xl", lg: "2xl" }}
+              size={{ base: "xl", lg: "2xl" }}
             />
 
             {/* information */}
-            <Box ml="1">
+            <div className={styles.prime}>
               <Text fontWeight="bold" className={styles.name}>
                 Segun Adebayo
                 <Badge colorScheme="teal" className={styles.role}>
@@ -41,7 +41,11 @@ export default function Profile() {
               <Text className={styles.email} fontWeight="light">
                 student@gmail.com
               </Text>
-            </Box>
+            </div>
+
+            <div className={styles.edit}>
+              <Button variant="outline" >Edit Profile</Button>
+            </div>
           </div>
 
           <Divider />
