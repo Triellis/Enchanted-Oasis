@@ -45,3 +45,14 @@ html,
   /* min-height: min-content; */
   height: 100%;
 }
+
+.clicky {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
+}

@@ -58,7 +58,7 @@ function Loading() {
           <div className={styles.edit}>
             <Button
               variant="outline"
-              className={classNames(styles.clicky, styles.editProf)}
+              className={classNames("clicky", styles.editProf)}
             >
               Edit Profile
             </Button>
@@ -106,7 +106,7 @@ function Loading() {
             </div>
           </div>
           <Button
-            className={classNames(styles.clicky, styles.changePassword)}
+            className={classNames("clicky", styles.changePassword)}
             variant={"outline"}
           >
             Change Password
@@ -144,7 +144,7 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
         <div className={styles.edit}>
           <Button
             variant="outline"
-            className={classNames(styles.clicky, styles.editProf)}
+            className={classNames("clicky", styles.editProf)}
           >
             Edit Profile
           </Button>
@@ -184,7 +184,7 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
           </Text>
         </div>
         <Button
-          className={classNames(styles.clicky, styles.changePassword)}
+          className={classNames("clicky", styles.changePassword)}
           variant={"outline"}
         >
           Change Password

@@ -170,7 +170,7 @@ export default function Users() {
           <Pagination page={page} setPage={setPage} users={users} />
           {/* Adding new users */}
           <Button
-            className={styles.clicky}
+            className={"clicky"}
             onClick={() => {
               onOpen();
               setOverlay(<OverlayOne />);

@@ -14,7 +14,7 @@ export default function Pagination({ page, setPage, users }: Props) {
   return (
     <div className={styles.page}>
       <Button
-        className={styles.clicky}
+        className="clicky"
         onClick={() => {
           if (page > 1) setPage(page - 1);
         }}
@@ -23,7 +23,7 @@ export default function Pagination({ page, setPage, users }: Props) {
       </Button>
       <span>{page}</span>
       <Button
-        className={styles.clicky}
+        className="clicky"
         onClick={() => {
           if (users.length == 10) setPage(page + 1);
         }}

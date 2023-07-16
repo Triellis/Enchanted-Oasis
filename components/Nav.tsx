@@ -54,7 +54,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
       <div className={styles.endGroup}>
         {/* Avatar */}
         <Menu>
-          <MenuButton className={styles.clicky}>
+          <MenuButton className="clicky">
             <Avatar src={session.data?.user?.image!} />
           </MenuButton>
           <MenuList

@@ -35,20 +35,6 @@
   justify-content: flex-end;
 }
 
-.clicky {
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-.clicky:active {
-  transform: scale(0.9);
-}
-.clickyMode {
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-.clickyMode:active {
-  transform: scale(1.2);
-}
 .menuItem {
   padding: 0.8em !important;
   display: flex;
@@ -63,7 +49,7 @@
   color: hsl(var(--pc));
 }
 
-.menuOut{
+.menuOut {
   padding: 0.8em !important;
   display: flex;
   align-items: center;
@@ -72,7 +58,7 @@
   border-radius: 0.8em;
   background-color: hsl(var(--b1)) !important;
 }
-.menuOut:hover{
+.menuOut:hover {
   background-color: rgb(255, 69, 0) !important;
   color: white;
 }
