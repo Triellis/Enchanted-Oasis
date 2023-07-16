@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 import styles from "./EditUserModal.module.css";
-import { Role, SentUserDataFromClient } from "@/lib/types";
+import { SentUserDataFromClient } from "@/lib/types";
 import { profile } from "console";
 
 interface EditUserModalProps {
@@ -173,19 +173,6 @@ export default function EditUserModal({
             </GridItem>
             <GridItem colSpan={2}>
               <FormControl>
-                <div className={styles.quarter}>
-                  <FormLabel>Roll Number</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        rollNumber: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-
                 {/* Phone Number */}
                 <div className={styles.quarter}>
                   <FormLabel>Phone</FormLabel>
