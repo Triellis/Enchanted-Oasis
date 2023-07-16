@@ -163,7 +163,7 @@
   right: 3em;
   padding: 1em;
   bottom: 2em;
-  transition: width 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
   width: 5em;
   text-overflow: ellipsis;
   white-space: nowrap;

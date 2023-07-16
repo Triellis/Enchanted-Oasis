@@ -38,16 +38,23 @@ function OverlayOne() {
   return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
 }
 
-async function postUser(newUserData: SentUserDataFromClient) {
+async function editUser(newUserData: SentUserDataFromClient) {
   const formData = new FormData();
+  console.log(newUserData);
+
+  //allowed entries are name, profile picture, phone and password only:
+  const allowedEntries = ["name", "phone", "password", "profilePicture"];
+
+  // the key should only conisder those entries which are not empty and allowed
   for (const key in newUserData) {
-    // @ts-ignore
-    formData.append(key, newUserData[key]);
+    if (allowedEntries.includes(key) && newUserData[key] !== "") {
+      // @ts-ignore
+      formData.append(key, newUserData[key]);
+    }
   }
 
   const res = await fetch("/api/user", {
-    method: "POST",
-
+    method: "PUT",
     body: formData,
   });
 
@@ -81,8 +88,10 @@ export default function EditUserModal({
       house: newUserData.house, // Add the missing property here
     });
   }, [isEditModalOpen]);
+
   return (
     <Modal
+      isCentered
       isOpen={isEditModalOpen}
       onClose={onEditModalClose}
       scrollBehavior="inside"
@@ -129,16 +138,17 @@ export default function EditUserModal({
                 </div>
 
                 <div className={styles.quarter}>
-                  <FormLabel>Email address</FormLabel>
+                  {/* Password */}
+                  <FormLabel>New password</FormLabel>
                   <Input
-                    type="email"
-                    value={newUserData.email}
-                    onChange={(e) =>
+                    type="password"
+                    value={newUserData.password}
+                    onChange={(e) => {
                       setNewUserData({
                         ...newUserData,
-                        email: e.target.value,
-                      })
-                    }
+                        password: e.target.value,
+                      });
+                    }}
                   />
                 </div>
               </FormControl>
@@ -176,25 +186,6 @@ export default function EditUserModal({
                 </form>
               </FormControl>
             </GridItem>
-            <GridItem className={styles.quarThree} colSpan={2}>
-              <div className={styles.quarter}>
-                {/* Password */}
-                <FormLabel>New password</FormLabel>
-                <Input
-                  type="password"
-                  value={newUserData.password}
-                  onChange={(e) => {
-                    setNewUserData({
-                      ...newUserData,
-                      password: e.target.value,
-                    });
-                  }}
-                />
-              </div>
-            </GridItem>
-            <GridItem colSpan={2}>
-              <FormControl>{/* temporary */}</FormControl>
-            </GridItem>
           </SimpleGrid>
         </ModalBody>
 
@@ -205,20 +196,20 @@ export default function EditUserModal({
             className={styles.modalAdd}
             onClick={async () => {
               // validation logic:
-              for (let field of Object.keys(newUserData)) {
-                if (!(newUserData as any)[field]) {
-                  toast({
-                    title: `${field} field empty`,
-                    description: `Please enter a ${field}`,
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                  });
-                  return;
-                }
-              }
+              // for (let field of Object.keys(newUserData)) {
+              //   if (!(newUserData as any)[field]) {
+              //     toast({
+              //       title: `${field} field empty`,
+              //       description: `Please enter a ${field}`,
+              //       status: "error",
+              //       duration: 5000,
+              //       isClosable: true,
+              //     });
+              //     return;
+              //   }
+              // }
 
-              const res = await postUser(newUserData);
+              const res = await editUser(newUserData);
               if (res.status == 200) {
                 toast({
                   title: "User created",
