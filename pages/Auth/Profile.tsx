@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./Profile.module.css";
 import Layout from "../Layout";
@@ -10,11 +10,24 @@ import {
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
   Stack,
   Text,
+  UseToastOptions,
+  useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { AtSignIcon, PhoneIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { fetcher, getRoleColor } from "@/lib/functions";
@@ -117,7 +130,137 @@ function Loading() {
   );
 }
 
+async function changePassPost(
+  oldPassword: string,
+  newPassword: string,
+  confirmPassword: string,
+  onClose: () => void,
+  toast: any
+) {
+  if (newPassword !== confirmPassword) {
+    toast({
+      title: "Passwords do not match",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+    return;
+  }
+
+  const res = await fetch("/api/user/password", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      oldPassword,
+      newPassword,
+    }),
+  });
+  if (!res.ok) {
+    toast({
+      title: "Error",
+      description: "Wrong password",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  } else {
+    toast({
+      title: "Password changed",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    onClose();
+  }
+}
+
+function ChangePasswordModal({
+  isOpen,
+  onOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+}) {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const toast = useToast();
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size={"sm"}>
+      <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
+      <ModalContent
+        style={{
+          backgroundColor: "hsl(var(--b2))",
+        }}
+      >
+        <ModalHeader>Change Password</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <FormControl>
+            <FormLabel>Old Password</FormLabel>
+            <Input
+              type="password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>New Password</FormLabel>
+            <Input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Confirm Password</FormLabel>
+            <Input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </FormControl>
+        </ModalBody>
+
+        <ModalFooter>
+          <Button
+            colorScheme="blue"
+            mr={3}
+            style={{
+              backgroundColor: "hsl(var(--s))",
+              color: "hsl(var(--sc))",
+            }}
+            onClick={() =>
+              changePassPost(
+                oldPassword,
+                newPassword,
+                confirmPassword,
+                onClose,
+                toast
+              )
+            }
+          >
+            Change
+          </Button>
+          <Button variant="ghost" onClick={onClose}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
+  const {
+    isOpen: isChangePassOpen,
+    onOpen: onOpenChangePass,
+    onClose: onCloseChangePass,
+  } = useDisclosure();
   return (
     <div className={styles.container}>
       {/* header with profile photo, name, email, role */}
@@ -186,9 +329,15 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
         <Button
           className={classNames("clicky", styles.changePassword)}
           variant={"outline"}
+          onClick={onOpenChangePass}
         >
           Change Password
         </Button>
+        <ChangePasswordModal
+          isOpen={isChangePassOpen}
+          onOpen={onOpenChangePass}
+          onClose={onCloseChangePass}
+        />
       </div>
     </div>
   );
