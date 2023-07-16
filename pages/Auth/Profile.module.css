@@ -78,7 +78,7 @@
   transform: scale(0.99);
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 768px) {
   .header {
     display: flex;
     flex-direction: column;
