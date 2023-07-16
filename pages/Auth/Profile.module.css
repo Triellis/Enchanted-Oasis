@@ -19,6 +19,8 @@
   flex-direction: row;
   align-items: center;
   gap: 0.4em;
+  justify-content: center;
+  gap: 0.4em;
 }
 .edit {
   display: flex;
@@ -28,6 +30,7 @@
 .email {
   font-size: 1.2em;
   transition: all 0.3s ease;
+  margin: 0.3em 0;
 }
 .role {
   font-size: 0.5em !important ;
@@ -42,42 +45,36 @@
   transition: all 0.3s ease;
   margin: 1em;
 }
-.phone {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.roll {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.house {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 .phone,
 .roll,
 .house {
   font-size: 1.2em;
   transition: all 0.3s ease;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .clicky {
-  color: hsl(var(--s)) !important;
-  border: 1px solid hsl(var(--s)) !important;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .clicky:hover {
-  background-color: hsl(var(--s)) !important;
-  color: hsl(var(--c)) !important;
   transform: scale(1.1);
 }
 .clicky:active {
   transform: scale(0.99);
 }
-
+.phone > div:nth-child(2),
+.roll > div:nth-child(2),
+.house > div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
 @media screen and (max-width: 768px) {
   .header {
     display: flex;
