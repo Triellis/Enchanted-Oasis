@@ -118,6 +118,7 @@ export default function EditUserModal({
                   <FormLabel>Phone</FormLabel>
                   <Input
                     type="number"
+                    value={newUserData.phone}
                     onChange={(e) => {
                       setNewUserData({
                         ...newUserData,
@@ -131,6 +132,7 @@ export default function EditUserModal({
                   <FormLabel>Email address</FormLabel>
                   <Input
                     type="email"
+                    value={newUserData.email}
                     onChange={(e) =>
                       setNewUserData({
                         ...newUserData,
@@ -154,6 +156,7 @@ export default function EditUserModal({
                   </label>
                   <input
                     type="file"
+                    // value={newUserData.profilePicture}
                     id="myFileInput"
                     className={styles.customFileInput}
                     // event listener
@@ -179,6 +182,7 @@ export default function EditUserModal({
                 <FormLabel>New password</FormLabel>
                 <Input
                   type="password"
+                  value={newUserData.password}
                   onChange={(e) => {
                     setNewUserData({
                       ...newUserData,
