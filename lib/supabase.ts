@@ -19,7 +19,7 @@ export async function getFileUrl(
   const fileData = await file.readFile();
   originalFilename = originalFilename.replace(/ /g, "_");
   //   console.log(formData.files.file[0].originalFilename);
-  //   //@ts-ignore
+  //@ts-ignore
   //   console.log(formData?.files.file[0].filepath);
   const { data: uploadData, error } = await supabase.storage
     .from(bucketName)
