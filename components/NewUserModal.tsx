@@ -84,6 +84,7 @@ export default function NewUserModal({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      scrollBehavior="inside"
       // responsive:
       size={{ sm: "2xl", base: "xs", lg: "3xl" }}
     >
