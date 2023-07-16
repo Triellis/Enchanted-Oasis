@@ -15,6 +15,10 @@
   font-size: 2em;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4em;
 }
 .email {
   font-size: 1.2em;
@@ -69,6 +73,7 @@
     flex-direction: row;
     align-items: center;
     font-size: 1em;
+    gap: 1em;
     transition: all 0.3s ease;
   }
   .email {
@@ -93,5 +98,4 @@
     font-size: 1em;
     transition: all 0.3s ease;
   }
-  
 }
