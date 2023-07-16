@@ -1,5 +1,5 @@
 import { Collection, MongoClient } from "mongodb";
-import { UserCol } from "./types";
+import { Role, UserCol } from "./types";
 import md5 from "md5";
 
 export async function validateLogin(
@@ -44,3 +44,15 @@ export function capitalizeFirstLetter(s: string) {
 
 // @ts-ignore
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export function getRoleColor(role: Role) {
+  let roleColor = "gray";
+  if (role === "Student") {
+    roleColor = "blue";
+  } else if (role === "Admin") {
+    roleColor = "red";
+  } else if (role === "Faculty") {
+    roleColor = "green";
+  }
+  return roleColor;
+}
