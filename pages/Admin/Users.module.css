@@ -140,7 +140,6 @@
   border: 1px solid hsl(var(--pc) / 20%);
   grid-template-columns: 0.1fr 1fr 0.05fr 0.05fr;
 }
-
 .tableHeadersMain {
   display: grid;
   grid-template-columns: 2fr 0.8fr 2fr 1fr 1fr 0.8fr;
@@ -160,8 +159,7 @@
   padding: 1em;
   position: fixed;
   z-index: 1;
-  right: 3em;
-  padding: 1em;
+  right: 1.5em;
   bottom: 2em;
   transition: all 200ms ease-in-out;
   width: 5em;
@@ -191,5 +189,5 @@
   transition: all 0.3s ease-in-out;
 }
 .addUserButton:hover .icon {
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
