@@ -28,6 +28,7 @@ import classNames from "classnames";
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import styles from "./UserListItem.module.css";
 import React from "react";
+import { getRoleColor } from "@/lib/functions";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {
@@ -81,22 +82,16 @@ export default function UserListItem({
     };
   }, []);
 
-  let roleColor = "gray";
-  if (userData.role === "Student") {
-    roleColor = "blue";
-  } else if (userData.role === "Admin") {
-    roleColor = "red";
-  } else if (userData.role === "Faculty") {
-    roleColor = "green";
-  }
-
   let componentToRender;
   if (isSmall) {
     componentToRender = (
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={roleColor} className={styles.roleLabel}>
+          <Badge
+            colorScheme={getRoleColor(userData.role)}
+            className={styles.roleLabel}
+          >
             {userData.role}
           </Badge>
         </span>
@@ -108,7 +103,10 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={roleColor} className={styles.roleLabel}>
+          <Badge
+            colorScheme={getRoleColor(userData.role)}
+            className={styles.roleLabel}
+          >
             {userData.role}
           </Badge>
         </span>
