@@ -1,0 +1,221 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.3em;
+}
+.banner {
+  margin-inline: auto;
+  flex: 1;
+}
+.wrapper {
+  flex: 8;
+  margin-left: 1em;
+  grid-column: 3 / span 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    display: none;
+  }
+
+  .wrapper {
+    grid-column: 1 / span 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3em;
+  }
+}
+
+/* for the tabs */
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid hsl(var(--n));
+  padding: 0.4em;
+}
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: calc(min-content + 50px);
+  position: relative; /* Add position relative to create stacking context */
+}
+.tabList {
+  padding-inline: 5px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  position: relative; /* Add position relative to create stacking context */
+  z-index: 1; /* Add z-index to ensure tab items appear above the indicator */
+}
+.tabIndicator {
+  border-radius: 5px;
+  bottom: 1.6em;
+  height: 70%;
+  transition: all 0.3s ease;
+  transform: translateY(70%);
+}
+
+/* for the search bar: */
+.searchBar {
+  display: flex;
+  align-items: center;
+  min-width: 5%;
+  width: 70%;
+  justify-content: center;
+  padding: 0 1em;
+  transition: all 0.3s ease, transform 0.3s ease;
+  margin-top: 5px;
+}
+.searchBar:active {
+  transform: scale(0.99);
+}
+
+/* for the buttons at the end of the page */
+.botBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 1em;
+  transition: all 0.3s ease;
+}
+.clicky {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
+}
+
+/* CSS for the modal */
+.modalFooter {
+  display: flex;
+  gap: 1em;
+  justify-content: center !important;
+}
+.modalFooter > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.quarter {
+  margin-bottom: 10px;
+}
+
+.randh {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  height: 100%;
+}
+
+.picIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  border-radius: 10px;
+  border: 2px dashed hsl(var(--pf));
+}
+.picIn > * {
+  /* center it */
+  margin-left: 80px;
+}
+
+/* for the button to add the user */
+.modalAdd {
+  background-color: hsl(var(--p)) !important;
+  transition: all 0.2s ease-in-out;
+  border-color: transparent !important;
+}
+.modalAdd:hover {
+  background-color: hsl(var(--pf)) !important;
+}
+.modalAdd:active {
+  transform: scale(0.98);
+}
+.scoreBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.3em;
+  transition: all 0.2s ease-in-out;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid black;
+  padding: 2em;
+  border-radius: 1em;
+
+  backdrop-filter: blur(10px);
+}
+
+.houseImage {
+  background-size: cover;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: -1;
+  filter: brightness(70%);
+}
+
+.editHouseButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: none;
+  gap: 1em;
+
+  width: 100%;
+}
+
+.editHouseButtons > button {
+  background-color: hsl(var(--p));
+}
+
+.houseName {
+  font-size: 2em;
+}
+
+.housePoints {
+  font-size: 2em;
+}
+
+.boardContent {
+  gap: 1em;
+  display: flex;
+}
+.housePlate {
+  position: relative;
+  width: 100%;
+  border-radius: 1em;
+  overflow: hidden;
+  padding: 2em;
+}
