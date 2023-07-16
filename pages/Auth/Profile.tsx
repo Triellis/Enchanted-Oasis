@@ -3,7 +3,16 @@ import React from "react";
 
 import styles from "./Profile.module.css";
 import Layout from "../Layout";
-import { Avatar, Badge, Button, Divider } from "@chakra-ui/react";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Text,
+} from "@chakra-ui/react";
+import { AtSignIcon, PhoneIcon, ArrowRightIcon } from "@chakra-ui/icons";
 
 export default function Profile() {
   const isAdmin = false;
@@ -13,56 +22,59 @@ export default function Profile() {
     <>
       <Layout>
         <div className={styles.container}>
-          {/* show house banner if user is not admin */}
-          {!isAdmin && (
-            <div className={styles.banner}>
-              <Image
-                className={styles.houseB}
-                src="/assets/image/Banners/Gb.png"
-                alt="Gryffindor"
-                width={160}
-                height={0}
-              />
-            </div>
-          )}
+          {/* header with profile photo, name, email, role */}
+          <div className={styles.header}>
+            {/* profile */}
+            <Avatar
+              src="https://bit.ly/sage-adebayo"
+              size={{ base: "lg", md: "xl", lg: "2xl" }}
+            />
 
-          <div className={styles.content}>
-            {/* Profile picture */}
-
-            <div>
-              <div className={styles.avatar}>
-                <Avatar size={{ sm: "xl", base: "lg", lg: "2xl" }} />
-              </div>
-              <div className={styles.primaryInfo}>
-                {/* Name */}
-                <div className={styles.name}>
-                  <h1>John Doe</h1>
-                </div>
-                {/* Email */}
-                <div className={styles.email}>
-                  <h2>johndoe@gmail.com</h2>
-                </div>
-                {/* Role */}
-                <div className={styles.role}>
-                  <Badge colorScheme="teal" className={styles.badge}>
-                    Student
-                  </Badge>
-                </div>
-              </div>
-            </div>
+            {/* information */}
+            <Box ml="1">
+              <Text fontWeight="bold" className={styles.name}>
+                Segun Adebayo
+                <Badge colorScheme="teal" className={styles.role}>
+                  Student
+                </Badge>
+              </Text>
+              <Text className={styles.email} fontWeight="light">
+                student@gmail.com
+              </Text>
+            </Box>
           </div>
 
-          {/* other information */}
-          <div className={styles.otherInfo}>
-            {/* Roll number */}
-            <div className={styles.roll}>
-              <h3>Roll Number</h3>
-              <p>123456789</p>
-            </div>
-            {/* Phone number */}
+          <Divider />
+
+          {/* footer with phone, roll number, house */}
+          <div className={styles.footer}>
+            {/* no images only labels and text */}
+            {/* phone */}
             <div className={styles.phone}>
-              <h3>Phone Number</h3>
-              <p>123456789</p>
+              <div>Phone Number</div>
+              <Text ml="1">
+                {" "}
+                <PhoneIcon /> +91 9876543210
+              </Text>
+            </div>
+
+            {/* roll number */}
+            <div className={styles.roll}>
+              <div>Roll Number</div>
+              <Text ml="1">
+                {" "}
+                <AtSignIcon /> HG2240041
+              </Text>
+            </div>
+
+            {/* house */}
+            <div className={styles.house}>
+              <div>House</div>
+              <Text ml="1">
+                {" "}
+                <ArrowRightIcon />
+                {house}
+              </Text>
             </div>
           </div>
         </div>

@@ -1,63 +1,96 @@
 .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 0.5em;
   transition: all 0.3s ease;
 }
 
-.banner {
-  flex: 0.6;
-}
-@media (max-width: 767px) {
-  .banner {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-  }
-}
-.houseB {
-  width: 100%;
-  object-fit: fill;
-  margin-top: 0.3em;
-}
-
-.content {
-  flex: 4;
+/* header having a flex direction of row: */
+.header {
   display: flex;
   flex-direction: row;
-}
-@media screen and (max-width: 767px) {
-  .content {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.primaryInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 1em;
-}
-.avatar {
-  margin-left: 1em;
+  align-items: center;
+  gap: 1em;
+  transition: all 0.3s ease;
+  margin: 1em;
 }
 .name {
   font-size: 2em;
-  font-weight: bold;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 .email {
-  font-size: 1.5em;
+  font-size: 1.2em;
+  transition: all 0.3s ease;
 }
 .role {
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
+  font-size: 0.5em !important ;
+  border-radius: 0.5em !important;
 }
 
-.otherInfo {
-  flex: 1;
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: all 0.3s ease;
+  margin: 1em;
+}
+.phone {
   display: flex;
   flex-direction: column;
-  margin-left: 1em;
+  align-items: center;
+}
+.roll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.house {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.phone,
+.roll,
+.house {
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    transition: all 0.3s ease;
+    margin: 1em;
+  }
+  .name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1em;
+    transition: all 0.3s ease;
+  }
+  .email {
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+  }
+  .role {
+    font-size: 0.6em !important;
+    border-radius: 0.5em !important;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    transition: all 0.3s ease;
+    margin: 1em;
+  }
+  .phone,
+  .roll,
+  .house {
+    font-size: 1em;
+    transition: all 0.3s ease;
+  }
 }
