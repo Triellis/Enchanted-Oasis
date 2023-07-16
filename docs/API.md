@@ -809,6 +809,7 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -991,6 +992,7 @@ type Material = {
   date: Date;
   attachments: string[]; // array of attachment urls (stored in firebase storage)
   creatorId: string; // id of the user who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -1055,6 +1057,7 @@ type Material = {
   date: Date;
   attachments: string[]; // array of attachment urls (stored in firebase storage)
   creatorId: string; // id of the user who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -1072,6 +1075,7 @@ type Material = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"unreadOnly":boolean // show unread only if true
 }
 ```
 
@@ -1081,7 +1085,7 @@ type Material = {
 
 {
 	"notifications":Notification[],
-	"totalNotifications":number
+
 }
 
 ```
@@ -1096,6 +1100,8 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
+  creatorName: string; // name of the user who created this notification
+  unseen: boolean; // true if the notification is unseen by the user
 };
 ```
 
@@ -1112,7 +1118,8 @@ type Notification = {
   title: string;
   body: string; // supports markdown
   badgeText: string; // badge text
-  badgeColor: string; // badge color
+  badgeColor: string; // badge color in hex code (eg: #ffffff)
+  audience: "All" | "Faculty" | "Student";
 }
 ```
 
@@ -1126,7 +1133,7 @@ type Notification = {
 
 #### Response will be status code
 
-### Update notification
+### ~~Update notification~~
 
 - **URL:** `/api/notification/{notificationId}`
 - **Method:** `PUT`
@@ -1140,6 +1147,7 @@ type Notification = {
   body: string; // supports markdown
   badgeText: string; // badge text
   badgeColor: string; // badge color
+  audience: "All" | "Faculty" | "Student";
 }
 ```
 
@@ -1163,6 +1171,7 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
+  creatorName: string; // name of the user who created this notification
 };
 ```
 
@@ -1177,7 +1186,7 @@ type Notification = {
 ```typescript
 {
 
-	"totalViews":number
+	"seenByCount":number
 }
 ```
 
@@ -1227,7 +1236,7 @@ type User = {
 ```typescript
 
 {
-	"unseenNotifications":number
+	"unseenNotificationsCount":number
 }
 
 ```

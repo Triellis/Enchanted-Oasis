@@ -84,7 +84,7 @@ async function PUT(
     ? formData.fields.userId[0]
     : session.user.id;
   const allowedFields = ["phone", "profilePicture"];
-  if (session.user.role === "admin") {
+  if (session.user.role === "Admin") {
     allowedFields.push("name");
   }
   const userDoc: {
