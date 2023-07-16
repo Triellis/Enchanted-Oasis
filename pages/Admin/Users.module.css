@@ -169,7 +169,8 @@
   white-space: nowrap;
   line-height: 1em;
   overflow: hidden;
-  background-color: hsl(var(--s));
+  background-color: hsl(var(--s) / 50%);
+  backdrop-filter: blur(5px);
   border-radius: 0.8em;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);
