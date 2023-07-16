@@ -29,6 +29,7 @@ import NewUserModal from "@/components/NewUserModal";
 import TabsComponent from "@/components/TabsComponent";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
+import classNames from "classnames";
 
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -173,15 +174,13 @@ export default function Users() {
 
         <div className={styles.addUserButton}>
           <Button
-            className={styles.clicky}
+            className={styles.btn}
             onClick={() => {
               onOpen();
               setOverlay(<OverlayOne />);
             }}
           >
-            <span>
-              <AddIcon />
-            </span>
+            <AddIcon className={styles.icon} />
           </Button>
         </div>
 

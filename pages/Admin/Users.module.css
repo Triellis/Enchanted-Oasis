@@ -153,18 +153,36 @@
 }
 
 .addUserButton {
-  position: fixed;
-  bottom: 15px;
-  right: 25px;
-  padding: 10px;
-  z-index: 1;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: none;
   cursor: pointer;
-  
-}
-.addUserButton:hover {
-  transform: scale(1.1);
+  position: fixed;
+  z-index: 1;
+  right: 15px;
+  bottom: 5px;
+  transition: all 0.3s ease-in-out;
 }
 .addUserButton:active {
-  transform: scale(0.99);
+  scale: 0.9;
+}
+.icon {
+  display: inline-block;
+  position: relative;
+  margin-right: 8px;
+  transition: all 0.3s ease-in-out;
+}
+.addUserButton:hover .icon {
+  transform: rotate(90deg);
+}
+.btn {
+  background-color: hsl(var(--b2));
+  transition: all 0.3s ease-in-out;
+}
+.btn::after {
+  content: "Add";
+}
+.btn:hover::after {
+  content: "Add New User";
 }
