@@ -160,3 +160,6 @@
 .popEdit:active {
   transform: scale(0.9);
 }
+.profilePic {
+  border: 2px solid hsl(var(--n)) !important;
+}
