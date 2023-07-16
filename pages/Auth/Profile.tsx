@@ -199,7 +199,7 @@ function ChangePasswordModal({
       >
         <ModalHeader>Change Password</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
+        <ModalBody className={styles.cpModal} >
           <FormControl>
             <FormLabel>Old Password</FormLabel>
             <Input
@@ -226,9 +226,8 @@ function ChangePasswordModal({
           </FormControl>
         </ModalBody>
 
-        <ModalFooter>
+        <ModalFooter className={styles.cpModalFooter} >
           <Button
-            colorScheme="blue"
             mr={3}
             style={{
               backgroundColor: "hsl(var(--s))",
@@ -246,7 +245,7 @@ function ChangePasswordModal({
           >
             Change
           </Button>
-          <Button variant="ghost" onClick={onClose}>
+          <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
         </ModalFooter>
