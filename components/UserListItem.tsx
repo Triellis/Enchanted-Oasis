@@ -14,22 +14,19 @@ import {
   Text,
   IconButton,
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
   PopoverFooter,
-  PopoverHeader,
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 
 import styles from "./UserListItem.module.css";
-import { ReceivedUserDataOnClient } from "../lib/types";
+import { ReceivedUserDataOnClient, SentUserDataFromClient } from "../lib/types";
 
 import classNames from "classnames";
-import React from "react";
+import React, { useState } from "react";
 
 import EditUserModal from "./EditUserModal";
 
@@ -49,6 +46,17 @@ export default function UserListItem({
   mutate: () => void;
 }) {
   const toast = useToast();
+
+  const [newUserData, setNewUserData] = useState<SentUserDataFromClient>({
+    name: userData.name,
+    email: userData.email,
+    role: userData.role,
+    house: userData.house,
+    password: "",
+    phone: userData.phone,
+    profilePicture: null,
+    rollNumber: userData.rollNumber,
+  });
 
   const handleDelete = async () => {
     const res = await fetch(`/api/user?userId=${userData._id}`, {
@@ -130,6 +138,12 @@ export default function UserListItem({
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isEditModalOpen,
+    onOpen: onEditModalOpen,
+    onClose: onEditModalClose,
+  } = useDisclosure();
+
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
   const isStudent = userData.role === "Student";
@@ -203,8 +217,19 @@ export default function UserListItem({
 
               {/* Edit user button */}
               <PopoverFooter className={styles.popFoot}>
-                <Button className={styles.popEdit}>Edit User</Button>
+                <Button
+                  className={styles.popEdit}
+                  // calls edit user modal
+                  onClick={() => {
+                    setOverlay(<OverlayOne />);
+                    onEditModalOpen();
+                  }}
+                >
+                  Edit User
+                </Button>
               </PopoverFooter>
+
+              {/* edit user modal to be called: */}
             </PopoverContent>
           </Portal>
         </Popover>
@@ -252,7 +277,14 @@ export default function UserListItem({
         </Modal>
 
         {/* Edit user modal */}
-        
+        <EditUserModal
+          isEditModalOpen={isEditModalOpen}
+          onEditModalClose={onEditModalClose}
+          mutate={mutate}
+          newUserData={newUserData}
+          setNewUserData={setNewUserData}
+          editMode={true}
+        />
       </div>
     </li>
   );

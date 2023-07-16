@@ -26,11 +26,12 @@ import { SentUserDataFromClient } from "@/lib/types";
 import { profile } from "console";
 
 interface EditUserModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isEditModalOpen: boolean;
+  onEditModalClose: () => void;
   mutate: () => void;
   newUserData: SentUserDataFromClient;
   setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
+  editMode: boolean;
 }
 
 function OverlayOne() {
@@ -54,11 +55,12 @@ async function postUser(newUserData: SentUserDataFromClient) {
 }
 
 export default function EditUserModal({
-  isOpen,
-  onClose,
+  isEditModalOpen,
+  onEditModalClose,
   mutate,
   newUserData,
   setNewUserData,
+  editMode,
 }: EditUserModalProps) {
   // for the overlay
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
@@ -69,20 +71,20 @@ export default function EditUserModal({
   useEffect(() => {
     setImageName("No Image Selected");
     setNewUserData({
-      name: "",
-      email: "",
+      name: newUserData.name,
+      email: newUserData.email,
       password: "",
-      rollNumber: "",
-      phone: "",
-      role: "Student",
+      rollNumber: newUserData.rollNumber,
+      phone: newUserData.phone,
+      role: newUserData.role,
       profilePicture: null,
-      house: "", // Add the missing property here
+      house: newUserData.house, // Add the missing property here
     });
-  }, [isOpen]);
+  }, [isEditModalOpen]);
   return (
     <Modal
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={isEditModalOpen}
+      onClose={onEditModalClose}
       scrollBehavior="inside"
       // responsive:
       size={{ sm: "2xl", base: "xs", lg: "3xl" }}
@@ -91,7 +93,7 @@ export default function EditUserModal({
       {overlay}
       <ModalContent bg={"hsl(var(--b1))"}>
         <ModalHeader>Create new user</ModalHeader>
-        <ModalCloseButton onClick={onClose} />
+        <ModalCloseButton onClick={onEditModalClose} />
         <ModalBody className={styles.modalBody}>
           <SimpleGrid columns={{ base: 1, lg: 4 }} gap={4}>
             <GridItem colSpan={2}>
@@ -106,6 +108,33 @@ export default function EditUserModal({
                       setNewUserData({
                         ...newUserData,
                         name: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+
+                {/* Phone Number */}
+                <div className={styles.quarter}>
+                  <FormLabel>Phone</FormLabel>
+                  <Input
+                    type="number"
+                    onChange={(e) => {
+                      setNewUserData({
+                        ...newUserData,
+                        phone: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+
+                <div className={styles.quarter}>
+                  <FormLabel>Email address</FormLabel>
+                  <Input
+                    type="email"
+                    onChange={(e) =>
+                      setNewUserData({
+                        ...newUserData,
+                        email: e.target.value,
                       })
                     }
                   />
@@ -146,20 +175,8 @@ export default function EditUserModal({
             </GridItem>
             <GridItem className={styles.quarThree} colSpan={2}>
               <div className={styles.quarter}>
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="email"
-                  onChange={(e) =>
-                    setNewUserData({
-                      ...newUserData,
-                      email: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className={styles.quarter}>
                 {/* Password */}
-                <FormLabel>Password</FormLabel>
+                <FormLabel>New password</FormLabel>
                 <Input
                   type="password"
                   onChange={(e) => {
@@ -172,21 +189,7 @@ export default function EditUserModal({
               </div>
             </GridItem>
             <GridItem colSpan={2}>
-              <FormControl>
-                {/* Phone Number */}
-                <div className={styles.quarter}>
-                  <FormLabel>Phone</FormLabel>
-                  <Input
-                    type="number"
-                    onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        phone: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-              </FormControl>
+              <FormControl>{/* temporary */}</FormControl>
             </GridItem>
           </SimpleGrid>
         </ModalBody>
@@ -219,7 +222,7 @@ export default function EditUserModal({
                   isClosable: true,
                 });
                 mutate();
-                onClose();
+                onEditModalClose();
               } else {
                 toast({
                   title: "User creation failed",
