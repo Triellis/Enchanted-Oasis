@@ -14,20 +14,21 @@ import {
   Text,
   IconButton,
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
   PopoverFooter,
-  PopoverHeader,
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-import { ReceivedUserDataOnClient } from "../lib/types";
-import classNames from "classnames";
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
+
 import styles from "./UserListItem.module.css";
-import React from "react";
+import { ReceivedUserDataOnClient, SentUserDataFromClient } from "../lib/types";
+
+import classNames from "classnames";
+import React, { useState } from "react";
+
+import EditUserModal from "./EditUserModal";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {
@@ -126,6 +127,12 @@ export default function UserListItem({
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isEditModalOpen,
+    onOpen: onEditModalOpen,
+    onClose: onEditModalClose,
+  } = useDisclosure();
+
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
   const isStudent = userData.role === "Student";
@@ -196,9 +203,22 @@ export default function UserListItem({
                   <span className={styles.popValue}>{userData.phone}</span>
                 </div>
               </PopoverBody>
+
+              {/* Edit user button */}
               <PopoverFooter className={styles.popFoot}>
-                <Button className={styles.popEdit}>Edit User</Button>
+                <Button
+                  className={styles.popEdit}
+                  // calls edit user modal
+                  onClick={() => {
+                    setOverlay(<OverlayOne />);
+                    onEditModalOpen();
+                  }}
+                >
+                  Edit User
+                </Button>
               </PopoverFooter>
+
+              {/* edit user modal to be called: */}
             </PopoverContent>
           </Portal>
         </Popover>
@@ -216,6 +236,7 @@ export default function UserListItem({
           }}
         />
 
+        {/* Delete user confirmation modal */}
         <Modal
           isCentered
           isOpen={isOpen}
@@ -243,6 +264,15 @@ export default function UserListItem({
             </ModalFooter>
           </ModalContent>
         </Modal>
+
+        {/* Edit user modal */}
+        <EditUserModal
+          isEditModalOpen={isEditModalOpen}
+          onEditModalClose={onEditModalClose}
+          mutate={mutate}
+          userData={userData}
+          editMode={true}
+        />
       </div>
     </li>
   );

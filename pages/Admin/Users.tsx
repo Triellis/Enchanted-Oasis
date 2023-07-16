@@ -11,7 +11,7 @@ import {
   useToast,
   Input,
 } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
+import { AddIcon, Search2Icon } from "@chakra-ui/icons";
 
 import useSWR from "swr";
 import {
@@ -29,6 +29,7 @@ import NewUserModal from "@/components/NewUserModal";
 import TabsComponent from "@/components/TabsComponent";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
+import classNames from "classnames";
 
 function useSearch(searchQuery: string, role: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -169,16 +170,18 @@ export default function Users() {
         <div className={styles.botBar}>
           <Pagination page={page} setPage={setPage} users={users} />
           {/* Adding new users */}
-          <Button
-            className={styles.clicky}
-            onClick={() => {
-              onOpen();
-              setOverlay(<OverlayOne />);
-            }}
-          >
-            Add
-          </Button>
         </div>
+
+        <button
+          className={styles.addUserButton}
+          onClick={() => {
+            onOpen();
+            setOverlay(<OverlayOne />);
+          }}
+        >
+          <AddIcon className={styles.icon} />
+          Add{" "}
+        </button>
 
         {/* Modal window to add new users */}
         <NewUserModal
