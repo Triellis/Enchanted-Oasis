@@ -44,7 +44,9 @@ export default function Profile() {
             </div>
 
             <div className={styles.edit}>
-              <Button variant="outline" >Edit Profile</Button>
+              <Button variant="outline" className={styles.clicky}>
+                Edit Profile
+              </Button>
             </div>
           </div>
 

@@ -63,6 +63,20 @@
   font-size: 1.2em;
   transition: all 0.3s ease;
 }
+.clicky {
+  color: hsl(var(--s)) !important;
+  border: 1px solid hsl(var(--s)) !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  background-color: hsl(var(--s)) !important;
+  color: hsl(var(--c)) !important;
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
+}
 
 @media screen and (max-width: 430px) {
   .header {
