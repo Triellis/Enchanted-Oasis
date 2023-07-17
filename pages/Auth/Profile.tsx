@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./Profile.module.css";
 import Layout from "../Layout";
@@ -9,7 +8,6 @@ import {
   Box,
   Button,
   Divider,
-  Flex,
   FormControl,
   FormLabel,
   Input,
@@ -24,16 +22,8 @@ import {
   ModalOverlay,
   Skeleton,
   SkeletonCircle,
-  SkeletonText,
-  Stack,
-  Tab,
-  TabIndicator,
-  TabList,
-  TabPanel,
-  TabPanels,
   Tabs,
   Text,
-  UseToastOptions,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -203,6 +193,13 @@ function ChangePasswordModal({
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    setOldPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+  }, [isOpen]);
+
   const toast = useToast();
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"sm"} isCentered>
@@ -309,6 +306,12 @@ function EditProfileModal({
     phone: user.phone,
     profilePicture: null,
   });
+  useEffect(() => {
+    setNewUserData({
+      phone: user.phone,
+      profilePicture: null,
+    });
+  }, [isOpen]);
 
   const toast = useToast();
   // for the profile picture:
