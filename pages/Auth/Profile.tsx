@@ -199,8 +199,8 @@ function ChangePasswordModal({
       >
         <ModalHeader>Change Password</ModalHeader>
         <ModalCloseButton />
-        <ModalBody className={styles.cpModal} >
-          <FormControl> 
+        <ModalBody className={styles.modal}>
+          <FormControl>
             <FormLabel>Old Password</FormLabel>
             <Input
               type="password"
@@ -226,9 +226,8 @@ function ChangePasswordModal({
           </FormControl>
         </ModalBody>
 
-        <ModalFooter className={styles.cpModalFooter} >
+        <ModalFooter className={styles.modalFooter}>
           <Button
-            mr={3}
             style={{
               backgroundColor: "hsl(var(--s))",
               color: "hsl(var(--sc))",
@@ -254,12 +253,63 @@ function ChangePasswordModal({
   );
 }
 
+function EditProfileModal({
+  isOpen,
+  onOpen,
+  onClose,
+  user,
+}: {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  user: ReceivedUserDataOnClient;
+}) {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size={"sm"} isCentered>
+      <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
+      <ModalContent
+        style={{
+          backgroundColor: "hsl(var(--b2))",
+        }}
+      >
+        <ModalHeader>Edit Profile</ModalHeader>
+        <ModalCloseButton />
+
+        {/* contents of the modal */}
+        <ModalBody>hello there</ModalBody>
+
+        {/* footer of the modal */}
+        <ModalFooter className={styles.modalFooter}>
+          <Button
+            style={{
+              backgroundColor: "hsl(var(--s))",
+              color: "hsl(var(--sc))",
+            }}
+          >
+            Save Changes
+          </Button>
+          <Button variant="outline" onClick={onClose}>
+            Close
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
   const {
     isOpen: isChangePassOpen,
     onOpen: onOpenChangePass,
     onClose: onCloseChangePass,
   } = useDisclosure();
+
+  const {
+    isOpen: isEditProfileOpen,
+    onOpen: onOpenEditProfile,
+    onClose: onCloseEditProfile,
+  } = useDisclosure();
+
   return (
     <div className={styles.container}>
       {/* header with profile photo, name, email, role */}
@@ -287,10 +337,18 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
           <Button
             variant="outline"
             className={classNames("clicky", styles.editProf)}
+            onClick={onOpenEditProfile}
           >
             Edit Profile
           </Button>
         </div>
+
+        <EditProfileModal
+          isOpen={isEditProfileOpen}
+          onOpen={onOpenEditProfile}
+          onClose={onCloseEditProfile}
+          user={user}
+        />
       </div>
 
       <Divider />

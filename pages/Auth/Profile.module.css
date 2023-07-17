@@ -126,7 +126,8 @@
   }
 }
 
-.cpModal {
+/* modal styles */
+.modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,12 +139,12 @@
   color: hsl(var(--sc));
   transition: all 0.3s ease;
 }
-.cpModalFooter {
+.modalFooter {
   display: flex;
   align-items: center;
   justify-content: space-evenly !important;
   gap: 1em;
 }
-.cpModalFooter > *{
+.modalFooter > *{
   width: 100%;
 }
