@@ -13,6 +13,8 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -24,6 +26,12 @@ import {
   SkeletonCircle,
   SkeletonText,
   Stack,
+  Tab,
+  TabIndicator,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
   UseToastOptions,
   useDisclosure,
@@ -276,7 +284,37 @@ function EditProfileModal({
         <ModalCloseButton />
 
         {/* contents of the modal */}
-        <ModalBody>hello there</ModalBody>
+        <ModalBody>
+          <Tabs position="relative" variant="unstyled" align="center">
+            <TabList>
+              <Tab>Profile</Tab>
+              <Tab>Phone Number</Tab>
+            </TabList>
+            <TabIndicator
+              mt="-1.5px"
+              height="2px"
+              bg="hsl(var(--s))"
+              borderRadius="1px"
+            />
+            <TabPanels>
+              {/* profile photo */}
+              <TabPanel>
+                <p>one!</p>
+              </TabPanel>
+
+              {/* phone number */}
+              <TabPanel>
+                <FormLabel>New Phone Number</FormLabel>
+                <InputGroup>
+                  <InputLeftElement pointerEvents="none">
+                    <PhoneIcon color="gray.300" />
+                  </InputLeftElement>
+                  <Input value={user.phone} />
+                </InputGroup>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </ModalBody>
 
         {/* footer of the modal */}
         <ModalFooter className={styles.modalFooter}>
