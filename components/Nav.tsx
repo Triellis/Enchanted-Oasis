@@ -12,10 +12,7 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  BellIcon,
-} from "@chakra-ui/icons";
+import { HamburgerIcon, BellIcon } from "@chakra-ui/icons";
 import styles from "./Nav.module.css";
 
 import Link from "next/link";
@@ -45,7 +42,8 @@ function Nav({ onToggle }: { onToggle: () => void }) {
   const session = useSession();
 
   let notificationCountComponent;
-  if (isLoading) {
+  console.log(session.status);
+  if (isLoading || session.status !== "authenticated") {
     notificationCountComponent = "";
   } else {
     const count = Number(unseenNotificationsJson.unseenNotificationsCount);
