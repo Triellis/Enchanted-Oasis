@@ -216,32 +216,13 @@ function EditPointsModal({
             // clampValueOnBlur={false}
             value={points}
             onChange={(e) => {
-              console.log(e);
               setPoints(parseInt(e));
             }}
           >
             <NumberInputField />
             <NumberInputStepper>
-              <NumberIncrementStepper
-                onClick={() =>
-                  changePoints(
-                    "Increase",
-                    house._id.toString(),
-                    toast,
-                    mutateHouse
-                  )
-                }
-              />
-              <NumberDecrementStepper
-                onClick={() =>
-                  changePoints(
-                    "Decrease",
-                    house._id.toString(),
-                    toast,
-                    mutateHouse
-                  )
-                }
-              />
+              <NumberIncrementStepper onClick={() => setPoints((p) => p + 1)} />
+              <NumberDecrementStepper onClick={() => setPoints((p) => p - 1)} />
             </NumberInputStepper>
           </NumberInput>
         </ModalBody>
