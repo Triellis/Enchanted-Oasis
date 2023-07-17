@@ -323,62 +323,43 @@ function EditProfileModal({
 
         {/* contents of the modal */}
         <ModalBody>
-          <Tabs position="relative" variant="unstyled" align="center">
-            <TabList>
-              <Tab>Avatar</Tab>
-              <Tab>Phone Number</Tab>
-            </TabList>
-            <TabIndicator
-              mt="-1.5px"
-              height="2px"
-              bg="hsl(var(--s))"
-              borderRadius="1px"
-            />
-            <TabPanels>
-              {/* profile photo */}
-              <TabPanel>
-                <FormLabel>New Avatar</FormLabel>
-                <form className={styles.picIn}>
-                  <label
-                    htmlFor="myFileInput"
-                    className={styles.customFileLabel}
-                  >
-                    {user.profilePicture}
-                  </label>
-                  <input
-                    type="file"
-                    id="myFileInput"
-                    className={styles.customFileInput}
-                    onChange={(e) =>
-                      setNewUserData({
-                        ...newUserData,
-                        profilePicture: e.target.files![0],
-                      })
-                    }
-                  />
-                </form>
-              </TabPanel>
+          {/* profile photo */}
 
-              {/* phone number */}
-              <TabPanel>
-                <FormLabel>New Phone Number</FormLabel>
-                <InputGroup>
-                  <InputLeftElement pointerEvents="none">
-                    <PhoneIcon />
-                  </InputLeftElement>
-                  <Input
-                    value={newUserData.phone}
-                    onChange={(e) =>
-                      setNewUserData({
-                        ...newUserData,
-                        phone: e.target.value,
-                      })
-                    }
-                  />
-                </InputGroup>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <FormLabel>New Avatar</FormLabel>
+          <form className={styles.picIn}>
+            <label htmlFor="myFileInput" className={styles.customFileLabel}>
+              {user.profilePicture}
+            </label>
+            <input
+              type="file"
+              id="myFileInput"
+              className={styles.customFileInput}
+              onChange={(e) =>
+                setNewUserData({
+                  ...newUserData,
+                  profilePicture: e.target.files![0],
+                })
+              }
+            />
+          </form>
+
+          {/* phone number */}
+
+          <FormLabel>New Phone Number</FormLabel>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <PhoneIcon />
+            </InputLeftElement>
+            <Input
+              value={newUserData.phone}
+              onChange={(e) =>
+                setNewUserData({
+                  ...newUserData,
+                  phone: e.target.value,
+                })
+              }
+            />
+          </InputGroup>
         </ModalBody>
 
         {/* footer of the modal */}
