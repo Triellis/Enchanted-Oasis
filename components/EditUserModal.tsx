@@ -154,7 +154,7 @@ export default function EditUserModal({
             <GridItem colSpan={2}>
               <FormControl>
                 {/* Profile Picture */}
-                <FormLabel>Profile Picture</FormLabel>
+                <FormLabel>Avatar</FormLabel>
                 <form className={styles.picIn}>
                   <label
                     htmlFor="myFileInput"

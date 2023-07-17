@@ -309,7 +309,11 @@ function EditProfileModal({
     phone: user.phone,
     profilePicture: null,
   });
+
   const toast = useToast();
+  // for the profile picture:
+  const [imageName, setImageName] = useState("No Image Selected");
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"sm"} isCentered>
       <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
@@ -319,7 +323,6 @@ function EditProfileModal({
         }}
       >
         <ModalHeader>Edit Profile</ModalHeader>
-        <ModalCloseButton />
 
         {/* contents of the modal */}
         <ModalBody>
@@ -328,24 +331,29 @@ function EditProfileModal({
           <FormLabel>New Avatar</FormLabel>
           <form className={styles.picIn}>
             <label htmlFor="myFileInput" className={styles.customFileLabel}>
-              {user.profilePicture}
+              {imageName}
             </label>
             <input
               type="file"
               id="myFileInput"
               className={styles.customFileInput}
-              onChange={(e) =>
+              onChange={(e) => {
                 setNewUserData({
                   ...newUserData,
                   profilePicture: e.target.files![0],
-                })
-              }
+                });
+
+                if (e.target.files![0]) {
+                  setImageName(e.target.files![0].name);
+                } else {
+                  setImageName("No Image Selected");
+                }
+              }}
             />
           </form>
 
           {/* phone number */}
-
-          <FormLabel>New Phone Number</FormLabel>
+          <FormLabel mt="1.5em" >New Phone Number</FormLabel>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <PhoneIcon />
@@ -394,8 +402,14 @@ function EditProfileModal({
           >
             Save Changes
           </Button>
-          <Button variant="outline" onClick={onClose}>
-            Close
+          <Button
+            variant="outline"
+            onClick={() => {
+              onClose();
+              setImageName("No Image Selected");
+            }}
+          >
+            Discard Changes
           </Button>
         </ModalFooter>
       </ModalContent>
