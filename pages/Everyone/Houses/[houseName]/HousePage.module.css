@@ -168,11 +168,16 @@
   gap: 0.3em;
   transition: all 0.2s ease-in-out;
   box-shadow: -4px 4px 2px hsl(var(--b3));
-  border: 1px solid black;
+  border: 1px solid hsl(var(--n));
   padding: 2em;
   border-radius: 1em;
 
   backdrop-filter: blur(10px);
+}
+
+.scoreBoard:hover {
+  box-shadow: 0px 0px 2px hsl(var(--b3));
+  border: white 1px solid;
 }
 
 .houseImage {
@@ -202,6 +207,10 @@
 
 .houseName {
   font-size: 2em;
+  font-weight: 600;
+  /* letter spacing */
+
+  letter-spacing: -0.1%;
 }
 
 .housePoints {
