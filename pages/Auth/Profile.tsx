@@ -353,7 +353,7 @@ function EditProfileModal({
           </form>
 
           {/* phone number */}
-          <FormLabel mt="1.5em" >New Phone Number</FormLabel>
+          <FormLabel mt="1.5em">New Phone Number</FormLabel>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <PhoneIcon />
@@ -398,6 +398,7 @@ function EditProfileModal({
                   isClosable: true,
                 });
               }
+              setImageName("No Image Selected");
             }}
           >
             Save Changes
