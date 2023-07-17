@@ -7,6 +7,7 @@
   font-size: 1.2rem;
   width: max-content;
   overflow-x: hidden;
+  padding: 3em;
 }
 
 .housePic {
@@ -15,6 +16,7 @@
 }
 .housePic:hover {
   transform: scale(0.99);
+  animation: glow infinite 1s alternate;
 }
 .housePic:active {
   transform: scale(0.97);
@@ -49,3 +51,13 @@
   font-weight: lighter;
   font-family: monospace;
 }
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 0 0 hsl(var(--pc) / 40%);
+  }
+  to {
+    box-shadow: 0 0 0.5em 0.2em hsl(var(--pc) / 40%);
+  }
+}
+

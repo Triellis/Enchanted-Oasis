@@ -16,15 +16,7 @@ function useLeaderboard() {
   };
 }
 
-function HouseCard({
-  house,
-
-  rank,
-}: {
-  house: HouseCol;
-
-  rank: number;
-}) {
+function HouseCard({ house, rank }: { house: HouseCol; rank: number }) {
   return (
     <GridItem>
       <Card className={styles.housePic}>
