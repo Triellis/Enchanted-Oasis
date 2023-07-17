@@ -45,7 +45,7 @@ import {
   CheckCircleIcon,
   SettingsIcon,
 } from "@chakra-ui/icons";
-import { fetcher, getRoleColor } from "@/lib/functions";
+import { editUser, fetcher, getRoleColor } from "@/lib/functions";
 import useSWR from "swr";
 import { ReceivedUserDataOnClient } from "@/lib/types";
 import classNames from "classnames";
@@ -294,12 +294,22 @@ function EditProfileModal({
   onOpen,
   onClose,
   user,
+  mutate,
 }: {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
   user: ReceivedUserDataOnClient;
+  mutate: () => void;
 }) {
+  const [newUserData, setNewUserData] = useState<{
+    phone: string;
+    profilePicture: File | null;
+  }>({
+    phone: user.phone,
+    profilePicture: null,
+  });
+  const toast = useToast();
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"sm"} isCentered>
       <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
@@ -339,19 +349,12 @@ function EditProfileModal({
                     type="file"
                     id="myFileInput"
                     className={styles.customFileInput}
-                    // event listener
-                    // onChange={(e) => {
-                    //   setNewUserData({
-                    //     ...newUserData,
-                    //     profilePicture: e.target.files![0],
-                    //   });
-
-                    //   if (e.target.files![0]) {
-                    //     setImageName(e.target.files![0].name);
-                    //   } else {
-                    //     setImageName("No Image Selected");
-                    //   }
-                    // }}
+                    onChange={(e) =>
+                      setNewUserData({
+                        ...newUserData,
+                        profilePicture: e.target.files![0],
+                      })
+                    }
                   />
                 </form>
               </TabPanel>
@@ -363,7 +366,15 @@ function EditProfileModal({
                   <InputLeftElement pointerEvents="none">
                     <PhoneIcon />
                   </InputLeftElement>
-                  <Input value={user.phone} />
+                  <Input
+                    value={newUserData.phone}
+                    onChange={(e) =>
+                      setNewUserData({
+                        ...newUserData,
+                        phone: e.target.value,
+                      })
+                    }
+                  />
                 </InputGroup>
               </TabPanel>
             </TabPanels>
@@ -377,6 +388,28 @@ function EditProfileModal({
               backgroundColor: "hsl(var(--s))",
               color: "hsl(var(--sc))",
             }}
+            onClick={async () => {
+              const res = editUser(newUserData as any);
+              if ((await res).ok) {
+                toast({
+                  title: "Profile Updated",
+                  description: "Your profile has been updated successfully",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                });
+                mutate();
+                onClose();
+              } else {
+                toast({
+                  title: "Error",
+                  description: "An error occured while updating your profile",
+                  status: "error",
+                  duration: 3000,
+                  isClosable: true,
+                });
+              }
+            }}
           >
             Save Changes
           </Button>
@@ -389,7 +422,13 @@ function EditProfileModal({
   );
 }
 
-function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
+function ProfileComponent({
+  user,
+  mutate,
+}: {
+  user: ReceivedUserDataOnClient;
+  mutate: any;
+}) {
   const {
     isOpen: isChangePassOpen,
     onOpen: onOpenChangePass,
@@ -440,6 +479,7 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
           onOpen={onOpenEditProfile}
           onClose={onCloseEditProfile}
           user={user}
+          mutate={mutate}
         />
       </div>
 
@@ -493,14 +533,14 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
 }
 
 export default function Profile() {
-  const { user, isLoading, error } = useProfile();
+  const { user, isLoading, error, mutate } = useProfile();
   let componentToRender;
   if (isLoading) {
     componentToRender = <Loading />;
   } else if (error) {
     componentToRender = <div>Error</div>;
   } else {
-    componentToRender = <ProfileComponent user={user} />;
+    componentToRender = <ProfileComponent mutate={mutate} user={user} />;
   }
 
   return (

@@ -24,6 +24,7 @@ import {
 import styles from "./EditUserModal.module.css";
 import { ReceivedUserDataOnClient, SentUserDataFromClient } from "@/lib/types";
 import { profile } from "console";
+import { editUser } from "@/lib/functions";
 
 interface EditUserModalProps {
   isEditModalOpen: boolean;
@@ -36,44 +37,6 @@ interface EditUserModalProps {
 
 function OverlayOne() {
   return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
-}
-
-async function editUser(newUserData: SentUserDataFromClient & { _id: string }) {
-  const formData = new FormData();
-  console.log(newUserData);
-
-  //allowed entries are name, profile picture, phone and password only:
-  const allowedEntries = [
-    "name",
-    "phone",
-    "password",
-    "profilePicture",
-    "userId",
-    "oldPicture",
-  ];
-
-  // the key should only consider those entries which are not empty and allowed
-
-  for (let key in newUserData) {
-    if (
-      allowedEntries.includes(key) &&
-      newUserData[key as keyof SentUserDataFromClient]
-    ) {
-      // @ts-ignore
-      formData.append(key, newUserData[key]);
-    }
-  }
-  if (!formData.get("profilePicture")) {
-    formData.delete("oldPicture");
-  }
-
-  formData.append("userId", newUserData._id);
-  const res = await fetch("/api/user", {
-    method: "PUT",
-    body: formData,
-  });
-
-  return res;
 }
 
 export default function EditUserModal({
