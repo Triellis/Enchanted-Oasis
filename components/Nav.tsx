@@ -11,16 +11,9 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  useColorMode,
-  color,
-  MenuGroup,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
-  SunIcon,
-  Search2Icon,
-  MoonIcon,
-  SearchIcon,
   BellIcon,
 } from "@chakra-ui/icons";
 import styles from "./Nav.module.css";
@@ -28,7 +21,6 @@ import styles from "./Nav.module.css";
 import Link from "next/link";
 
 import React from "react";
-import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import classNames from "classnames";
 import useSWR from "swr";
@@ -98,9 +90,6 @@ function Nav({ onToggle }: { onToggle: () => void }) {
               <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
                 <MenuItem className={styles.menuItem}>My Profile</MenuItem>
               </Link>
-              <MenuItem className={styles.menuItem}>Create a Copy</MenuItem>
-              <MenuItem className={styles.menuItem}>Mark as Draft</MenuItem>
-              <MenuItem className={styles.menuItem}>Delete</MenuItem>
               <MenuItem
                 className={styles.menuOut}
                 onClick={() => signOut()}
