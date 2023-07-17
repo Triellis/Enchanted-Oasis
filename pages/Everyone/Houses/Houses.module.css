@@ -7,7 +7,6 @@
   font-size: 1.2rem;
   width: max-content;
   overflow-x: hidden;
-  padding: 3em;
 }
 
 .housePic {
@@ -60,4 +59,3 @@
     box-shadow: 0 0 0.5em 0.2em hsl(var(--pc) / 40%);
   }
 }
-
