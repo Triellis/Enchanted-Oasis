@@ -1,5 +1,6 @@
 import {
   Button,
+  IconButton,
   Image,
   Modal,
   ModalBody,
@@ -26,6 +27,7 @@ import { HouseCol, ReceivedUserDataOnClient } from "@/lib/types";
 import useSWR from "swr";
 import Pagination from "@/components/Pagination";
 import UserList from "@/components/UserList";
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 // function to search users
 function useSearch(searchQuery: string, page: number, id: string) {
@@ -306,6 +308,16 @@ function HousePage() {
           <div className={styles.botBar}>
             <Pagination page={page} setPage={setPage} users={users} />
           </div>
+        </div>
+      </div>
+
+      <div className={styles.endBtn}>
+        <div>
+          <IconButton icon={<AddIcon />} aria-label="increment" />
+          <NumberInput allowMouseWheel>
+            <NumberInputField />
+          </NumberInput>
+          <IconButton icon={<MinusIcon />} aria-label="decrement" />
         </div>
       </div>
     </Layout>

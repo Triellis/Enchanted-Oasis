@@ -7,7 +7,7 @@
   gap: 0.3em;
 }
 .banner {
-  margin-top: 0.1em ;
+  margin-top: 0.1em;
   margin-inline: auto;
   flex: 1;
   object-fit: cover;
@@ -246,4 +246,49 @@
     flex-direction: column;
     align-items: center;
   }
+}
+
+/* for the end button */
+.endBtn {
+  position: fixed !important;
+  right: 2.5em;
+  padding-inline: 1em;
+  bottom: 1em;
+  transition: all 0.4s ease-in-out !important;
+  flex-direction: row;
+  align-items: center;
+  width: 7em;
+  white-space: nowrap;
+  line-height:2.5em;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  border-radius: 0.8em;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 30%);
+}
+.endBtn::before {
+  content: "Edit Points";
+}
+.endBtn:hover::before {
+  content: "";
+}
+.endBtn:hover {
+  width: 22em;
+  padding: 0;
+  line-height:0;
+}
+.icon {
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.endBtn > * {
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+.endBtn:hover > * {
+  opacity: 1;
+  display: flex;
+  justify-content: space-between;
 }
