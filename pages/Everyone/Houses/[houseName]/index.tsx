@@ -27,6 +27,7 @@ import useSWR from "swr";
 import Pagination from "@/components/Pagination";
 import UserList from "@/components/UserList";
 
+// function to search users
 function useSearch(searchQuery: string, page: number, id: string) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/house/${id}/searchMembers?searchQuery=${searchQuery}&page=${page}`,
@@ -40,6 +41,7 @@ function useSearch(searchQuery: string, page: number, id: string) {
   };
 }
 
+// function for getting the house data
 function useHouse(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/house/${id}`,
@@ -53,6 +55,7 @@ function useHouse(id: string) {
   };
 }
 
+// function to increase or decrease points
 async function changePoints(
   mode: "Increase" | "Decrease",
   id: string,
@@ -85,6 +88,38 @@ async function changePoints(
   }
 }
 
+// function to edit points
+async function editPoints(
+  points: number,
+  id: string,
+  toast: any,
+  mutateHouse: any
+) {
+  const res = await fetch(`http://localhost:3000/api/house/${id}/edit`, {
+    method: "POST",
+    body: JSON.stringify({ points }),
+  });
+  if (res.ok) {
+    toast({
+      title: `Points edited`,
+      description: `Points edited to ${points}`,
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    mutateHouse();
+  } else {
+    toast({
+      title: "Error",
+      description: await res.text(),
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+}
+
+// component of the Houseplate on the top of the page
 function HousePlate({
   house,
   mutateHouse,
@@ -127,7 +162,7 @@ function HousePlate({
         </span>
       </div>
 
-      <TransitionExample
+      <EditPointsModal
         isOpen={isOpen}
         onOpen={onOpen}
         onClose={onClose}
@@ -138,7 +173,8 @@ function HousePlate({
   );
 }
 
-function TransitionExample({
+// component for the editPointsModal
+function EditPointsModal({
   isOpen,
   onOpen,
   onClose,
@@ -205,6 +241,7 @@ function TransitionExample({
   );
 }
 
+// Entire page setup
 function HousePage() {
   // getting the house from the url or previous page
   const router = useRouter();
