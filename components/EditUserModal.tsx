@@ -22,15 +22,15 @@ import {
 } from "@chakra-ui/react";
 
 import styles from "./EditUserModal.module.css";
-import { SentUserDataFromClient } from "@/lib/types";
+import { ReceivedUserDataOnClient, SentUserDataFromClient } from "@/lib/types";
 import { profile } from "console";
 
 interface EditUserModalProps {
   isEditModalOpen: boolean;
   onEditModalClose: () => void;
   mutate: () => void;
-  newUserData: SentUserDataFromClient;
-  setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
+  userData: ReceivedUserDataOnClient;
+
   editMode: boolean;
 }
 
@@ -38,16 +38,38 @@ function OverlayOne() {
   return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
 }
 
-async function postUser(newUserData: SentUserDataFromClient) {
+async function editUser(newUserData: SentUserDataFromClient & { _id: string }) {
   const formData = new FormData();
-  for (const key in newUserData) {
-    // @ts-ignore
-    formData.append(key, newUserData[key]);
+  console.log(newUserData);
+
+  //allowed entries are name, profile picture, phone and password only:
+  const allowedEntries = [
+    "name",
+    "phone",
+    "password",
+    "profilePicture",
+    "userId",
+    "oldPicture",
+  ];
+
+  // the key should only consider those entries which are not empty and allowed
+
+  for (let key in newUserData) {
+    if (
+      allowedEntries.includes(key) &&
+      newUserData[key as keyof SentUserDataFromClient]
+    ) {
+      // @ts-ignore
+      formData.append(key, newUserData[key]);
+    }
+  }
+  if (!formData.get("profilePicture")) {
+    formData.delete("oldPicture");
   }
 
+  formData.append("userId", newUserData._id);
   const res = await fetch("/api/user", {
-    method: "POST",
-
+    method: "PUT",
     body: formData,
   });
 
@@ -58,31 +80,47 @@ export default function EditUserModal({
   isEditModalOpen,
   onEditModalClose,
   mutate,
-  newUserData,
-  setNewUserData,
-  editMode,
+  userData,
 }: EditUserModalProps) {
   // for the overlay
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const toast = useToast();
-
+  const [newUserData, setNewUserData] = useState<
+    SentUserDataFromClient & { _id: string; oldPicture: string }
+  >({
+    _id: "",
+    name: "",
+    email: "",
+    password: "",
+    rollNumber: "",
+    phone: "",
+    role: "Student",
+    profilePicture: null,
+    house: "",
+    oldPicture: userData.profilePicture, // this is need to remove the old picture from the server
+  });
   // for the name of the profile picture
   const [imageName, setImageName] = useState("No Image Selected");
+
   useEffect(() => {
     setImageName("No Image Selected");
     setNewUserData({
-      name: newUserData.name,
-      email: newUserData.email,
+      _id: userData._id.toString(),
+      name: userData.name,
+      email: userData.email,
       password: "",
-      rollNumber: newUserData.rollNumber,
-      phone: newUserData.phone,
-      role: newUserData.role,
+      rollNumber: userData.rollNumber,
+      phone: userData.phone,
+      role: userData.role,
       profilePicture: null,
-      house: newUserData.house, // Add the missing property here
+      house: userData.house, // Add the missing property here
+      oldPicture: userData.profilePicture,
     });
-  }, [isEditModalOpen]);
+  }, []);
+
   return (
     <Modal
+      isCentered
       isOpen={isEditModalOpen}
       onClose={onEditModalClose}
       scrollBehavior="inside"
@@ -103,11 +141,13 @@ export default function EditUserModal({
                   <FormLabel>Name</FormLabel>
                   <Input
                     type="Text"
-                    value={newUserData.name}
+                    value={newUserData!.name}
                     onChange={(e) =>
-                      setNewUserData({
-                        ...newUserData,
-                        name: e.target.value,
+                      setNewUserData((data) => {
+                        const dataClone = structuredClone(data)!;
+
+                        dataClone.name = e.target.value;
+                        return dataClone;
                       })
                     }
                   />
@@ -118,27 +158,32 @@ export default function EditUserModal({
                   <FormLabel>Phone</FormLabel>
                   <Input
                     type="number"
-                    value={newUserData.phone}
+                    value={newUserData!.phone}
                     onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        phone: e.target.value,
+                      setNewUserData((data) => {
+                        const dataClone = structuredClone(data)!;
+
+                        dataClone.phone = e.target.value;
+                        return dataClone;
                       });
                     }}
                   />
                 </div>
 
                 <div className={styles.quarter}>
-                  <FormLabel>Email address</FormLabel>
+                  {/* Password */}
+                  <FormLabel>New password</FormLabel>
                   <Input
-                    type="email"
-                    value={newUserData.email}
-                    onChange={(e) =>
-                      setNewUserData({
-                        ...newUserData,
-                        email: e.target.value,
-                      })
-                    }
+                    type="password"
+                    value={newUserData?.password}
+                    onChange={(e) => {
+                      setNewUserData((data) => {
+                        const dataClone = structuredClone(data)!;
+
+                        dataClone.password = e.target.value;
+                        return dataClone;
+                      });
+                    }}
                   />
                 </div>
               </FormControl>
@@ -161,9 +206,11 @@ export default function EditUserModal({
                     className={styles.customFileInput}
                     // event listener
                     onChange={(e) => {
-                      setNewUserData({
-                        ...newUserData,
-                        profilePicture: e.target.files![0],
+                      setNewUserData((data) => {
+                        const dataClone = structuredClone(data)!;
+
+                        dataClone.profilePicture = e.target.files![0];
+                        return dataClone;
                       });
 
                       if (e.target.files![0]) {
@@ -176,25 +223,6 @@ export default function EditUserModal({
                 </form>
               </FormControl>
             </GridItem>
-            <GridItem className={styles.quarThree} colSpan={2}>
-              <div className={styles.quarter}>
-                {/* Password */}
-                <FormLabel>New password</FormLabel>
-                <Input
-                  type="password"
-                  value={newUserData.password}
-                  onChange={(e) => {
-                    setNewUserData({
-                      ...newUserData,
-                      password: e.target.value,
-                    });
-                  }}
-                />
-              </div>
-            </GridItem>
-            <GridItem colSpan={2}>
-              <FormControl>{/* temporary */}</FormControl>
-            </GridItem>
           </SimpleGrid>
         </ModalBody>
 
@@ -204,21 +232,7 @@ export default function EditUserModal({
           <Button
             className={styles.modalAdd}
             onClick={async () => {
-              // validation logic:
-              for (let field of Object.keys(newUserData)) {
-                if (!(newUserData as any)[field]) {
-                  toast({
-                    title: `${field} field empty`,
-                    description: `Please enter a ${field}`,
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                  });
-                  return;
-                }
-              }
-
-              const res = await postUser(newUserData);
+              const res = await editUser(newUserData!);
               if (res.status == 200) {
                 toast({
                   title: "User created",

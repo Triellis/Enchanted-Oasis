@@ -49,17 +49,6 @@ export default function UserListItem({
 }) {
   const toast = useToast();
 
-  const [newUserData, setNewUserData] = useState<SentUserDataFromClient>({
-    name: userData.name,
-    email: userData.email,
-    role: userData.role,
-    house: userData.house,
-    password: "",
-    phone: userData.phone,
-    profilePicture: null,
-    rollNumber: userData.rollNumber,
-  });
-
   const handleDelete = async () => {
     const res = await fetch(`/api/user?userId=${userData._id}`, {
       method: "DELETE",
@@ -284,8 +273,7 @@ export default function UserListItem({
           isEditModalOpen={isEditModalOpen}
           onEditModalClose={onEditModalClose}
           mutate={mutate}
-          newUserData={newUserData}
-          setNewUserData={setNewUserData}
+          userData={userData}
           editMode={true}
         />
       </div>

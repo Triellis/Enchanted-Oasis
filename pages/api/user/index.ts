@@ -83,9 +83,9 @@ async function PUT(
   const userId = formData.fields.userId?.length
     ? formData.fields.userId[0]
     : session.user.id;
-  const allowedFields = ["phone", "profilePicture"];
+  const allowedFields = ["phone", "profilePicture", "oldPicture"];
   if (session.user.role === "Admin") {
-    allowedFields.push("name");
+    allowedFields.push("name", "passwordHash");
   }
   const userDoc: {
     [key: string]: any;
@@ -107,6 +107,17 @@ async function PUT(
   const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
 
+  delete userDoc["userId"];
+  if (userDoc["oldPicture"]) {
+    await deleteFile(userDoc["oldPicture"]);
+  }
+  delete userDoc["oldPicture"];
+
+  if (userDoc.password) {
+    userDoc.passwordHash = md5(userDoc.password);
+    delete userDoc.password;
+  }
+
   const updatingFields = Object.keys(userDoc);
   for (let f of updatingFields) {
     if (allowedFields.includes(f)) {
@@ -124,7 +135,7 @@ async function PUT(
 
   const user = await usersCollection.updateOne(
     {
-      _id: userId,
+      _id: new ObjectId(userId),
     },
     {
       $set: {
