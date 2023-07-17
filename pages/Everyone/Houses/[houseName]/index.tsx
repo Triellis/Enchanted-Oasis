@@ -97,7 +97,10 @@ async function editPoints(
 ) {
   const res = await fetch(`http://localhost:3000/api/house/${id}`, {
     method: "PUT",
-    body: JSON.stringify({ points }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ points: points }),
   });
   if (res.ok) {
     toast({
@@ -208,7 +211,9 @@ function EditPointsModal({
             // max={10} sets the upper limit for the value in the input
             // keepWithinRange={false}
             // clampValueOnBlur={false}
+            value={points}
             onChange={(e) => {
+              console.log(e);
               setPoints(parseInt(e));
             }}
           >
