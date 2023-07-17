@@ -194,6 +194,9 @@ function EditPointsModal({
 
   // useState to store the points situation
   const [points, setPoints] = useState(house.points);
+  useEffect(() => {
+    setPoints(house.points);
+  }, [house.points]);
 
   return (
     <Modal
