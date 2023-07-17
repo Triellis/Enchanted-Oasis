@@ -7,8 +7,10 @@
   gap: 0.3em;
 }
 .banner {
+  margin-top: 0.1em ;
   margin-inline: auto;
   flex: 1;
+  object-fit: cover;
 }
 .wrapper {
   flex: 8;
