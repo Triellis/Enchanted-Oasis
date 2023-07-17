@@ -200,7 +200,7 @@ function ChangePasswordModal({
         <ModalHeader>Change Password</ModalHeader>
         <ModalCloseButton />
         <ModalBody className={styles.cpModal} >
-          <FormControl>
+          <FormControl> 
             <FormLabel>Old Password</FormLabel>
             <Input
               type="password"

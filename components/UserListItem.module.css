@@ -122,12 +122,11 @@
   backdrop-filter: blur(10px);
   border-radius: 0.5em !important;
   border: 1px solid hsl(var(--n)) !important;
-  padding: 1em;
 }
 .popContent {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .popInfo {
   display: flex;

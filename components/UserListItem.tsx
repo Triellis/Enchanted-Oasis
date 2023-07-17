@@ -211,6 +211,10 @@ export default function UserListItem({
                   {/* Phone */}
                   <span className={styles.popLabel}>Phone:</span>
                   <span className={styles.popValue}>{userData.phone}</span>
+
+                  {/* email */}
+                  <span className={styles.popLabel}>Email:</span>
+                  <span className={styles.popValue}>{userData.email}</span>
                 </div>
               </PopoverBody>
 
