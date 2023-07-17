@@ -127,7 +127,13 @@ function HousePlate({
         </span>
       </div>
 
-      <TransitionExample isOpen={isOpen} onOpen={onOpen} onClose={onClose} house={house} mutateHouse={mutateHouse}  />
+      <TransitionExample
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        house={house}
+        mutateHouse={mutateHouse}
+      />
     </div>
   );
 }
@@ -137,7 +143,7 @@ function TransitionExample({
   onOpen,
   onClose,
   house,
-  mutateHouse
+  mutateHouse,
 }: {
   isOpen: any;
   onOpen: any;
@@ -145,7 +151,7 @@ function TransitionExample({
   house: HouseCol;
   mutateHouse: any;
 }) {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
   return (
     <Modal
       isCentered
@@ -165,8 +171,26 @@ function TransitionExample({
           >
             <NumberInputField />
             <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
+              <NumberIncrementStepper
+                onClick={() =>
+                  changePoints(
+                    "Increase",
+                    house._id.toString(),
+                    toast,
+                    mutateHouse
+                  )
+                }
+              />
+              <NumberDecrementStepper
+                onClick={() =>
+                  changePoints(
+                    "Decrease",
+                    house._id.toString(),
+                    toast,
+                    mutateHouse
+                  )
+                }
+              />
             </NumberInputStepper>
           </NumberInput>
         </ModalBody>
