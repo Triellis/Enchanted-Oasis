@@ -160,6 +160,8 @@
 .modalAdd:active {
   transform: scale(0.98);
 }
+
+/* houseplate */
 .scoreBoard {
   display: flex;
   flex-direction: column;
@@ -174,12 +176,10 @@
 
   backdrop-filter: blur(10px);
 }
-
 .scoreBoard:hover {
   box-shadow: 0px 0px 2px hsl(var(--b3));
   border: white 1px solid;
 }
-
 .houseImage {
   background-size: cover;
   width: 100%;
@@ -190,7 +190,6 @@
   z-index: -1;
   filter: brightness(70%);
 }
-
 .editHouseButtons {
   display: flex;
   flex-direction: row;
@@ -200,11 +199,9 @@
 
   width: 100%;
 }
-
 .editHouseButtons > button {
   background-color: hsl(var(--p));
 }
-
 .houseName {
   font-size: 2em;
   font-weight: 600;
@@ -212,11 +209,9 @@
 
   letter-spacing: -0.1%;
 }
-
 .housePoints {
   font-size: 2em;
 }
-
 .boardContent {
   gap: 1em;
   display: flex;
@@ -227,4 +222,22 @@
   border-radius: 1em;
   overflow: hidden;
   padding: 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .scoreBoard {
+    padding: 1em;
+  }
+  .houseName {
+    font-size: 1.5em;
+  }
+  .housePoints {
+    font-size: 1.5em;
+  }
+  .boardContent {
+    gap: 0.5em;
+  }
+  .housePlate {
+    padding: 1em;
+  }
 }
