@@ -190,7 +190,7 @@ function ChangePasswordModal({
   const [confirmPassword, setConfirmPassword] = useState("");
   const toast = useToast();
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={"sm"}>
+    <Modal isOpen={isOpen} onClose={onClose} size={"sm"} isCentered>
       <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
       <ModalContent
         style={{
