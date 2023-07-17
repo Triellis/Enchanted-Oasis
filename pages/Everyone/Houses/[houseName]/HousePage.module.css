@@ -277,11 +277,6 @@
   padding: 0;
   line-height:0;
 }
-.icon {
-  display: inline-block;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-}
 .endBtn > * {
   display: none;
   opacity: 0;
