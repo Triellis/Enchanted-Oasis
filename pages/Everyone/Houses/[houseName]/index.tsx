@@ -313,6 +313,7 @@ function HousePage() {
             error={error}
             usersData={users}
             mutate={mutate}
+            isHousePage={true}
           />
           <div className={styles.botBar}>
             <Pagination page={page} setPage={setPage} users={users} />
