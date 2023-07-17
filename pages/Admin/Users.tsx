@@ -170,6 +170,15 @@ export default function Users() {
         <div className={styles.botBar}>
           <Pagination page={page} setPage={setPage} users={users} />
           {/* Adding new users */}
+          <Button
+            className={"clicky"}
+            onClick={() => {
+              onOpen();
+              setOverlay(<OverlayOne />);
+            }}
+          >
+            Add
+          </Button>
         </div>
 
         <button

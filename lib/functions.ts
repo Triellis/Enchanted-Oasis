@@ -1,5 +1,5 @@
 import { Collection, MongoClient } from "mongodb";
-import { UserCol } from "./types";
+import { Role, SentUserDataFromClient, UserCol } from "./types";
 import md5 from "md5";
 
 export async function validateLogin(
@@ -44,3 +44,56 @@ export function capitalizeFirstLetter(s: string) {
 
 // @ts-ignore
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export function getRoleColor(role: Role) {
+  let roleColor = "gray";
+  if (role === "Student") {
+    roleColor = "blue";
+  } else if (role === "Admin") {
+    roleColor = "red";
+  } else if (role === "Faculty") {
+    roleColor = "green";
+  }
+  return roleColor;
+}
+export async function editUser(
+  newUserData: SentUserDataFromClient & { _id: string }
+) {
+  const formData = new FormData();
+  console.log(newUserData);
+
+  //allowed entries are name, profile picture, phone and password only:
+  const allowedEntries = [
+    "name",
+    "phone",
+    "password",
+    "profilePicture",
+    "userId",
+    "oldPicture",
+  ];
+
+  // the key should only consider those entries which are not empty and allowed
+
+  for (let key in newUserData) {
+    if (
+      allowedEntries.includes(key) &&
+      newUserData[key as keyof SentUserDataFromClient]
+    ) {
+      // @ts-ignore
+      formData.append(key, newUserData[key]);
+    }
+  }
+  if (!formData.get("profilePicture")) {
+    formData.delete("oldPicture");
+  }
+  if (newUserData.hasOwnProperty("_id")) {
+    formData.append("userId", newUserData._id);
+  }
+
+  const res = await fetch("/api/user", {
+    method: "PUT",
+    body: formData,
+  });
+
+  return res;
+}

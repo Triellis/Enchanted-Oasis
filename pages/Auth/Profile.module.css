@@ -1,0 +1,185 @@
+.container {
+  transition: all 0.3s ease;
+}
+
+/* header having a flex direction of row: */
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1em;
+  transition: all 0.3s ease;
+  margin: 1em;
+}
+.name {
+  font-size: 2em;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4em;
+  justify-content: center;
+  gap: 0.4em;
+}
+.edit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.email {
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+  margin: 0.3em 0;
+}
+.role {
+  font-size: 0.5em !important ;
+  border-radius: 0.5em !important;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: all 0.3s ease;
+  margin: 1em;
+}
+
+.phone,
+.roll,
+.house {
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editProf {
+  border: hsl(var(--s)) 1px solid !important;
+  color: hsl(var(--s)) !important;
+}
+
+.editProf:hover {
+  background-color: hsl(var(--s)) !important;
+  color: hsl(var(--sc)) !important;
+}
+
+.changePassword {
+  border: hsl(var(--er)) 1px solid !important;
+  color: hsl(var(--er)) !important;
+}
+
+.changePassword:hover {
+  background-color: hsl(var(--er)) !important;
+  color: hsl(var(--erc)) !important;
+}
+.phone > div:nth-child(2),
+.roll > div:nth-child(2),
+.house > div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+@media screen and (max-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    transition: all 0.3s ease;
+    margin: 1em;
+  }
+  .name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.1em;
+    gap: 1em;
+    transition: all 0.3s ease;
+  }
+  .email {
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+  }
+  .role {
+    font-size: 0.6em !important;
+    border-radius: 0.5em !important;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    transition: all 0.3s ease;
+    margin: 1em;
+  }
+  .phone,
+  .roll,
+  .house {
+    font-size: 1em;
+    transition: all 0.3s ease;
+  }
+}
+
+/* modal styles */
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: hsl(var(--b));
+  color: hsl(var(--sc));
+  transition: all 0.3s ease;
+}
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly !important;
+  gap: 1em;
+}
+.modalFooter > * {
+  width: 100%;
+}
+
+/* edit user profile */
+.picIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  border-radius: 10px;
+  border: 2px dashed hsl(var(--pf));
+}
+.customFileInput {
+  opacity: 0; /* Hide the default file input */
+  position: absolute;
+  z-index: -1;
+}
+.customFileLabel {
+  cursor: pointer;
+  /* truncate */
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.customFileLabel::after {
+  content: "Choose File"; /* Text or icon for the file browse button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsl(var(--pf));
+  margin-top: 1em;
+  padding: 5px 10px;
+  border-radius: 0.5em;
+}

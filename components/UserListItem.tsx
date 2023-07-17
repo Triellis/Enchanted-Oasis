@@ -23,6 +23,8 @@ import {
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 
 import styles from "./UserListItem.module.css";
+
+import { getRoleColor } from "@/lib/functions";
 import { ReceivedUserDataOnClient, SentUserDataFromClient } from "../lib/types";
 
 import classNames from "classnames";
@@ -82,22 +84,16 @@ export default function UserListItem({
     };
   }, []);
 
-  let roleColor = "gray";
-  if (userData.role === "Student") {
-    roleColor = "blue";
-  } else if (userData.role === "Admin") {
-    roleColor = "red";
-  } else if (userData.role === "Faculty") {
-    roleColor = "green";
-  }
-
   let componentToRender;
   if (isSmall) {
     componentToRender = (
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={roleColor} className={styles.roleLabel}>
+          <Badge
+            colorScheme={getRoleColor(userData.role)}
+            className={styles.roleLabel}
+          >
             {userData.role}
           </Badge>
         </span>
@@ -109,7 +105,10 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge colorScheme={roleColor} className={styles.roleLabel}>
+          <Badge
+            colorScheme={getRoleColor(userData.role)}
+            className={styles.roleLabel}
+          >
             {userData.role}
           </Badge>
         </span>
@@ -201,6 +200,10 @@ export default function UserListItem({
                   {/* Phone */}
                   <span className={styles.popLabel}>Phone:</span>
                   <span className={styles.popValue}>{userData.phone}</span>
+
+                  {/* email */}
+                  <span className={styles.popLabel}>Email:</span>
+                  <span className={styles.popValue}>{userData.email}</span>
                 </div>
               </PopoverBody>
 

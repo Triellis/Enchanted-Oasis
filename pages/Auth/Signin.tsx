@@ -58,7 +58,18 @@ export default function SignIn({
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <InputRightElement width="3rem" className={styles.clicky}>
+            <InputRightElement
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+                width: "3rem",
+                marginRight: "0.5rem",
+              }}
+              width="3rem"
+              className="clicky"
+            >
               <Button size="lg" onClick={handleClick}>
                 {!show ? <ViewIcon /> : <ViewOffIcon />}
               </Button>
