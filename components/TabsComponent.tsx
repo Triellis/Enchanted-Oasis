@@ -6,25 +6,19 @@ interface TabsComponentProps {
   role: string;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setRole: React.Dispatch<React.SetStateAction<string>>;
-  isHousePage?: boolean;
 }
 
 export default function TabsComponent({
   setPage,
   setRole,
   role,
-  isHousePage,
 }: TabsComponentProps) {
-  const [visibleTabs, setVisibleTabs] = useState(isHousePage);
-
   const tabs = [
     { label: "All", role: "All" },
     { label: "Student", role: "Student" },
     { label: "Faculty", role: "Faculty" },
     { label: "Admin", role: "Admin" },
   ];
-
-  const filteredTabs = visibleTabs ? tabs.slice(0, 3) : tabs;
 
   return (
     <Tabs
@@ -33,12 +27,12 @@ export default function TabsComponent({
       variant="unstyled"
       defaultIndex={0}
       onChange={(index) => {
-        setRole(filteredTabs[index].role);
+        setRole(tabs[index].role);
         setPage(1);
       }}
     >
       <TabList className={styles.tabList}>
-        {filteredTabs.map((tab, index) => (
+        {tabs.map((tab, index) => (
           <Tab key={index}>{tab.label}</Tab>
         ))}
         <TabIndicator

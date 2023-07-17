@@ -9,14 +9,12 @@ export default function UserList({
   editMode = false,
   isLoading,
   error,
-  isHousePage,
 }: {
   usersData: ReceivedUserDataOnClient[];
   mutate: () => void;
   editMode?: boolean;
   isLoading: boolean;
   error: any;
-  isHousePage: boolean;
 }) {
   let componentToRender;
   const toast = useToast();
@@ -66,7 +64,7 @@ export default function UserList({
           <span>House</span>
         </div>
         <span>Info</span>
-        {!isHousePage && <span>Remove</span>}
+        {editMode && <span>Remove</span>}
       </div>
       <Divider orientation="horizontal" paddingBlock={"5px"} />
       {/* list of users */}
