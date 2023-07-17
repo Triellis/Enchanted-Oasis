@@ -331,7 +331,7 @@ function EditProfileModal({
                 <form className={styles.picIn}>
                   <label
                     htmlFor="myFileInput"
-                  className={styles.customFileLabel}
+                    className={styles.customFileLabel}
                   >
                     {user.profilePicture}
                   </label>
@@ -462,7 +462,7 @@ function ProfileComponent({ user }: { user: ReceivedUserDataOnClient }) {
           <div>Roll Number</div>
           <Text>
             {" "}
-            <AtSignIcon /> {user.phone}
+            <AtSignIcon /> {user.rollNumber ? user.rollNumber : " None"}
           </Text>
         </div>
 
