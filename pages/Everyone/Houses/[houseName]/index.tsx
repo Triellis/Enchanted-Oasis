@@ -95,8 +95,8 @@ async function editPoints(
   toast: any,
   mutateHouse: any
 ) {
-  const res = await fetch(`http://localhost:3000/api/house/${id}/edit`, {
-    method: "POST",
+  const res = await fetch(`http://localhost:3000/api/house/${id}`, {
+    method: "PUT",
     body: JSON.stringify({ points }),
   });
   if (res.ok) {
@@ -188,6 +188,10 @@ function EditPointsModal({
   mutateHouse: any;
 }) {
   const toast = useToast();
+
+  // useState to store the points situation
+  const [points, setPoints] = useState(house.points);
+
   return (
     <Modal
       isCentered
@@ -200,10 +204,13 @@ function EditPointsModal({
         <ModalHeader>Edit Points</ModalHeader>
         <ModalBody>
           <NumberInput
-            defaultValue={house.points}
+            defaultValue={points}
             // max={10} sets the upper limit for the value in the input
             // keepWithinRange={false}
             // clampValueOnBlur={false}
+            onChange={(e) => {
+              setPoints(parseInt(e));
+            }}
           >
             <NumberInputField />
             <NumberInputStepper>
@@ -234,7 +241,20 @@ function EditPointsModal({
           <Button variant="outline" onClick={onClose}>
             Close
           </Button>
-          <Button bg="hsl(var(--s))">Save</Button>
+          <Button
+            bg="hsl(var(--s))"
+            onClick={async () => {
+              await editPoints(
+                points,
+                house._id.toString(),
+                toast,
+                mutateHouse
+              );
+              onClose();
+            }}
+          >
+            Save
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
