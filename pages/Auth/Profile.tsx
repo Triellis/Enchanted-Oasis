@@ -315,7 +315,7 @@ function EditProfileModal({
         <ModalBody>
           <Tabs position="relative" variant="unstyled" align="center">
             <TabList>
-              <Tab>Profile</Tab>
+              <Tab>Avatar</Tab>
               <Tab>Phone Number</Tab>
             </TabList>
             <TabIndicator
@@ -327,7 +327,33 @@ function EditProfileModal({
             <TabPanels>
               {/* profile photo */}
               <TabPanel>
-                <p>one!</p>
+                <FormLabel>New Avatar</FormLabel>
+                <form className={styles.picIn}>
+                  <label
+                    htmlFor="myFileInput"
+                  className={styles.customFileLabel}
+                  >
+                    {user.profilePicture}
+                  </label>
+                  <input
+                    type="file"
+                    id="myFileInput"
+                    className={styles.customFileInput}
+                    // event listener
+                    // onChange={(e) => {
+                    //   setNewUserData({
+                    //     ...newUserData,
+                    //     profilePicture: e.target.files![0],
+                    //   });
+
+                    //   if (e.target.files![0]) {
+                    //     setImageName(e.target.files![0].name);
+                    //   } else {
+                    //     setImageName("No Image Selected");
+                    //   }
+                    // }}
+                  />
+                </form>
               </TabPanel>
 
               {/* phone number */}

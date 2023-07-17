@@ -145,6 +145,40 @@
   justify-content: space-evenly !important;
   gap: 1em;
 }
-.modalFooter > *{
+.modalFooter > * {
   width: 100%;
+}
+
+/* edit user profile */
+.picIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  border-radius: 10px;
+  border: 2px dashed hsl(var(--pf));
+}
+.customFileInput {
+  opacity: 0; /* Hide the default file input */
+  position: absolute;
+  z-index: -1;
+}
+.customFileLabel {
+  cursor: pointer;
+  /* truncate */
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.customFileLabel::after {
+  content: "Choose File"; /* Text or icon for the file browse button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsl(var(--pf));
+  margin-top: 1em;
+  padding: 5px 10px;
+  border-radius: 0.5em;
 }
