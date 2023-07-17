@@ -1,4 +1,21 @@
-import { Button, Image, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import styles from "./HousePage.module.css";
 import Layout from "../../../Layout";
 import { useRouter } from "next/router";
@@ -76,6 +93,8 @@ function HousePlate({
   mutateHouse: any;
 }) {
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <div className={styles.housePlate}>
       <span
@@ -86,8 +105,8 @@ function HousePlate({
       ></span>
       <div className={styles.scoreBoard}>
         <div className={styles.boardContent}>
-          <span className={styles.houseName}>{house.name}</span>
-          <span className={styles.housePoints}>{house.points}</span>
+          <span className={styles.houseName}>{house.name} - </span>
+          <span className={styles.housePoints}>{house.points} points </span>
         </div>
         <span className={styles.editHouseButtons}>
           <Button
@@ -104,12 +123,64 @@ function HousePlate({
           >
             -
           </Button>
-          <Button>Edit</Button>
+          <Button onClick={onOpen}>Edit</Button>
         </span>
       </div>
+
+      <TransitionExample isOpen={isOpen} onOpen={onOpen} onClose={onClose} house={house} mutateHouse={mutateHouse}  />
     </div>
   );
 }
+
+function TransitionExample({
+  isOpen,
+  onOpen,
+  onClose,
+  house,
+  mutateHouse
+}: {
+  isOpen: any;
+  onOpen: any;
+  onClose: any;
+  house: HouseCol;
+  mutateHouse: any;
+}) {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <Modal
+      isCentered
+      onClose={onClose}
+      isOpen={isOpen}
+      motionPreset="slideInBottom"
+    >
+      <ModalOverlay />
+      <ModalContent bg="hsl(var(--b2))">
+        <ModalHeader>Edit Points</ModalHeader>
+        <ModalBody>
+          <NumberInput
+            defaultValue={house.points}
+            // max={10} sets the upper limit for the value in the input
+            // keepWithinRange={false}
+            // clampValueOnBlur={false}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </ModalBody>
+        <ModalFooter className={styles.modalFooter}>
+          <Button variant="outline" onClick={onClose}>
+            Close
+          </Button>
+          <Button bg="hsl(var(--s))">Save</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 function HousePage() {
   // getting the house from the url or previous page
   const router = useRouter();
