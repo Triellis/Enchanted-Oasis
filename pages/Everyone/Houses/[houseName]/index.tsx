@@ -143,7 +143,7 @@ function HousePlate({
       ></span>
       <div className={styles.scoreBoard}>
         <div className={styles.boardContent}>
-          <span className={styles.houseName}>{house.name} - </span>
+          <span className={styles.houseName}>{house.name} </span>
           <span className={styles.housePoints}>{house.points} points </span>
         </div>
         <span className={styles.editHouseButtons}>

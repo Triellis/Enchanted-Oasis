@@ -240,4 +240,8 @@
   .housePlate {
     padding: 1em;
   }
+  .boardContent {
+    flex-direction: column;
+    align-items: center;
+  }
 }
