@@ -171,6 +171,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 }
 .customFileLabel::after {
   content: "Choose File"; /* Text or icon for the file browse button */
