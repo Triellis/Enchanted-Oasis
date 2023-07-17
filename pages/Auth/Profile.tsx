@@ -37,7 +37,14 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { AtSignIcon, PhoneIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import {
+  AtSignIcon,
+  PhoneIcon,
+  ArrowRightIcon,
+  LockIcon,
+  CheckCircleIcon,
+  SettingsIcon,
+} from "@chakra-ui/icons";
 import { fetcher, getRoleColor } from "@/lib/functions";
 import useSWR from "swr";
 import { ReceivedUserDataOnClient } from "@/lib/types";
@@ -208,29 +215,50 @@ function ChangePasswordModal({
         <ModalHeader>Change Password</ModalHeader>
         <ModalCloseButton />
         <ModalBody className={styles.modal}>
+          {/* old password */}
           <FormControl>
             <FormLabel>Old Password</FormLabel>
-            <Input
-              type="password"
-              value={oldPassword}
-              onChange={(e) => setOldPassword(e.target.value)}
-            />
+
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <SettingsIcon />
+              </InputLeftElement>
+              <Input
+                type="password"
+                value={oldPassword}
+                onChange={(e) => setOldPassword(e.target.value)}
+              />
+            </InputGroup>
           </FormControl>
+
+          {/* new password */}
           <FormControl>
             <FormLabel>New Password</FormLabel>
-            <Input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <LockIcon />
+              </InputLeftElement>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </InputGroup>
           </FormControl>
+
+          {/* confirm password */}
           <FormControl>
             <FormLabel>Confirm Password</FormLabel>
-            <Input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <CheckCircleIcon />
+              </InputLeftElement>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </InputGroup>
           </FormControl>
         </ModalBody>
 
@@ -307,7 +335,7 @@ function EditProfileModal({
                 <FormLabel>New Phone Number</FormLabel>
                 <InputGroup>
                   <InputLeftElement pointerEvents="none">
-                    <PhoneIcon color="gray.300" />
+                    <PhoneIcon />
                   </InputLeftElement>
                   <Input value={user.phone} />
                 </InputGroup>
