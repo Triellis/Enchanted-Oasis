@@ -224,7 +224,22 @@
   border-radius: 1em;
   overflow: hidden;
   padding: 2em;
+  border: 3px solid transparent;
+  animation: border 2s ease-in-out infinite;
 }
+
+@keyframes border {
+  0% {
+    border-color: rgb(6, 62, 83);
+  }
+  50% {
+    border-color: rgb(121, 154, 191);
+  }
+  100% {
+    border-color: rgb(6, 62, 83);
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .scoreBoard {

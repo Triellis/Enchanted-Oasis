@@ -312,7 +312,7 @@ function HousePage() {
       </div>
 
       <div className={styles.endBtn}>
-        <div>
+        <div> 
           <IconButton icon={<AddIcon />} aria-label="increment" />
           <NumberInput allowMouseWheel defaultValue={0}>
             <NumberInputField/>
