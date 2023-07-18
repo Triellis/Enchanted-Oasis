@@ -1,8 +1,42 @@
 .notifItem {
-  width: 100% !important;
+  width: 100%;
+  max-width: 1080px;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   padding: 1em;
   border-radius: 1em;
+  background-color: hsl(var(--b3));
+}
+
+.header {
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.body {
+  margin: 1em 0;
+}
+.viewsDisplay {
+  font-size: 0.9em;
+  display: flex;
+  gap: 0.2em;
+}
+.viewsText {
+  color: hsl(var(--nc));
+}
+.badgesWrapper {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  gap: 0.5em;
+  display: flex;
+  align-items: center;
 }
