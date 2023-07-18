@@ -36,10 +36,8 @@ export default function NotifItem({
   );
   return (
     <div className={styles.notifItem}>
-      {/* Modal for opening the notification */}
       <div className={styles.header}>
         {/* Avatar, name, email */}
-
         <Flex gap={4}>
           <Avatar src={notification.creator.profilePicture} />
           <div>

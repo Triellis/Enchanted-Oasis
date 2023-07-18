@@ -1,15 +1,17 @@
 .notifItem {
-  width: 100%;
-  max-width: 1080px;
-  min-width: 400px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 0.5em;
+  
+  width: 100%;
+  min-width: min-content;
+  max-width: 1080px;
+  
   padding: 1em;
   border-radius: 1em;
   background-color: hsl(var(--b3));
-  margin: 1em;
-  /* bottom border which looks like a divider */
+  margin-block: 1em;
 }
 
 .footer {
