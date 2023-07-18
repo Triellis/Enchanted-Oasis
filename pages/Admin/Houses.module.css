@@ -11,13 +11,13 @@
 
 .housePic {
   border-radius: 10px !important;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 .housePic:hover {
   transform: scale(0.99);
 }
 .housePic:active {
-  transform: scale(0.9);
+  transform: scale(0.97);
 }
 .rankDisplay {
   position: absolute;

@@ -48,7 +48,7 @@ html,
 
 .clicky {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: scale 0.3s ease, transform 0.3s ease;
 }
 .clicky:hover {
   transform: scale(1.1);

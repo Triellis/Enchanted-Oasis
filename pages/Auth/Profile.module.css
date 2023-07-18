@@ -1,7 +1,3 @@
-.container {
-  transition: all 0.3s ease;
-}
-
 /* header having a flex direction of row: */
 .header {
   display: flex;
@@ -9,8 +5,13 @@
   align-items: center;
   justify-content: space-evenly;
   gap: 1em;
-  transition: all 0.3s ease;
   margin: 1em;
+}
+.meInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
 }
 .name {
   font-size: 2em;
@@ -29,7 +30,6 @@
 }
 .email {
   font-size: 1.2em;
-  transition: all 0.3s ease;
   margin: 0.3em 0;
 }
 .role {
@@ -42,7 +42,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  transition: all 0.3s ease;
   margin: 1em;
 }
 
@@ -50,7 +49,6 @@
 .roll,
 .house {
   font-size: 1.2em;
-  transition: all 0.3s ease;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -91,7 +89,6 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5em;
-    transition: all 0.3s ease;
     margin: 1em;
   }
   .name {
@@ -100,11 +97,9 @@
     align-items: center;
     font-size: 1.1em;
     gap: 1em;
-    transition: all 0.3s ease;
   }
   .email {
     font-size: 0.9em;
-    transition: all 0.3s ease;
   }
   .role {
     font-size: 0.6em !important;
@@ -115,14 +110,12 @@
     flex-direction: column;
     align-items: center;
     gap: 2em;
-    transition: all 0.3s ease;
     margin: 1em;
   }
   .phone,
   .roll,
   .house {
     font-size: 1em;
-    transition: all 0.3s ease;
   }
 }
 
@@ -137,7 +130,6 @@
   border-radius: 1em;
   background-color: hsl(var(--b));
   color: hsl(var(--sc));
-  transition: all 0.3s ease;
 }
 .modalFooter {
   display: flex;
