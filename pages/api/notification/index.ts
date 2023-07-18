@@ -168,22 +168,35 @@ async function GET(
     (key) => new ObjectId(key)
   );
 
-  let notifProjection;
+  let notifProjection: any = {
+    _id: 1,
+    title: 1,
+    body: {
+      $concat: [
+        { $substr: ["$body", 0, 150] }, // Specify the number of characters to keep (e.g., 10)
+        "...", // Add ellipsis or any desired truncation indicator
+      ],
+    },
+    badgeText: 1,
+    badgeColor: 1,
+    audience: 1,
+    creatorId: 1,
+    date: 1,
+    creator: 1,
+  };
   if (session?.user.role === "Admin") {
     notifProjection = {
-      seenBy: 0,
-    };
-  } else {
-    notifProjection = {
-      seenBy: 0,
-      seenByCount: 0,
+      ...notifProjection,
+      seenByCount: 1,
     };
   }
   let notifications;
 
   notifications = await notificationCollection
     .aggregate([
-      { $match: { _id: { $in: userNotifIds } } },
+      {
+        $match: { _id: { $in: userNotifIds } },
+      },
       {
         $lookup: {
           from: "Users",
@@ -205,8 +218,11 @@ async function GET(
           creator: { $arrayElemAt: ["$creator", 0] }, // Get the first creator from the 'creators' array
         },
       },
+      {
+        $project: notifProjection,
+      },
     ])
-    .project(notifProjection)
+
     .toArray();
 
   const notificationsWithSeen: AdminNotificationOnClient[] = notifications
