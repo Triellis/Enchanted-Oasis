@@ -1,11 +1,43 @@
-/* for the entire page: */
+.main {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.3em;
+}
+.banner {
+  margin-top: 0.1em;
+  margin-inline: auto;
+  flex: 1;
+  object-fit: cover;
+}
 .wrapper {
+  flex: 8;
+  margin-left: 1em;
+  grid-column: 3 / span 7;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.3em;
 }
+
+@media (max-width: 768px) {
+  .banner {
+    display: none;
+  }
+
+  .wrapper {
+    grid-column: 1 / span 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3em;
+  }
+}
+
 /* for the tabs */
 .tabGrp {
   background-color: hsl(var(--b3));
@@ -65,6 +97,16 @@
   margin-top: 1em;
   transition: all 0.3s ease;
 }
+.clicky {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
+}
 
 /* CSS for the modal */
 .modalFooter {
@@ -121,43 +163,127 @@
   transform: scale(0.98);
 }
 
-.addUserButton {
+/* houseplate */
+.scoreBoard {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  border: none;
-  cursor: pointer;
-  padding: 1em;
-  position: fixed;
-  z-index: 1;
-  right: 1.5em;
-  bottom: 2em;
-  transition: all 200ms ease-in-out;
-  width: 5em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1em;
+  gap: 0.3em;
+  transition: all 0.2s ease-in-out;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--n));
+  padding: 2em;
+  border-radius: 1em;
+
+  backdrop-filter: blur(10px);
+}
+.scoreBoard:hover {
+  box-shadow: 0px 0px 2px hsl(var(--b3));
+  border: white 1px solid;
+}
+.houseImage {
+  background-size: cover;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: -1;
+  filter: brightness(70%);
+}
+.editHouseButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: none;
+  gap: 1em;
+
+  width: 100%;
+}
+.editHouseButtons > button {
+  background-color: hsl(var(--p));
+}
+.houseName {
+  font-size: 2em;
+  font-weight: 600;
+  /* letter spacing */
+
+  letter-spacing: -0.1%;
+}
+.housePoints {
+  font-size: 2em;
+}
+.boardContent {
+  gap: 1em;
+  display: flex;
+}
+.housePlate {
+  position: relative;
+  width: 100%;
+  border-radius: 1em;
   overflow: hidden;
-  background-color: hsl(var(--s) / 50%);
+  padding: 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .scoreBoard {
+    padding: 1em;
+  }
+  .houseName {
+    font-size: 1.5em;
+  }
+  .housePoints {
+    font-size: 1.5em;
+  }
+  .boardContent {
+    gap: 0.5em;
+  }
+  .housePlate {
+    padding: 1em;
+  }
+  .boardContent {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* for the end button */
+.endBtn {
+  position: fixed !important;
+  right: 2.5em;
+  padding-inline: 1em;
+  bottom: 1em;
+  transition: all 0.4s ease-in-out !important;
+  flex-direction: row;
+  align-items: center;
+  width: 7em;
+  white-space: nowrap;
+  line-height:2.5em;
+  overflow: hidden;
   backdrop-filter: blur(5px);
   border-radius: 0.8em;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);
 }
-.addUserButton:active {
-  scale: 0.9;
+.endBtn::before {
+  content: "Edit Points";
 }
-.addUserButton:hover {
-  width: 9.5em;
+.endBtn:hover::before {
+  content: "";
 }
-.addUserButton:hover::after {
-  content: "\00a0New User";
+.endBtn:hover {
+  width: 22em;
+  padding: 0;
+  line-height:0;
 }
-.icon {
-  display: inline-block;
-  position: relative;
-  margin-right: 8px;
+.endBtn > * {
+  display: none;
+  opacity: 0;
   transition: all 0.3s ease-in-out;
 }
-.addUserButton:hover .icon {
-  transform: rotate(180deg);
+.endBtn:hover > * {
+  opacity: 1;
+  display: flex;
+  justify-content: space-between;
 }

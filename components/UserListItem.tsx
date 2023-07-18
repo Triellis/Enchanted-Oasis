@@ -43,9 +43,11 @@ function handleResize(setIsSmall: any) {
 export default function UserListItem({
   userData,
   mutate,
+  editMode,
 }: {
   userData: ReceivedUserDataOnClient;
   mutate: () => void;
+  editMode: boolean;
 }) {
   const toast = useToast();
 
@@ -208,36 +210,39 @@ export default function UserListItem({
               </PopoverBody>
 
               {/* Edit user button */}
-              <PopoverFooter className={styles.popFoot}>
-                <Button
-                  className={styles.popEdit}
-                  // calls edit user modal
-                  onClick={() => {
-                    setOverlay(<OverlayOne />);
-                    onEditModalOpen();
-                  }}
-                >
-                  Edit User
-                </Button>
-              </PopoverFooter>
-
+              {editMode && (
+                <PopoverFooter className={styles.popFoot}>
+                  <Button
+                    className={styles.popEdit}
+                    // calls edit user modal
+                    onClick={() => {
+                      setOverlay(<OverlayOne />);
+                      onEditModalOpen();
+                    }}
+                  >
+                    Edit User
+                  </Button>
+                </PopoverFooter>
+              )}
               {/* edit user modal to be called: */}
             </PopoverContent>
           </Portal>
         </Popover>
 
-        {/* Edit IconButton */}
-        <IconButton
-          isRound
-          variant="outline"
-          aria-label="Call Sage"
-          icon={<DeleteIcon />}
-          className={classNames(styles.deleteButton, styles.btnGroup)}
-          onClick={() => {
-            setOverlay(<OverlayOne />);
-            onOpen();
-          }}
-        />
+        {/* Delete IconButton */}
+        {editMode && (
+          <IconButton
+            isRound
+            variant="outline"
+            aria-label="Call Sage"
+            icon={<DeleteIcon />}
+            className={classNames(styles.deleteButton, styles.btnGroup)}
+            onClick={() => {
+              setOverlay(<OverlayOne />);
+              onOpen();
+            }}
+          />
+        )}
 
         {/* Delete user confirmation modal */}
         <Modal
@@ -274,7 +279,6 @@ export default function UserListItem({
           onEditModalClose={onEditModalClose}
           mutate={mutate}
           userData={userData}
-          editMode={true}
         />
       </div>
     </li>

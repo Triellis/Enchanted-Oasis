@@ -19,7 +19,7 @@ const navItems: {
   Admin: [
     { text: "Dashboard", linkTo: "/Admin/Dashboard" },
     { text: "Users", linkTo: "/Admin/Users" },
-    { text: "Houses", linkTo: "/Admin/Houses" },
+    { text: "Houses", linkTo: "/Everyone/Houses" },
     { text: "Courses", linkTo: "/Admin/Courses" },
   ],
 };
