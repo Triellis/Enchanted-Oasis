@@ -1,21 +1,10 @@
 .notifItem {
+  width: 100% !important;
   display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  gap: 0.8em;
-  padding: 0.3em;
-  padding-inline: 1em;
-  border-radius: 0.5em;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-  background-color: hsl(var(--b3));
-  transition: all 0.2s ease-in-out;
-  user-select: none;
-}
-
-.notifItem:hover {
-  background-color: hsl(var(--b3) / 70%);
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .profileEntry {
