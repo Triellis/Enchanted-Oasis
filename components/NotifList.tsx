@@ -3,6 +3,7 @@ import { AdminNotificationOnClient } from "@/lib/types";
 import useSWR from "swr";
 import NotifItem from "./NotifItem";
 import { useState } from "react";
+import Pagination from "./Pagination";
 
 function useNotifications(page: number, unseenOnly: boolean) {
   const { data, error, mutate } = useSWR(
@@ -36,11 +37,19 @@ export default function NotifList() {
     componentToRender = (
       <>
         {notifications.map((notification) => (
-          <NotifItem notification={notification} />
+          <NotifItem
+            key={notification._id.toString()}
+            notification={notification}
+          />
         ))}
       </>
     );
   }
 
-  return <div>{componentToRender}</div>;
+  return (
+    <div>
+      {componentToRender}
+      <Pagination page={page} setPage={setPage} items={notifications} />
+    </div>
+  );
 }
