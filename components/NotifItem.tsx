@@ -13,7 +13,7 @@ import { CalendarIcon, EmailIcon, TimeIcon } from "@chakra-ui/icons";
 
 export default function NotifItem() {
   return (
-    <li className={styles.notifItem} onClick={() => {}}>
+    <li className={styles.notifItem} onClick={() => {console.log("object");}}>
       {/* Avatar */}
       <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
       <Box fontSize="1.2em">

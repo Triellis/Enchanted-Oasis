@@ -13,6 +13,7 @@
   cursor: pointer;
   background-color: hsl(var(--b3));
   transition: all 0.2s ease-in-out;
+  user-select: none;
 }
 .notifItem:hover {
   background-color: hsl(var(--b3) / 70%);
@@ -46,10 +47,9 @@
 
 .dateAndTime {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-end;
   flex-direction: column;
   gap: 0.1em;
-
   font-size: 0.9em;
 }
