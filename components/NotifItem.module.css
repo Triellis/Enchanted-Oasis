@@ -3,18 +3,17 @@
   align-items: center;
   width: 100%;
   justify-content: space-between;
-
   gap: 0.8em;
   padding: 0.3em;
   padding-inline: 1em;
   border-radius: 0.5em;
   border-bottom: 1px solid #ccc;
-
   cursor: pointer;
   background-color: hsl(var(--b3));
   transition: all 0.2s ease-in-out;
   user-select: none;
 }
+
 .notifItem:hover {
   background-color: hsl(var(--b3) / 70%);
 }
@@ -22,16 +21,16 @@
 .infoBox {
   overflow: hidden;
 }
+
 .title {
   font-weight: 500;
-  /* wordwrap */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .content {
   font-weight: 400;
-  /* wordwrap */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -52,4 +51,21 @@
   flex-direction: column;
   gap: 0.1em;
   font-size: 0.9em;
+}
+
+/* Media Query for smaller devices */
+@media only screen and (max-width: 600px) {
+  .notifItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title,
+  .content {
+    white-space: normal;
+  }
+
+  .dateAndTime {
+    justify-content: flex-start;
+  }
 }
