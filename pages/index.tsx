@@ -21,7 +21,6 @@ export default function IndexPage() {
   if (session.status === "authenticated") {
     router.push(`${sessionData?.user?.role}/Dashboard`);
   }
-  const { colorMode, toggleColorMode } = useColorMode();
 
   // THE LANDING PAGE
   return (
