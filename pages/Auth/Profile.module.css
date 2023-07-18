@@ -7,6 +7,12 @@
   gap: 1em;
   margin: 1em;
 }
+.meInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
 .name {
   font-size: 2em;
   font-weight: 600;
