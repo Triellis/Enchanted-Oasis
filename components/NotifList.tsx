@@ -6,6 +6,7 @@ import { useState } from "react";
 import Pagination from "./Pagination";
 
 import styles from "./NotifList.module.css";
+import { Divider } from "@chakra-ui/react";
 
 function useNotifications(page: number, unseenOnly: boolean) {
   const { data, error, mutate } = useSWR(
@@ -50,8 +51,11 @@ export default function NotifList() {
   }
 
   return (
-    <div className={styles.notifList} >
-      {componentToRender}
+    <div className={styles.parent}>
+      <h1 className={styles.title}>Admin Notifications</h1>
+      <Divider />
+
+      <div className={styles.notifList}>{componentToRender}</div>
       <Pagination page={page} setPage={setPage} items={notifications} />
     </div>
   );
