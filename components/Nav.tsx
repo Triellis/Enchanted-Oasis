@@ -22,7 +22,7 @@ import { signOut, useSession } from "next-auth/react";
 import classNames from "classnames";
 import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
-import { ReceivedUserDataOnClient } from "@/lib/types";
+import { MySession, ReceivedUserDataOnClient } from "@/lib/types";
 
 function useUser() {
   const { data, isLoading, error } = useSWR("/api/user", fetcher, {
@@ -37,6 +37,7 @@ function useUser() {
 function Nav({ onToggle }: { onToggle: () => void }) {
   const { userJson, isUserLoading, error: userError } = useUser();
   const session = useSession();
+  const sessionData = session.data as MySession;
 
   let notificationCountComponent;
 
@@ -65,15 +66,18 @@ function Nav({ onToggle }: { onToggle: () => void }) {
       {/* Last Group of Icons */}
       <div>
         <div className={styles.endGroup}>
-          <button
-            className={classNames(styles.notificationIndicator, "clicky")}
-          >
-            <BellIcon h={4} />
-            {notificationCountComponent}
-          </button>
-          {/* Avatar */}
+          <Link href={`/${sessionData?.user.role}/Dashboard`}>
+            <button
+              className={classNames(styles.notificationIndicator, "clicky")}
+            >
+              <BellIcon h={4} />
+              {notificationCountComponent}
+            </button>
+          </Link>
+
           <Menu>
             <MenuButton className="clicky">
+              {/* Avatar */}
               <Avatar
                 src={
                   isUserLoading || !userJson

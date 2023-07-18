@@ -306,7 +306,7 @@ function HousePage() {
             mutate={mutate}
           />
           <div className={styles.botBar}>
-            <Pagination page={page} setPage={setPage} users={users} />
+            <Pagination page={page} setPage={setPage} items={users} />
           </div>
         </div>
       </div>
@@ -315,7 +315,7 @@ function HousePage() {
         <div>
           <IconButton icon={<AddIcon />} aria-label="increment" />
           <NumberInput allowMouseWheel defaultValue={0}>
-            <NumberInputField/>
+            <NumberInputField />
           </NumberInput>
           <IconButton icon={<MinusIcon />} aria-label="decrement" />
         </div>
