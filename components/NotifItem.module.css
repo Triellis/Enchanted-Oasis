@@ -19,7 +19,7 @@
 }
 
 .infoBox {
-  /* use if required */
+  overflow: hidden;
 }
 .title {
   font-weight: 500;

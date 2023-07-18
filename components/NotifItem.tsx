@@ -1,11 +1,19 @@
-import { Flex, Avatar, Badge, Text, Box, IconButton, Tag } from "@chakra-ui/react";
+import {
+  Flex,
+  Avatar,
+  Badge,
+  Text,
+  Box,
+  IconButton,
+  Tag,
+} from "@chakra-ui/react";
 import React from "react";
 import styles from "./NotifItem.module.css";
 import { CalendarIcon, EmailIcon, TimeIcon } from "@chakra-ui/icons";
 
 export default function NotifItem() {
   return (
-    <Flex className={styles.notifItem}>
+    <li className={styles.notifItem} onClick={() => {}}>
       {/* Avatar */}
       <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
       <Box fontSize="1.2em">
@@ -14,14 +22,9 @@ export default function NotifItem() {
         {/* Email */}
         <Text fontSize="sm">admin@gmail.com</Text>
       </Box>
-
       {/* Badge */}
-      <Badge colorScheme="green">
-        New
-      </Badge>{" "}
-
-      {/* Content */}
-      <Box className={styles.infoBox} >
+      <Badge colorScheme="green">New</Badge> {/* Content */}
+      <Box className={styles.infoBox}>
         {/* title */}
         <Text fontSize="sm" fontWeight="bold" className={styles.title}>
           Lorem ipsum dolor sit amet consectetur adipisicing
@@ -31,13 +34,11 @@ export default function NotifItem() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
         </Text>
       </Box>
-
       {/* Taget Audience*/}
       <Box className={styles.targetAudience}>
         <Text fontWeight="bold">Target</Text>
         <Tag>Student</Tag>
       </Box>
-
       {/* Date and time */}
       <Box className={styles.dateAndTime}>
         <div>
@@ -47,7 +48,6 @@ export default function NotifItem() {
           <CalendarIcon /> {` `} 12:00 PM
         </div>
       </Box>
-
-    </Flex>
+    </li>
   );
 }
