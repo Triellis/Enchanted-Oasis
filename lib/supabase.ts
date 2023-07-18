@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+import sharp from "sharp";
 import { promises as fs } from "fs";
 if (!SUPABASE_URL) {
   throw new Error("Missing env.SUPABASE_URL");
@@ -15,12 +16,15 @@ export async function getFileUrl(
   bucketFolder: string,
   originalFilename: string
 ): Promise<string> {
+  const compressedFile = sharp(filepath).resize(1280);
+  const compressedFilePath = filepath + "-compressed";
+  await compressedFile.toFile(compressedFilePath);
+  filepath = compressedFilePath;
+  console.log(filepath);
   const file = await fs.open(filepath, "r");
   const fileData = await file.readFile();
   originalFilename = originalFilename.replace(/ /g, "_");
-  //   console.log(formData.files.file[0].originalFilename);
-  //@ts-ignore
-  //   console.log(formData?.files.file[0].filepath);
+
   const { data: uploadData, error } = await supabase.storage
     .from(bucketName)
     .upload(bucketFolder + "/" + originalFilename, fileData);
