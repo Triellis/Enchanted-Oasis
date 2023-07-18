@@ -1,20 +1,51 @@
 import { Flex, Avatar, Badge, Text, Box, Spacer } from "@chakra-ui/react";
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./NotifItem.module.css";
 import { CalendarIcon, EmailIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
+import { AdminNotificationOnClient } from "@/lib/types";
+import Image from "next/image";
+function formatDateTime(date: Date) {
+  const time = date.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  const formattedTime = time.toLowerCase().replace(/\s/g, "");
 
-export default function NotifItem() {
+  const formattedDate = date.toLocaleDateString(["en-GB"], {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+  const formattedDateTime = `${formattedTime} • ${formattedDate}`;
+  return formattedDateTime;
+}
+
+export default function NotifItem({
+  notification,
+}: {
+  notification: AdminNotificationOnClient;
+}) {
+  const viewsFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat("en", {
+        notation: "compact",
+        compactDisplay: "short",
+      }),
+    []
+  );
   return (
     <div className={styles.notifItem}>
       {/* Modal for opening the notification */}
       <div className={styles.header}>
         {/* Avatar, name, email */}
+
         <Flex gap={4}>
-          <Avatar src="https://bit.ly/sage-adebayo" />
+          <Avatar src={notification.creator.profilePicture} />
           <div>
-            <Text fontWeight="bold">Segun Adebayo</Text>
+            <Text fontWeight="bold">{notification.creator.name}</Text>
             <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
-              UI Engineer
+              {notification.creator.email}
             </Text>
           </div>
         </Flex>
@@ -23,30 +54,34 @@ export default function NotifItem() {
         {/* Title and Content */}
         <span className={styles.title}>
           <Text fontWeight="bold" fontSize="1.2em">
-            Hello Moms
+            {notification.title}
           </Text>
         </span>
         <Text fontSize="md" color={"hsl(var(--pc) /70% )"}>
-          I will come to your house and fuck your mom with her computer ...
+          {notification.body}
         </Text>
       </div>
       <div className={styles.footer}>
         {/* Date and time without icons */}
 
         <Text fontSize="sm" color="hsl(var(--nc) )">
-          12:00pm • 12/12/2021
+          {formatDateTime(new Date(notification.date))}
         </Text>
 
         {/* Badge */}
         <Flex>
           <div className={styles.badgesWrapper}>
-            <Badge colorScheme="green">New</Badge>
-            <Badge colorScheme="blue"> Student</Badge>
-            <Badge colorScheme="pink"> custom label </Badge>
+            {!notification.seen && <Badge colorScheme="green">New</Badge>}
+            <Badge colorScheme="blue"> {notification.audience}</Badge>
+            <Badge colorScheme={notification.badgeColor}>
+              {" "}
+              {notification.badgeText}{" "}
+            </Badge>
           </div>
           <Spacer />
           <div className={styles.viewsDisplay}>
-            2.1M<span className={styles.viewsText}>views</span>
+            {viewsFormatter.format(notification.seenByCount)}
+            <span className={styles.viewsText}>views</span>
           </div>
         </Flex>
       </div>

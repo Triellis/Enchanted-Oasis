@@ -3,6 +3,7 @@ import Layout from "../Layout";
 import { Button } from "@chakra-ui/react";
 import styles from "./Dashboard.module.css";
 import NotifItem from "@/components/NotifItem";
+import NotifList from "@/components/NotifList";
 
 export default function Admin() {
   const session = useSession();
@@ -21,7 +22,7 @@ export default function Admin() {
         </div>
 
         <div className={styles.notifications}>
-          <NotifItem />
+          <NotifList />
         </div>
       </Layout>
     </>
