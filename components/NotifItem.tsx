@@ -24,18 +24,21 @@ export default function NotifItem() {
   return (
     <li className={styles.notifItem} onClick={onOpen}>
       {/* Avatar */}
-      <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
-      <Box fontSize="1.2em">
-        {/* Name */}
-        <Text fontWeight="bold">
-          Segun Adebayo
-          {/* Badge */}
-          {` `}
-          <Badge colorScheme="green">New</Badge>
-        </Text>
-        {/* Email */}
-        <Text fontSize="sm">admin@gmail.com</Text>
+      <Box className={styles.profileEntry}>
+        <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
+        <Box fontSize="1.2em">
+          {/* Name */}
+          <Text fontWeight="bold">
+            Segun Adebayo
+            {/* Badge */}
+            {` `}
+            <Badge colorScheme="green">New</Badge>
+          </Text>
+          {/* Email */}
+          <Text fontSize="sm">admin@gmail.com</Text>
+        </Box>
       </Box>
+
       {/* Content */}
       <Box className={styles.infoBox}>
         {/* title */}
@@ -47,15 +50,19 @@ export default function NotifItem() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
         </Text>
       </Box>
+
       {/* Taget Audience*/}
       <Box className={styles.targetAudience}>
         <Tag>Student</Tag>
       </Box>
+
       {/* Date and time */}
       <Box className={styles.dateAndTime}>
-        <div>12/12/2021</div>
         <div>12:00 PM</div>
+        <div>12/12/2021</div>
       </Box>
+
+      {/* Modal for opening the notification */}
       <Modal
         isCentered
         onClose={onClose}

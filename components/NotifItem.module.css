@@ -18,6 +18,13 @@
   background-color: hsl(var(--b3) / 70%);
 }
 
+.profileEntry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
 .infoBox {
   overflow: hidden;
 }
