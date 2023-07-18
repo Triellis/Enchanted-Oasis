@@ -96,14 +96,21 @@ async function PUT(
       userDoc[f] = formData.fields[f][0];
     }
   }
-  if (formData.files.profilePicture?.length) {
+  const allowedFileTypes = ["image/png", "image/jpg", "image/jpeg"];
+
+  if (
+    formData.files.profilePicture?.length &&
+    allowedFileTypes.includes(formData.files.profilePicture[0].mimetype)
+  ) {
     userDoc.profilePicture = await getFileUrl(
       formData.files.profilePicture[0].filepath,
       "profile pic/" + userId.toString(),
       formData.files.profilePicture[0].originalFilename
     );
+  } else {
+    console.log(formData.files.profilePicture![0]);
+    return res.status(400).send("Invalid file type");
   }
-
   const db = (await clientPromise).db("enchanted-oasis");
   const usersCollection = db.collection<UserCol>("Users");
 
