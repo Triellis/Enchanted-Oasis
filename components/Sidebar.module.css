@@ -10,7 +10,11 @@
   border-right: 1px solid hsl(var(--pc) / 30%);
 
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar.open {
