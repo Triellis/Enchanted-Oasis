@@ -6,6 +6,7 @@ import {
   AdminNotificationOnClient,
   MySession,
   UserCol,
+  userProjection,
 } from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { ObjectId, UpdateFilter } from "mongodb";
@@ -67,7 +68,6 @@ async function POST(
     badgeColor,
     audience,
     creatorId: session.user.id,
-    creatorName: session.user.name,
     seenBy: [],
     date: new Date(),
     seenByCount: 0,
@@ -183,7 +183,23 @@ async function GET(
   let notifications;
 
   notifications = await notificationCollection
-    .find({ _id: { $in: userNotifIds } }, { projection: notifProjection })
+    .aggregate([
+      { $match: { _id: { $in: userNotifIds } } },
+      {
+        $lookup: {
+          from: "Users",
+          localField: "creatorId",
+          foreignField: "_id",
+          as: "creator",
+          pipeline: [
+            {
+              $project: userProjection,
+            },
+          ],
+        },
+      },
+    ])
+    .project(notifProjection)
     .toArray();
 
   const notificationsWithSeen: AdminNotificationOnClient[] = notifications
@@ -192,7 +208,7 @@ async function GET(
       if (userNotifDoc.hasOwnProperty(notification._id.toString())) {
         seen = userNotifDoc[notification._id.toString()].seen;
       }
-      return { ...notification, seen };
+      return { ...notification, seen } as AdminNotificationOnClient;
     })
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 

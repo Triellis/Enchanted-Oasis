@@ -156,6 +156,7 @@ export default function EditUserModal({
                     {imageName}
                   </label>
                   <input
+                    accept=".jpg,.jpeg,.png"
                     type="file"
                     // value={newUserData.profilePicture}
                     id="myFileInput"
