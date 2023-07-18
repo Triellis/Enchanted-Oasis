@@ -17,7 +17,7 @@
   transform: scale(0.99);
 }
 .housePic:active {
-  transform: scale(0.9);
+  transform: scale(0.97);
 }
 .rankDisplay {
   position: absolute;
