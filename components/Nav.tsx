@@ -22,31 +22,28 @@ import { signOut, useSession } from "next-auth/react";
 import classNames from "classnames";
 import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
+import { ReceivedUserDataOnClient } from "@/lib/types";
 
-function useNotifCount() {
-  const { data, isLoading, error } = useSWR(
-    "/api/notification/unseen",
-    fetcher,
-    {
-      refreshInterval: 1000,
-    }
-  );
+function useUser() {
+  const { data, isLoading, error } = useSWR("/api/user", fetcher, {
+    refreshInterval: 1000,
+  });
   return {
-    unseenNotificationsJson: data,
-    isLoading,
+    userJson: data as ReceivedUserDataOnClient,
+    isUserLoading: isLoading,
     error,
   };
 }
 function Nav({ onToggle }: { onToggle: () => void }) {
-  const { unseenNotificationsJson, isLoading, error } = useNotifCount();
+  const { userJson, isUserLoading, error: userError } = useUser();
   const session = useSession();
 
   let notificationCountComponent;
 
-  if (isLoading || session.status !== "authenticated") {
+  if (isUserLoading || session.status !== "authenticated") {
     notificationCountComponent = "";
   } else {
-    const count = Number(unseenNotificationsJson.unseenNotificationsCount);
+    const count = Number(userJson.unseenNotificationsCount);
     if (count === 0) {
       notificationCountComponent = "";
     } else {
@@ -77,7 +74,13 @@ function Nav({ onToggle }: { onToggle: () => void }) {
           {/* Avatar */}
           <Menu>
             <MenuButton className="clicky">
-              <Avatar src={session.data?.user?.image!} />
+              <Avatar
+                src={
+                  isUserLoading || !userJson
+                    ? session.data?.user?.image!
+                    : userJson.profilePicture
+                }
+              />
             </MenuButton>
             <MenuList
               backgroundColor={"hsl(var(--b2))"}
