@@ -171,17 +171,13 @@
   align-items: center;
   gap: 0.3em;
   transition: all 0.2s ease-in-out;
-  box-shadow: -4px 4px 2px hsl(var(--b3));
-  border: 1px solid hsl(var(--n));
-  padding: 2em;
+
+  padding: 4em;
   border-radius: 1em;
 
   backdrop-filter: blur(10px);
 }
-.scoreBoard:hover {
-  box-shadow: 0px 0px 2px hsl(var(--b3));
-  border: white 1px solid;
-}
+
 .houseImage {
   background-size: cover;
   width: 100%;
@@ -210,28 +206,32 @@
   font-size: 2em;
   font-weight: 600;
   /* letter spacing */
-
-  letter-spacing: -0.1%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -0.05em;
 }
 .housePoints {
   font-size: 2em;
+  letter-spacing: -0.1em;
+
+  color: hsl(var(--nc));
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .boardContent {
   gap: 1em;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .housePlate {
   position: relative;
   width: 100%;
   border-radius: 1em;
   overflow: hidden;
-  padding: 2em;
+  border: 1px solid hsl(var(--n));
 }
 
 @media screen and (max-width: 768px) {
-  .scoreBoard {
-    padding: 1em;
-  }
   .houseName {
     font-size: 1.5em;
   }
@@ -241,9 +241,7 @@
   .boardContent {
     gap: 0.5em;
   }
-  .housePlate {
-    padding: 1em;
-  }
+
   .boardContent {
     flex-direction: column;
     align-items: center;
@@ -277,7 +275,7 @@
   content: "Edit Points";
 }
 .endBtn:hover::before,
-.endBtn:focus::before,
+.endBtn:focus-within::before,
 .endBtn:active::before {
   content: "";
 }
