@@ -6,8 +6,7 @@
   left: 0;
   padding: 1em;
   border: 1px solid hsl(var(--nc) / 20%);
-  /* this one is accounted for */
-  transition: all 0.3s ease;
+  transition: scale 0.3s ease;
   margin: 0.5em 0;
 }
 .item:hover {
