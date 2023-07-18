@@ -40,7 +40,6 @@
   padding: 30px;
   width: 100%;
   font-size: 20px;
-  transition: all 0.2s ease-in-out;
   height: 4rem;
 }
 .fillForm input:focus {
@@ -58,7 +57,6 @@
   font-size: 20px;
   cursor: pointer;
   margin-top: 20px;
-  transition: all 0.2s ease-in-out;
   text-transform: uppercase;
 }
 .submitBtn:hover {
