@@ -32,12 +32,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     router.push("/");
   }
 
+  // function handleResize() {
+  //   if (window.innerWidth > 768) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
   const data = session.data as MySession;
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  useEffect(() => {
+    setIsSidebarOpen(window.innerWidth >= 768);
+  }, []);
+
   const handleToggle = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
   return (
     <>
       <Head>
