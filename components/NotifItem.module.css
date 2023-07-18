@@ -8,6 +8,8 @@
   padding: 1em;
   border-radius: 1em;
   background-color: hsl(var(--b3));
+  margin: 1em;
+  /* bottom border which looks like a divider */
 }
 
 .footer {
@@ -32,7 +34,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .title {
   gap: 0.5em;
   display: flex;
