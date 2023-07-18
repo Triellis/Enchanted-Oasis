@@ -49,7 +49,6 @@ export default function NotifItem() {
       </Box>
       {/* Taget Audience*/}
       <Box className={styles.targetAudience}>
-        <Text fontWeight="bold">Target</Text>
         <Tag>Student</Tag>
       </Box>
       {/* Date and time */}
