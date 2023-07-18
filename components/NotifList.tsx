@@ -5,6 +5,8 @@ import NotifItem from "./NotifItem";
 import { useState } from "react";
 import Pagination from "./Pagination";
 
+import styles from "./NotifList.module.css";
+
 function useNotifications(page: number, unseenOnly: boolean) {
   const { data, error, mutate } = useSWR(
     `/api/notification?page=${page}&unseenOnly=${unseenOnly}`,
@@ -48,7 +50,7 @@ export default function NotifList() {
   }
 
   return (
-    <div>
+    <div className={styles.notifList} >
       {componentToRender}
       <Pagination page={page} setPage={setPage} items={notifications} />
     </div>
