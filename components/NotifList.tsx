@@ -52,7 +52,9 @@ export default function NotifList() {
 
   return (
     <div className={styles.parent}>
-      <h1 className={styles.title}>Admin Notifications</h1>
+      <div className={styles.titleWrapper}>
+        <h1 className={styles.title}>Admin Notifications</h1>
+      </div>
       <Divider />
 
       <div className={styles.notifList}>{componentToRender}</div>
