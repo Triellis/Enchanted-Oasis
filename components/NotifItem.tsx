@@ -42,10 +42,10 @@ export default function NotifItem() {
       {/* Date and time */}
       <Box className={styles.dateAndTime}>
         <div>
-          <TimeIcon /> {` `}12/12/2021
+          12/12/2021
         </div>
         <div>
-          <CalendarIcon /> {` `} 12:00 PM
+          12:00 PM
         </div>
       </Box>
     </li>
