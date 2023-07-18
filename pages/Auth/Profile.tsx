@@ -339,6 +339,7 @@ function EditProfileModal({
             <input
               type="file"
               id="myFileInput"
+              accept=".jpg,.jpeg,.png"
               className={styles.customFileInput}
               onChange={(e) => {
                 setNewUserData({

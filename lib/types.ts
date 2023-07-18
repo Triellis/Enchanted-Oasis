@@ -87,5 +87,6 @@ export type AdminNotificationCol = {
 };
 
 export type AdminNotificationOnClient = Omit<AdminNotificationCol, "seenBy"> & {
-  seen: boolean;
+  seen?: boolean;
+  creator: ReceivedUserDataOnClient;
 };
