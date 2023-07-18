@@ -533,60 +533,6 @@ function ProfileComponent({
   );
 }
 
-function EditProfileModal({
-  isOpen,
-  onOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-}) {
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} size={"sm"}>
-      <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
-      <ModalContent
-        style={{
-          backgroundColor: "hsl(var(--b2))",
-        }}
-      >
-        <ModalHeader>Change Password</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <FormControl>
-            <FormLabel>Old Password</FormLabel>
-            <Input type="password" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>New Password</FormLabel>
-            <Input type="password" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Confirm Password</FormLabel>
-            <Input type="password" />
-          </FormControl>
-        </ModalBody>
-
-        <ModalFooter>
-          <Button
-            colorScheme="blue"
-            mr={3}
-            style={{
-              backgroundColor: "hsl(var(--s))",
-              color: "hsl(var(--sc))",
-            }}
-          >
-            Change
-          </Button>
-          <Button variant="ghost" onClick={onClose}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
-  );
-}
-
 export default function Profile() {
   const { user, isLoading, error, mutate } = useProfile();
   let componentToRender;
