@@ -134,7 +134,19 @@ function HousePlate({
 }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isEditPlateOpen, setIsEditPlateOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
+  useEffect(() => {
+    console.log(isEditPlateOpen);
+
+    if (isFocused || isHovered) {
+      setIsEditPlateOpen(true);
+    } else {
+      setIsEditPlateOpen(false);
+    }
+  }, [isFocused, isHovered]);
   return (
     <div className={styles.housePlate}>
       <span
@@ -158,24 +170,43 @@ function HousePlate({
         mutateHouse={mutateHouse}
       />
 
-      <div className={styles.endBtn}>
-        <span className={styles.editHouseButtons}>
-          <Button
-            onClick={() =>
-              changePoints("Increase", house._id.toString(), toast, mutateHouse)
-            }
-          >
-            +
-          </Button>
-          <Button
-            onClick={() =>
-              changePoints("Decrease", house._id.toString(), toast, mutateHouse)
-            }
-          >
-            -
-          </Button>
-          <Button onClick={onOpen}>Edit</Button>
-        </span>
+      <div
+        className={styles.endBtn}
+        tabIndex={2}
+        onMouseLeave={() => setIsHovered(false)}
+        onBlur={() => setIsFocused(false)}
+        onFocus={() => setIsFocused(true)}
+        onMouseEnter={() => setIsHovered(true)}
+      >
+        {isEditPlateOpen && (
+          <span className={styles.editHouseButtons}>
+            <Button
+              onClick={() =>
+                changePoints(
+                  "Increase",
+                  house._id.toString(),
+                  toast,
+                  mutateHouse
+                )
+              }
+            >
+              <AddIcon />
+            </Button>
+            <Button onClick={onOpen}>Edit</Button>
+            <Button
+              onClick={() =>
+                changePoints(
+                  "Decrease",
+                  house._id.toString(),
+                  toast,
+                  mutateHouse
+                )
+              }
+            >
+              <MinusIcon />
+            </Button>
+          </span>
+        )}
       </div>
     </div>
   );
