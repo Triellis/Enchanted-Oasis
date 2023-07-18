@@ -1,0 +1,55 @@
+.notifItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+
+  gap: 0.8em;
+  padding: 0.3em;
+  padding-inline: 1em;
+  border-radius: 0.5em;
+  border-bottom: 1px solid #ccc;
+
+  cursor: pointer;
+  background-color: hsl(var(--b3));
+  transition: all 0.2s ease-in-out;
+}
+.notifItem:hover {
+  background-color: hsl(var(--b3) / 70%);
+}
+
+.infoBox {
+  /* use if required */
+}
+.title {
+  font-weight: 500;
+  /* wordwrap */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.content {
+  font-weight: 400;
+  /* wordwrap */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: gray;
+}
+
+.targetAudience {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dateAndTime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.1em;
+
+  font-size: 0.9em;
+}

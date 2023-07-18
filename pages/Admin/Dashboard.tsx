@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 import { Button } from "@chakra-ui/react";
 import styles from "./Dashboard.module.css";
+import NotifItem from "@/components/NotifItem";
 
 export default function Admin() {
   const session = useSession();
@@ -17,6 +18,10 @@ export default function Admin() {
           Let <span className={styles.glowingText}>Lumos</span> illuminate your
           path at our
           <span className={styles.appName}> Enchanted Oasis!</span>
+        </div>
+
+        <div className={styles.notifications}>
+          <NotifItem />
         </div>
       </Layout>
     </>
