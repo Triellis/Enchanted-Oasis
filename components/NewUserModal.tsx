@@ -176,6 +176,7 @@ export default function NewUserModal({
                   <input
                     type="file"
                     id="myFileInput"
+                    accept=".jpg,.jpeg,.png"
                     className={styles.customFileInput}
                     // event listener
                     onChange={(e) => {

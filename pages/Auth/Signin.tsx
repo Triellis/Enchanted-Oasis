@@ -82,7 +82,6 @@ export default function SignIn({
         <Button
           className={styles.submitBtn}
           onClick={async () => {
-            console.log("working");
             const res = await signIn("credentials", {
               email,
               password,

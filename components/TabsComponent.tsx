@@ -20,7 +20,6 @@ export default function TabsComponent({
       variant="unstyled"
       defaultIndex={0}
       onChange={(index) => {
-        console.log(role);
         if (index === 0) {
           setRole("All");
         } else if (index === 1) {
