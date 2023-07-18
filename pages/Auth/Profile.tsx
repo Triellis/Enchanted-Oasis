@@ -51,7 +51,7 @@ function useProfile() {
   };
 }
 
-function Loading() {
+function LoadingSkeleton() {
   return (
     <Box>
       <div className={styles.container}>
@@ -537,7 +537,7 @@ export default function Profile() {
   const { user, isLoading, error, mutate } = useProfile();
   let componentToRender;
   if (isLoading) {
-    componentToRender = <Loading />;
+    componentToRender = <LoadingSkeleton />;
   } else if (error) {
     componentToRender = <div>Error</div>;
   } else {
