@@ -20,7 +20,7 @@ export async function getFileUrl(
   const compressedFilePath = filepath + "-compressed";
   await compressedFile.toFile(compressedFilePath);
   filepath = compressedFilePath;
-  console.log(filepath);
+
   const file = await fs.open(filepath, "r");
   const fileData = await file.readFile();
   originalFilename = originalFilename.replace(/ /g, "_");

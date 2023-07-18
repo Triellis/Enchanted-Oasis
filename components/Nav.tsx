@@ -42,7 +42,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
   const session = useSession();
 
   let notificationCountComponent;
-  console.log(session.status);
+
   if (isLoading || session.status !== "authenticated") {
     notificationCountComponent = "";
   } else {

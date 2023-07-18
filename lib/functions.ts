@@ -60,7 +60,6 @@ export async function editUser(
   newUserData: SentUserDataFromClient & { _id: string }
 ) {
   const formData = new FormData();
-  console.log(newUserData);
 
   //allowed entries are name, profile picture, phone and password only:
   const allowedEntries = [

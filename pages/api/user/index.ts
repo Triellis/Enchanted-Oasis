@@ -108,7 +108,6 @@ async function PUT(
       formData.files.profilePicture[0].originalFilename
     );
   } else {
-    console.log(formData.files.profilePicture![0]);
     return res.status(400).send("Invalid file type");
   }
   const db = (await clientPromise).db("enchanted-oasis");

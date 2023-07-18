@@ -20,7 +20,7 @@ const FileUploader = () => {
           body: formData,
         });
         const json = await response.json();
-        console.log(json);
+
         if (response.ok) {
           // File successfully uploaded
           console.log("File uploaded successfully");
