@@ -6,14 +6,22 @@ import {
   Box,
   IconButton,
   Tag,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import styles from "./NotifItem.module.css";
 import { CalendarIcon, EmailIcon, TimeIcon } from "@chakra-ui/icons";
 
 export default function NotifItem() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <li className={styles.notifItem} onClick={() => {console.log("object");}}>
+    <li className={styles.notifItem} onClick={onOpen}>
       {/* Avatar */}
       <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
       <Box fontSize="1.2em">
@@ -41,13 +49,24 @@ export default function NotifItem() {
       </Box>
       {/* Date and time */}
       <Box className={styles.dateAndTime}>
-        <div>
-          12/12/2021
-        </div>
-        <div>
-          12:00 PM
-        </div>
+        <div>12/12/2021</div>
+        <div>12:00 PM</div>
       </Box>
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>Modal Content</Text>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </li>
   );
 }

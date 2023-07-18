@@ -33,9 +33,6 @@ interface NewUserModalProps {
   setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
 }
 
-function OverlayOne() {
-  return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
-}
 
 async function postUser(newUserData: SentUserDataFromClient) {
   const formData = new FormData();
@@ -61,7 +58,6 @@ export default function NewUserModal({
   setNewUserData,
 }: NewUserModalProps) {
   // for the overlay
-  const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const toast = useToast();
   const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"];
 
@@ -89,7 +85,7 @@ export default function NewUserModal({
       size={{ sm: "2xl", base: "xs", lg: "3xl" }}
     >
       {/* <ModalOverlay /> */}
-      {overlay}
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg={"hsl(var(--b1))"}>
         <ModalHeader>Create new user</ModalHeader>
         <ModalCloseButton onClick={onClose} />
