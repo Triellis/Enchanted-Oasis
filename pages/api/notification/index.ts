@@ -131,9 +131,7 @@ async function GET(
     ? parseInt(req.query.page as string)
     : 1;
   const skip = (page - 1) * maxResults;
-  const unseenOnly = req.query.unseenOnly
-    ? Boolean(req.query.unseenOnly)
-    : false;
+  const unseenOnly = req.query.unseenOnly === "true" ? true : false;
 
   const db = (await clientPromise).db("enchanted-oasis");
   const notificationCollection =
@@ -150,6 +148,7 @@ async function GET(
       }
     )
   )?.notifications!;
+
   if (unseenOnly) {
     userNotifDoc = Object.fromEntries(
       Object.entries(userNotifDoc).filter(([key, value]) => !value.seen)
@@ -195,7 +194,15 @@ async function GET(
             {
               $project: userProjection,
             },
+            {
+              $limit: 1, // Limit the number of creators to 1
+            },
           ],
+        },
+      },
+      {
+        $addFields: {
+          creator: { $arrayElemAt: ["$creator", 0] }, // Get the first creator from the 'creators' array
         },
       },
     ])
