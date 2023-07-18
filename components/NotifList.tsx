@@ -8,7 +8,8 @@ import Pagination from "./Pagination";
 function useNotifications(page: number, unseenOnly: boolean) {
   const { data, error, mutate } = useSWR(
     `/api/notification?page=${page}&unseenOnly=${unseenOnly}`,
-    fetcher
+    fetcher,
+    { refreshInterval: 1000 }
   );
   return {
     notifications: data as AdminNotificationOnClient[],
