@@ -202,7 +202,7 @@
   width: 100%;
 }
 .editHouseButtons > button {
-  background-color: hsl(var(--p));
+  background-color: hsl(var(--s));
 }
 .houseName {
   font-size: 2em;
@@ -250,40 +250,43 @@
 
 /* for the end button */
 .endBtn {
-  position: fixed !important;
+  position: fixed;
   right: 2.5em;
   padding-inline: 1em;
   bottom: 1em;
-  transition: all 0.4s ease-in-out !important;
+  transition: width 0.2s ease-in-out;
   flex-direction: row;
   align-items: center;
   width: 7em;
   white-space: nowrap;
-  line-height:2.5em;
+  line-height: 2.5em;
   overflow: hidden;
   backdrop-filter: blur(5px);
   border-radius: 0.8em;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);
+  z-index: 2;
+  background-color: hsl(var(--s) / 40%);
 }
 .endBtn::before {
   content: "Edit Points";
 }
-.endBtn:hover::before {
+.endBtn:hover::before,
+.endBtn:active::before {
   content: "";
 }
 .endBtn:hover {
-  width: 22em;
+  width: 10em;
   padding: 0;
-  line-height:0;
+  line-height: 0;
 }
 .endBtn > * {
   display: none;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  transition: background-color 3s ease-in-out;
 }
 .endBtn:hover > * {
-  opacity: 1;
+  background-color: hsl(var(--n));
   display: flex;
   justify-content: space-between;
 }

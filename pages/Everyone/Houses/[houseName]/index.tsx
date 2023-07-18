@@ -148,6 +148,17 @@ function HousePlate({
           <span className={styles.houseName}>{house.name} </span>
           <span className={styles.housePoints}>{house.points} points </span>
         </div>
+      </div>
+
+      <EditPointsModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        house={house}
+        mutateHouse={mutateHouse}
+      />
+
+      <div className={styles.endBtn}>
         <span className={styles.editHouseButtons}>
           <Button
             onClick={() =>
@@ -166,14 +177,6 @@ function HousePlate({
           <Button onClick={onOpen}>Edit</Button>
         </span>
       </div>
-
-      <EditPointsModal
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-        house={house}
-        mutateHouse={mutateHouse}
-      />
     </div>
   );
 }
@@ -308,16 +311,6 @@ function HousePage() {
           <div className={styles.botBar}>
             <Pagination page={page} setPage={setPage} users={users} />
           </div>
-        </div>
-      </div>
-
-      <div className={styles.endBtn}>
-        <div>
-          <IconButton icon={<AddIcon />} aria-label="increment" />
-          <NumberInput allowMouseWheel defaultValue={0}>
-            <NumberInputField/>
-          </NumberInput>
-          <IconButton icon={<MinusIcon />} aria-label="decrement" />
         </div>
       </div>
     </Layout>
