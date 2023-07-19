@@ -99,17 +99,17 @@
   gap: 0.2em;
 }
 
-.popContent{
+.popContent {
   background-color: hsl(var(--b3)) !important;
   height: min-content !important;
   padding: 0.5em;
-  
+
   overflow-y: scroll;
   height: 9em !important;
   width: min-content !important;
 }
 .colorPalette {
-/* 4*3 grid with vertical scroll */
+  /* 4*3 grid with vertical scroll */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
@@ -145,4 +145,15 @@
 }
 .comFoot > :nth-child(2) {
   background-color: hsl(var(--p)) !important;
+}
+
+.textArea {
+  height: 10em !important;
+}
+.markDownArea {
+  height: 10em !important;
+  margin-top: 0.3em;
+  background-color: hsl(var(--b3));
+  border-radius: 1em;
+  padding: 0.5em;
 }

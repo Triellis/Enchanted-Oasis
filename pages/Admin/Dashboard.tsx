@@ -35,6 +35,8 @@ import styles from "./Dashboard.module.css";
 import NotifItem from "@/components/NotifItem";
 import NotifList from "@/components/NotifList";
 import classNames from "classnames";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { useState } from "react";
 
 function ColorSwatch() {
   const colors: string[] = [
@@ -76,6 +78,9 @@ function ComposeMsgModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  // content of the body:
+  const [content, setContent] = useState("");
+
   return (
     <Modal
       isCentered
@@ -130,16 +135,30 @@ function ComposeMsgModal({
               <Tab>Preview</Tab>
             </TabList>
             <TabPanels>
+              {/* write here */}
               <TabPanel p="0em" pt="0.3em">
-                <Textarea placeholder="Body" />
+                <Textarea
+                  className={styles.textArea}
+                  autoFocus
+                  placeholder="Body"
+                  value={content}
+                  onChange={(e) => {
+                    setContent(e.target.value);
+                  }}
+                />
               </TabPanel>
+
+              {/* markdown preview */}
               <TabPanel p="0em" pt="0.3em">
-                <Textarea placeholder="Body" />
+                {/* markdown here */}
+                <ReactMarkdown className={styles.markDownArea}>
+                  {content}
+                </ReactMarkdown>
               </TabPanel>
             </TabPanels>
           </Tabs>
-          {/* body */}
         </ModalBody>
+
         <ModalFooter className={styles.comFoot}>
           <Button className="clicky" variant="outline" onClick={onClose}>
             Cancel
