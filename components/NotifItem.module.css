@@ -1,3 +1,4 @@
+/* body of the notification */
 .notifItem {
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@
   font-size: 1.1em;
 }
 
+/* contents of the notifications */
 .footer {
   display: flex;
   flex-direction: column;
@@ -44,5 +46,7 @@
   align-items: center;
 }
 
+/* notifications read or not */
 .unreadNotif {
 }
+
