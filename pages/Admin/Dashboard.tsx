@@ -12,6 +12,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   Select,
   Textarea,
   useDisclosure,
@@ -54,7 +61,7 @@ function ComposeMsgModal({
               </Select>
             </div>
 
-            <div>
+            <div className={styles.colorLabel}>
               <Input
                 borderColor="lime"
                 color="lime"
@@ -62,6 +69,19 @@ function ComposeMsgModal({
                 placeholder="Label"
                 _placeholder={{ color: "inherit" }}
               />
+
+              <Popover>
+                <PopoverTrigger>
+                  <Button></Button>
+                </PopoverTrigger>
+                <PopoverContent className={styles.colorPalette} >
+                  <PopoverArrow bg="hsl(var(--b3))"/>
+                  <PopoverHeader>Confirmation!</PopoverHeader>
+                  <PopoverBody>
+                    Are you sure you want to have that milkshake?
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
 

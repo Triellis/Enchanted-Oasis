@@ -94,6 +94,14 @@
 .target > * {
   background-color: hsl(var(--b1)) !important;
 }
+.colorLabel{
+  display: flex;
+}
+
+.colorPalette{
+  background-color: hsl(var(--b3)) !important;
+  border: transparent;
+}
 
 .comHead {
   /* use if required */

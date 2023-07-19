@@ -19,7 +19,7 @@ function useNotification(id: string) {
 function NotificationComponent({
   notification,
 }: {
-  notification: Notification; 
+  notification: Notification;
 }) {
   return (
     <div>
