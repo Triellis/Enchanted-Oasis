@@ -47,3 +47,15 @@
   width: 100%;
   margin: 0.5em 0;
 }
+.composeMsg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  position: fixed !important;
+  z-index: 1;
+
+  right: 2em;
+  bottom: 1em;
+}

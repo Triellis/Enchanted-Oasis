@@ -24,6 +24,8 @@ export default function Admin() {
         <div className={styles.notifications}>
           <NotifList />
         </div>
+
+        <Button className={styles.composeMsg}>Click me</Button>
       </Layout>
     </>
   );
