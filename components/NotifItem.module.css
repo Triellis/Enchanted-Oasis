@@ -67,3 +67,8 @@
 .link:hover > .body > .title {
   color: hsl(var(--s));
 }
+.modalDelBtn {
+  background-color: hsl(var(--er)) !important;
+  color: hsl(var(--erc)) !important;
+  width: 100%;
+}
