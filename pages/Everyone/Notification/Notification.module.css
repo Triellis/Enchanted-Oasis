@@ -1,0 +1,26 @@
+.notifMain {
+  padding-inline: 2em;
+}
+
+.title {
+  font-size: 3em;
+  font-weight: 600;
+}
+
+.notifProfile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+  margin-block: 1em;
+}
+
+.notifMisc {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 0.5em;
+
+  color: hsl(var(--nc));
+}
