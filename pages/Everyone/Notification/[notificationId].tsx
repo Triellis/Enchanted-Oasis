@@ -28,19 +28,22 @@ function NotificationComponent({
   notification: Notification;
 }) {
   return (
-    <div className={styles.notifMain} >
+    <div className={styles.notifMain}>
       {/* title */}
       <div className={styles.title}>{notification.title}</div>
 
       {/* Profile */}
       <div className={styles.notifProfile}>
-        <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
-        <Box>
-          <Text fontWeight="bold">Segun Adebayo</Text>
-          <Text fontSize="sm" color="hsl(var(--nc))">
-            admin@gmail.com
-          </Text>
-        </Box>
+        <div className={styles.whoBox} >
+          <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
+          <Flex flexDirection="column">
+            <span className={styles.infoName}>Segun Adebayo</span>
+            <span className={styles.infoEmail}> admin@gmail.com</span>
+          </Flex>
+        </div>
+        <Flex className={styles.whenBox}>
+          <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
+        </Flex>
       </div>
 
       <Divider />
