@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import Layout from "../../Layout";
+import Layout from "../Layout";
 
 import {
   Button,
