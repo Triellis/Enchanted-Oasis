@@ -45,8 +45,18 @@
 .infoEmail {
   color: hsl(var(--nc));
 }
-
 .infoDateTime {
   color: hsl(var(--nc));
   font-size: 0.9em;
+}
+
+.badges{
+  display: flex;
+  flex-direction: row;
+  gap: 0.4em;   
+}
+@media screen and (max-width: 768px) {
+  .badges{
+    flex-direction: column;
+  }
 }

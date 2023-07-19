@@ -34,7 +34,7 @@ function NotificationComponent({
 
       {/* Profile */}
       <div className={styles.notifProfile}>
-        <div className={styles.whoBox} >
+        <div className={styles.whoBox}>
           <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
           <Flex flexDirection="column">
             <span className={styles.infoName}>Segun Adebayo</span>
@@ -45,15 +45,16 @@ function NotificationComponent({
 
       <Divider />
       <div className={styles.notifMisc}>
-        <div>
+        <div className={styles.badges} >
+          <Badge colorScheme="green">Published</Badge>
           <Badge colorScheme="green">Published</Badge>
         </div>
-        <div style={{textAlign:"right"}} >
+        <div style={{ textAlign: "right" }}>
           69views
           <Flex className={styles.whenBox}>
-          <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
-        </Flex>
-          </div>
+            <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
+          </Flex>
+        </div>
       </div>
       <Divider />
 
