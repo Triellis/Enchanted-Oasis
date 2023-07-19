@@ -32,12 +32,12 @@ import {
 import { FiFeather } from "react-icons/fi";
 import styles from "./Dashboard.module.css";
 
-import NotifItem from "@/components/NotifItem";
+import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useState } from "react";
-
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 function ColorSwatch() {
   const colors: string[] = [
     "red",
@@ -80,7 +80,6 @@ function ComposeMsgModal({
 }) {
   // content of the body:
   const [content, setContent] = useState("");
-
   return (
     <Modal
       isCentered
@@ -151,7 +150,11 @@ function ComposeMsgModal({
               {/* markdown preview */}
               <TabPanel p="0em" pt="0.3em">
                 {/* markdown here */}
-                <ReactMarkdown className={styles.markDownArea}>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  className={styles.markDownArea}
+                  components={ChakraUIRenderer()}
+                >
                   {content}
                 </ReactMarkdown>
               </TabPanel>

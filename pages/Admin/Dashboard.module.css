@@ -156,6 +156,5 @@
   background-color: hsl(var(--b3));
   border-radius: 1em;
   padding: 0.5em;
-
   overflow-y: scroll;
 }
