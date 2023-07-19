@@ -35,6 +35,8 @@ function ComposeMsgModal({
       onClose={onClose}
       isOpen={isOpen}
       motionPreset="slideInBottom"
+      // responsive:
+      size={{ sm: "2xl", base: "xs", lg: "2xl" }}
     >
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">

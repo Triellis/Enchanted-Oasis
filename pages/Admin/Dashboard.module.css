@@ -82,12 +82,14 @@
 }
 
 .targetLabel {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
   gap: 0.5em;
 }
-.target {
-  /* use if needed */
+.targetLabel > * {
+  width: 100%;
 }
 .target > * {
   background-color: hsl(var(--b1)) !important;
