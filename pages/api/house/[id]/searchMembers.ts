@@ -62,6 +62,9 @@ async function GET(
         projection: userProjection,
       }
     )
+    .skip((page - 1) * maxResults)
+    .limit(maxResults)
+    .sort({ _id: -1 })
     .toArray();
 
   return res.status(200).json(houseMembers);

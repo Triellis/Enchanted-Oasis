@@ -12,8 +12,6 @@ export default async function handler(
 
   if (!session) {
     return res.status(403).send("Not logged in");
-  } else if (session.user.role !== "Admin" && session.user.role !== "Faculty") {
-    return res.status(403).send("Not an Admin or Faculty");
   }
   if (req.method === "GET") {
     return GET(req, res, session);
@@ -27,10 +25,6 @@ async function GET(
   res: NextApiResponse,
   session: MySession
 ) {
-  if (session?.user.role !== "Admin" && session?.user.role !== "Faculty") {
-    return res.status(403).send("Not an Admin or Faculty");
-  }
-
   const db = (await clientPromise).db("enchanted-oasis");
   const housesCollection = db.collection<HouseCol>("Houses");
 

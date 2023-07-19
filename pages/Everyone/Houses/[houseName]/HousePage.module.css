@@ -1,0 +1,287 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.3em;
+}
+.banner {
+  margin-top: 0.1em;
+  margin-inline: auto;
+  flex: 1;
+  object-fit: cover;
+}
+.wrapper {
+  flex: 8;
+  margin-left: 1em;
+  grid-column: 3 / span 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    display: none;
+  }
+
+  .wrapper {
+    grid-column: 1 / span 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3em;
+  }
+}
+
+/* for the tabs */
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid hsl(var(--n));
+  padding: 0.4em;
+}
+.tabGrp {
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: calc(min-content + 50px);
+  position: relative; /* Add position relative to create stacking context */
+}
+.tabList {
+  padding-inline: 5px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  position: relative; /* Add position relative to create stacking context */
+  z-index: 1; /* Add z-index to ensure tab items appear above the indicator */
+}
+.tabIndicator {
+  border-radius: 5px;
+  bottom: 1.6em;
+  height: 70%;
+  transition: all 0.3s ease;
+  transform: translateY(70%);
+}
+
+/* for the search bar: */
+.searchBar {
+  display: flex;
+  align-items: center;
+  min-width: 5%;
+  width: 70%;
+  justify-content: center;
+  padding: 0 1em;
+  transition: all 0.3s ease, transform 0.3s ease;
+  margin-top: 5px;
+}
+.searchBar:active {
+  transform: scale(0.99);
+}
+
+/* for the buttons at the end of the page */
+.botBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 1em;
+  transition: all 0.3s ease;
+}
+.clicky {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.clicky:hover {
+  transform: scale(1.1);
+}
+.clicky:active {
+  transform: scale(0.99);
+}
+
+/* CSS for the modal */
+.modalFooter {
+  display: flex;
+  gap: 1em;
+  justify-content: center !important;
+}
+.modalFooter > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.quarter {
+  margin-bottom: 10px;
+}
+
+.randh {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  height: 100%;
+}
+
+.picIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  border-radius: 10px;
+  border: 2px dashed hsl(var(--pf));
+}
+.picIn > * {
+  /* center it */
+  margin-left: 80px;
+}
+
+/* for the button to add the user */
+.modalAdd {
+  background-color: hsl(var(--p)) !important;
+  transition: all 0.2s ease-in-out;
+  border-color: transparent !important;
+}
+.modalAdd:hover {
+  background-color: hsl(var(--pf)) !important;
+}
+.modalAdd:active {
+  transform: scale(0.98);
+}
+
+/* houseplate */
+.scoreBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.3em;
+  transition: all 0.2s ease-in-out;
+
+  padding: 4em;
+  border-radius: 1em;
+
+  backdrop-filter: blur(10px);
+}
+
+.houseImage {
+  background-size: cover;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: -1;
+  filter: brightness(70%);
+}
+.editHouseButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: none;
+  gap: 1em;
+  z-index: 3;
+  background-color: transparent !important;
+  width: 100%;
+}
+.editHouseButtons > button {
+  background-color: transparent;
+  border: 1px solid hsl(var(--pc) / 0.2);
+}
+.houseName {
+  font-size: 2em;
+  font-weight: 600;
+  /* letter spacing */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -0.05em;
+}
+.housePoints {
+  font-size: 2em;
+  letter-spacing: -0.1em;
+
+  color: hsl(var(--nc));
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.boardContent {
+  gap: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.housePlate {
+  position: relative;
+  width: 100%;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 1px solid hsl(var(--n));
+}
+
+@media screen and (max-width: 768px) {
+  .houseName {
+    font-size: 1.5em;
+  }
+  .housePoints {
+    font-size: 1.5em;
+  }
+  .boardContent {
+    gap: 0.5em;
+  }
+
+  .boardContent {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* for the end button */
+.endBtn {
+  position: fixed;
+  right: 2.5em;
+  padding: 0.5em;
+  display: flex;
+  padding-inline: 1em;
+  bottom: 3em;
+  transition: width 0.2s ease-in-out;
+  flex-direction: row;
+  align-items: center;
+  width: 7em;
+  white-space: nowrap;
+  line-height: 2.5em;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  border-radius: 0.8em;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 30%);
+  z-index: 2;
+  background-color: hsl(var(--s) / 40%);
+  height: 3.5em;
+}
+.endBtn::before {
+  content: "Edit Points";
+}
+.endBtn:hover::before,
+.endBtn:focus-within::before,
+.endBtn:active::before {
+  content: "";
+}
+.endBtn:hover,
+.endBtn:focus-within,
+.endBtn:active {
+  width: 13em;
+  padding: 0.5em;
+}

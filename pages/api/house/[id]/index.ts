@@ -13,6 +13,8 @@ export default async function handler(
 
   if (req.method === "DELETE") {
     return DELETE(req, res, session);
+  } else if (req.method === "GET") {
+    return GET(req, res, session);
   } else if (req.method === "PUT") {
     return PUT(req, res, session);
   } else {
@@ -81,4 +83,23 @@ async function PUT(
     return res.status(500).json("updating House failed");
   }
   return res.status(200).json("House updated successfully");
+}
+
+async function GET(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: MySession
+) {
+  const db = (await clientPromise).db("enchanted-oasis");
+  const housesCollection = db.collection<HouseCol>("Houses");
+
+  const houses = await housesCollection.findOne({
+    _id: new ObjectId(req.query.id as string),
+  });
+
+  if (!houses) {
+    return res.status(404).send("House not found");
+  }
+
+  return res.json(houses);
 }

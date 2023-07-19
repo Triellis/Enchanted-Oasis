@@ -1,4 +1,4 @@
-import Layout from "../Layout";
+import Layout from "../../Layout";
 import styles from "./Houses.module.css";
 import { Card, CardBody, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
@@ -28,7 +28,7 @@ function HouseCard({
   return (
     <GridItem>
       <Card className={styles.housePic}>
-        <Link href={`./HousePage?house=${house.name[0]}`}>
+        <Link href={`./Houses/${house.name}?houseId=${house._id}`}>
           <CardBody padding={0} position={"relative"}>
             <Image
               src={`/assets/image/Houses/${house.name[0]}.png`}

@@ -13,6 +13,13 @@ export default function TabsComponent({
   setRole,
   role,
 }: TabsComponentProps) {
+  const tabs = [
+    { label: "All", role: "All" },
+    { label: "Student", role: "Student" },
+    { label: "Faculty", role: "Faculty" },
+    { label: "Admin", role: "Admin" },
+  ];
+
   return (
     <Tabs
       className={styles.tabGrp}
@@ -33,10 +40,9 @@ export default function TabsComponent({
       }}
     >
       <TabList className={styles.tabList}>
-        <Tab>All</Tab>
-        <Tab>Student</Tab>
-        <Tab>Faculty</Tab>
-        <Tab>Admin</Tab>
+        {tabs.map((tab, index) => (
+          <Tab key={index}>{tab.label}</Tab>
+        ))}
         <TabIndicator
           zIndex={-1}
           className={styles.tabIndicator}

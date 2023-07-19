@@ -10,11 +10,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  RadioGroup,
-  Stack,
-  Radio,
-  Center,
-  Divider,
   ModalFooter,
   Button,
   ModalOverlay,
@@ -31,8 +26,6 @@ interface EditUserModalProps {
   onEditModalClose: () => void;
   mutate: () => void;
   userData: ReceivedUserDataOnClient;
-
-  editMode: boolean;
 }
 
 function OverlayOne() {
