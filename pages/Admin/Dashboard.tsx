@@ -40,20 +40,22 @@ import { useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 function ColorSwatch() {
   const colors: string[] = [
-    "red",
-    "orange",
-    "yellow",
-    "green",
+    "blackA1pha",
     "blue",
-    "indigo",
-    "violet",
-    "#FFC0CB", // Lighter shade of red (Pink)
-    "#FFA500", // Lighter shade of orange (Orange)
-    "#FFFF00", // Lighter shade of yellow (Yellow)
-    "#90EE90", // Lighter shade of green (LightGreen)
-    "#ADD8E6", // Lighter shade of blue (LightBlue)
-    "#8A2BE2", // Lighter shade of indigo (BlueViolet)
-    "#EE82EE", // Lighter shade of violet (Violet)
+    "cyan",
+    "facebook",
+    "green",
+    "linkedin",
+    "messenger",
+    "orange",
+    "pink",
+    "purple",
+    "teat",
+    "telegram",
+    "twitter",
+    "whatsapp",
+    "whiteAtpha",
+    "yellow",
   ];
   return (
     <div className={styles.colorPalette}>
@@ -93,7 +95,7 @@ function ComposeMsgModal({
         <ModalHeader className={styles.comHead}>Compose Message</ModalHeader>
         <ModalBody className={styles.comBody}>
           {/* title */}
-          <Input placeholder="Title" />
+          <Input colorScheme="" placeholder="Title" />
 
           {/* Target */}
           <div className={styles.targetLabel}>
@@ -162,10 +164,10 @@ function ComposeMsgModal({
         </ModalBody>
 
         <ModalFooter className={styles.comFoot}>
-          <Button  variant="outline" onClick={onClose}>
+          <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button >Send Message</Button>
+          <Button>Send Message</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
