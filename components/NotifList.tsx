@@ -58,6 +58,7 @@ export default function NotifList() {
       <Divider />
 
       <div className={styles.notifList}>{componentToRender}</div>
+      <br />
       <Pagination page={page} setPage={setPage} items={notifications} />
     </div>
   );
