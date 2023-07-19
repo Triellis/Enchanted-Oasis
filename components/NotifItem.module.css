@@ -65,5 +65,5 @@
   color: hsl(var(--er));
 }
 .link:hover > .body > .title {
-  text-decoration: underline;
+  color: hsl(var(--s));
 }
