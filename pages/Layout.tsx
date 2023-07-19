@@ -9,8 +9,7 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import SidebarItem from "../components/SidebarItem";
 import { MySession } from "../lib/types";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleSidebar } from "@/lib/slices/isSidebarOpen";
+
 const navItems: {
   [key: string]: {
     text: string;
@@ -35,10 +34,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const data = session.data as MySession;
 
-  const isSidebarOpen = useSelector((state: any) => state.isSidebarOpen.value);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
-  const dispatch = useDispatch();
-  console.log(isSidebarOpen);
+  const handleToggle = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   return (
     <>
       <Head>
@@ -56,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Sidebar>
         </div>
         <div className={styles.content}>
-          <Nav onToggle={() => dispatch(toggleSidebar())} />
+          <Nav onToggle={handleToggle} />
           <div className={styles.childContent}>{children}</div>
         </div>
       </main>
