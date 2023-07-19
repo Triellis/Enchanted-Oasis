@@ -64,6 +64,12 @@
     grid-row: 2;
     color: hsl(var(--pc) / 50%);
   }
+
+  div.popContent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 /* for the actions buttons in the end */
 .btnGroup {

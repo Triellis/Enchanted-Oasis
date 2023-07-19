@@ -9,6 +9,9 @@ import { theme } from "../lib/theme";
 // Use of the <SessionProvider> is mandatory to allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
 import "../styles/global.css";
+import store from "@/lib/store";
+import { Provider } from "react-redux";
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -16,7 +19,9 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </ChakraProvider>
     </SessionProvider>
   );
