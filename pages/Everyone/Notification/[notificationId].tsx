@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import remarkGfm from "remark-gfm";
 import { Flex, Avatar, Badge, Box, Text, Divider } from "@chakra-ui/react";
+import { AdminNotificationOnClient } from "@/lib/types";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -15,7 +16,7 @@ function useNotification(id: string) {
     fetcher
   );
   return {
-    notification: data as Notification,
+    notification: data as AdminNotificationOnClient,
     isLoading,
     error: error,
     mutate,
@@ -25,7 +26,7 @@ function useNotification(id: string) {
 function NotificationComponent({
   notification,
 }: {
-  notification: Notification;
+  notification: AdminNotificationOnClient;
 }) {
   return (
     <div className={styles.notifMain}>
@@ -45,7 +46,7 @@ function NotificationComponent({
 
       <Divider />
       <div className={styles.notifMisc}>
-        <div className={styles.badges} >
+        <div className={styles.badges}>
           <Badge colorScheme="green">Published</Badge>
           <Badge colorScheme="green">Published</Badge>
         </div>
