@@ -97,7 +97,7 @@ export default function Users() {
 
         {/* pagination */}
         <div className={styles.botBar}>
-          <Pagination page={page} setPage={setPage} users={users} />
+          <Pagination page={page} setPage={setPage} items={users} />
         </div>
 
         <button

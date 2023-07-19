@@ -131,9 +131,7 @@ async function GET(
     ? parseInt(req.query.page as string)
     : 1;
   const skip = (page - 1) * maxResults;
-  const unseenOnly = req.query.unseenOnly
-    ? Boolean(req.query.unseenOnly)
-    : false;
+  const unseenOnly = req.query.unseenOnly === "true" ? true : false;
 
   const db = (await clientPromise).db("enchanted-oasis");
   const notificationCollection =
@@ -150,6 +148,7 @@ async function GET(
       }
     )
   )?.notifications!;
+
   if (unseenOnly) {
     userNotifDoc = Object.fromEntries(
       Object.entries(userNotifDoc).filter(([key, value]) => !value.seen)
@@ -169,22 +168,35 @@ async function GET(
     (key) => new ObjectId(key)
   );
 
-  let notifProjection;
+  let notifProjection: any = {
+    _id: 1,
+    title: 1,
+    body: {
+      $concat: [
+        { $substr: ["$body", 0, 150] }, // Specify the number of characters to keep (e.g., 10)
+        "...", // Add ellipsis or any desired truncation indicator
+      ],
+    },
+    badgeText: 1,
+    badgeColor: 1,
+    audience: 1,
+    creatorId: 1,
+    date: 1,
+    creator: 1,
+  };
   if (session?.user.role === "Admin") {
     notifProjection = {
-      seenBy: 0,
-    };
-  } else {
-    notifProjection = {
-      seenBy: 0,
-      seenByCount: 0,
+      ...notifProjection,
+      seenByCount: 1,
     };
   }
   let notifications;
 
   notifications = await notificationCollection
     .aggregate([
-      { $match: { _id: { $in: userNotifIds } } },
+      {
+        $match: { _id: { $in: userNotifIds } },
+      },
       {
         $lookup: {
           from: "Users",
@@ -195,11 +207,22 @@ async function GET(
             {
               $project: userProjection,
             },
+            {
+              $limit: 1, // Limit the number of creators to 1
+            },
           ],
         },
       },
+      {
+        $addFields: {
+          creator: { $arrayElemAt: ["$creator", 0] }, // Get the first creator from the 'creators' array
+        },
+      },
+      {
+        $project: notifProjection,
+      },
     ])
-    .project(notifProjection)
+
     .toArray();
 
   const notificationsWithSeen: AdminNotificationOnClient[] = notifications

@@ -7,10 +7,10 @@ import React from "react";
 interface Props {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  users: any;
+  items: any[];
 }
 
-export default function Pagination({ page, setPage, users }: Props) {
+export default function Pagination({ page, setPage, items }: Props) {
   return (
     <div className={styles.page}>
       <Button
@@ -25,7 +25,7 @@ export default function Pagination({ page, setPage, users }: Props) {
       <Button
         className="clicky"
         onClick={() => {
-          if (users.length == 10) setPage(page + 1);
+          if (items.length == 10) setPage(page + 1);
         }}
       >
         <ArrowRightIcon />
