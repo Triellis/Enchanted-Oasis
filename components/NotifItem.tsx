@@ -36,15 +36,19 @@ function formatDateTime(date: Date) {
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
 async function deleteNotification(notificationId: string) {
-  // const res = await fetch(`/api/notification/${notificationId}`, {
-  //   method: "DELETE",
-  // });
-  // if (res.ok) {
-  //   console.log("Notification deleted");
-  // } else {
-  //   console.log("Notification not deleted");
-  // }
+  const res = await fetch(`/api/notification/${notificationId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    console.log("Notification deleted");
+  } else {
+    console.log("Notification not deleted");
+  }
   console.log("deleted");
+}
+
+function DeleteConfirmationModal() {
+  return <div></div>;
 }
 
 export default function NotifItem({
@@ -67,19 +71,22 @@ export default function NotifItem({
         !notification.seen && styles.unreadNotif
       )}
     >
-      <Link href={`/Everyone/Notification/${notification._id}`}>
-        <div className={styles.header}>
-          {/* Avatar, name, email */}
-          <Flex gap={4}>
-            <Avatar src={notification.creator.profilePicture} />
-            <div>
-              <Text fontSize="sm">{notification.creator.name}</Text>
-              <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
-                {notification.creator.email}
-              </Text>
-            </div>
-          </Flex>
-        </div>
+      <div className={styles.header}>
+        {/* Avatar, name, email */}
+        <Flex gap={4}>
+          <Avatar src={notification.creator.profilePicture} />
+          <div>
+            <Text fontSize="sm">{notification.creator.name}</Text>
+            <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
+              {notification.creator.email}
+            </Text>
+          </div>
+        </Flex>
+      </div>
+      <Link
+        className={styles.link}
+        href={`/Everyone/Notification/${notification._id}`}
+      >
         <div className={styles.body}>
           {/* Title and Content */}
           <span className={styles.title}>
@@ -91,41 +98,43 @@ export default function NotifItem({
             {notification.body}
           </Text>
         </div>
-        <div className={styles.footer}>
-          {/* Date and time without icons */}
-
-          <Text fontSize="sm" color="hsl(var(--nc) )">
-            {formatDateTime(new Date(notification.date))}
-          </Text>
-
-          {/* Badge */}
-          <Flex>
-            <div className={styles.badgesWrapper}>
-              {!notification.seen && <Badge colorScheme="green">New</Badge>}
-              <Badge colorScheme="blue"> {notification.audience}</Badge>
-              <Badge colorScheme={notification.badgeColor}>
-                {" "}
-                {notification.badgeText}{" "}
-              </Badge>
-            </div>
-            <Spacer />
-            <div className={styles.viewsDisplay}>
-              {viewsFormatter.format(notification.seenByCount)}
-              <span className={styles.viewsText}>
-                {notification.seenByCount === 1 ? "view" : "views"}
-              </span>
-              <IconButton
-                className={styles.del}
-                aria-label="delete"
-                icon={<FiTrash2 />}
-                onClick={() => {
-                  deleteNotification(notification._id.toString());
-                }}
-              />
-            </div>
-          </Flex>
-        </div>
       </Link>
+
+      <div className={styles.footer}>
+        {/* Date and time without icons */}
+
+        <Text fontSize="sm" color="hsl(var(--nc) )">
+          {formatDateTime(new Date(notification.date))}
+        </Text>
+
+        {/* Badge */}
+        <Flex>
+          <div className={styles.badgesWrapper}>
+            {!notification.seen && <Badge colorScheme="green">New</Badge>}
+            <Badge colorScheme="blue"> {notification.audience}</Badge>
+            <Badge colorScheme={notification.badgeColor}>
+              {" "}
+              {notification.badgeText}{" "}
+            </Badge>
+          </div>
+          <Spacer />
+          <div className={styles.viewsDisplay}>
+            {viewsFormatter.format(notification.seenByCount)}
+            <span className={styles.viewsText}>
+              {notification.seenByCount === 1 ? "view" : "views"}
+            </span>
+            <button
+              className={styles.del}
+              aria-label="delete"
+              onClick={(event) => {
+                deleteNotification(notification._id.toString());
+              }}
+            >
+              <FiTrash2 />
+            </button>
+          </div>
+        </Flex>
+      </div>
     </div>
   );
 }
