@@ -57,8 +57,10 @@ function ComposeMsgModal({
             <div>
               <Input
                 borderColor="lime"
+                color="lime"
                 focusBorderColor="lime"
                 placeholder="Label"
+                _placeholder={{ color: "inherit" }}
               />
             </div>
           </div>
