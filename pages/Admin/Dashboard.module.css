@@ -104,28 +104,26 @@
   height: min-content !important;
   padding: 0.5em;
 
-  overflow-y: scroll;
-  height: 9em !important;
   width: min-content !important;
 }
 .colorPalette {
   /* 4*3 grid with vertical scroll */
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 0.2em;
 }
 .swatch {
-  /* scale: 0.8; */
+  border-radius: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  opacity: 0.8;
 }
 
 .tabs {
   width: 100%;
 }
 
-.comHead {
-  /* use if required */
-}
 .comBody {
   display: flex;
   flex-direction: column;
@@ -149,12 +147,21 @@
 
 .textArea {
   height: 22em !important;
+  background-color: hsl(var(--b3));
+  width: 100%;
+  border-radius: 1em;
+  padding: 1em;
+  outline: none;
+}
+.textArea:focus {
+  border: 1px solid hsl(var(--nc) / 40%);
 }
 .markDownArea {
   height: 22em !important;
-  margin-top: 0.3em;
+
   background-color: hsl(var(--b3));
   border-radius: 1em;
-  padding: 0.5em;
+  padding: 1em;
+
   overflow-y: scroll;
 }

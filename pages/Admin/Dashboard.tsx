@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 
 import {
+  Box,
   Button,
   Flex,
   IconButton,
@@ -36,25 +37,22 @@ import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { useState } from "react";
+import { ReducerAction, useReducer, useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-function ColorSwatch() {
+function ColorSwatch({
+  data,
+  dispatchData,
+}: {
+  data: NotifData;
+  dispatchData: React.Dispatch<ReducerAction<typeof mutateData>>;
+}) {
   const colors: string[] = [
-    "blackA1pha",
-    "blue",
     "cyan",
-    "facebook",
     "green",
-    "linkedin",
-    "messenger",
     "orange",
     "pink",
     "purple",
-    "teat",
-    "telegram",
-    "twitter",
-    "whatsapp",
-    "whiteAtpha",
+
     "yellow",
   ];
   return (
@@ -63,14 +61,43 @@ function ColorSwatch() {
         <Button
           key={index}
           className={classNames("clicky", styles.swatch)}
-          style={{ backgroundColor: color }}
+          colorScheme={color}
           onClick={() => {
-            console.log(color);
+            dispatchData({ type: "labelColor", payload: color });
           }}
         ></Button>
       ))}
     </div>
   );
+}
+type NotifData = {
+  title: string;
+  audience: string;
+  label: string;
+  labelColor: string;
+  body: string;
+};
+function mutateData(
+  state: NotifData,
+  action: {
+    type: string;
+    payload: string;
+  }
+) {
+  switch (action.type) {
+    case "title":
+      return { ...state, title: action.payload };
+    case "audience":
+      return { ...state, audience: action.payload };
+    case "label":
+      return { ...state, label: action.payload };
+    case "labelColor":
+      return { ...state, labelColor: action.payload };
+    case "body":
+      return { ...state, body: action.payload };
+    default:
+      return state;
+  }
 }
 
 function ComposeMsgModal({
@@ -81,7 +108,14 @@ function ComposeMsgModal({
   onClose: () => void;
 }) {
   // content of the body:
-  const [content, setContent] = useState("");
+
+  const [data, dispatchData] = useReducer(mutateData, {
+    title: "",
+    audience: "All",
+    label: "",
+    labelColor: "red",
+    body: "",
+  });
   return (
     <Modal
       isCentered
@@ -92,37 +126,55 @@ function ComposeMsgModal({
     >
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
-        <ModalHeader className={styles.comHead}>Compose Message</ModalHeader>
+        <ModalHeader className={styles.comHead}>
+          Compose Message
+          <ModalCloseButton />
+        </ModalHeader>
         <ModalBody className={styles.comBody}>
           {/* title */}
-          <Input colorScheme="" placeholder="Title" />
+          <Input
+            placeholder="Title"
+            value={data.title}
+            onChange={(e) => {
+              dispatchData({ type: "title", payload: e.target.value });
+            }}
+          />
 
           {/* Target */}
           <div className={styles.targetLabel}>
             <div>
-              <Select placeholder="All" className={styles.target}>
-                <option value="option1">Students</option>
-                <option value="option2">Faculties</option>
+              <Select
+                placeholder="All"
+                className={styles.target}
+                onChange={(e) => {
+                  dispatchData({ type: "audience", payload: e.target.value });
+                }}
+                value={data.audience}
+              >
+                <option value="Student">Students</option>
+                <option value="Faculty">Faculties</option>
               </Select>
             </div>
 
             <div className={styles.colorLabel}>
               <Input
-                borderColor="lime"
-                color="lime"
-                focusBorderColor="lime"
+                variant={"outline"}
                 placeholder="Label"
+                borderColor={data.labelColor}
                 _placeholder={{ color: "inherit" }}
               />
 
               <Popover>
                 <PopoverTrigger>
-                  <Button className="clicky"></Button>
+                  <Button
+                    colorScheme={data.labelColor}
+                    className="clicky"
+                  ></Button>
                 </PopoverTrigger>
                 <PopoverContent className={styles.popContent}>
                   <PopoverBody p="0em">
-                    Choose color
-                    <ColorSwatch />
+                    label color
+                    <ColorSwatch data={data} dispatchData={dispatchData} />
                   </PopoverBody>
                 </PopoverContent>
               </Popover>
@@ -137,13 +189,12 @@ function ComposeMsgModal({
             <TabPanels>
               {/* write here */}
               <TabPanel p="0em" pt="0.3em">
-                <Textarea
+                <textarea
                   className={styles.textArea}
-                  autoFocus
                   placeholder="Body"
-                  value={content}
+                  value={data.body}
                   onChange={(e) => {
-                    setContent(e.target.value);
+                    dispatchData({ type: "body", payload: e.target.value });
                   }}
                 />
               </TabPanel>
@@ -156,7 +207,7 @@ function ComposeMsgModal({
                   className={styles.markDownArea}
                   components={ChakraUIRenderer()}
                 >
-                  {content}
+                  {data.body}
                 </ReactMarkdown>
               </TabPanel>
             </TabPanels>
