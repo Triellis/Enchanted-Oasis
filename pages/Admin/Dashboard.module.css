@@ -50,21 +50,21 @@
 .composeMsg {
   display: flex !important;
   position: fixed !important;
-  
+  justify-content: space-evenly !important;
+
   padding: 0.5em;
-  width: 5em;
-  height: 3.5em;
+  width: 1em;
   border: 1px solid hsl(var(--pc) / 30%) !important;
 
   right: 2em;
   bottom: 1em;
   z-index: 2;
-  
+
   transition: width 0.2s ease-in-out !important;
   white-space: nowrap;
   line-height: 2.5em;
   overflow: hidden;
-  
+
   backdrop-filter: blur(5px);
   background-color: hsl(var(--s) / 40%) !important;
   box-shadow: -4px 4px 2px hsl(var(--b3));
@@ -74,6 +74,8 @@
   scale: 0.9;
 }
 .composeMsg:hover {
-  width: 9.5em;
+  width: 12em;
 }
-
+.composeMsg:hover::after {
+  content: "Compose Message";
+}

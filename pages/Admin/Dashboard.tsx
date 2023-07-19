@@ -1,7 +1,10 @@
 import { useSession } from "next-auth/react";
 import Layout from "../Layout";
-import { Button } from "@chakra-ui/react";
+
+import { Button, IconButton } from "@chakra-ui/react";
+import { FiFeather } from "react-icons/fi";
 import styles from "./Dashboard.module.css";
+
 import NotifItem from "@/components/NotifItem";
 import NotifList from "@/components/NotifList";
 
@@ -25,7 +28,11 @@ export default function Admin() {
           <NotifList />
         </div>
 
-        <Button className={styles.composeMsg}>Click me</Button>
+        <IconButton
+          aria-label="compose"
+          className={styles.composeMsg}
+          icon={<FiFeather />}
+        />
       </Layout>
     </>
   );
