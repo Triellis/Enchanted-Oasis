@@ -51,7 +51,7 @@ function useProfile() {
   };
 }
 
-function Loading() {
+function LoadingSkeleton() {
   return (
     <Box>
       <div className={styles.container}>
@@ -446,24 +446,25 @@ function ProfileComponent({
       {/* header with profile photo, name, email, role */}
       <div className={styles.header}>
         {/* profile */}
-        <Avatar src={user.profilePicture} size={{ base: "xl", lg: "2xl" }} />
+        <div className={styles.meInfo}>
+          <Avatar src={user.profilePicture} size={{ base: "xl", lg: "2xl" }} />
 
-        {/* information */}
-        <div className={styles.prime}>
-          <Text fontWeight="bold" className={styles.name}>
-            {user.name}
-            <Badge
-              colorScheme={getRoleColor(user.role)}
-              className={styles.role}
-            >
-              {user.role}
-            </Badge>
-          </Text>
-          <Text className={styles.email} fontWeight="light">
-            {user.email}
-          </Text>
+          {/* information */}
+          <div className={styles.prime}>
+            <Text fontWeight="bold" className={styles.name}>
+              {user.name}
+              <Badge
+                colorScheme={getRoleColor(user.role)}
+                className={styles.role}
+              >
+                {user.role}
+              </Badge>
+            </Text>
+            <Text className={styles.email} fontWeight="light">
+              {user.email}
+            </Text>
+          </div>
         </div>
-
         <div className={styles.edit}>
           <Button
             variant="outline"
@@ -536,7 +537,7 @@ export default function Profile() {
   const { user, isLoading, error, mutate } = useProfile();
   let componentToRender;
   if (isLoading) {
-    componentToRender = <Loading />;
+    componentToRender = <LoadingSkeleton />;
   } else if (error) {
     componentToRender = <div>Error</div>;
   } else {

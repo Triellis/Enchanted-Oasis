@@ -134,7 +134,19 @@ function HousePlate({
 }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isEditPlateOpen, setIsEditPlateOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
+  useEffect(() => {
+    console.log(isEditPlateOpen);
+
+    if (isFocused || isHovered) {
+      setIsEditPlateOpen(true);
+    } else {
+      setIsEditPlateOpen(false);
+    }
+  }, [isFocused, isHovered]);
   return (
     <div className={styles.housePlate}>
       <span
@@ -148,23 +160,6 @@ function HousePlate({
           <span className={styles.houseName}>{house.name} </span>
           <span className={styles.housePoints}>{house.points} points </span>
         </div>
-        <span className={styles.editHouseButtons}>
-          <Button
-            onClick={() =>
-              changePoints("Increase", house._id.toString(), toast, mutateHouse)
-            }
-          >
-            +
-          </Button>
-          <Button
-            onClick={() =>
-              changePoints("Decrease", house._id.toString(), toast, mutateHouse)
-            }
-          >
-            -
-          </Button>
-          <Button onClick={onOpen}>Edit</Button>
-        </span>
       </div>
 
       <EditPointsModal
@@ -174,6 +169,45 @@ function HousePlate({
         house={house}
         mutateHouse={mutateHouse}
       />
+
+      <div
+        className={styles.endBtn}
+        tabIndex={2}
+        onMouseLeave={() => setIsHovered(false)}
+        onBlur={() => setIsFocused(false)}
+        onFocus={() => setIsFocused(true)}
+        onMouseEnter={() => setIsHovered(true)}
+      >
+        {isEditPlateOpen && (
+          <span className={styles.editHouseButtons}>
+            <Button
+              onClick={() =>
+                changePoints(
+                  "Increase",
+                  house._id.toString(),
+                  toast,
+                  mutateHouse
+                )
+              }
+            >
+              <AddIcon />
+            </Button>
+            <Button onClick={onOpen}>Edit</Button>
+            <Button
+              onClick={() =>
+                changePoints(
+                  "Decrease",
+                  house._id.toString(),
+                  toast,
+                  mutateHouse
+                )
+              }
+            >
+              <MinusIcon />
+            </Button>
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -306,18 +340,8 @@ function HousePage() {
             mutate={mutate}
           />
           <div className={styles.botBar}>
-            <Pagination page={page} setPage={setPage} users={users} />
+            <Pagination page={page} setPage={setPage} items={users} />
           </div>
-        </div>
-      </div>
-
-      <div className={styles.endBtn}>
-        <div>
-          <IconButton icon={<AddIcon />} aria-label="increment" />
-          <NumberInput allowMouseWheel defaultValue={0}>
-            <NumberInputField/>
-          </NumberInput>
-          <IconButton icon={<MinusIcon />} aria-label="decrement" />
         </div>
       </div>
     </Layout>

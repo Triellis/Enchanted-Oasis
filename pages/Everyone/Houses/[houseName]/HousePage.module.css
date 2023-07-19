@@ -171,17 +171,13 @@
   align-items: center;
   gap: 0.3em;
   transition: all 0.2s ease-in-out;
-  box-shadow: -4px 4px 2px hsl(var(--b3));
-  border: 1px solid hsl(var(--n));
-  padding: 2em;
+
+  padding: 4em;
   border-radius: 1em;
 
   backdrop-filter: blur(10px);
 }
-.scoreBoard:hover {
-  box-shadow: 0px 0px 2px hsl(var(--b3));
-  border: white 1px solid;
-}
+
 .houseImage {
   background-size: cover;
   width: 100%;
@@ -198,38 +194,44 @@
   justify-content: center;
   border-top: none;
   gap: 1em;
-
+  z-index: 3;
+  background-color: transparent !important;
   width: 100%;
 }
 .editHouseButtons > button {
-  background-color: hsl(var(--p));
+  background-color: transparent;
+  border: 1px solid hsl(var(--pc) / 0.2);
 }
 .houseName {
   font-size: 2em;
   font-weight: 600;
   /* letter spacing */
-
-  letter-spacing: -0.1%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -0.05em;
 }
 .housePoints {
   font-size: 2em;
+  letter-spacing: -0.1em;
+
+  color: hsl(var(--nc));
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .boardContent {
   gap: 1em;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .housePlate {
   position: relative;
   width: 100%;
   border-radius: 1em;
   overflow: hidden;
-  padding: 2em;
+  border: 1px solid hsl(var(--n));
 }
 
 @media screen and (max-width: 768px) {
-  .scoreBoard {
-    padding: 1em;
-  }
   .houseName {
     font-size: 1.5em;
   }
@@ -239,9 +241,7 @@
   .boardContent {
     gap: 0.5em;
   }
-  .housePlate {
-    padding: 1em;
-  }
+
   .boardContent {
     flex-direction: column;
     align-items: center;
@@ -250,40 +250,38 @@
 
 /* for the end button */
 .endBtn {
-  position: fixed !important;
+  position: fixed;
   right: 2.5em;
+  padding: 0.5em;
+  display: flex;
   padding-inline: 1em;
-  bottom: 1em;
-  transition: all 0.4s ease-in-out !important;
+  bottom: 3em;
+  transition: width 0.2s ease-in-out;
   flex-direction: row;
   align-items: center;
   width: 7em;
   white-space: nowrap;
-  line-height:2.5em;
+  line-height: 2.5em;
   overflow: hidden;
   backdrop-filter: blur(5px);
   border-radius: 0.8em;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);
+  z-index: 2;
+  background-color: hsl(var(--s) / 40%);
+  height: 3.5em;
 }
 .endBtn::before {
   content: "Edit Points";
 }
-.endBtn:hover::before {
+.endBtn:hover::before,
+.endBtn:focus-within::before,
+.endBtn:active::before {
   content: "";
 }
-.endBtn:hover {
-  width: 22em;
-  padding: 0;
-  line-height:0;
-}
-.endBtn > * {
-  display: none;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
-.endBtn:hover > * {
-  opacity: 1;
-  display: flex;
-  justify-content: space-between;
+.endBtn:hover,
+.endBtn:focus-within,
+.endBtn:active {
+  width: 13em;
+  padding: 0.5em;
 }

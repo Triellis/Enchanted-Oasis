@@ -4,6 +4,7 @@ import styles from "./NotifItem.module.css";
 import { CalendarIcon, EmailIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
 import { AdminNotificationOnClient } from "@/lib/types";
 import Image from "next/image";
+import classNames from "classnames";
 function formatDateTime(date: Date) {
   const time = date.toLocaleTimeString([], {
     hour: "numeric",
@@ -35,7 +36,12 @@ export default function NotifItem({
     []
   );
   return (
-    <div className={styles.notifItem}>
+    <div
+      className={classNames(
+        styles.notifItem,
+        !notification.seen && styles.unreadNotif
+      )}
+    >
       <div className={styles.header}>
         {/* Avatar, name, email */}
         <Flex gap={4}>
