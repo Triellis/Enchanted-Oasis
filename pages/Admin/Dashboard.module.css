@@ -148,10 +148,10 @@
 }
 
 .textArea {
-  min-height: 14em !important;
+  height: 22em !important;
 }
 .markDownArea {
-  height: 14em !important;
+  height: 22em !important;
   margin-top: 0.3em;
   background-color: hsl(var(--b3));
   border-radius: 1em;

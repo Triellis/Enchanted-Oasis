@@ -86,8 +86,7 @@ function ComposeMsgModal({
       onClose={onClose}
       isOpen={isOpen}
       motionPreset="slideInBottom"
-      // responsive:
-      size={{ sm: "2xl", base: "xs", lg: "2xl" }}
+      size="full"
     >
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
@@ -163,10 +162,10 @@ function ComposeMsgModal({
         </ModalBody>
 
         <ModalFooter className={styles.comFoot}>
-          <Button className="clicky" variant="outline" onClick={onClose}>
+          <Button  variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button className="clicky">Send Message</Button>
+          <Button >Send Message</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
