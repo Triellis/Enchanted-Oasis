@@ -80,3 +80,27 @@
 .composeMsg:hover::after {
   content: "Compose Message";
 }
+
+.comHead {
+  /* use if required */
+}
+.comBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.comFoot {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center;
+  gap: 1em;
+}
+.comFoot > * {
+  width: 100%;
+}
+.comFoot > :nth-child(2) {
+  background-color: hsl(var(--p)) !important;
+}

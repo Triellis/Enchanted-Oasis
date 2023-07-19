@@ -4,6 +4,7 @@ import Layout from "../Layout";
 import {
   Button,
   IconButton,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,6 +12,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FiFeather } from "react-icons/fi";
@@ -54,15 +56,22 @@ export default function Admin() {
           motionPreset="slideInBottom"
         >
           <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>hasdfasf</ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
+          <ModalContent bg="hsl(var(--b2))">
+            <ModalHeader className={styles.comHead}>
+              Compose Message
+            </ModalHeader>
+            <ModalBody className={styles.comBody}>
+              {/* title */}
+              <Input placeholder="Title  " />
+
+              {/* body */}
+              <Textarea placeholder="Here is a sample placeholder" />
+            </ModalBody>
+            <ModalFooter className={styles.comFoot}>
+              <Button className="clicky" variant="outline" onClick={onClose}>
+                Cancel
               </Button>
-              <Button variant="ghost">Secondary Action</Button>
+              <Button className="clicky">Send Message</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
