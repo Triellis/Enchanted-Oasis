@@ -16,7 +16,20 @@ function useNotification(id: string) {
   };
 }
 
-export default function notificationsPage() {
+function NotificationComponent({
+  notification,
+}: {
+  notification: Notification;
+}) {
+  return (
+    <div>
+      <h1>{notification.title}</h1>
+      <p>{notification.body}</p>
+    </div>
+  );
+}
+
+export default function NotificationPage() {
   const router = useRouter();
   const { notification, isLoading, error } = useNotification(
     router.query.notificationId as string
@@ -28,10 +41,7 @@ export default function notificationsPage() {
     notificationComponent = <div>Error: {error}</div>;
   } else {
     notificationComponent = (
-      <div>
-        <h1>{notification.title}</h1>
-        <p>{notification.body}</p>
-      </div>
+      <NotificationComponent notification={notification} />
     );
   }
 
