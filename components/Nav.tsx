@@ -70,7 +70,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
             <button
               className={classNames(styles.notificationIndicator, "clicky")}
             >
-              <BellIcon h={4} />
+              <BellIcon h={4} className={styles.bellIcon} />
               {notificationCountComponent}
             </button>
           </Link>

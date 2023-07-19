@@ -75,11 +75,34 @@
 }
 
 .notifCount {
-  background-color: red;
+  background-color: rgb(221, 0, 0);
   color: white;
   border-radius: 1em;
   border-radius: 0.8em;
   font-size: 0.8em;
   min-width: 3ch;
   padding: 0.1em 0.3em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.bellIcon {
+  animation: ring 500ms ease infinite;
+}
+
+@keyframes ring {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(10deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+
+  50% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
 }
