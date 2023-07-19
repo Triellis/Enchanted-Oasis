@@ -1,17 +1,17 @@
 /* Harry Potter theme styles */
 
 .greeting {
-  font-size: 23px;
+  font-size: 1.3em;
 }
 
 .name {
   font-weight: bold;
   color: #ffcc00; /* Gryffindor house color */
-  font-size: 25px;
+  /* font-size: 25px; */
 }
 
 .glowingText {
-  font-size: 25px;
+  /* font-size: 25px; */
   animation: glowingAnimation 2s ease-in-out infinite;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .appName {
-  font-size: 25px;
+  /* font-size: 25px; */
   background: linear-gradient(
     135deg,
     rgba(0, 255, 255, 1) 5%,
@@ -44,7 +44,7 @@
   letter-spacing: -1px;
 }
 
-.notifications{
+.notifications {
   display: flex;
   width: 100%;
   margin: 0.5em 0;
