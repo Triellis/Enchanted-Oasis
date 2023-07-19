@@ -56,6 +56,15 @@
   position: fixed !important;
   z-index: 1;
 
+  width: 5em;
   right: 2em;
   bottom: 1em;
+  transition: all 200ms ease-in-out;
 }
+.composeMsg:active {
+  scale: 0.9;
+}
+.composeMsg:hover {
+  width: 9.5em;
+}
+
