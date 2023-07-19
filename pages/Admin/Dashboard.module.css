@@ -94,18 +94,34 @@
 .target > * {
   background-color: hsl(var(--b1)) !important;
 }
-.colorLabel{
+.colorLabel {
   display: flex;
+  gap: 0.2em;
 }
 
-.colorPalette{
+.popContent{
   background-color: hsl(var(--b3)) !important;
-  border: transparent;
+  height: min-content !important;
+  padding: 0.5em;
+  
+  overflow-y: scroll;
+  height: 9em !important;
+  width: min-content !important;
 }
-.tabs{
+.colorPalette {
+/* 4*3 grid with vertical scroll */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 0.2em;
+}
+.swatch {
+  scale: 0.8;
+}
+
+.tabs {
   width: 100%;
 }
-
 
 .comHead {
   /* use if required */
