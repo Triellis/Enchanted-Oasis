@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import styles from "./Notification.module.css";
+import ReactMarkdown from "react-markdown";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import remarkGfm from "remark-gfm";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -50,7 +53,13 @@ export default function NotificationPage() {
   return (
     <Layout>
       <div>
-        <h1>{notificationComponent}</h1>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          className={styles.markDownArea}
+          components={ChakraUIRenderer()}
+        >
+          {notificationComponent}
+        </ReactMarkdown>
       </div>
     </Layout>
   );
