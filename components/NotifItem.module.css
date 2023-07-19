@@ -11,10 +11,12 @@
 
   padding: 1em;
   border-radius: 1em;
-  background-color: hsl(var(--b3));
+  background-color: hsl(var(--b2));
   margin-block: 0.5em;
 
   font-size: 1.1em;
+  box-shadow: -2px 2px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 15%);
 }
 
 /* contents of the notifications */
@@ -49,7 +51,4 @@
 /* notifications read or not */
 .unreadNotif {
   background-color: hsl(var(--b3));
-}
-.seen {
-  background-color: hsl(var(--b2));
 }
