@@ -12,6 +12,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -40,10 +41,28 @@ function ComposeMsgModal({
         <ModalHeader className={styles.comHead}>Compose Message</ModalHeader>
         <ModalBody className={styles.comBody}>
           {/* title */}
-          <Input placeholder="Title  " />
+          <Input placeholder="Title" />
+
+          {/* Target */}
+          <div className={styles.targetLabel}>
+            <div>
+              <Select placeholder="All" className={styles.target}>
+                <option value="option1">Students</option>
+                <option value="option2">Faculties</option>
+              </Select>
+            </div>
+
+            <div>
+              <Input
+                borderColor="lime"
+                focusBorderColor="lime"
+                placeholder="Label"
+              />
+            </div>
+          </div>
 
           {/* body */}
-          <Textarea placeholder="Here is a sample placeholder" />
+          <Textarea placeholder="Body" />
         </ModalBody>
         <ModalFooter className={styles.comFoot}>
           <Button className="clicky" variant="outline" onClick={onClose}>

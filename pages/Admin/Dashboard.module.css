@@ -81,6 +81,18 @@
   content: "Compose Message";
 }
 
+.targetLabel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+}
+.target {
+  /* use if needed */
+}
+.target > * {
+  background-color: hsl(var(--b1)) !important;
+}
+
 .comHead {
   /* use if required */
 }
