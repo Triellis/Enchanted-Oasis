@@ -26,9 +26,9 @@ function HouseCard({
   rank: number;
 }) {
   return (
-    <GridItem>
-      <Card className={styles.housePic}>
-        <Link href={`./Houses/${house.name}?houseId=${house._id}`}>
+    <Link href={`./Houses/${house.name}?houseId=${house._id}`}>
+      <GridItem>
+        <Card className={styles.housePic}>
           <CardBody padding={0} position={"relative"}>
             <Image
               src={`/assets/image/Houses/${house.name[0]}.png`}
@@ -40,9 +40,9 @@ function HouseCard({
             <div className={styles.rankDisplay}>{rank}</div>
             <div className={styles.housePoints}>{house.points}</div>
           </CardBody>
-        </Link>
-      </Card>
-    </GridItem>
+        </Card>
+      </GridItem>
+    </Link>
   );
 }
 

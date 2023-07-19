@@ -9,6 +9,8 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import SidebarItem from "../components/SidebarItem";
 import { MySession } from "../lib/types";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { toggleSidebar } from "@/lib/slices/isSidebarOpen";
 
 const navItems: {
   [key: string]: {
@@ -33,13 +35,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
 
   const data = session.data as MySession;
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
-
-  const handleToggle = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
+  const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
+  const dispatch = useAppDispatch();
   return (
     <>
       <Head>
@@ -57,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Sidebar>
         </div>
         <div className={styles.content}>
-          <Nav onToggle={handleToggle} />
+          <Nav onToggle={() => dispatch(toggleSidebar())} />
           <div className={styles.childContent}>{children}</div>
         </div>
       </main>

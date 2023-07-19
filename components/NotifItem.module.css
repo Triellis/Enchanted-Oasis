@@ -1,0 +1,54 @@
+/* body of the notification */
+.notifItem {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5em;
+
+  width: 100%;
+  min-width: min-content;
+  max-width: 1080px;
+
+  padding: 1em;
+  border-radius: 1em;
+  background-color: hsl(var(--b2));
+  margin-block: 0.5em;
+
+  font-size: 1.1em;
+  box-shadow: -2px 2px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 15%);
+}
+
+/* contents of the notifications */
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.body {
+  margin: 1em 0;
+}
+.viewsDisplay {
+  font-size: 0.8em;
+  display: flex;
+  gap: 0.2em;
+}
+.viewsText {
+  color: hsl(var(--nc));
+}
+.badgesWrapper {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  gap: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+/* notifications read or not */
+.unreadNotif {
+  background-color: hsl(var(--b3));
+}
