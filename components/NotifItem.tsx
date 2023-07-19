@@ -1,4 +1,12 @@
-import { Flex, Avatar, Badge, Text, Box, Spacer } from "@chakra-ui/react";
+import {
+  Flex,
+  Avatar,
+  Badge,
+  Text,
+  Box,
+  Spacer,
+  IconButton,
+} from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import styles from "./NotifItem.module.css";
 import { CalendarIcon, EmailIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
@@ -6,6 +14,7 @@ import { AdminNotificationOnClient } from "@/lib/types";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
+import { FiTrash2 } from "react-icons/fi";
 function formatDateTime(date: Date) {
   const time = date.toLocaleTimeString([], {
     hour: "numeric",
@@ -87,7 +96,15 @@ export default function NotifItem({
             <Spacer />
             <div className={styles.viewsDisplay}>
               {viewsFormatter.format(notification.seenByCount)}
-              <span className={styles.viewsText}>views</span>
+              <span className={styles.viewsText}>
+                {notification.seenByCount === 1 ? "view" : "views"}
+              </span>
+              <IconButton
+                className={styles.del}
+                aria-label="delete"
+                icon={<FiTrash2 />}
+                onClick={() => {}}
+              />
             </div>
           </Flex>
         </div>
