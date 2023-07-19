@@ -41,9 +41,6 @@ function NotificationComponent({
             <span className={styles.infoEmail}> admin@gmail.com</span>
           </Flex>
         </div>
-        <Flex className={styles.whenBox}>
-          <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
-        </Flex>
       </div>
 
       <Divider />
@@ -51,7 +48,12 @@ function NotificationComponent({
         <div>
           <Badge colorScheme="green">Published</Badge>
         </div>
-        <div>69views</div>
+        <div style={{textAlign:"right"}} >
+          69views
+          <Flex className={styles.whenBox}>
+          <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
+        </Flex>
+          </div>
       </div>
       <Divider />
 
