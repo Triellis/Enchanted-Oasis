@@ -20,6 +20,11 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Select,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -74,8 +79,8 @@ function ComposeMsgModal({
                 <PopoverTrigger>
                   <Button></Button>
                 </PopoverTrigger>
-                <PopoverContent className={styles.colorPalette} >
-                  <PopoverArrow bg="hsl(var(--b3))"/>
+                <PopoverContent className={styles.colorPalette}>
+                  <PopoverArrow bg="hsl(var(--b3))" />
                   <PopoverHeader>Confirmation!</PopoverHeader>
                   <PopoverBody>
                     Are you sure you want to have that milkshake?
@@ -85,8 +90,21 @@ function ComposeMsgModal({
             </div>
           </div>
 
+          <Tabs isFitted variant="enclosed" className={styles.tabs}>
+            <TabList>
+              <Tab>Write</Tab>
+              <Tab>Preview</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel p="0em" pt="0.3em">
+                <Textarea placeholder="Body" />
+              </TabPanel>
+              <TabPanel p="0em" pt="0.3em">
+                <Textarea placeholder="Body" />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
           {/* body */}
-          <Textarea placeholder="Body" />
         </ModalBody>
         <ModalFooter className={styles.comFoot}>
           <Button className="clicky" variant="outline" onClick={onClose}>
