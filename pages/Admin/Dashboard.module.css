@@ -60,7 +60,7 @@
   bottom: 1em;
   z-index: 2;
 
-  transition: width 0.2s ease-in-out !important;
+  transition: width 0.2s ease-in-out, scale 0.2s ease-in-out !important;
   white-space: nowrap;
   line-height: 2.5em;
   overflow: hidden;
