@@ -23,11 +23,12 @@ import { useRouter } from "next/router";
 import SearchBar from "@/components/SearchBar";
 import { useEffect, useRef, useState } from "react";
 import { fetcher } from "@/lib/functions";
-import { HouseCol, ReceivedUserDataOnClient } from "@/lib/types";
+import { HouseCol, MySession, ReceivedUserDataOnClient } from "@/lib/types";
 import useSWR from "swr";
 import Pagination from "@/components/Pagination";
 import UserList from "@/components/UserList";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { useSession } from "next-auth/react";
 
 // function to search users
 function useSearch(searchQuery: string, page: number, id: string) {
@@ -137,6 +138,7 @@ function HousePlate({
   const [isEditPlateOpen, setIsEditPlateOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const isAdmin = (useSession().data as MySession)?.user.role === "Admin";
 
   useEffect(() => {
     console.log(isEditPlateOpen);
@@ -161,53 +163,56 @@ function HousePlate({
           <span className={styles.housePoints}>{house.points} points </span>
         </div>
       </div>
+      {isAdmin && (
+        <>
+          <EditPointsModal
+            isOpen={isOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            house={house}
+            mutateHouse={mutateHouse}
+          />
 
-      <EditPointsModal
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-        house={house}
-        mutateHouse={mutateHouse}
-      />
-
-      <div
-        className={styles.endBtn}
-        tabIndex={2}
-        onMouseLeave={() => setIsHovered(false)}
-        onBlur={() => setIsFocused(false)}
-        onFocus={() => setIsFocused(true)}
-        onMouseEnter={() => setIsHovered(true)}
-      >
-        {isEditPlateOpen && (
-          <span className={styles.editHouseButtons}>
-            <Button
-              onClick={() =>
-                changePoints(
-                  "Increase",
-                  house._id.toString(),
-                  toast,
-                  mutateHouse
-                )
-              }
-            >
-              <AddIcon />
-            </Button>
-            <Button onClick={onOpen}>Edit</Button>
-            <Button
-              onClick={() =>
-                changePoints(
-                  "Decrease",
-                  house._id.toString(),
-                  toast,
-                  mutateHouse
-                )
-              }
-            >
-              <MinusIcon />
-            </Button>
-          </span>
-        )}
-      </div>
+          <div
+            className={styles.endBtn}
+            tabIndex={2}
+            onMouseLeave={() => setIsHovered(false)}
+            onBlur={() => setIsFocused(false)}
+            onFocus={() => setIsFocused(true)}
+            onMouseEnter={() => setIsHovered(true)}
+          >
+            {isEditPlateOpen && (
+              <span className={styles.editHouseButtons}>
+                <Button
+                  onClick={() =>
+                    changePoints(
+                      "Increase",
+                      house._id.toString(),
+                      toast,
+                      mutateHouse
+                    )
+                  }
+                >
+                  <AddIcon />
+                </Button>
+                <Button onClick={onOpen}>Edit</Button>
+                <Button
+                  onClick={() =>
+                    changePoints(
+                      "Decrease",
+                      house._id.toString(),
+                      toast,
+                      mutateHouse
+                    )
+                  }
+                >
+                  <MinusIcon />
+                </Button>
+              </span>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
