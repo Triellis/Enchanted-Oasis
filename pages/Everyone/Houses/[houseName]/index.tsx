@@ -246,6 +246,7 @@ function EditPointsModal({
         <ModalHeader>Edit Points</ModalHeader>
         <ModalBody>
           <NumberInput
+            allowMouseWheel
             defaultValue={points}
             // max={10} sets the upper limit for the value in the input
             // keepWithinRange={false}
