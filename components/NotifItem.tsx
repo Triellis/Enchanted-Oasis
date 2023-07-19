@@ -6,6 +6,16 @@ import {
   Box,
   Spacer,
   IconButton,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import styles from "./NotifItem.module.css";
@@ -35,20 +45,64 @@ function formatDateTime(date: Date) {
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
-async function deleteNotification(notificationId: string) {
+async function deleteNotification(
+  notificationId: string,
+  toast: any,
+  onClose: any
+) {
   const res = await fetch(`/api/notification/${notificationId}`, {
     method: "DELETE",
   });
   if (res.ok) {
-    console.log("Notification deleted");
+    toast({
+      title: "Notification Deleted",
+
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    onClose();
   } else {
-    console.log("Notification not deleted");
+    toast({
+      title: "Something went wrong",
+      description: res.statusText,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
   }
-  console.log("deleted");
 }
 
-function DeleteConfirmationModal() {
-  return <div></div>;
+function DeleteConfirmationModal({
+  notificationId,
+  isOpen,
+  onClose,
+}: {
+  notificationId: string;
+  isOpen: boolean;
+  onClose: any;
+}) {
+  const toast = useToast();
+  return (
+    <Modal isCentered size={"sm"} isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+
+      <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
+        <ModalHeader>Sure About Deleting?</ModalHeader>
+        <ModalCloseButton onClick={onClose} />
+
+        <ModalFooter display={"flex"} justifyContent={"center"}>
+          <Button
+            className={styles.modalDelBtn}
+            variant="solid"
+            onClick={() => deleteNotification(notificationId, toast, onClose)}
+          >
+            Yes
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
 }
 
 export default function NotifItem({
@@ -64,6 +118,11 @@ export default function NotifItem({
       }),
     []
   );
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
   return (
     <div
       className={classNames(
@@ -127,11 +186,16 @@ export default function NotifItem({
               className={styles.del}
               aria-label="delete"
               onClick={(event) => {
-                deleteNotification(notification._id.toString());
+                onDeleteOpen();
               }}
             >
               <FiTrash2 />
             </button>
+            <DeleteConfirmationModal
+              notificationId={notification._id.toString()}
+              isOpen={isDeleteOpen}
+              onClose={onDeleteClose}
+            />
           </div>
         </Flex>
       </div>
