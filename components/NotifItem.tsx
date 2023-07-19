@@ -37,13 +37,13 @@ export default function NotifItem({
     []
   );
   return (
-    <Link href={`/Everyone/Notification/${notification._id}`}>
-      <div
-        className={classNames(
-          styles.notifItem,
-          !notification.seen && styles.unreadNotif
-        )}
-      >
+    <div
+      className={classNames(
+        styles.notifItem,
+        !notification.seen && styles.unreadNotif
+      )}
+    >
+      <Link href={`/Everyone/Notification/${notification._id}`}>
         <div className={styles.header}>
           {/* Avatar, name, email */}
           <Flex gap={4}>
@@ -91,7 +91,7 @@ export default function NotifItem({
             </div>
           </Flex>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
