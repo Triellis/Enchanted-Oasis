@@ -29,7 +29,13 @@ function NotificationComponent({
   return (
     <div>
       <h1>{notification.title}</h1>
-      <p>{notification.body}</p>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        className={styles.markDownArea}
+        components={ChakraUIRenderer()}
+      >
+        {notification.body}
+      </ReactMarkdown>
     </div>
   );
 }
@@ -52,15 +58,7 @@ export default function NotificationPage() {
 
   return (
     <Layout>
-      <div>
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          className={styles.markDownArea}
-          components={ChakraUIRenderer()}
-        >
-          {notificationComponent}
-        </ReactMarkdown>
-      </div>
+      <div>{notificationComponent}</div>
     </Layout>
   );
 }
