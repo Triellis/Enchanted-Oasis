@@ -55,9 +55,10 @@
   padding: 0.5em;
   width: 1em;
   border: 1px solid hsl(var(--pc) / 30%) !important;
+  font-size: 1.2em !important;
 
-  right: 2em;
-  bottom: 1em;
+  right: 1.5em;
+  bottom: 0.5em;
   z-index: 2;
 
   transition: width 0.2s ease-in-out, scale 0.2s ease-in-out !important;
