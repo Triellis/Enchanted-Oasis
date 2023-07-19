@@ -49,7 +49,7 @@ export default function NotifItem({
           <Flex gap={4}>
             <Avatar src={notification.creator.profilePicture} />
             <div>
-              <Text fontWeight="bold">{notification.creator.name}</Text>
+              <Text fontSize="sm">{notification.creator.name}</Text>
               <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
                 {notification.creator.email}
               </Text>
@@ -59,11 +59,11 @@ export default function NotifItem({
         <div className={styles.body}>
           {/* Title and Content */}
           <span className={styles.title}>
-            <Text fontWeight="bold" fontSize="1.2em">
+            <Text fontWeight="bold" fontSize="1.1em">
               {notification.title}
             </Text>
           </span>
-          <Text fontSize="md" color={"hsl(var(--pc) /70% )"}>
+          <Text fontSize="sm" color={"hsl(var(--pc) /70% )"}>
             {notification.body}
           </Text>
         </div>
