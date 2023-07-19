@@ -55,15 +55,15 @@
   padding: 0.5em;
   width: 1em;
   border: 1px solid hsl(var(--pc) / 30%) !important;
-  font-size: 1.2em !important;
+  font-size: 1em !important;
 
-  right: 1.5em;
-  bottom: 0.5em;
+  right: 2em;
+  bottom: 1em;
   z-index: 2;
 
-  transition: width 0.2s ease-in-out, scale 0.2s ease-in-out !important;
+  transition: width 0.3s ease-in-out, scale 0.2s ease-in-out !important;
   white-space: nowrap;
-  line-height: 2.5em;
+
   overflow: hidden;
 
   backdrop-filter: blur(5px);

@@ -81,6 +81,7 @@ export default function Admin() {
           icon={<FiFeather />}
           onClick={onOpen}
         />
+        <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
         {/* Compose mesaage modal */}
       </Layout>
     </>
