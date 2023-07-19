@@ -3,6 +3,8 @@ import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
+import styles from "./Notification.module.css";
+
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/notification/${id}`,

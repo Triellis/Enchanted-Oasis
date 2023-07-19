@@ -15,6 +15,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { FiTrash2 } from "react-icons/fi";
+
 function formatDateTime(date: Date) {
   const time = date.toLocaleTimeString([], {
     hour: "numeric",
@@ -30,6 +31,20 @@ function formatDateTime(date: Date) {
 
   const formattedDateTime = `${formattedTime} • ${formattedDate}`;
   return formattedDateTime;
+}
+
+//  function should send a DELETE request to this URL /api/notification/[notificationId]
+//  with the notificationId as a query parameter
+async function deleteNotification(notificationId: string) {
+  // const res = await fetch(`/api/notification/${notificationId}`, {
+  //   method: "DELETE",
+  // });
+  // if (res.ok) {
+  //   console.log("Notification deleted");
+  // } else {
+  //   console.log("Notification not deleted");
+  // }
+  console.log("deleted");
 }
 
 export default function NotifItem({
@@ -103,7 +118,9 @@ export default function NotifItem({
                 className={styles.del}
                 aria-label="delete"
                 icon={<FiTrash2 />}
-                onClick={() => {}}
+                onClick={() => {
+                  deleteNotification(notification._id.toString());
+                }}
               />
             </div>
           </Flex>
