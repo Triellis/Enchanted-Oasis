@@ -48,5 +48,8 @@
 
 /* notifications read or not */
 .unreadNotif {
+  background-color: hsl(var(--b3));
 }
-
+.seen {
+  background-color: hsl(var(--b2));
+}
