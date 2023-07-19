@@ -1,20 +1,17 @@
-/* Harry Potter theme styles */
-
 .greeting {
   font-size: 1.3em;
 }
-
 .name {
   font-weight: bold;
   color: #ffcc00; /* Gryffindor house color */
   /* font-size: 25px; */
 }
 
+/* For LUMOS */
 .glowingText {
   /* font-size: 25px; */
   animation: glowingAnimation 2s ease-in-out infinite;
 }
-
 @keyframes glowingAnimation {
   0% {
     color: #fff;
@@ -44,6 +41,7 @@
   letter-spacing: -1px;
 }
 
+/* for notifications */
 .notifications {
   display: flex;
   width: 100%;
