@@ -170,7 +170,10 @@ function ComposeMsgModal({
       onClose={onClose}
       isOpen={isOpen}
       motionPreset="slideInBottom"
-      size="full"
+      size={{
+        base: "full",
+        md: "xl",
+      }}
     >
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
@@ -233,7 +236,7 @@ function ComposeMsgModal({
           </div>
 
           <Tabs isFitted variant="enclosed" className={styles.tabs}>
-            <TabList>
+            <TabList mb="0.1em">
               <Tab>Write</Tab>
               <Tab>Preview</Tab>
             </TabList>

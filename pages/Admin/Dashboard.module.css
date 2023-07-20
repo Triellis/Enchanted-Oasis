@@ -162,10 +162,12 @@
   border-radius: 1em 1em 0 0;
   padding: 1em;
   outline: none;
+
   margin: 0; /* Add this line to remove any margin */
 }
 .textArea:focus {
   border: 1px solid hsl(var(--nc) / 40%);
+  border-bottom: none;
 }
 
 /* for the scroll bar */
@@ -193,7 +195,10 @@
   color: hsl(var(--nc));
   font-size: 0.8em;
 }
-
+.textArea:focus + .bodyFoot {
+  border: 1px solid hsl(var(--nc) / 40%);
+  border-top: none;
+}
 .markDownArea {
   height: 21.5em !important;
 
