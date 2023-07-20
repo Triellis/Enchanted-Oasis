@@ -104,6 +104,19 @@ function mutateData(
   }
 }
 
+// function to send the message:
+async function sendMessage(data: NotifData) {
+  const res = await fetch("/api/notification", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  if (res.ok) {
+    console.log("Message sent successfully");
+  } else {
+    console.log("Message not sent");
+  }
+}
+
 // Compose Message Modal Component
 function ComposeMsgModal({
   isOpen,
@@ -223,7 +236,14 @@ function ComposeMsgModal({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button>Send Message</Button>
+          <Button
+            onClick={() => {
+              sendMessage(data);
+              onClose();
+            }}
+          >
+            Send Message
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
