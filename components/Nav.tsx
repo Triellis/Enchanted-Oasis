@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, BellIcon } from "@chakra-ui/icons";
 import styles from "./Nav.module.css";
+import IconPrev from "./IconPrevious";
 
 import Link from "next/link";
 
@@ -96,14 +97,18 @@ function Nav({ onToggle }: { onToggle: () => void }) {
               borderRadius={"var(--rounded-box)"}
             >
               <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
-                <MenuItem className={styles.menuItem}>My Profile</MenuItem>
+                <MenuItem className={styles.menuItem}>
+                  <IconPrev text={"Profile"} />
+                  My Profile
+                </MenuItem>
               </Link>
               <MenuItem
                 className={styles.menuOut}
                 onClick={() => signOut()}
                 color={"rgb(255,69,0)"}
               >
-                Sign out{" "}
+                <IconPrev text={"Logout"} />
+                Logout{" "}
               </MenuItem>
             </MenuList>
           </Menu>

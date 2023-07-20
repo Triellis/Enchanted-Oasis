@@ -5,6 +5,8 @@ import { RxDashboard } from "react-icons/rx";
 import { FiUsers } from "react-icons/fi";
 import { BsHouses } from "react-icons/bs";
 import { IoLibraryOutline } from "react-icons/io5";
+import { MdLogout } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 
 export default function IconPrev({ text }: { text: string }) {
   if (text === "Dashboard") {
@@ -29,6 +31,18 @@ export default function IconPrev({ text }: { text: string }) {
     return (
       <div className={styles.icon}>
         <IoLibraryOutline />
+      </div>
+    );
+  } else if (text === "Logout" || text === "Sign Out") {
+    return (
+      <div className={styles.icon}>
+        <MdLogout />
+      </div>
+    );
+  } else if (text === "Profile") {
+    return (
+      <div className={styles.icon}>
+        <CgProfile />
       </div>
     );
   }
