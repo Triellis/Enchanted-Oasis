@@ -2,9 +2,7 @@ import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 
 import {
-  Box,
   Button,
-  Flex,
   IconButton,
   Input,
   Modal,
@@ -15,11 +13,8 @@ import {
   ModalHeader,
   ModalOverlay,
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Select,
   Tab,
@@ -27,7 +22,6 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Textarea,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
