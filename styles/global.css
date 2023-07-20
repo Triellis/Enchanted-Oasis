@@ -42,7 +42,9 @@ body {
   background-color: hsl(var(--b1)) !important;
   user-select: none;
 }
-
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 body,
 html,
 #__next {
