@@ -167,6 +167,19 @@
 .textArea:focus {
   border: 1px solid hsl(var(--nc) / 40%);
 }
+
+/* for the scroll bar */
+.textArea::-webkit-scrollbar {
+  width: 0.5em;
+}
+.textArea::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc) / 30%);
+  border-radius: 200em;
+}
+.textArea::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--nc) / 60%);
+}
+
 .bodyFoot {
   width: 100%;
   display: flex;
@@ -174,7 +187,7 @@
   align-items: center;
   background-color: hsl(var(--b3));
   border-radius: 0 0 1em 1em;
-  
+
   padding: 0.3em;
   margin: 0; /* Add this line to remove any margin */
   color: hsl(var(--nc));
@@ -190,4 +203,14 @@
 
   justify-content: flex-end;
   overflow-y: scroll;
+}
+.markDownArea::-webkit-scrollbar {
+  width: 0.5em;
+}
+.markDownArea::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc) / 30%);
+  border-radius: 200em;
+}
+.markDownArea::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--nc) / 60%);
 }
