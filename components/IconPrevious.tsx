@@ -5,9 +5,9 @@ import { RxDashboard } from "react-icons/rx";
 import { FiUsers } from "react-icons/fi";
 import { BsHouses } from "react-icons/bs";
 import { IoLibraryOutline } from "react-icons/io5";
-import { MdLogout, MdOutlineEmail, MdOutlineNumbers } from "react-icons/md";
+import { MdLogout, MdOutlineEmail } from "react-icons/md";
 import { CgProfile, CgRename } from "react-icons/cg";
-import { FiEdit, FiPhone } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { PiPasswordBold } from "react-icons/pi";
 
 export default function IconPrev({ text }: { text: string }) {
@@ -69,18 +69,6 @@ export default function IconPrev({ text }: { text: string }) {
     return (
       <div className={styles.icon}>
         <PiPasswordBold />
-      </div>
-    );
-  } else if (text === "Roll") {
-    return (
-      <div className={styles.icon}>
-        <MdOutlineNumbers />
-      </div>
-    );
-  } else if (text === "Phone") {
-    return (
-      <div className={styles.icon}>
-        <FiPhone />
       </div>
     );
   }
