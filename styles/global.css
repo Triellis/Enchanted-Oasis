@@ -47,6 +47,7 @@ html,
 #__next {
   /* min-height: min-content; */
   height: 100%;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .clicky {
