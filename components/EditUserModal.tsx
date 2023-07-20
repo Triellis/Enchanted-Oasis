@@ -18,7 +18,7 @@ import {
 
 import styles from "./EditUserModal.module.css";
 import { ReceivedUserDataOnClient, SentUserDataFromClient } from "@/lib/types";
-import { profile } from "console";
+
 import { editUser } from "@/lib/functions";
 
 interface EditUserModalProps {
@@ -72,7 +72,7 @@ export default function EditUserModal({
       house: userData.house, // Add the missing property here
       oldPicture: userData.profilePicture,
     });
-  }, []);
+  }, [isEditModalOpen]);
 
   return (
     <Modal
