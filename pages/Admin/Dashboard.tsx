@@ -39,6 +39,8 @@ import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ReducerAction, useReducer, useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+
+// Color Swatch Component
 function ColorSwatch({
   data,
   dispatchData,
@@ -77,6 +79,8 @@ type NotifData = {
   labelColor: string;
   body: string;
 };
+
+// Mutate Data function
 function mutateData(
   state: NotifData,
   action: {
@@ -100,6 +104,7 @@ function mutateData(
   }
 }
 
+// Compose Message Modal Component
 function ComposeMsgModal({
   isOpen,
   onClose,
@@ -224,6 +229,8 @@ function ComposeMsgModal({
     </Modal>
   );
 }
+
+// Admin Dashboard page
 export default function Admin() {
   const session = useSession();
   let name = session.data?.user?.name;
