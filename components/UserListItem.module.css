@@ -4,7 +4,7 @@
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--n));
   background-color: hsl(var(--b2));
-  cursor: pointer;
+
   list-style-type: none;
   margin: 5px;
   width: 100%;
@@ -33,11 +33,7 @@
   text-overflow: ellipsis;
   align-items: center;
 }
-.roleLabel {
-  /* border: 1px solid; */
-  border-radius: 0.5em !important;
-  padding: 2px 5px !important;
-}
+
 /* now the same for smaller devices */
 @media (max-width: 768px) {
   .responsiveBlock {

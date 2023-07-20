@@ -35,7 +35,9 @@ export default function UserList({
       isClosable: true,
     });
   }
-  if (usersData) {
+  if (usersData && usersData.length === 0) {
+    componentToRender = <div>No users found</div>;
+  } else if (usersData) {
     componentToRender = (
       <>
         {usersData.map((user) => (

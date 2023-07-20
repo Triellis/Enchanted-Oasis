@@ -6,7 +6,14 @@ import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 
 import styles from "./NotifList.module.css";
-import { Divider, Tab, TabIndicator, TabList, Tabs } from "@chakra-ui/react";
+import {
+  Divider,
+  Flex,
+  Tab,
+  TabIndicator,
+  TabList,
+  Tabs,
+} from "@chakra-ui/react";
 
 function useNotifications(page: number, unseenOnly: boolean) {
   const { data, error, mutate } = useSWR(
@@ -89,7 +96,11 @@ export default function NotifList() {
   }
   if (notifications) {
     if (notifications.length === 0) {
-      componentToRender = <div>No notifications</div>;
+      if (inbox === "Unseen") {
+        componentToRender = <div>No New Notifications</div>;
+      } else if (inbox === "All") {
+        componentToRender = <div>No notifications</div>;
+      }
     } else {
       componentToRender = (
         <>

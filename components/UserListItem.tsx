@@ -107,10 +107,7 @@ export default function UserListItem({
       <span className={styles.responsiveBlock}>
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
-          <Badge
-            colorScheme={getRoleColor(userData.role)}
-            className={styles.roleLabel}
-          >
+          <Badge colorScheme={getRoleColor(userData.role)}>
             {userData.role}
           </Badge>
         </span>
