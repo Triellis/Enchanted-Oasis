@@ -211,7 +211,7 @@ function ComposeMsgModal({
               <Input
                 variant={"outline"}
                 placeholder="Label"
-                borderColor={data.badgeColor}
+                borderColor={`${data.badgeColor}.100`}
                 value={data.badgeText}
                 onChange={(e) => {
                   dispatchData({ type: "badgeText", payload: e.target.value });
