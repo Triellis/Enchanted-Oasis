@@ -30,7 +30,7 @@ import { AdminNotificationOnClient } from "@/lib/types";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
-import { formatDateTime } from "@/lib/functions";
+import { formatDateTime, getRoleColor } from "@/lib/functions";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
@@ -159,7 +159,10 @@ export default function NotifItem({
         <Flex>
           <div className={styles.badgesWrapper}>
             {!notification.seen && <Badge colorScheme="green">New</Badge>}
-            <Badge colorScheme="blue"> {notification.audience}</Badge>
+            <Badge colorScheme={getRoleColor(notification.audience)}>
+              {" "}
+              {notification.audience}
+            </Badge>
             <Badge colorScheme={notification.badgeColor}>
               {" "}
               {notification.badgeText}{" "}
