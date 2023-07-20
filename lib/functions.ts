@@ -1,7 +1,6 @@
 import { Collection, MongoClient } from "mongodb";
 import { Role, SentUserDataFromClient, UserCol } from "./types";
 import md5 from "md5";
-import marked from "marked";
 
 export async function validateLogin(
   email: string,
