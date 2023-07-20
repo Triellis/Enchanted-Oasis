@@ -1,10 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Ubuntu:wght@300&display=swap");
+
 .notifMain {
   padding-inline: 2em;
+  height: 100%;
 }
 
 .title {
   font-size: 3em;
   font-weight: 600;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -0.05em;
 }
 
 .notifProfile {
@@ -52,7 +57,15 @@
   font-size: 0.9em;
   text-align: center;
 }
-
+.markDownArea {
+  margin-block: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: hsl(var(--nc) / 0.1);
+  border: 1px solid hsl(var(--nc) / 0.2);
+  font-family: "Ubuntu", sans-serif;
+  min-height: 50%;
+}
 @media screen and (max-width: 768px) {
   .title {
     font-size: 2.5em;
@@ -77,5 +90,8 @@
     grid-row: 1/2;
     grid-column: 2/3;
     text-align: right;
+  }
+  .notifMain {
+    padding: 0;
   }
 }

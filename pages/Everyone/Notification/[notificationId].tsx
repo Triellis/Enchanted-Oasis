@@ -116,9 +116,5 @@ export default function NotificationPage() {
     );
   }
 
-  return (
-    <Layout>
-      <div>{notificationComponent}</div>
-    </Layout>
-  );
+  return <Layout>{notificationComponent}</Layout>;
 }
