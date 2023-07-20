@@ -39,7 +39,6 @@
   -webkit-text-fill-color: transparent;
   font-size: 2.5rem;
   font-weight: 800;
-  letter-spacing: -1px;
 }
 .appNameTxt {
   font-family: "New Rocker", cursive;
@@ -53,8 +52,6 @@
   -webkit-text-fill-color: transparent;
   font-size: 1.4rem;
   font-weight: 500;
-
-  letter-spacing: -1.5px;
 }
 
 .imageBodyWrapper {
