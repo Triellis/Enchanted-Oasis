@@ -4,7 +4,7 @@
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--n));
   background-color: hsl(var(--b2));
-  cursor: pointer;
+
   list-style-type: none;
   margin: 5px;
   width: 100%;
