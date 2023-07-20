@@ -18,11 +18,18 @@ const Button = defineStyleConfig({
   // Two sizes: sm and md
 });
 
+const Badge = defineStyleConfig({
+  baseStyle: {
+    borderRadius: "0.5em",
+    padding: "2px 5px",
+  },
+});
 // 3. extend the theme
 const theme = extendTheme({
   config,
   components: {
     Button,
+    Badge,
   },
 });
 
