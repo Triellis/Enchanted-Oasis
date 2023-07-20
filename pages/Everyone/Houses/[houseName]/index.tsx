@@ -65,12 +65,9 @@ async function changePoints(
   toast: any,
   mutateHouse: any
 ) {
-  const res = await fetch(
-    `http://localhost:3000/api/house/${id}/${mode.toLowerCase()}`,
-    {
-      method: "POST",
-    }
-  );
+  const res = await fetch(`/api/house/${id}/${mode.toLowerCase()}`, {
+    method: "POST",
+  });
   if (res.ok) {
     toast({
       title: `Points ${mode}d`,
@@ -98,7 +95,7 @@ async function editPoints(
   toast: any,
   mutateHouse: any
 ) {
-  const res = await fetch(`http://localhost:3000/api/house/${id}`, {
+  const res = await fetch(`/api/house/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
