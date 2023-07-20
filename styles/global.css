@@ -40,6 +40,7 @@
 
 body {
   background-color: hsl(var(--b1)) !important;
+  user-select: none;
 }
 
 body,
