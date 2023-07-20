@@ -108,10 +108,10 @@ export default function NotifList() {
     <div className={styles.parent}>
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>Admin Notifications</h1>
+        <Divider maxW={1080} />
       </div>
 
       {/* tabs here */}
-      <Divider />
       <div className={styles.wrapTab}>
         <InboxTabs inbox={inbox} setPage={setPage} setInbox={setInbox} />
       </div>
