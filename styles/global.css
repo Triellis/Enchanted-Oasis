@@ -1,3 +1,6 @@
+/* calligraphic fonts */
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital@0;1&family=Lato:ital@0;1&family=New+Rocker&family=Roboto+Slab&family=Ubuntu:ital@0;1&family=UnifrakturMaguntia&display=swap");
+
 :root {
   --pf: 262 80% 43%;
   --sf: 316 70% 43%;
@@ -44,6 +47,7 @@ html,
 #__next {
   /* min-height: min-content; */
   height: 100%;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .clicky {

@@ -74,6 +74,7 @@
 
 /* getting the EO font style */
 .appName {
+  font-family: "New Rocker", cursive;
   background: linear-gradient(
     135deg,
     rgba(0, 255, 255, 1) 5%,

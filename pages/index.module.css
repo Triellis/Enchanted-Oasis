@@ -28,6 +28,7 @@
 }
 
 .appName {
+  font-family: "New Rocker", cursive;
   background: linear-gradient(
     135deg,
     rgba(0, 255, 255, 1) 5%,
@@ -41,6 +42,7 @@
   letter-spacing: -1px;
 }
 .appNameTxt {
+  font-family: "New Rocker", cursive;
   background: linear-gradient(
     135deg,
     rgba(0, 255, 255, 1) 5%,
