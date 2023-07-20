@@ -2,7 +2,7 @@ import { fetcher } from "@/lib/functions";
 import { AdminNotificationOnClient } from "@/lib/types";
 import useSWR from "swr";
 import NotifItem from "./NotifItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 
 import styles from "./NotifList.module.css";
@@ -31,8 +31,8 @@ interface TabsComponentProps {
 
 function InboxTabs({ inbox, setPage, setInbox }: TabsComponentProps) {
   const tabs = [
-    { label: "All", inbox: "All" },
     { label: "Unseen", inbox: "Unseen" },
+    { label: "All", inbox: "All" },
   ];
 
   return (
@@ -43,9 +43,9 @@ function InboxTabs({ inbox, setPage, setInbox }: TabsComponentProps) {
       defaultIndex={0}
       onChange={(index) => {
         if (index === 0) {
-          setInbox("All");
-        } else if (index === 1) {
           setInbox("Unseen");
+        } else if (index === 1) {
+          setInbox("All");
         }
         setPage(1); // Set the page state to 1 on click
       }}
@@ -66,9 +66,16 @@ function InboxTabs({ inbox, setPage, setInbox }: TabsComponentProps) {
 
 export default function NotifList() {
   const [page, setPage] = useState(1);
-  const [inbox, setInbox] = useState("All");
+  const [inbox, setInbox] = useState("Unseen");
 
   const [unseenOnly, setUnseenOnly] = useState(false);
+  useEffect(() => {
+    if (inbox === "Unseen") {
+      setUnseenOnly(true);
+    } else if (inbox === "All") {
+      setUnseenOnly(false);
+    }
+  }, [inbox]);
   const { notifications, isLoading, isError, mutate } = useNotifications(
     page,
     unseenOnly
@@ -81,16 +88,20 @@ export default function NotifList() {
     componentToRender = <div>Error</div>;
   }
   if (notifications) {
-    componentToRender = (
-      <>
-        {notifications.map((notification) => (
-          <NotifItem
-            key={notification._id.toString()}
-            notification={notification}
-          />
-        ))}
-      </>
-    );
+    if (notifications.length === 0) {
+      componentToRender = <div>No notifications</div>;
+    } else {
+      componentToRender = (
+        <>
+          {notifications.map((notification) => (
+            <NotifItem
+              key={notification._id.toString()}
+              notification={notification}
+            />
+          ))}
+        </>
+      );
+    }
   }
 
   return (
@@ -98,16 +109,18 @@ export default function NotifList() {
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>Admin Notifications</h1>
       </div>
-      <Divider />
 
       {/* tabs here */}
-      <div className={styles.wrapTab} >
+      <Divider />
+      <div className={styles.wrapTab}>
         <InboxTabs inbox={inbox} setPage={setPage} setInbox={setInbox} />
       </div>
 
       <div className={styles.notifList}>{componentToRender}</div>
       <br />
-      <Pagination page={page} setPage={setPage} items={notifications} />
+      {notifications && notifications.length > 0 && (
+        <Pagination page={page} setPage={setPage} items={notifications} />
+      )}
     </div>
   );
 }
