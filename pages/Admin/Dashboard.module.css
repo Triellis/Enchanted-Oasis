@@ -170,7 +170,7 @@
 
 /* for the scroll bar */
 .textArea::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.4em;
 }
 .textArea::-webkit-scrollbar-thumb {
   background-color: hsl(var(--nc) / 30%);
@@ -205,7 +205,7 @@
   overflow-y: scroll;
 }
 .markDownArea::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.4em;
 }
 .markDownArea::-webkit-scrollbar-thumb {
   background-color: hsl(var(--nc) / 30%);
