@@ -140,7 +140,8 @@ async function changePassPost(
   newPassword: string,
   confirmPassword: string,
   onClose: () => void,
-  toast: any
+  toast: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   if (newPassword !== confirmPassword) {
     toast({
@@ -149,6 +150,7 @@ async function changePassPost(
       duration: 3000,
       isClosable: true,
     });
+    setIsLoading(false);
     return;
   }
 
@@ -177,8 +179,10 @@ async function changePassPost(
       duration: 3000,
       isClosable: true,
     });
+
     onClose();
   }
+  setIsLoading(false);
 }
 
 function ChangePasswordModal({
@@ -193,6 +197,7 @@ function ChangePasswordModal({
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setOldPassword("");
@@ -261,6 +266,7 @@ function ChangePasswordModal({
 
         <ModalFooter className={styles.modalFooter}>
           <Button
+            isLoading={isLoading}
             style={{
               backgroundColor: "hsl(var(--s))",
               color: "hsl(var(--sc))",
@@ -271,7 +277,8 @@ function ChangePasswordModal({
                 newPassword,
                 confirmPassword,
                 onClose,
-                toast
+                toast,
+                setIsLoading
               )
             }
           >
@@ -316,7 +323,7 @@ function EditProfileModal({
   const toast = useToast();
   // for the profile picture:
   const [imageName, setImageName] = useState("No Image Selected");
-
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"sm"} isCentered>
       <ModalOverlay bg="blackAlpha.500" backdropFilter="blur(10px)" />
@@ -377,11 +384,13 @@ function EditProfileModal({
         {/* footer of the modal */}
         <ModalFooter className={styles.modalFooter}>
           <Button
+            isLoading={isLoading}
             style={{
               backgroundColor: "hsl(var(--s))",
               color: "hsl(var(--sc))",
             }}
             onClick={async () => {
+              setIsLoading(true);
               const res = await editUser(newUserData as any);
               if (res.ok) {
                 toast({
@@ -402,6 +411,7 @@ function EditProfileModal({
                   isClosable: true,
                 });
               }
+              setIsLoading(false);
               setImageName("No Image Selected");
             }}
           >
