@@ -150,6 +150,9 @@ async function GET(
     )
   )?.notifications!;
 
+  if (!userNotifDoc) {
+    return res.json([]);
+  }
   if (unseenOnly) {
     userNotifDoc = Object.fromEntries(
       Object.entries(userNotifDoc).filter(([key, value]) => !value.seen)
