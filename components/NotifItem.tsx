@@ -30,23 +30,7 @@ import { AdminNotificationOnClient } from "@/lib/types";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
-
-function formatDateTime(date: Date) {
-  const time = date.toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-  const formattedTime = time.toLowerCase().replace(/\s/g, "");
-
-  const formattedDate = date.toLocaleDateString(["en-GB"], {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-
-  const formattedDateTime = `${formattedTime} • ${formattedDate}`;
-  return formattedDateTime;
-}
+import { formatDateTime, getRoleColor } from "@/lib/functions";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
@@ -175,7 +159,10 @@ export default function NotifItem({
         <Flex>
           <div className={styles.badgesWrapper}>
             {!notification.seen && <Badge colorScheme="green">New</Badge>}
-            <Badge colorScheme="blue"> {notification.audience}</Badge>
+            <Badge colorScheme={getRoleColor(notification.audience)}>
+              {" "}
+              {notification.audience}
+            </Badge>
             <Badge colorScheme={notification.badgeColor}>
               {" "}
               {notification.badgeText}{" "}

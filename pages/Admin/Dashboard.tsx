@@ -2,9 +2,7 @@ import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 
 import {
-  Box,
   Button,
-  Flex,
   IconButton,
   Input,
   Modal,
@@ -15,11 +13,8 @@ import {
   ModalHeader,
   ModalOverlay,
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Select,
   Tab,
@@ -27,7 +22,6 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Textarea,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -54,7 +48,7 @@ function ColorSwatch({
     "cyan",
     "green",
     "orange",
-    "pink",
+    "red",
     "purple",
 
     "yellow",
@@ -152,13 +146,34 @@ function ComposeMsgModal({
     badgeColor: "red",
     body: "",
   });
+
+  function validation() {
+    for (let field of Object.keys(data)) {
+      if ((data as any)[field].trim() === "") {
+        toast({
+          title: `${field} is empty`,
+          description: `Please enter a ${field}`,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   return (
     <Modal
       isCentered
       onClose={onClose}
       isOpen={isOpen}
       motionPreset="slideInBottom"
-      size="full"
+      size={{
+        base: "full",
+        md: "xl",
+      }}
     >
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
@@ -196,8 +211,7 @@ function ComposeMsgModal({
               <Input
                 variant={"outline"}
                 placeholder="Label"
-                borderColor={data.badgeColor}
-                _placeholder={{ color: "inherit" }}
+                borderColor={`${data.badgeColor}.100`}
                 value={data.badgeText}
                 onChange={(e) => {
                   dispatchData({ type: "badgeText", payload: e.target.value });
@@ -222,13 +236,13 @@ function ComposeMsgModal({
           </div>
 
           <Tabs isFitted variant="enclosed" className={styles.tabs}>
-            <TabList>
+            <TabList mb="0.1em">
               <Tab>Write</Tab>
               <Tab>Preview</Tab>
             </TabList>
             <TabPanels>
               {/* write here */}
-              <TabPanel p="0em" pt="0.3em">
+              <TabPanel className={styles.grp}>
                 <textarea
                   className={styles.textArea}
                   placeholder="Body"
@@ -237,6 +251,9 @@ function ComposeMsgModal({
                     dispatchData({ type: "body", payload: e.target.value });
                   }}
                 />
+                <div className={styles.bodyFoot}>
+                  <span>Markdown is supported</span>
+                </div>
               </TabPanel>
 
               {/* markdown preview */}
@@ -260,6 +277,7 @@ function ComposeMsgModal({
           </Button>
           <Button
             onClick={() => {
+              if (!validation()) return;
               sendMessage(data, onClose, toast);
             }}
           >
@@ -281,14 +299,14 @@ export default function Admin() {
     <>
       <Layout>
         {/* greetings part */}
-        <div className={styles.greeting}>
+        {/* <div className={styles.greeting}>
           <span>
             Welcome <span className={styles.name}>{name}</span>!{" "}
           </span>
           Let <span className={styles.glowingText}>Lumos</span> illuminate your
           path at our
           <span className={styles.appName}> Enchanted Oasis!</span>
-        </div>
+        </div> */}
         <div className={styles.notifications}>
           <NotifList />
         </div>

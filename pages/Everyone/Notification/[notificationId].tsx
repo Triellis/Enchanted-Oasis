@@ -1,4 +1,4 @@
-import { fetcher } from "@/lib/functions";
+import { fetcher, formatDateTime, getRoleColor } from "@/lib/functions";
 import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -7,8 +7,17 @@ import styles from "./Notification.module.css";
 import ReactMarkdown from "react-markdown";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import remarkGfm from "remark-gfm";
-import { Flex, Avatar, Badge, Box, Text, Divider } from "@chakra-ui/react";
+import {
+  Flex,
+  Avatar,
+  Badge,
+  Box,
+  Text,
+  Divider,
+  Center,
+} from "@chakra-ui/react";
 import { AdminNotificationOnClient } from "@/lib/types";
+import { useMemo } from "react";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -28,6 +37,14 @@ function NotificationComponent({
 }: {
   notification: AdminNotificationOnClient;
 }) {
+  const viewsFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat("en", {
+        notation: "standard",
+        compactDisplay: "short",
+      }),
+    []
+  );
   return (
     <div className={styles.notifMain}>
       {/* title */}
@@ -36,26 +53,38 @@ function NotificationComponent({
       {/* Profile */}
       <div className={styles.notifProfile}>
         <div className={styles.whoBox}>
-          <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
+          <Avatar src={notification.creator.profilePicture} size="md" />
           <Flex flexDirection="column">
-            <span className={styles.infoName}>Segun Adebayo</span>
-            <span className={styles.infoEmail}> admin@gmail.com</span>
+            <span className={styles.infoName}>{notification.creator.name}</span>
+            <span className={styles.infoEmail}>
+              {" "}
+              {notification.creator.email}
+            </span>
           </Flex>
         </div>
       </div>
+      <Divider w={{ md: 0 }} />
 
-      <Divider />
-      <div className={styles.notifMisc}>
-        <div className={styles.badges}>
-          <Badge colorScheme="green">Published</Badge>
-          <Badge colorScheme="green">Published</Badge>
-        </div>
-        <div style={{ textAlign: "right" }}>
-          69views
-          <Flex className={styles.whenBox}>
-            <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
-          </Flex>
-        </div>
+      <div className={styles.notifDetails}>
+        <span className={styles.badgeWrapper}>
+          <Badge colorScheme={getRoleColor(notification.audience)}>
+            {notification.audience}
+          </Badge>
+        </span>
+        <span className={styles.badgeWrapper}>
+          <Badge colorScheme={notification.badgeColor}>
+            {notification.badgeText}
+          </Badge>
+        </span>
+        <Center height="1.5em">
+          <Divider orientation="vertical" />
+        </Center>
+        <span className={styles.infoDateTime}>
+          {formatDateTime(new Date(notification.date))}
+        </span>
+        <span className={styles.viewsWrapper}>
+          {viewsFormatter.format(notification.seenByCount) + " "} views
+        </span>
       </div>
       <Divider />
 
@@ -87,9 +116,5 @@ export default function NotificationPage() {
     );
   }
 
-  return (
-    <Layout>
-      <div>{notificationComponent}</div>
-    </Layout>
-  );
+  return <Layout>{notificationComponent}</Layout>;
 }

@@ -45,7 +45,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
     notificationCountComponent = "";
   } else {
     const count = Number(userJson.unseenNotificationsCount);
-    if (count === 0) {
+    if (count === 0 || !count) {
       notificationCountComponent = "";
     } else {
       notificationCountComponent = (

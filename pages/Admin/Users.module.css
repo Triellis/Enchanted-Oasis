@@ -127,7 +127,7 @@
   position: fixed;
   z-index: 1;
   right: 1.5em;
-  bottom: 2em;
+  bottom: 1em;
   transition: width 200ms ease-in-out, scale 200ms ease-in-out;
   width: 5em;
   text-overflow: ellipsis;

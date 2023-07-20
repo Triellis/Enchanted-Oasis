@@ -1,10 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Ubuntu:wght@300&display=swap");
+
 .notifMain {
   padding-inline: 2em;
+  height: 100%;
 }
 
 .title {
   font-size: 3em;
   font-weight: 600;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -0.05em;
 }
 
 .notifProfile {
@@ -17,20 +22,16 @@
   width: 100%;
 }
 
-.notifMisc {
+.notifDetails {
   display: flex;
   flex-direction: row;
+
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-block: 0.5em;
-
-  color: hsl(var(--nc));
+  gap: 0.5em;
 }
 
-.whenBox {
-  display: flex;
-  align-items: center;
-}
 .whoBox {
   display: flex;
   gap: 0.5em;
@@ -48,15 +49,49 @@
 .infoDateTime {
   color: hsl(var(--nc));
   font-size: 0.9em;
+  text-align: center;
 }
 
-.badges{
-  display: flex;
-  flex-direction: row;
-  gap: 0.4em;   
+.viewsWrapper {
+  color: hsl(var(--pc));
+  font-size: 0.9em;
+  text-align: center;
+}
+.markDownArea {
+  margin-block: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: hsl(var(--nc) / 0.1);
+  border: 1px solid hsl(var(--nc) / 0.2);
+  font-family: "Ubuntu", sans-serif;
+  min-height: 50%;
 }
 @media screen and (max-width: 768px) {
-  .badges{
-    flex-direction: column;
+  .title {
+    font-size: 2.5em;
+  }
+  .notifDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1em;
+  }
+  .notifDetails > div {
+    display: none;
+  }
+  .badgeWrapper {
+    grid-column: 1 / 2;
+  }
+  .infoDateTime {
+    grid-column: 2/3;
+    text-align: right;
+  }
+  .viewsWrapper {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    grid-column: 2/3;
+    text-align: right;
+  }
+  .notifMain {
+    padding: 0;
   }
 }
