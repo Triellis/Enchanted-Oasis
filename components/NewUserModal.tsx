@@ -166,7 +166,7 @@ export default function NewUserModal({
               <FormControl>
                 {/* Profile Picture */}
                 <div className={styles.labels}>
-                  <IconPrev text="Profile" />
+                  <IconPrev text="Avatar" />
                   <FormLabel>Avatar</FormLabel>
                 </div>
                 <form className={styles.picIn}>
