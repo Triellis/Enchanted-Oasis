@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./SidebarItem.module.css";
 import { Router, useRouter } from "next/router";
 import classNames from "classnames";
+
 export default function SidebarItem({
   text,
   linkTo,

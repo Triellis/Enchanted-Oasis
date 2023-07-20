@@ -1115,7 +1115,7 @@ type Notification = {
   date: Date;
   badgeText: string; // badge text
   badgeColor: string; // badge color
-  creator:User,
+  creator: User;
   unseen: boolean; // true if the notification is unseen by the user
 };
 ```
@@ -1185,7 +1185,7 @@ type Notification = {
   date: Date;
   badgeText: string; // badge text
   badgeColor: string; // badge color
-  creatorId: string; // id of the faculty who created this notification
+  creator: User; // id of the faculty who created this notification
   creatorName: string; // name of the user who created this notification
 };
 ```

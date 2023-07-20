@@ -1,11 +1,36 @@
-import { Flex, Avatar, Badge, Text, Box, Spacer } from "@chakra-ui/react";
+import {
+  Flex,
+  Avatar,
+  Badge,
+  Text,
+  Box,
+  Spacer,
+  IconButton,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import styles from "./NotifItem.module.css";
-import { CalendarIcon, EmailIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
+import {
+  CalendarIcon,
+  DeleteIcon,
+  EmailIcon,
+  TimeIcon,
+  ViewIcon,
+} from "@chakra-ui/icons";
 import { AdminNotificationOnClient } from "@/lib/types";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
+
 function formatDateTime(date: Date) {
   const time = date.toLocaleTimeString([], {
     hour: "numeric",
@@ -23,6 +48,68 @@ function formatDateTime(date: Date) {
   return formattedDateTime;
 }
 
+//  function should send a DELETE request to this URL /api/notification/[notificationId]
+//  with the notificationId as a query parameter
+async function deleteNotification(
+  notificationId: string,
+  toast: any,
+  onClose: any
+) {
+  const res = await fetch(`/api/notification/${notificationId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    toast({
+      title: "Notification Deleted",
+
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    onClose();
+  } else {
+    toast({
+      title: "Something went wrong",
+      description: res.statusText,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+}
+
+function DeleteConfirmationModal({
+  notificationId,
+  isOpen,
+  onClose,
+}: {
+  notificationId: string;
+  isOpen: boolean;
+  onClose: any;
+}) {
+  const toast = useToast();
+  return (
+    <Modal isCentered size={"sm"} isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+
+      <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
+        <ModalHeader>Sure About Deleting?</ModalHeader>
+        <ModalCloseButton onClick={onClose} />
+
+        <ModalFooter display={"flex"} justifyContent={"center"}>
+          <Button
+            className={styles.modalDelBtn}
+            variant="solid"
+            onClick={() => deleteNotification(notificationId, toast, onClose)}
+          >
+            Yes
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 export default function NotifItem({
   notification,
 }: {
@@ -36,6 +123,11 @@ export default function NotifItem({
       }),
     []
   );
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
   return (
     <div
       className={classNames(
@@ -43,19 +135,22 @@ export default function NotifItem({
         !notification.seen && styles.unreadNotif
       )}
     >
-      <Link href={`/Everyone/Notification/${notification._id}`}>
-        <div className={styles.header}>
-          {/* Avatar, name, email */}
-          <Flex gap={4}>
-            <Avatar src={notification.creator.profilePicture} />
-            <div>
-              <Text fontSize="sm">{notification.creator.name}</Text>
-              <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
-                {notification.creator.email}
-              </Text>
-            </div>
-          </Flex>
-        </div>
+      <div className={styles.header}>
+        {/* Avatar, name, email */}
+        <Flex gap={4}>
+          <Avatar src={notification.creator.profilePicture} />
+          <div>
+            <Text fontSize="sm">{notification.creator.name}</Text>
+            <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
+              {notification.creator.email}
+            </Text>
+          </div>
+        </Flex>
+      </div>
+      <Link
+        className={styles.link}
+        href={`/Everyone/Notification/${notification._id}`}
+      >
         <div className={styles.body}>
           {/* Title and Content */}
           <span className={styles.title}>
@@ -67,31 +162,48 @@ export default function NotifItem({
             {notification.body}
           </Text>
         </div>
-        <div className={styles.footer}>
-          {/* Date and time without icons */}
-
-          <Text fontSize="sm" color="hsl(var(--nc) )">
-            {formatDateTime(new Date(notification.date))}
-          </Text>
-
-          {/* Badge */}
-          <Flex>
-            <div className={styles.badgesWrapper}>
-              {!notification.seen && <Badge colorScheme="green">New</Badge>}
-              <Badge colorScheme="blue"> {notification.audience}</Badge>
-              <Badge colorScheme={notification.badgeColor}>
-                {" "}
-                {notification.badgeText}{" "}
-              </Badge>
-            </div>
-            <Spacer />
-            <div className={styles.viewsDisplay}>
-              {viewsFormatter.format(notification.seenByCount)}
-              <span className={styles.viewsText}>views</span>
-            </div>
-          </Flex>
-        </div>
       </Link>
+
+      <div className={styles.footer}>
+        {/* Date and time without icons */}
+
+        <Text fontSize="sm" color="hsl(var(--nc) )">
+          {formatDateTime(new Date(notification.date))}
+        </Text>
+
+        {/* Badge */}
+        <Flex>
+          <div className={styles.badgesWrapper}>
+            {!notification.seen && <Badge colorScheme="green">New</Badge>}
+            <Badge colorScheme="blue"> {notification.audience}</Badge>
+            <Badge colorScheme={notification.badgeColor}>
+              {" "}
+              {notification.badgeText}{" "}
+            </Badge>
+          </div>
+          <Spacer />
+          <div className={styles.viewsDisplay}>
+            {viewsFormatter.format(notification.seenByCount)}
+            <span className={styles.viewsText}>
+              {notification.seenByCount === 1 ? "view" : "views"}
+            </span>
+            <button
+              className={styles.del}
+              aria-label="delete"
+              onClick={(event) => {
+                onDeleteOpen();
+              }}
+            >
+              <DeleteIcon />
+            </button>
+            <DeleteConfirmationModal
+              notificationId={notification._id.toString()}
+              isOpen={isDeleteOpen}
+              onClose={onDeleteClose}
+            />
+          </div>
+        </Flex>
+      </div>
     </div>
   );
 }

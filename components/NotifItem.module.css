@@ -31,7 +31,7 @@
 .viewsDisplay {
   font-size: 0.8em;
   display: flex;
-  gap: 0.2em;
+  gap: 0.5em;
 }
 .viewsText {
   color: hsl(var(--nc));
@@ -51,4 +51,24 @@
 /* notifications read or not */
 .unreadNotif {
   background-color: hsl(var(--b3));
+}
+.del {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: hsl(var(--nc));
+  font-size: 1.2em;
+}
+
+.del:hover > svg {
+  color: hsl(var(--er));
+}
+.link:hover > .body > .title {
+  color: hsl(var(--s));
+}
+.modalDelBtn {
+  background-color: hsl(var(--er)) !important;
+  color: hsl(var(--erc)) !important;
+  width: 100%;
 }

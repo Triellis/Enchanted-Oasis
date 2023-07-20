@@ -1,0 +1,62 @@
+.notifMain {
+  padding-inline: 2em;
+}
+
+.title {
+  font-size: 3em;
+  font-weight: 600;
+}
+
+.notifProfile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+  margin-block: 1em;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.notifMisc {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 0.5em;
+
+  color: hsl(var(--nc));
+}
+
+.whenBox {
+  display: flex;
+  align-items: center;
+}
+.whoBox {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoName {
+  font-weight: bold;
+  color: hsl(var(--c));
+}
+.infoEmail {
+  color: hsl(var(--nc));
+}
+.infoDateTime {
+  color: hsl(var(--nc));
+  font-size: 0.9em;
+}
+
+.badges{
+  display: flex;
+  flex-direction: row;
+  gap: 0.4em;   
+}
+@media screen and (max-width: 768px) {
+  .badges{
+    flex-direction: column;
+  }
+}

@@ -81,9 +81,49 @@
   content: "Compose Message";
 }
 
-.comHead {
-  /* use if required */
+.targetLabel {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5em;
 }
+.targetLabel > * {
+  width: 100%;
+}
+.target > * {
+  background-color: hsl(var(--b1)) !important;
+}
+.colorLabel {
+  display: flex;
+  gap: 0.2em;
+}
+
+.popContent {
+  background-color: hsl(var(--b3)) !important;
+  height: min-content !important;
+  padding: 0.5em;
+
+  width: min-content !important;
+}
+.colorPalette {
+  /* 4*3 grid with vertical scroll */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 0.2em;
+}
+.swatch {
+  border-radius: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  opacity: 0.8;
+}
+
+.tabs {
+  width: 100%;
+}
+
 .comBody {
   display: flex;
   flex-direction: column;
@@ -103,4 +143,25 @@
 }
 .comFoot > :nth-child(2) {
   background-color: hsl(var(--p)) !important;
+}
+
+.textArea {
+  height: 22em !important;
+  background-color: hsl(var(--b3));
+  width: 100%;
+  border-radius: 1em;
+  padding: 1em;
+  outline: none;
+}
+.textArea:focus {
+  border: 1px solid hsl(var(--nc) / 40%);
+}
+.markDownArea {
+  height: 22em !important;
+
+  background-color: hsl(var(--b3));
+  border-radius: 1em;
+  padding: 1em;
+
+  overflow-y: scroll;
 }

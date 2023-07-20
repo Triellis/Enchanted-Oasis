@@ -103,7 +103,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
                 onClick={() => signOut()}
                 color={"rgb(255,69,0)"}
               >
-                Sign out{" "}
+                Logout{" "}
               </MenuItem>
             </MenuList>
           </Menu>

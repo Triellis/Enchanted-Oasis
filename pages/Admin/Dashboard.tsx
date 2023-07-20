@@ -2,7 +2,9 @@ import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 
 import {
+  Box,
   Button,
+  Flex,
   IconButton,
   Input,
   Modal,
@@ -12,15 +14,128 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Select,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Textarea,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import { FiFeather } from "react-icons/fi";
+
 import styles from "./Dashboard.module.css";
 
-import NotifItem from "@/components/NotifItem";
+import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
+import classNames from "classnames";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { ReducerAction, useReducer, useState } from "react";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
+import { EditIcon } from "@chakra-ui/icons";
+// Color Swatch Component
+function ColorSwatch({
+  data,
+  dispatchData,
+}: {
+  data: NotifData;
+  dispatchData: React.Dispatch<ReducerAction<typeof mutateData>>;
+}) {
+  const colors: string[] = [
+    "cyan",
+    "green",
+    "orange",
+    "pink",
+    "purple",
+
+    "yellow",
+  ];
+  return (
+    <div className={styles.colorPalette}>
+      {colors.map((color, index) => (
+        <Button
+          key={index}
+          className={classNames("clicky", styles.swatch)}
+          colorScheme={color}
+          onClick={() => {
+            dispatchData({ type: "badgeColor", payload: color });
+          }}
+        ></Button>
+      ))}
+    </div>
+  );
+}
+type NotifData = {
+  title: string;
+  audience: string;
+  badgeText: string;
+  badgeColor: string;
+  body: string;
+};
+
+// Mutate Data function
+function mutateData(
+  state: NotifData,
+  action: {
+    type: string;
+    payload: string;
+  }
+) {
+  switch (action.type) {
+    case "title":
+      return { ...state, title: action.payload };
+    case "audience":
+      return { ...state, audience: action.payload };
+    case "badgeText":
+      return { ...state, badgeText: action.payload };
+    case "badgeColor":
+      return { ...state, badgeColor: action.payload };
+    case "body":
+      return { ...state, body: action.payload };
+    default:
+      return state;
+  }
+}
+
+// function to send the message:
+async function sendMessage(data: NotifData, onClose: any, toast: any) {
+  const res = await fetch("/api/notification", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (res.ok) {
+    toast({
+      title: "Message Sent",
+      description: "Your message has been sent to all the users",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    onClose();
+  } else {
+    toast({
+      title: "Message Not Sent",
+      description: await res.text(),
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+}
+
+// Compose Message Modal Component
 function ComposeMsgModal({
   isOpen,
   onClose,
@@ -28,33 +143,135 @@ function ComposeMsgModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  // content of the body:
+  const toast = useToast();
+  const [data, dispatchData] = useReducer(mutateData, {
+    title: "",
+    audience: "All",
+    badgeText: "",
+    badgeColor: "red",
+    body: "",
+  });
   return (
     <Modal
       isCentered
       onClose={onClose}
       isOpen={isOpen}
       motionPreset="slideInBottom"
+      size="full"
     >
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
-        <ModalHeader className={styles.comHead}>Compose Message</ModalHeader>
+        <ModalHeader className={styles.comHead}>
+          Compose Message
+          <ModalCloseButton />
+        </ModalHeader>
         <ModalBody className={styles.comBody}>
           {/* title */}
-          <Input placeholder="Title  " />
+          <Input
+            placeholder="Title"
+            value={data.title}
+            onChange={(e) => {
+              dispatchData({ type: "title", payload: e.target.value });
+            }}
+          />
 
-          {/* body */}
-          <Textarea placeholder="Here is a sample placeholder" />
+          {/* Target */}
+          <div className={styles.targetLabel}>
+            <div>
+              <Select
+                placeholder="All"
+                className={styles.target}
+                onChange={(e) => {
+                  dispatchData({ type: "audience", payload: e.target.value });
+                }}
+                value={data.audience}
+              >
+                <option value="Student">Students</option>
+                <option value="Faculty">Faculties</option>
+              </Select>
+            </div>
+
+            <div className={styles.colorLabel}>
+              <Input
+                variant={"outline"}
+                placeholder="Label"
+                borderColor={data.badgeColor}
+                _placeholder={{ color: "inherit" }}
+                value={data.badgeText}
+                onChange={(e) => {
+                  dispatchData({ type: "badgeText", payload: e.target.value });
+                }}
+              />
+
+              <Popover>
+                <PopoverTrigger>
+                  <Button
+                    colorScheme={data.badgeColor}
+                    className="clicky"
+                  ></Button>
+                </PopoverTrigger>
+                <PopoverContent className={styles.popContent}>
+                  <PopoverBody p="0em">
+                    label color
+                    <ColorSwatch data={data} dispatchData={dispatchData} />
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
+
+          <Tabs isFitted variant="enclosed" className={styles.tabs}>
+            <TabList>
+              <Tab>Write</Tab>
+              <Tab>Preview</Tab>
+            </TabList>
+            <TabPanels>
+              {/* write here */}
+              <TabPanel p="0em" pt="0.3em">
+                <textarea
+                  className={styles.textArea}
+                  placeholder="Body"
+                  value={data.body}
+                  onChange={(e) => {
+                    dispatchData({ type: "body", payload: e.target.value });
+                  }}
+                />
+              </TabPanel>
+
+              {/* markdown preview */}
+              <TabPanel p="0em" pt="0.3em">
+                {/* markdown here */}
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  className={styles.markDownArea}
+                  components={ChakraUIRenderer()}
+                >
+                  {data.body}
+                </ReactMarkdown>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </ModalBody>
+
         <ModalFooter className={styles.comFoot}>
-          <Button className="clicky" variant="outline" onClick={onClose}>
+          <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button className="clicky">Send Message</Button>
+          <Button
+            onClick={() => {
+              sendMessage(data, onClose, toast);
+            }}
+          >
+            Send Message
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
   );
 }
+
+// Admin Dashboard page
 export default function Admin() {
   const session = useSession();
   let name = session.data?.user?.name;
@@ -78,7 +295,7 @@ export default function Admin() {
         <IconButton
           aria-label="compose"
           className={styles.composeMsg}
-          icon={<FiFeather />}
+          icon={<EditIcon />}
           onClick={onOpen}
         />
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
