@@ -9,6 +9,7 @@ import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import remarkGfm from "remark-gfm";
 import { Flex, Avatar, Badge, Box, Text, Divider } from "@chakra-ui/react";
 import { AdminNotificationOnClient } from "@/lib/types";
+import { useMemo } from "react";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -28,6 +29,14 @@ function NotificationComponent({
 }: {
   notification: AdminNotificationOnClient;
 }) {
+  const viewsFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat("en", {
+        notation: "standard",
+        compactDisplay: "short",
+      }),
+    []
+  );
   return (
     <div className={styles.notifMain}>
       {/* title */}
@@ -62,7 +71,7 @@ function NotificationComponent({
           </span>
         </div>
         <div style={{ textAlign: "right" }}>
-          {notification.seenByCount + " "} views
+          {viewsFormatter.format(notification.seenByCount) + " "} views
           <Flex className={styles.whenBox}>
             <span className={styles.infoDateTime}>
               {formatDateTime(new Date(notification.date))}
