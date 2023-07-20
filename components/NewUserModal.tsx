@@ -19,9 +19,7 @@ import {
   Button,
   ModalOverlay,
   useToast,
-  Flex,
 } from "@chakra-ui/react";
-import IconPrev from "./IconPrevious";
 
 import styles from "./NewUserModal.module.css";
 import { Role, SentUserDataFromClient } from "@/lib/types";
@@ -34,6 +32,7 @@ interface NewUserModalProps {
   newUserData: SentUserDataFromClient;
   setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
 }
+
 
 async function postUser(newUserData: SentUserDataFromClient) {
   const formData = new FormData();
@@ -96,10 +95,7 @@ export default function NewUserModal({
               {/* Name */}
               <FormControl>
                 <div className={styles.quarter}>
-                  <div className={styles.labels}>
-                    <IconPrev text="Name" />
-                    <FormLabel>Name</FormLabel>
-                  </div>
+                  <FormLabel>Name</FormLabel>
                   <Input
                     type="Text"
                     value={newUserData.name}
@@ -165,10 +161,7 @@ export default function NewUserModal({
             <GridItem colSpan={2}>
               <FormControl>
                 {/* Profile Picture */}
-                <div className={styles.labels}>
-                  <IconPrev text="Profile" />
-                  <FormLabel>Avatar</FormLabel>
-                </div>
+                <FormLabel>Profile Picture</FormLabel>
                 <form className={styles.picIn}>
                   <label
                     htmlFor="myFileInput"
@@ -200,10 +193,7 @@ export default function NewUserModal({
             </GridItem>
             <GridItem className={styles.quarThree} colSpan={2}>
               <div className={styles.quarter}>
-                <div className={styles.labels}>
-                  <IconPrev text="Email" />
-                  <FormLabel>Email address</FormLabel>
-                </div>
+                <FormLabel>Email address</FormLabel>
                 <Input
                   type="email"
                   onChange={(e) =>
@@ -216,10 +206,7 @@ export default function NewUserModal({
               </div>
               <div className={styles.quarter}>
                 {/* Password */}
-                <div className={styles.labels}>
-                  <IconPrev text="Password" />
-                  <FormLabel>Password</FormLabel>
-                </div>
+                <FormLabel>Password</FormLabel>
                 <Input
                   type="password"
                   onChange={(e) => {

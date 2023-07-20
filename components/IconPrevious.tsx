@@ -5,10 +5,8 @@ import { RxDashboard } from "react-icons/rx";
 import { FiUsers } from "react-icons/fi";
 import { BsHouses } from "react-icons/bs";
 import { IoLibraryOutline } from "react-icons/io5";
-import { MdLogout, MdOutlineEmail } from "react-icons/md";
-import { CgProfile, CgRename } from "react-icons/cg";
-import { FiEdit } from "react-icons/fi";
-import { PiPasswordBold } from "react-icons/pi";
+import { MdLogout } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 
 export default function IconPrev({ text }: { text: string }) {
   if (text === "Dashboard") {
@@ -45,30 +43,6 @@ export default function IconPrev({ text }: { text: string }) {
     return (
       <div className={styles.icon}>
         <CgProfile />
-      </div>
-    );
-  } else if (text === "Edit") {
-    return (
-      <div className={styles.icon}>
-        <FiEdit />
-      </div>
-    );
-  } else if (text === "Name") {
-    return (
-      <div className={styles.icon}>
-        <CgRename />
-      </div>
-    );
-  } else if (text === "Email") {
-    return (
-      <div className={styles.icon}>
-        <MdOutlineEmail />
-      </div>
-    );
-  } else if (text === "Password") {
-    return (
-      <div className={styles.icon}>
-        <PiPasswordBold />
       </div>
     );
   }

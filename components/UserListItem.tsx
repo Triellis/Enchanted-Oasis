@@ -21,7 +21,6 @@ import {
   Portal,
 } from "@chakra-ui/react";
 import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
-import IconPrev from "./IconPrevious";
 
 import styles from "./UserListItem.module.css";
 
@@ -221,7 +220,6 @@ export default function UserListItem({
                       onEditModalOpen();
                     }}
                   >
-                    <IconPrev text="Edit" />
                     Edit User
                   </Button>
                 </PopoverFooter>
