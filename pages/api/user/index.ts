@@ -100,11 +100,19 @@ async function PUT(
 
   if (formData.files.profilePicture?.length) {
     if (allowedFileTypes.includes(formData.files.profilePicture[0].mimetype)) {
-      userDoc.profilePicture = await getFileUrl(
-        formData.files.profilePicture[0].filepath,
-        "profile pic/" + userId.toString(),
-        formData.files.profilePicture[0].originalFilename
-      );
+      try {
+        userDoc.profilePicture = await getFileUrl(
+          formData.files.profilePicture[0].filepath,
+          "profile pic/" + userId.toString(),
+          formData.files.profilePicture[0].originalFilename
+        );
+      } catch (e) {
+        return res
+          .status(400)
+          .send(
+            `You can not upload a file with this name ${formData.files.profilePicture[0].originalFilename}, change the file or file name`
+          );
+      }
     } else {
       return res.status(400).send("Invalid file type");
     }

@@ -382,8 +382,8 @@ function EditProfileModal({
               color: "hsl(var(--sc))",
             }}
             onClick={async () => {
-              const res = editUser(newUserData as any);
-              if ((await res).ok) {
+              const res = await editUser(newUserData as any);
+              if (res.ok) {
                 toast({
                   title: "Profile Updated",
                   description: "Your profile has been updated successfully",
@@ -396,7 +396,7 @@ function EditProfileModal({
               } else {
                 toast({
                   title: "Error",
-                  description: "An error occured while updating your profile",
+                  description: await res.text(),
                   status: "error",
                   duration: 3000,
                   isClosable: true,
