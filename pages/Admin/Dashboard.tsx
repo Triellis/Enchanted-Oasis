@@ -256,7 +256,7 @@ function ComposeMsgModal({
             </TabList>
             <TabPanels>
               {/* write here */}
-              <TabPanel p="0em" pt="0.3em">
+              <TabPanel className={styles.grp}>
                 <textarea
                   className={styles.textArea}
                   placeholder="Body"
@@ -265,6 +265,9 @@ function ComposeMsgModal({
                     dispatchData({ type: "body", payload: e.target.value });
                   }}
                 />
+                <div className={styles.bodyFoot}>
+                  <span>Markdown is supported</span>
+                </div>
               </TabPanel>
 
               {/* markdown preview */}

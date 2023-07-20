@@ -145,23 +145,48 @@
   background-color: hsl(var(--p)) !important;
 }
 
+.grp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0em;
+
+  padding: 0em !important;
+  padding-top: 0.3em !important;
+}
 .textArea {
-  height: 22em !important;
+  min-height: 20em !important;
   background-color: hsl(var(--b3));
   width: 100%;
-  border-radius: 1em;
+  border-radius: 1em 1em 0 0;
   padding: 1em;
   outline: none;
+  margin: 0; /* Add this line to remove any margin */
 }
 .textArea:focus {
   border: 1px solid hsl(var(--nc) / 40%);
 }
+.bodyFoot {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: hsl(var(--b3));
+  border-radius: 0 0 1em 1em;
+  padding: 0.3em;
+  margin: 0; /* Add this line to remove any margin */
+  color: hsl(var(--nc));
+  font-size: 0.8em;
+}
+
 .markDownArea {
-  height: 22em !important;
+  height: 21.5em !important;
 
   background-color: hsl(var(--b3));
   border-radius: 1em;
   padding: 1em;
 
+  justify-content: flex-end;
   overflow-y: scroll;
 }
