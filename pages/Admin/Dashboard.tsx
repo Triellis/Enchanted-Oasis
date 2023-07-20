@@ -29,6 +29,7 @@ import {
   Tabs,
   Textarea,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 
 import styles from "./Dashboard.module.css";
@@ -66,7 +67,7 @@ function ColorSwatch({
           className={classNames("clicky", styles.swatch)}
           colorScheme={color}
           onClick={() => {
-            dispatchData({ type: "labelColor", payload: color });
+            dispatchData({ type: "badgeColor", payload: color });
           }}
         ></Button>
       ))}
@@ -76,8 +77,8 @@ function ColorSwatch({
 type NotifData = {
   title: string;
   audience: string;
-  label: string;
-  labelColor: string;
+  badgeText: string;
+  badgeColor: string;
   body: string;
 };
 
@@ -94,10 +95,10 @@ function mutateData(
       return { ...state, title: action.payload };
     case "audience":
       return { ...state, audience: action.payload };
-    case "label":
-      return { ...state, label: action.payload };
-    case "labelColor":
-      return { ...state, labelColor: action.payload };
+    case "badgeText":
+      return { ...state, badgeText: action.payload };
+    case "badgeColor":
+      return { ...state, badgeColor: action.payload };
     case "body":
       return { ...state, body: action.payload };
     default:
@@ -106,15 +107,31 @@ function mutateData(
 }
 
 // function to send the message:
-async function sendMessage(data: NotifData) {
+async function sendMessage(data: NotifData, onClose: any, toast: any) {
   const res = await fetch("/api/notification", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(data),
   });
   if (res.ok) {
-    console.log("Message sent successfully");
+    toast({
+      title: "Message Sent",
+      description: "Your message has been sent to all the users",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    onClose();
   } else {
-    console.log("Message not sent");
+    toast({
+      title: "Message Not Sent",
+      description: await res.text(),
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
   }
 }
 
@@ -127,12 +144,12 @@ function ComposeMsgModal({
   onClose: () => void;
 }) {
   // content of the body:
-
+  const toast = useToast();
   const [data, dispatchData] = useReducer(mutateData, {
     title: "",
     audience: "All",
-    label: "",
-    labelColor: "red",
+    badgeText: "",
+    badgeColor: "red",
     body: "",
   });
   return (
@@ -179,14 +196,18 @@ function ComposeMsgModal({
               <Input
                 variant={"outline"}
                 placeholder="Label"
-                borderColor={data.labelColor}
+                borderColor={data.badgeColor}
                 _placeholder={{ color: "inherit" }}
+                value={data.badgeText}
+                onChange={(e) => {
+                  dispatchData({ type: "badgeText", payload: e.target.value });
+                }}
               />
 
               <Popover>
                 <PopoverTrigger>
                   <Button
-                    colorScheme={data.labelColor}
+                    colorScheme={data.badgeColor}
                     className="clicky"
                   ></Button>
                 </PopoverTrigger>
@@ -239,8 +260,7 @@ function ComposeMsgModal({
           </Button>
           <Button
             onClick={() => {
-              sendMessage(data);
-              onClose();
+              sendMessage(data, onClose, toast);
             }}
           >
             Send Message
