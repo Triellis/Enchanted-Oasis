@@ -59,4 +59,7 @@
   .badges {
     flex-direction: column;
   }
+  .title {
+    font-size: 2.5em;
+  }
 }
