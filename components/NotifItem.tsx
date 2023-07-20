@@ -19,12 +19,17 @@ import {
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import styles from "./NotifItem.module.css";
-import { CalendarIcon, EmailIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
+import {
+  CalendarIcon,
+  DeleteIcon,
+  EmailIcon,
+  TimeIcon,
+  ViewIcon,
+} from "@chakra-ui/icons";
 import { AdminNotificationOnClient } from "@/lib/types";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
-import { FiTrash2 } from "react-icons/fi";
 
 function formatDateTime(date: Date) {
   const time = date.toLocaleTimeString([], {
@@ -189,7 +194,7 @@ export default function NotifItem({
                 onDeleteOpen();
               }}
             >
-              <FiTrash2 />
+              <DeleteIcon />
             </button>
             <DeleteConfirmationModal
               notificationId={notification._id.toString()}

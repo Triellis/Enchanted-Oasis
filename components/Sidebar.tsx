@@ -5,8 +5,6 @@ import sideBarItemStyles from "./SidebarItem.module.css";
 import classNames from "classnames";
 import { signOut } from "next-auth/react";
 
-import IconPrev from "./IconPrevious";
-
 function Sidebar({
   isOpen,
   children,
@@ -33,7 +31,6 @@ function Sidebar({
           className={classNames(styles.logOut, sideBarItemStyles.item)}
           onClick={() => signOut()}
         >
-          <IconPrev text="Logout" />
           Logout
         </button>
       </div>

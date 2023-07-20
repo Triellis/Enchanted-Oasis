@@ -30,7 +30,7 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { GiFeather } from "react-icons/gi";
+
 import styles from "./Dashboard.module.css";
 
 import remarkGfm from "remark-gfm";
@@ -40,6 +40,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ReducerAction, useReducer, useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
+import { EditIcon } from "@chakra-ui/icons";
 // Color Swatch Component
 function ColorSwatch({
   data,
@@ -274,7 +275,7 @@ export default function Admin() {
         <IconButton
           aria-label="compose"
           className={styles.composeMsg}
-          icon={<GiFeather />}
+          icon={<EditIcon />}
           onClick={onOpen}
         />
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />

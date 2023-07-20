@@ -3,8 +3,6 @@ import styles from "./SidebarItem.module.css";
 import { Router, useRouter } from "next/router";
 import classNames from "classnames";
 
-import IconPrev from "./IconPrevious";
-
 export default function SidebarItem({
   text,
   linkTo,
@@ -23,7 +21,6 @@ export default function SidebarItem({
         )}
         href={linkTo}
       >
-        <IconPrev text={text} />
         {text}
       </Link>
     </div>
