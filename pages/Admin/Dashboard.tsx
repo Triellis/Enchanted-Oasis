@@ -2,9 +2,7 @@ import { useSession } from "next-auth/react";
 import Layout from "../Layout";
 
 import {
-  Box,
   Button,
-  Flex,
   IconButton,
   Input,
   Modal,
@@ -15,11 +13,8 @@ import {
   ModalHeader,
   ModalOverlay,
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Select,
   Tab,
@@ -27,7 +22,6 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Textarea,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -152,6 +146,40 @@ function ComposeMsgModal({
     badgeColor: "red",
     body: "",
   });
+
+  function validation() {
+    if (data.title === "") {
+      toast({
+        title: "Title is empty",
+        description: "Please enter a title",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
+    } else if (data.badgeText === "") {
+      toast({
+        title: "Label is empty",
+        description: "Please enter a label",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
+    } else if (data.body === "") {
+      toast({
+        title: "Body is empty",
+        description: "Please enter a body",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
+    }
+
+    return true;
+  }
+
   return (
     <Modal
       isCentered
@@ -260,6 +288,7 @@ function ComposeMsgModal({
           </Button>
           <Button
             onClick={() => {
+              if (!validation()) return;
               sendMessage(data, onClose, toast);
             }}
           >
