@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./IconPrevious.module.css";
 
 import { RxDashboard } from "react-icons/rx";
-import { FiUsers, FiTrash2 } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 import { BsHouses } from "react-icons/bs";
 import { IoLibraryOutline } from "react-icons/io5";
 import { MdLogout, MdOutlineEmail, MdOutlineNumbers } from "react-icons/md";
@@ -81,12 +81,6 @@ export default function IconPrev({ text }: { text: string }) {
     return (
       <div className={styles.icon}>
         <FiPhone />
-      </div>
-    );
-  } else if (text === "Delete") {
-    return (
-      <div className={styles.icon}>
-        <FiTrash2 />
       </div>
     );
   }
