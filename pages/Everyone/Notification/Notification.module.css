@@ -50,13 +50,13 @@
   font-size: 0.9em;
 }
 
-.badges{
+.badges {
   display: flex;
-  flex-direction: row;
-  gap: 0.4em;   
+  flex-direction: column;
+  gap: 0.1em;
 }
 @media screen and (max-width: 768px) {
-  .badges{
+  .badges {
     flex-direction: column;
   }
 }
