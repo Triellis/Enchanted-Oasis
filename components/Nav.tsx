@@ -98,7 +98,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
             >
               <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
                 <MenuItem className={styles.menuItem}>
-                  <IconPrev text={"Avatar"} />
+                  <IconPrev text={"Profile"} />
                   My Profile
                 </MenuItem>
               </Link>
