@@ -1,6 +1,7 @@
 import { Collection, MongoClient } from "mongodb";
 import { Role, SentUserDataFromClient, UserCol } from "./types";
 import md5 from "md5";
+import marked from "marked";
 
 export async function validateLogin(
   email: string,
@@ -112,4 +113,13 @@ export function formatDateTime(date: Date) {
 
   const formattedDateTime = `${formattedTime} • ${formattedDate}`;
   return formattedDateTime;
+}
+
+export function escapeMarkdown(text: string) {
+  const markdownRegex = /[#\][*_~`!@#$%^&*()"']/g;
+
+  // Replace all matched markdown elements with an empty string
+  const resultText = text.replace(markdownRegex, "");
+
+  return resultText;
 }

@@ -10,6 +10,7 @@ import {
 } from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { ObjectId, UpdateFilter } from "mongodb";
+import { escapeMarkdown } from "@/lib/functions";
 
 export default async function handler(
   req: NextApiRequest,
@@ -227,6 +228,7 @@ async function GET(
 
   const notificationsWithSeen: AdminNotificationOnClient[] = notifications
     .map((notification) => {
+      notification.body = escapeMarkdown(notification.body);
       let seen = false;
       if (userNotifDoc.hasOwnProperty(notification._id.toString())) {
         seen = userNotifDoc[notification._id.toString()].seen;
