@@ -26,3 +26,38 @@
   justify-content: center;
   align-items: center;
 }
+
+/* for the tabs: */
+.wrapTab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.tabGrp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: hsl(var(--b3));
+  border-radius: 10px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid hsl(var(--n));
+  padding: 0.4em;
+}
+.tabList {
+  padding-inline: 5px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  position: relative; /* Add position relative to create stacking context */
+  z-index: 1; /* Add z-index to ensure tab items appear above the indicator */
+}
+.tabIndicator {
+  border-radius: 5px;
+  bottom: 1.6em;
+  height: 70%;
+  transition: transform 0.3s ease;
+  transform: translateY(70%);
+}
