@@ -15,7 +15,6 @@ import {
   ModalOverlay,
   useToast,
 } from "@chakra-ui/react";
-import IconPrev from "./IconPrevious";
 
 import styles from "./EditUserModal.module.css";
 import { ReceivedUserDataOnClient, SentUserDataFromClient } from "@/lib/types";
@@ -95,10 +94,7 @@ export default function EditUserModal({
               {/* Name */}
               <FormControl>
                 <div className={styles.quarter}>
-                  <div className={styles.labels}>
-                    <IconPrev text="Name" />
-                    <FormLabel>Name</FormLabel>
-                  </div>
+                  <FormLabel>Name</FormLabel>
                   <Input
                     type="Text"
                     value={newUserData!.name}
@@ -115,10 +111,7 @@ export default function EditUserModal({
 
                 {/* Phone Number */}
                 <div className={styles.quarter}>
-                  <div className={styles.labels}>
-                    <IconPrev text="Phone" />
-                    <FormLabel>Phone</FormLabel>
-                  </div>
+                  <FormLabel>Phone</FormLabel>
                   <Input
                     type="number"
                     value={newUserData!.phone}
@@ -135,10 +128,7 @@ export default function EditUserModal({
 
                 <div className={styles.quarter}>
                   {/* Password */}
-                  <div className={styles.labels}>
-                    <IconPrev text="Password" />
-                    <FormLabel>New password</FormLabel>
-                  </div>
+                  <FormLabel>New password</FormLabel>
                   <Input
                     type="password"
                     value={newUserData?.password}
@@ -157,10 +147,7 @@ export default function EditUserModal({
             <GridItem colSpan={2}>
               <FormControl>
                 {/* Profile Picture */}
-                <div className={styles.labels}>
-                  <IconPrev text="Avatar" />
-                  <FormLabel>Avatar</FormLabel>
-                </div>
+                <FormLabel>Avatar</FormLabel>
                 <form className={styles.picIn}>
                   <label
                     htmlFor="myFileInput"

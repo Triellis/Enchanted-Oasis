@@ -14,20 +14,6 @@
   }
   .quarter {
     margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  .labels {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    gap: 0.2em;
-  }
-  .labels > * {
-    display: flex;
-    align-items: center;
-    margin: 0em !important;
   }
   
   .randh {

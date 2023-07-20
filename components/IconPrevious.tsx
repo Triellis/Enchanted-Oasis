@@ -41,7 +41,7 @@ export default function IconPrev({ text }: { text: string }) {
         <MdLogout />
       </div>
     );
-  } else if (text === "Avatar") {
+  } else if (text === "Profile") {
     return (
       <div className={styles.icon}>
         <CgProfile />
