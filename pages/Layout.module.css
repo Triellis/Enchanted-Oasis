@@ -27,3 +27,8 @@
   margin-block: 10px;
   margin-inline: 5px;
 }
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 0.5em;
+  }
+}
