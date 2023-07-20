@@ -234,7 +234,10 @@ export default function NewUserModal({
             <GridItem colSpan={2}>
               <FormControl>
                 <div className={styles.quarter}>
-                  <FormLabel>Roll Number</FormLabel>
+                  <div className={styles.labels}>
+                    <IconPrev text="Roll" />
+                    <FormLabel>Roll Number</FormLabel>
+                  </div>
                   <Input
                     type="text"
                     onChange={(e) => {
@@ -248,7 +251,10 @@ export default function NewUserModal({
 
                 {/* Phone Number */}
                 <div className={styles.quarter}>
-                  <FormLabel>Phone</FormLabel>
+                  <div className={styles.labels}>
+                    <IconPrev text="Phone" />
+                    <FormLabel>Phone</FormLabel>
+                  </div>
                   <Input
                     type="number"
                     onChange={(e) => {
