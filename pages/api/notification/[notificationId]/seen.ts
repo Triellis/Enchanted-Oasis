@@ -1,7 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { AdminNotificationCol, MySession, UserCol } from "@/lib/types";
+import {
+  AdminNotificationCol,
+  MySession,
+  UserCol,
+  userProjection,
+} from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { ObjectId } from "mongodb";
 
@@ -25,11 +30,52 @@ export async function markAsSeen(req: NextApiRequest, session: MySession) {
   const userId = new ObjectId(session!.user.id);
   const notificationId = req.query.notificationId as string;
   const db = (await clientPromise).db("enchanted-oasis");
+
+  let notifProjection: any = {
+    seenBy: 0,
+  };
+  if (session?.user.role !== "Admin") {
+    notifProjection = {
+      ...notifProjection,
+      seenByCount: 0,
+    };
+  }
   const notificationCollection =
     db.collection<AdminNotificationCol>("AdminNotifications");
-  const notifDoc = await notificationCollection.findOne({
-    _id: new ObjectId(notificationId),
-  });
+  const notifDoc = (
+    await notificationCollection
+      .aggregate([
+        {
+          $match: { _id: new ObjectId(notificationId) },
+        },
+        {
+          $lookup: {
+            from: "Users",
+            localField: "creatorId",
+            foreignField: "_id",
+            as: "creator",
+            pipeline: [
+              {
+                $project: userProjection,
+              },
+              {
+                $limit: 1, // Limit the number of creators to 1
+              },
+            ],
+          },
+        },
+        {
+          $addFields: {
+            creator: { $arrayElemAt: ["$creator", 0] }, // Get the first creator from the 'creators' array
+          },
+        },
+        {
+          $project: notifProjection,
+        },
+      ])
+
+      .toArray()
+  )[0];
 
   const usersCollection = db.collection<UserCol>("Users");
   const userUpdate = await usersCollection.updateOne(
