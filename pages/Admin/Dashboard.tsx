@@ -30,7 +30,7 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FiFeather } from "react-icons/fi";
+import { GiFeather } from "react-icons/gi";
 import styles from "./Dashboard.module.css";
 
 import remarkGfm from "remark-gfm";
@@ -247,7 +247,7 @@ export default function Admin() {
         <IconButton
           aria-label="compose"
           className={styles.composeMsg}
-          icon={<FiFeather />}
+          icon={<GiFeather />}
           onClick={onOpen}
         />
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
