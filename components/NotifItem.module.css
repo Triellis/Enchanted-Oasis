@@ -72,3 +72,6 @@
   color: hsl(var(--erc)) !important;
   width: 100%;
 }
+.modalDelBtn:hover {
+  border: 3px solid hsl(var(--erc));
+}

@@ -48,7 +48,7 @@ function ColorSwatch({
     "cyan",
     "green",
     "orange",
-    "pink",
+    "red",
     "purple",
 
     "yellow",

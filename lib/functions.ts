@@ -45,11 +45,11 @@ export function capitalizeFirstLetter(s: string) {
 // @ts-ignore
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export function getRoleColor(role: Role) {
+export function getRoleColor(role: Role | "All") {
   let roleColor = "gray";
   if (role === "Student") {
     roleColor = "blue";
-  } else if (role === "Admin") {
+  } else if (role === "Admin" || role === "All") {
     roleColor = "red";
   } else if (role === "Faculty") {
     roleColor = "green";
@@ -95,4 +95,21 @@ export async function editUser(
   });
 
   return res;
+}
+
+export function formatDateTime(date: Date) {
+  const time = date.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  const formattedTime = time.toLowerCase().replace(/\s/g, "");
+
+  const formattedDate = date.toLocaleDateString(["en-GB"], {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+  const formattedDateTime = `${formattedTime} • ${formattedDate}`;
+  return formattedDateTime;
 }

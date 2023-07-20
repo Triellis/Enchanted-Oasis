@@ -1,4 +1,4 @@
-import { fetcher } from "@/lib/functions";
+import { fetcher, formatDateTime, getRoleColor } from "@/lib/functions";
 import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -36,24 +36,37 @@ function NotificationComponent({
       {/* Profile */}
       <div className={styles.notifProfile}>
         <div className={styles.whoBox}>
-          <Avatar src="https://bit.ly/sage-adebayo" size="lg" />
+          <Avatar src={notification.creator.profilePicture} size="lg" />
           <Flex flexDirection="column">
-            <span className={styles.infoName}>Segun Adebayo</span>
-            <span className={styles.infoEmail}> admin@gmail.com</span>
+            <span className={styles.infoName}>{notification.creator.name}</span>
+            <span className={styles.infoEmail}>
+              {" "}
+              {notification.creator.email}
+            </span>
           </Flex>
         </div>
       </div>
-
       <Divider />
+
       <div className={styles.notifMisc}>
         <div className={styles.badges}>
-          <Badge colorScheme="green">Published</Badge>
-          <Badge colorScheme="green">Published</Badge>
+          <span>
+            <Badge colorScheme={notification.badgeColor}>
+              {notification.badgeText}
+            </Badge>
+          </span>
+          <span>
+            <Badge colorScheme={getRoleColor(notification.audience)}>
+              {notification.audience}
+            </Badge>
+          </span>
         </div>
         <div style={{ textAlign: "right" }}>
-          69views
+          {notification.seenByCount + " "} views
           <Flex className={styles.whenBox}>
-            <span className={styles.infoDateTime}>12/12/2021 • 12:00 PM</span>
+            <span className={styles.infoDateTime}>
+              {formatDateTime(new Date(notification.date))}
+            </span>
           </Flex>
         </div>
       </div>
