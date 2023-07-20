@@ -7,7 +7,15 @@ import styles from "./Notification.module.css";
 import ReactMarkdown from "react-markdown";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import remarkGfm from "remark-gfm";
-import { Flex, Avatar, Badge, Box, Text, Divider } from "@chakra-ui/react";
+import {
+  Flex,
+  Avatar,
+  Badge,
+  Box,
+  Text,
+  Divider,
+  Center,
+} from "@chakra-ui/react";
 import { AdminNotificationOnClient } from "@/lib/types";
 import { useMemo } from "react";
 
@@ -45,7 +53,7 @@ function NotificationComponent({
       {/* Profile */}
       <div className={styles.notifProfile}>
         <div className={styles.whoBox}>
-          <Avatar src={notification.creator.profilePicture} size="lg" />
+          <Avatar src={notification.creator.profilePicture} size="md" />
           <Flex flexDirection="column">
             <span className={styles.infoName}>{notification.creator.name}</span>
             <span className={styles.infoEmail}>
@@ -55,29 +63,28 @@ function NotificationComponent({
           </Flex>
         </div>
       </div>
-      <Divider />
+      <Divider w={{ md: 0 }} />
 
-      <div className={styles.notifMisc}>
-        <div className={styles.badges}>
-          <span>
-            <Badge colorScheme={notification.badgeColor}>
-              {notification.badgeText}
-            </Badge>
-          </span>
-          <span>
-            <Badge colorScheme={getRoleColor(notification.audience)}>
-              {notification.audience}
-            </Badge>
-          </span>
-        </div>
-        <div style={{ textAlign: "right" }}>
+      <div className={styles.notifDetails}>
+        <span className={styles.badgeWrapper}>
+          <Badge colorScheme={getRoleColor(notification.audience)}>
+            {notification.audience}
+          </Badge>
+        </span>
+        <span className={styles.badgeWrapper}>
+          <Badge colorScheme={notification.badgeColor}>
+            {notification.badgeText}
+          </Badge>
+        </span>
+        <Center height="1.5em">
+          <Divider orientation="vertical" />
+        </Center>
+        <span className={styles.infoDateTime}>
+          {formatDateTime(new Date(notification.date))}
+        </span>
+        <span className={styles.viewsWrapper}>
           {viewsFormatter.format(notification.seenByCount) + " "} views
-          <Flex className={styles.whenBox}>
-            <span className={styles.infoDateTime}>
-              {formatDateTime(new Date(notification.date))}
-            </span>
-          </Flex>
-        </div>
+        </span>
       </div>
       <Divider />
 
