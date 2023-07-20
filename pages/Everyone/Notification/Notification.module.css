@@ -61,7 +61,7 @@
   border-radius: 1em;
   background-color: hsl(var(--nc) / 0.1);
   border: 1px solid hsl(var(--nc) / 0.2);
-  font-family: "Ubuntu", sans-serif;
+  /* font-family: "Ubuntu", sans-serif; */
   min-height: 50%;
 }
 @media screen and (max-width: 768px) {
