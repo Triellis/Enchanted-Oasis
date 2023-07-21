@@ -96,8 +96,10 @@ function DeleteConfirmationModal({
 
 export default function NotifItem({
   notification,
+  adminMode = false,
 }: {
   notification: AdminNotificationOnClient;
+  adminMode?: boolean;
 }) {
   const viewsFormatter = useMemo(
     () =>
@@ -169,26 +171,28 @@ export default function NotifItem({
             </Badge>
           </div>
           <Spacer />
-          <div className={styles.viewsDisplay}>
-            {viewsFormatter.format(notification.seenByCount)}
-            <span className={styles.viewsText}>
-              {notification.seenByCount === 1 ? "view" : "views"}
-            </span>
-            <button
-              className={styles.del}
-              aria-label="delete"
-              onClick={(event) => {
-                onDeleteOpen();
-              }}
-            >
-              <DeleteIcon />
-            </button>
-            <DeleteConfirmationModal
-              notificationId={notification._id.toString()}
-              isOpen={isDeleteOpen}
-              onClose={onDeleteClose}
-            />
-          </div>
+          {adminMode && (
+            <div className={styles.viewsDisplay}>
+              {viewsFormatter.format(notification.seenByCount)}
+              <span className={styles.viewsText}>
+                {notification.seenByCount === 1 ? "view" : "views"}
+              </span>
+              <button
+                className={styles.del}
+                aria-label="delete"
+                onClick={(event) => {
+                  onDeleteOpen();
+                }}
+              >
+                <DeleteIcon />
+              </button>
+              <DeleteConfirmationModal
+                notificationId={notification._id.toString()}
+                isOpen={isDeleteOpen}
+                onClose={onDeleteClose}
+              />
+            </div>
+          )}
         </Flex>
       </div>
     </div>

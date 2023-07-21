@@ -16,8 +16,9 @@ import {
   Divider,
   Center,
 } from "@chakra-ui/react";
-import { AdminNotificationOnClient } from "@/lib/types";
+import { AdminNotificationOnClient, MySession } from "@/lib/types";
 import { useMemo } from "react";
+import { useSession } from "next-auth/react";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -34,8 +35,10 @@ function useNotification(id: string) {
 
 function NotificationComponent({
   notification,
+  adminMode = false,
 }: {
   notification: AdminNotificationOnClient;
+  adminMode?: boolean;
 }) {
   const viewsFormatter = useMemo(
     () =>
@@ -82,9 +85,11 @@ function NotificationComponent({
         <span className={styles.infoDateTime}>
           {formatDateTime(new Date(notification.date))}
         </span>
-        <span className={styles.viewsWrapper}>
-          {viewsFormatter.format(notification.seenByCount) + " "} views
-        </span>
+        {adminMode && (
+          <span className={styles.viewsWrapper}>
+            {viewsFormatter.format(notification.seenByCount) + " "} views
+          </span>
+        )}
       </div>
       <Divider />
 
@@ -102,17 +107,23 @@ function NotificationComponent({
 
 export default function NotificationPage() {
   const router = useRouter();
+  const session = useSession();
+  //   const sessionData = session.data as MySession;
   const { notification, isLoading, error } = useNotification(
     router.query.notificationId as string
   );
+
   let notificationComponent;
   if (isLoading) {
     notificationComponent = <div>Loading...</div>;
   } else if (error) {
-    notificationComponent = <div>Error: {error}</div>;
+    notificationComponent = <div>Error</div>;
   } else {
     notificationComponent = (
-      <NotificationComponent notification={notification} />
+      <NotificationComponent
+        // adminMode={session && sessionData?.user?.role === "Admin"}
+        notification={notification}
+      />
     );
   }
 
