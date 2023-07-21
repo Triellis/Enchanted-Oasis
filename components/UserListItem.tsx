@@ -167,7 +167,7 @@ export default function UserListItem({
 
           {/* Content */}
           <Portal>
-            <PopoverContent className={styles.popMain}>
+            <PopoverContent zIndex={20} className={styles.popMain}>
               <PopoverBody className={styles.popContent}>
                 {/* first half */}
                 <Avatar

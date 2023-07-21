@@ -55,6 +55,19 @@
   font-size: 0.9em;
   text-align: center;
 }
+.viewsBtn {
+  padding: 0 1.5em;
+  border-radius: 0.4em;
+  color: hsl(var(--pc));
+  text-align: center;
+  cursor: pointer;
+}
+.viewsBtn:hover {
+  color: hsl(var(--a));
+}
+.viewersModalContent {
+  padding: 1em;
+}
 .markDownArea {
   margin-block: 1em;
   padding: 1em;

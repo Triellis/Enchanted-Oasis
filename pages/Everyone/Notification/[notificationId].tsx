@@ -15,10 +15,24 @@ import {
   Text,
   Divider,
   Center,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  Heading,
 } from "@chakra-ui/react";
-import { AdminNotificationOnClient, MySession } from "@/lib/types";
+import {
+  AdminNotificationOnClient,
+  MySession,
+  ReceivedUserDataOnClient,
+} from "@/lib/types";
 import { useMemo } from "react";
 import { useSession } from "next-auth/react";
+import UserList from "@/components/UserList";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -31,6 +45,48 @@ function useNotification(id: string) {
     error: error,
     mutate,
   };
+}
+function useViewers(id: string) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/notification/${id}/listViewers`,
+    fetcher
+  );
+  return {
+    viewers: data as ReceivedUserDataOnClient[],
+    isLoading,
+    error: error,
+    mutate,
+  };
+}
+
+function ViewersModal({
+  notificationId,
+  isOpen,
+  onClose,
+}: {
+  notificationId: string;
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  const { viewers, error, isLoading, mutate } = useViewers(notificationId);
+
+  return (
+    <Modal isCentered size={"sm"} isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+
+      <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
+        <div className={styles.viewersModalContent}>
+          <Heading>Viewers</Heading>
+          <UserList
+            error={error}
+            isLoading={isLoading}
+            mutate={mutate}
+            usersData={viewers}
+          />
+        </div>
+      </ModalContent>
+    </Modal>
+  );
 }
 
 function NotificationComponent({
@@ -48,6 +104,7 @@ function NotificationComponent({
       }),
     []
   );
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className={styles.notifMain}>
       {/* title */}
@@ -87,7 +144,14 @@ function NotificationComponent({
         </span>
         {adminMode && (
           <span className={styles.viewsWrapper}>
-            {viewsFormatter.format(notification.seenByCount) + " "} views
+            <button className={styles.viewsBtn} onClick={onOpen}>
+              {viewsFormatter.format(notification.seenByCount) + " "} views
+            </button>
+            <ViewersModal
+              notificationId={notification._id.toString()}
+              isOpen={isOpen}
+              onClose={onClose}
+            />
           </span>
         )}
       </div>

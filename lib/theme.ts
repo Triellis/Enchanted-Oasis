@@ -25,12 +25,20 @@ const Badge = defineStyleConfig({
     letterSpacing: "0.1em",
   },
 });
+const Popover = {
+  baseStyle: {
+    popper: {
+      zIndex: "popover",
+    },
+  },
+};
 // 3. extend the theme
 const theme = extendTheme({
   config,
   components: {
     Button,
     Badge,
+    Popover,
   },
 });
 
