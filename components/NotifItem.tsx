@@ -31,6 +31,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
+import ListViewersModal from "./ListViewersModal";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
@@ -114,6 +115,12 @@ export default function NotifItem({
     onOpen: onDeleteOpen,
     onClose: onDeleteClose,
   } = useDisclosure();
+  const {
+    isOpen: isViewsOpen,
+    onOpen: onViewsOpen,
+    onClose: onViewsClose,
+  } = useDisclosure();
+
   return (
     <div
       className={classNames(
@@ -173,16 +180,15 @@ export default function NotifItem({
           <Spacer />
           {adminMode && (
             <div className={styles.viewsDisplay}>
-              {viewsFormatter.format(notification.seenByCount)}
-              <span className={styles.viewsText}>
+              <button className={styles.viewsText} onClick={onViewsOpen}>
+                {viewsFormatter.format(notification.seenByCount)}
+                {"  "}
                 {notification.seenByCount === 1 ? "view" : "views"}
-              </span>
+              </button>
               <button
                 className={styles.del}
                 aria-label="delete"
-                onClick={(event) => {
-                  onDeleteOpen();
-                }}
+                onClick={onDeleteOpen}
               >
                 <DeleteIcon />
               </button>
@@ -190,6 +196,11 @@ export default function NotifItem({
                 notificationId={notification._id.toString()}
                 isOpen={isDeleteOpen}
                 onClose={onDeleteClose}
+              />
+              <ListViewersModal
+                isOpen={isViewsOpen}
+                onClose={onViewsClose}
+                notificationId={notification._id.toString()}
               />
             </div>
           )}
