@@ -33,7 +33,6 @@ interface NewUserModalProps {
   setNewUserData: React.Dispatch<React.SetStateAction<SentUserDataFromClient>>;
 }
 
-
 async function postUser(newUserData: SentUserDataFromClient) {
   const formData = new FormData();
   for (const key in newUserData) {
@@ -76,6 +75,9 @@ export default function NewUserModal({
       house: "", // Add the missing property here
     });
   }, [isOpen]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -253,6 +255,7 @@ export default function NewUserModal({
 
         <ModalFooter className={styles.modalFooter}>
           <Button
+            isLoading={isLoading}
             className={styles.modalAdd}
             onClick={async () => {
               // validation logic:
@@ -268,6 +271,8 @@ export default function NewUserModal({
                   return;
                 }
               }
+
+              setIsLoading(true);
 
               const res = await postUser(newUserData);
               if (res.status == 200) {
@@ -289,6 +294,8 @@ export default function NewUserModal({
                   isClosable: true,
                 });
               }
+
+              setIsLoading(false);
             }}
           >
             Add
