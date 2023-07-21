@@ -17,6 +17,7 @@ import {
 
 import styles from "./Signin.module.css";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import classNames from "classnames";
 
 export default function SignIn({
   csrfToken,
@@ -83,7 +84,7 @@ export default function SignIn({
 
         <Button
           isLoading={isLoading}
-          className={styles.submitBtn}
+          className={classNames(styles.submitBtn, "clicky")}
           onClick={async () => {
             setIsLoading(true);
             const res = await signIn("credentials", {
