@@ -24,6 +24,7 @@ const navItems: {
     { text: "Houses", linkTo: "/Everyone/Houses" },
     { text: "Courses", linkTo: "/Admin/Courses" },
   ],
+  Student: [{ text: "Dashboard", linkTo: "/Student/Dashboard" }],
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -308,7 +308,7 @@ export default function Admin() {
           <span className={styles.appName}> Enchanted Oasis!</span>
         </div> */}
         <div className={styles.notifications}>
-          <NotifList />
+          <NotifList adminMode={true} />
         </div>
         <IconButton
           aria-label="compose"
