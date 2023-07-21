@@ -52,8 +52,10 @@ export default function UserListItem({
   forceSmall: boolean;
 }) {
   const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = async () => {
+    setIsLoading(true);
     const res = await fetch(`/api/user?userId=${userData._id}`, {
       method: "DELETE",
     });
@@ -75,10 +77,12 @@ export default function UserListItem({
       });
     }
     mutate();
+    setIsLoading(false);
   };
 
   // for dynamic rendering of components as per screen size
   const [isSmall, setIsSmall] = React.useState(false);
+
   React.useEffect(() => {
     window.addEventListener("resize", () => handleResize(setIsSmall));
     handleResize(setIsSmall);
@@ -270,7 +274,13 @@ export default function UserListItem({
               </Text>
             </ModalBody>
             <ModalFooter>
-              <Button className={styles.del} onClick={handleDelete}>
+              <Button
+                isLoading={isLoading}
+                className={styles.del}
+                onClick={() => {
+                  handleDelete();
+                }}
+              >
                 Delete
               </Button>
             </ModalFooter>

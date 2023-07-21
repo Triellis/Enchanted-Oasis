@@ -14,6 +14,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Spinner,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -63,8 +64,11 @@ async function changePoints(
   mode: "Increase" | "Decrease",
   id: string,
   toast: any,
-  mutateHouse: any
+  mutateHouse: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
+
   const res = await fetch(`/api/house/${id}/${mode.toLowerCase()}`, {
     method: "POST",
   });
@@ -86,6 +90,7 @@ async function changePoints(
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 // function to edit points
@@ -93,8 +98,10 @@ async function editPoints(
   points: number,
   id: string,
   toast: any,
-  mutateHouse: any
+  mutateHouse: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
   const res = await fetch(`/api/house/${id}`, {
     method: "PUT",
     headers: {
@@ -120,6 +127,7 @@ async function editPoints(
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 // component of the Houseplate on the top of the page
@@ -146,6 +154,10 @@ function HousePlate({
       setIsEditPlateOpen(false);
     }
   }, [isFocused, isHovered]);
+
+  const [isLoadingPlus, setIsLoadingPlus] = useState(false);
+  const [isLoadingMinus, setIsLoadingMinus] = useState(false);
+
   return (
     <div className={styles.housePlate}>
       <span
@@ -180,30 +192,38 @@ function HousePlate({
           >
             {isEditPlateOpen && (
               <span className={styles.editHouseButtons}>
+                {/* increasing points */}
                 <Button
-                  onClick={() =>
-                    changePoints(
-                      "Increase",
-                      house._id.toString(),
-                      toast,
-                      mutateHouse
-                    )
-                  }
+                  onClick={() => {
+                    !isLoadingPlus &&
+                      changePoints(
+                        "Increase",
+                        house._id.toString(),
+                        toast,
+                        mutateHouse,
+                        setIsLoadingPlus
+                      );
+                  }}
                 >
-                  <AddIcon />
+                  {isLoadingPlus ? <Spinner size={"sm"} /> : <AddIcon />}
                 </Button>
+
                 <Button onClick={onOpen}>Edit</Button>
+
+                {/* decreasing points */}
                 <Button
-                  onClick={() =>
-                    changePoints(
-                      "Decrease",
-                      house._id.toString(),
-                      toast,
-                      mutateHouse
-                    )
-                  }
+                  onClick={() => {
+                    !isLoadingMinus &&
+                      changePoints(
+                        "Decrease",
+                        house._id.toString(),
+                        toast,
+                        mutateHouse,
+                        setIsLoadingMinus
+                      );
+                  }}
                 >
-                  <MinusIcon />
+                  {isLoadingMinus ? <Spinner size={"sm"} /> : <MinusIcon />}
                 </Button>
               </span>
             )}
@@ -235,6 +255,9 @@ function EditPointsModal({
   useEffect(() => {
     setPoints(house.points);
   }, [house.points]);
+
+  // for loading animation
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Modal
@@ -270,13 +293,15 @@ function EditPointsModal({
             Close
           </Button>
           <Button
+            isLoading={isLoading}
             bg="hsl(var(--s))"
             onClick={async () => {
               await editPoints(
                 points,
                 house._id.toString(),
                 toast,
-                mutateHouse
+                mutateHouse,
+                setIsLoading
               );
               onClose();
             }}

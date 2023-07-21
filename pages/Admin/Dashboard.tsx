@@ -32,7 +32,7 @@ import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { ReducerAction, useReducer, useState } from "react";
+import { ReducerAction, useEffect, useReducer, useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
 import { EditIcon } from "@chakra-ui/icons";
@@ -68,6 +68,7 @@ function ColorSwatch({
     </div>
   );
 }
+
 type NotifData = {
   title: string;
   audience: string;
@@ -101,7 +102,13 @@ function mutateData(
 }
 
 // function to send the message:
-async function sendMessage(data: NotifData, onClose: any, toast: any) {
+async function sendMessage(
+  data: NotifData,
+  onClose: any,
+  toast: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) {
+  setIsLoading(true);
   const res = await fetch("/api/notification", {
     method: "POST",
     headers: {
@@ -127,6 +134,7 @@ async function sendMessage(data: NotifData, onClose: any, toast: any) {
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 // Compose Message Modal Component
@@ -163,6 +171,34 @@ function ComposeMsgModal({
 
     return true;
   }
+  // for reseting the modal:
+  useEffect(() => {
+    if (isOpen) {
+      dispatchData({
+        type: "badgeColor",
+        payload: "red",
+      });
+      dispatchData({
+        type: "audience",
+        payload: "All",
+      });
+      dispatchData({
+        type: "title",
+        payload: "",
+      });
+      dispatchData({
+        type: "badgeText",
+        payload: "",
+      });
+      dispatchData({
+        type: "body",
+        payload: "",
+      });
+    }
+  }, [isOpen]);
+
+  // for loading animation
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Modal
@@ -276,9 +312,10 @@ function ComposeMsgModal({
             Cancel
           </Button>
           <Button
+            isLoading={isLoading}
             onClick={() => {
               if (!validation()) return;
-              sendMessage(data, onClose, toast);
+              sendMessage(data, onClose, toast, setIsLoading);
             }}
           >
             Send Message

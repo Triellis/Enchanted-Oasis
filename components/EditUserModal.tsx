@@ -74,6 +74,8 @@ export default function EditUserModal({
     });
   }, [isEditModalOpen]);
 
+  const[isLoading, setIsLoading] = useState(false);
+
   return (
     <Modal
       isCentered
@@ -187,8 +189,10 @@ export default function EditUserModal({
           <Button onClick={onEditModalClose}>Discard Changes</Button>
 
           <Button
+            isLoading={isLoading}
             className={styles.modalAdd}
             onClick={async () => {
+              setIsLoading(true);
               const res = await editUser(newUserData!);
               if (res.status == 200) {
                 toast({
@@ -209,6 +213,7 @@ export default function EditUserModal({
                   isClosable: true,
                 });
               }
+              setIsLoading(false);
             }}
           >
             Save Changes

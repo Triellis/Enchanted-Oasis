@@ -143,6 +143,7 @@ async function changePassPost(
   toast: any,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
   if (newPassword !== confirmPassword) {
     toast({
       title: "Passwords do not match",
@@ -197,6 +198,8 @@ function ChangePasswordModal({
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  // step 1:
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -271,7 +274,7 @@ function ChangePasswordModal({
               backgroundColor: "hsl(var(--s))",
               color: "hsl(var(--sc))",
             }}
-            onClick={() =>
+            onClick={() => {
               changePassPost(
                 oldPassword,
                 newPassword,
@@ -279,8 +282,8 @@ function ChangePasswordModal({
                 onClose,
                 toast,
                 setIsLoading
-              )
-            }
+              );
+            }}
           >
             Change
           </Button>

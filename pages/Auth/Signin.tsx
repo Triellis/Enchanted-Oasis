@@ -17,6 +17,7 @@ import {
 
 import styles from "./Signin.module.css";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import classNames from "classnames";
 
 export default function SignIn({
   csrfToken,
@@ -28,6 +29,8 @@ export default function SignIn({
 
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     // main container of the form
@@ -80,8 +83,10 @@ export default function SignIn({
         {/* end button part */}
 
         <Button
-          className={styles.submitBtn}
+          isLoading={isLoading}
+          className={classNames(styles.submitBtn, "clicky")}
           onClick={async () => {
+            setIsLoading(true);
             const res = await signIn("credentials", {
               email,
               password,
@@ -98,6 +103,7 @@ export default function SignIn({
             } else {
               router.push("/");
             }
+            setIsLoading(false);
           }}
         >
           Sign in

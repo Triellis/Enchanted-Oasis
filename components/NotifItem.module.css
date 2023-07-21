@@ -77,5 +77,6 @@
   width: 100%;
 }
 .modalDelBtn:hover {
-  border: 3px solid hsl(var(--erc));
+  background-color: hsl(var(--erc)) !important;
+  color: hsl(var(--er)) !important;
 }
