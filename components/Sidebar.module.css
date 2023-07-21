@@ -1,7 +1,6 @@
 /* sidebar */
 .sidebar {
   left: -300px; /* Sidebar initially hidden */
-  width: 350px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   background-color: hsl(var(--b2));
