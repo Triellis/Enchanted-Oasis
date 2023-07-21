@@ -287,3 +287,11 @@
   width: 13em;
   padding: 0.5em;
 }
+
+.endBtn > * {
+  display: none;
+}
+
+.endBtn:focus-within > * {
+  display: block;
+}

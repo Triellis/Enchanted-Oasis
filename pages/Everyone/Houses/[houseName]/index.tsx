@@ -189,7 +189,7 @@ function HousePlate({
             onFocus={() => setIsFocused(true)}
             onMouseEnter={() => setIsHovered(true)}
           >
-            {isEditPlateOpen && (
+            <div className={styles.editHouseButtonsWrapper}>
               <span className={styles.editHouseButtons}>
                 {/* increasing points */}
                 <Button
@@ -225,7 +225,7 @@ function HousePlate({
                   <MinusIcon />
                 </Button>
               </span>
-            )}
+            </div>
           </div>
         </>
       )}
