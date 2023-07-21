@@ -11,19 +11,9 @@ import {
   Flex,
   Avatar,
   Badge,
-  Box,
-  Text,
   Divider,
   Center,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalFooter,
-  Button,
   useDisclosure,
-  Heading,
 } from "@chakra-ui/react";
 import {
   AdminNotificationOnClient,
@@ -34,6 +24,7 @@ import { useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import UserList from "@/components/UserList";
 import Pagination from "@/components/Pagination";
+import ListViewersModal from "@/components/ListViewersModal";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -46,54 +37,6 @@ function useNotification(id: string) {
     error: error,
     mutate,
   };
-}
-function useViewers(id: string, page: number) {
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/notification/${id}/listViewers?page=${page}`,
-    fetcher
-  );
-  return {
-    viewers: data as ReceivedUserDataOnClient[],
-    isLoading,
-    error: error,
-    mutate,
-  };
-}
-
-function ViewersModal({
-  notificationId,
-  isOpen,
-  onClose,
-}: {
-  notificationId: string;
-  isOpen: boolean;
-  onClose: () => void;
-}) {
-  const [page, setPage] = useState(1);
-  const { viewers, error, isLoading, mutate } = useViewers(
-    notificationId,
-    page
-  );
-  return (
-    <Modal isCentered size={"md"} isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
-
-      <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
-        <ModalCloseButton />
-        <div className={styles.viewersModalContent}>
-          <Heading>Viewers</Heading>
-          <UserList
-            error={error}
-            isLoading={isLoading}
-            mutate={mutate}
-            usersData={viewers}
-            forceSmall={true}
-          />
-          <Pagination items={viewers} page={page} setPage={setPage} />
-        </div>
-      </ModalContent>
-    </Modal>
-  );
 }
 
 function NotificationComponent({
@@ -154,7 +97,7 @@ function NotificationComponent({
             <button className={styles.viewsBtn} onClick={onOpen}>
               {viewsFormatter.format(notification.seenByCount) + " "} views
             </button>
-            <ViewersModal
+            <ListViewersModal
               notificationId={notification._id.toString()}
               isOpen={isOpen}
               onClose={onClose}
