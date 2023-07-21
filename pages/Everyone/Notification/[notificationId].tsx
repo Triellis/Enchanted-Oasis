@@ -108,7 +108,7 @@ function NotificationComponent({
 export default function NotificationPage() {
   const router = useRouter();
   const session = useSession();
-  //   const sessionData = session.data as MySession;
+  const sessionData = session.data as MySession;
   const { notification, isLoading, error } = useNotification(
     router.query.notificationId as string
   );
@@ -121,7 +121,7 @@ export default function NotificationPage() {
   } else {
     notificationComponent = (
       <NotificationComponent
-        // adminMode={session && sessionData?.user?.role === "Admin"}
+        adminMode={session && sessionData?.user?.role === "Admin"}
         notification={notification}
       />
     );
