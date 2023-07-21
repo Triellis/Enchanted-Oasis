@@ -68,6 +68,7 @@ function ColorSwatch({
     </div>
   );
 }
+
 type NotifData = {
   title: string;
   audience: string;
@@ -101,7 +102,13 @@ function mutateData(
 }
 
 // function to send the message:
-async function sendMessage(data: NotifData, onClose: any, toast: any) {
+async function sendMessage(
+  data: NotifData,
+  onClose: any,
+  toast: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) {
+  setIsLoading(true);
   const res = await fetch("/api/notification", {
     method: "POST",
     headers: {
@@ -127,6 +134,7 @@ async function sendMessage(data: NotifData, onClose: any, toast: any) {
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 // Compose Message Modal Component
@@ -163,6 +171,8 @@ function ComposeMsgModal({
 
     return true;
   }
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Modal
@@ -276,9 +286,10 @@ function ComposeMsgModal({
             Cancel
           </Button>
           <Button
+            isLoading={isLoading}
             onClick={() => {
               if (!validation()) return;
-              sendMessage(data, onClose, toast);
+              sendMessage(data, onClose, toast, setIsLoading);
             }}
           >
             Send Message
