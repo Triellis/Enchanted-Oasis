@@ -30,9 +30,10 @@ import {
   MySession,
   ReceivedUserDataOnClient,
 } from "@/lib/types";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import UserList from "@/components/UserList";
+import Pagination from "@/components/Pagination";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -46,9 +47,9 @@ function useNotification(id: string) {
     mutate,
   };
 }
-function useViewers(id: string) {
+function useViewers(id: string, page: number) {
   const { data, error, isLoading, mutate } = useSWR(
-    `/api/notification/${id}/listViewers`,
+    `/api/notification/${id}/listViewers?page=${page}`,
     fetcher
   );
   return {
@@ -68,13 +69,17 @@ function ViewersModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const { viewers, error, isLoading, mutate } = useViewers(notificationId);
-
+  const [page, setPage] = useState(1);
+  const { viewers, error, isLoading, mutate } = useViewers(
+    notificationId,
+    page
+  );
   return (
-    <Modal isCentered size={"sm"} isOpen={isOpen} onClose={onClose}>
+    <Modal isCentered size={"md"} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
 
       <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
+        <ModalCloseButton />
         <div className={styles.viewersModalContent}>
           <Heading>Viewers</Heading>
           <UserList
@@ -82,7 +87,9 @@ function ViewersModal({
             isLoading={isLoading}
             mutate={mutate}
             usersData={viewers}
+            forceSmall={true}
           />
+          <Pagination items={viewers} page={page} setPage={setPage} />
         </div>
       </ModalContent>
     </Modal>
