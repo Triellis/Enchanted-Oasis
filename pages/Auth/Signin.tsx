@@ -29,6 +29,8 @@ export default function SignIn({
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     // main container of the form
     <div className={styles.container}>
@@ -80,8 +82,10 @@ export default function SignIn({
         {/* end button part */}
 
         <Button
+          isLoading={isLoading}
           className={styles.submitBtn}
           onClick={async () => {
+            setIsLoading(true);
             const res = await signIn("credentials", {
               email,
               password,
@@ -98,6 +102,7 @@ export default function SignIn({
             } else {
               router.push("/");
             }
+            setIsLoading(false);
           }}
         >
           Sign in
