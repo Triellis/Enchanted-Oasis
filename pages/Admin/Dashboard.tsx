@@ -32,7 +32,7 @@ import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { ReducerAction, useReducer, useState } from "react";
+import { ReducerAction, useEffect, useReducer, useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
 import { EditIcon } from "@chakra-ui/icons";
@@ -171,7 +171,33 @@ function ComposeMsgModal({
 
     return true;
   }
+  // for reseting the modal:
+  useEffect(() => {
+    if (isOpen) {
+      dispatchData({
+        type: "badgeColor",
+        payload: "red",
+      });
+      dispatchData({
+        type: "audience",
+        payload: "All",
+      });
+      dispatchData({
+        type: "title",
+        payload: "",
+      });
+      dispatchData({
+        type: "badgeText",
+        payload: "",
+      });
+      dispatchData({
+        type: "body",
+        payload: "",
+      });
+    }
+  }, [isOpen]);
 
+  // for loading animation
   const [isLoading, setIsLoading] = useState(false);
 
   return (
