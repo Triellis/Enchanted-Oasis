@@ -23,6 +23,25 @@ import classNames from "classnames";
 import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
 import { MySession, ReceivedUserDataOnClient } from "@/lib/types";
+import { useAppSelector } from "@/lib/hooks";
+
+function HamburgerIconAnimated() {
+  const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
+
+  return (
+    <div
+      className={classNames(
+        styles.hamburger,
+        isSidebarOpen && styles.hamburgerOpen
+      )}
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  );
+}
 
 function useUser() {
   const { data, isLoading, error } = useSWR("/api/user", fetcher, {
@@ -59,7 +78,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
       {/* Hamburger Icon */}
       <div className={styles.hamButton}>
         <Button onClick={onToggle}>
-          <HamburgerIcon />
+          <HamburgerIconAnimated />
         </Button>
       </div>
 
