@@ -37,8 +37,10 @@ import { formatDateTime, getRoleColor } from "@/lib/functions";
 async function deleteNotification(
   notificationId: string,
   toast: any,
-  onClose: any
+  onClose: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
   const res = await fetch(`/api/notification/${notificationId}`, {
     method: "DELETE",
   });
@@ -60,6 +62,7 @@ async function deleteNotification(
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 function DeleteConfirmationModal({
@@ -72,6 +75,8 @@ function DeleteConfirmationModal({
   onClose: any;
 }) {
   const toast = useToast();
+  const [isLoading, setIsLoading] = React.useState(false);
+
   return (
     <Modal isCentered size={"sm"} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
@@ -82,9 +87,12 @@ function DeleteConfirmationModal({
 
         <ModalFooter display={"flex"} justifyContent={"center"}>
           <Button
+            isLoading={isLoading}
             className={styles.modalDelBtn}
             variant="solid"
-            onClick={() => deleteNotification(notificationId, toast, onClose)}
+            onClick={() =>
+              deleteNotification(notificationId, toast, onClose, setIsLoading)
+            }
           >
             Yes
           </Button>
