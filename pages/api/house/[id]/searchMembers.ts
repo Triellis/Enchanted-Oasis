@@ -23,9 +23,6 @@ async function GET(
   res: NextApiResponse,
   session: MySession
 ) {
-  if (session?.user.role !== "Admin" && session?.user.role !== "Faculty") {
-    return res.status(403).send("Not an Admin or Faculty");
-  }
   const id = req.query.id as string;
   const page = (req.query.page as string)
     ? parseInt(req.query.page as string)
