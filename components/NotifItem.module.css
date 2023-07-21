@@ -36,6 +36,10 @@
 .viewsText {
   color: hsl(var(--nc));
 }
+
+.viewsText:hover {
+  color: hsl(var(--s));
+}
 .badgesWrapper {
   display: flex;
   gap: 0.5em;

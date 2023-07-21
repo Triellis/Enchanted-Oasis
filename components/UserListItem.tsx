@@ -44,10 +44,12 @@ export default function UserListItem({
   userData,
   mutate,
   editMode,
+  forceSmall,
 }: {
   userData: ReceivedUserDataOnClient;
   mutate: () => void;
   editMode: boolean;
+  forceSmall: boolean;
 }) {
   const toast = useToast();
 
@@ -87,9 +89,14 @@ export default function UserListItem({
   }, []);
 
   let componentToRender;
-  if (isSmall) {
+  if (isSmall || forceSmall) {
     componentToRender = (
-      <span className={styles.responsiveBlock}>
+      <span
+        className={classNames(
+          styles.responsiveBlock,
+          forceSmall && styles.smallBlock
+        )}
+      >
         <span className={styles.name}>{userData.name}</span>
         <span className={styles.role}>
           <Badge
@@ -167,7 +174,7 @@ export default function UserListItem({
 
           {/* Content */}
           <Portal>
-            <PopoverContent className={styles.popMain}>
+            <PopoverContent zIndex={20} className={styles.popMain}>
               <PopoverBody className={styles.popContent}>
                 {/* first half */}
                 <Avatar
