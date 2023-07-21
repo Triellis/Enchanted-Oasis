@@ -63,8 +63,11 @@ async function changePoints(
   mode: "Increase" | "Decrease",
   id: string,
   toast: any,
-  mutateHouse: any
+  mutateHouse: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
+
   const res = await fetch(`/api/house/${id}/${mode.toLowerCase()}`, {
     method: "POST",
   });
@@ -86,6 +89,7 @@ async function changePoints(
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 // function to edit points
@@ -93,8 +97,10 @@ async function editPoints(
   points: number,
   id: string,
   toast: any,
-  mutateHouse: any
+  mutateHouse: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
   const res = await fetch(`/api/house/${id}`, {
     method: "PUT",
     headers: {
@@ -120,6 +126,7 @@ async function editPoints(
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 // component of the Houseplate on the top of the page
@@ -146,6 +153,9 @@ function HousePlate({
       setIsEditPlateOpen(false);
     }
   }, [isFocused, isHovered]);
+
+  const [isLoadingPlus, setIsLoadingPlus] = useState(false);
+  const [isLoadingMinus, setIsLoadingMinus] = useState(false);
 
   return (
     <div className={styles.housePlate}>
@@ -181,26 +191,34 @@ function HousePlate({
           >
             {isEditPlateOpen && (
               <span className={styles.editHouseButtons}>
+                {/* increasing points */}
                 <Button
+                  isLoading={isLoadingPlus}
                   onClick={() =>
                     changePoints(
                       "Increase",
                       house._id.toString(),
                       toast,
-                      mutateHouse
+                      mutateHouse,
+                      setIsLoadingPlus
                     )
                   }
                 >
                   <AddIcon />
                 </Button>
+
                 <Button onClick={onOpen}>Edit</Button>
+
+                {/* decreasing points */}
                 <Button
+                  isLoading={isLoadingMinus}
                   onClick={() =>
                     changePoints(
                       "Decrease",
                       house._id.toString(),
                       toast,
-                      mutateHouse
+                      mutateHouse,
+                      setIsLoadingMinus
                     )
                   }
                 >
@@ -277,14 +295,13 @@ function EditPointsModal({
             isLoading={isLoading}
             bg="hsl(var(--s))"
             onClick={async () => {
-              setIsLoading(true);
               await editPoints(
                 points,
                 house._id.toString(),
                 toast,
-                mutateHouse
+                mutateHouse,
+                setIsLoading
               );
-              setIsLoading(false);
               onClose();
             }}
           >
