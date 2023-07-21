@@ -90,6 +90,7 @@
 }
 .deleteButton:hover {
   background-color: hsl(var(--erc)) !important;
+  color: hsl(var(--er)) !important;
 }
 
 .editButton:hover {
@@ -107,6 +108,7 @@
 }
 .del:hover {
   background-color: hsl(var(--erc)) !important;
+  color: hsl(var(--er)) !important;
 }
 .del:active {
   transform: scale(0.9);
