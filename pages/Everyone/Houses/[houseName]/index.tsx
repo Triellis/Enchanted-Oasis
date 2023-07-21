@@ -146,6 +146,7 @@ function HousePlate({
       setIsEditPlateOpen(false);
     }
   }, [isFocused, isHovered]);
+
   return (
     <div className={styles.housePlate}>
       <span
@@ -236,6 +237,9 @@ function EditPointsModal({
     setPoints(house.points);
   }, [house.points]);
 
+  // for loading animation
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <Modal
       isCentered
@@ -270,14 +274,17 @@ function EditPointsModal({
             Close
           </Button>
           <Button
+            isLoading={isLoading}
             bg="hsl(var(--s))"
             onClick={async () => {
+              setIsLoading(true);
               await editPoints(
                 points,
                 house._id.toString(),
                 toast,
                 mutateHouse
               );
+              setIsLoading(false);
               onClose();
             }}
           >
