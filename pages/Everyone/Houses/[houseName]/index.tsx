@@ -14,6 +14,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Spinner,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -193,36 +194,36 @@ function HousePlate({
               <span className={styles.editHouseButtons}>
                 {/* increasing points */}
                 <Button
-                  isLoading={isLoadingPlus}
-                  onClick={() =>
-                    changePoints(
-                      "Increase",
-                      house._id.toString(),
-                      toast,
-                      mutateHouse,
-                      setIsLoadingPlus
-                    )
-                  }
+                  onClick={() => {
+                    !isLoadingPlus &&
+                      changePoints(
+                        "Increase",
+                        house._id.toString(),
+                        toast,
+                        mutateHouse,
+                        setIsLoadingPlus
+                      );
+                  }}
                 >
-                  <AddIcon />
+                  {isLoadingPlus ? <Spinner size={"sm"} /> : <AddIcon />}
                 </Button>
 
                 <Button onClick={onOpen}>Edit</Button>
 
                 {/* decreasing points */}
                 <Button
-                  isLoading={isLoadingMinus}
-                  onClick={() =>
-                    changePoints(
-                      "Decrease",
-                      house._id.toString(),
-                      toast,
-                      mutateHouse,
-                      setIsLoadingMinus
-                    )
-                  }
+                  onClick={() => {
+                    !isLoadingMinus &&
+                      changePoints(
+                        "Decrease",
+                        house._id.toString(),
+                        toast,
+                        mutateHouse,
+                        setIsLoadingMinus
+                      );
+                  }}
                 >
-                  <MinusIcon />
+                  {isLoadingMinus ? <Spinner size={"sm"} /> : <MinusIcon />}
                 </Button>
               </span>
             )}
