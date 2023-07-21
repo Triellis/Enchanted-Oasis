@@ -21,7 +21,8 @@ const Button = defineStyleConfig({
 const Badge = defineStyleConfig({
   baseStyle: {
     borderRadius: "0.5em",
-    padding: "2px 5px",
+    padding: "1px 5px",
+    letterSpacing: "0.1em",
   },
 });
 // 3. extend the theme

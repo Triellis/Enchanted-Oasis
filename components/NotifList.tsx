@@ -71,7 +71,11 @@ function InboxTabs({ inbox, setPage, setInbox }: TabsComponentProps) {
   );
 }
 
-export default function NotifList() {
+export default function NotifList({
+  adminMode = false,
+}: {
+  adminMode?: boolean;
+}) {
   const [page, setPage] = useState(1);
   const [inbox, setInbox] = useState("Unseen");
 
@@ -108,6 +112,7 @@ export default function NotifList() {
             <NotifItem
               key={notification._id.toString()}
               notification={notification}
+              adminMode={adminMode}
             />
           ))}
         </>
