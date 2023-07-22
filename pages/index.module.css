@@ -126,6 +126,12 @@
   transform: scale(0.9);
 }
 
+.infoCard {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .card {
   background-color: rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(10px) !important;
@@ -133,7 +139,6 @@
   border-radius: 10px !important;
   width: 80%;
   /* fix the heiht of this card */
-  height: 100%;
   /* border: 1px solid rgba(0, 0, 0, 0.3) !important; */
 }
 
@@ -142,13 +147,6 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
-}
-.infoCard {
-  /* should be in the center of the page */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .txt {
