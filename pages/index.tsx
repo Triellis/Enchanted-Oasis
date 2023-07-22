@@ -7,6 +7,7 @@ import {
   CardBody,
   CardFooter,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { MySession } from "../lib/types";
 
@@ -15,6 +16,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React from "react";
+import { ArrowRightIcon } from "@chakra-ui/icons";
 
 let x = 2;
 // set x as per device width
@@ -22,7 +24,7 @@ if (typeof window !== "undefined") {
   if (window.innerWidth < 768) {
     x = 2.3;
   } else {
-    x = 2;
+    x = 1.9;
   }
 }
 
@@ -45,7 +47,17 @@ export default function IndexPage() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <ParallaxLayer offset={0} speed={0.5} />
+      <ParallaxLayer offset={0} speed={0.5}>
+        <h1 className={styles.heading}>
+          <span className={styles.headingTxt}>Welcome to the</span>
+          <span className={styles.appName}> Enchanted Oasis</span>
+
+          <div className={styles.icon}>
+            <div className={styles.arrow}></div>
+            <ArrowRightIcon />
+          </div>
+        </h1>
+      </ParallaxLayer>
 
       <ParallaxLayer offset={1} speed={0.5}>
         <div className={styles.infoCard}>
@@ -57,11 +69,6 @@ export default function IndexPage() {
             <Stack>
               <div className={styles.imageBodyWrapper}>
                 <CardBody>
-                  <h1 className={styles.heading}>
-                    Welcome to the
-                    <span className={styles.appName}> Enchanted Oasis</span>
-                  </h1>
-
                   <p className={styles.txt}>
                     <span>
                       Embark on a magical journey of discovery, where spells and
@@ -74,6 +81,15 @@ export default function IndexPage() {
                       and let the magic unfold.
                     </span>
                   </p>
+
+                  <Button
+                    size={"lg"}
+                    onClick={() => signIn()}
+                    className={styles.btn}
+                    backgroundColor={"hsl(var(--s))"}
+                  >
+                    Sign in
+                  </Button>
                 </CardBody>
                 <div className={styles.imageWrapper}>
                   <Image
@@ -84,16 +100,6 @@ export default function IndexPage() {
                   />
                 </div>
               </div>
-              <CardFooter>
-                <Button
-                  size={"lg"}
-                  onClick={() => signIn()}
-                  className={styles.btn}
-                  backgroundColor={"hsl(var(--s))"}
-                >
-                  Sign in
-                </Button>
-              </CardFooter>
             </Stack>
           </Card>
         </div>

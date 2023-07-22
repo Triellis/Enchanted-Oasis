@@ -16,9 +16,17 @@
 }
 
 .heading {
-  font-size: 2.5rem;
+  /* very large and central heading */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 10em;
+}
+.headingTxt {
+  font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 2rem;
 }
 .txt {
   font-size: 1.4rem;
@@ -31,14 +39,15 @@
   font-family: "New Rocker", cursive;
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 255, 1) 5%,
-    rgba(255, 0, 255, 1) 75%
+    rgb(255, 162, 0) 5%,
+    rgb(246, 255, 0) 75%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 2.5rem;
+  font-size: 4rem;
   font-weight: 800;
+  margin-bottom: 1em;
 }
 .appNameTxt {
   font-family: "New Rocker", cursive;
@@ -89,7 +98,8 @@
 
   .heading,
   .appName {
-    font-size: 1.3em;
+    font-size: 1.5em;
+    text-align: center;
   }
 }
 
@@ -118,11 +128,20 @@
   flex-direction: column;
 }
 
-.mainHead {
-  font-size: 2.5rem;
-  font-weight: 700;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.icon {
+  font-size: 1.2em;
+  rotate: 90deg;
+  animation: jumpInfinite 1.5s infinite;
+}
+/* animation that slides down and comes back */
+@keyframes jumpInfinite {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: 0;
+  }
 }
