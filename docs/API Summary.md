@@ -6,8 +6,6 @@
 	- [Courses](#courses)
 	- [Houses](#houses)
 	- [User](#user)
-	- [Course Notifications](#course-notifications)
-	- [Course Materials](#course-materials)
 	- [Admin Notifications](#admin-notifications)
 	- [Lectures](#lectures)
 
@@ -71,30 +69,6 @@
 | Create User     | POST   | `/api/user`           |
 | Update password | PUT    | `/api/user/password`  |
 | Search Users    | GET    | `/api/allUser/search` |
-
-## Course Notifications
-
-| Route Name                         | Method | URL Pattern                                                    |
-| ---------------------------------- | ------ | -------------------------------------------------------------- |
-| List Notifications                 | GET    | `/api/course/{id}/notification`                                |
-| Add Notification                   | POST   | `/api/course/{id}/notification`                                |
-| Remove Notification                | DELETE | `/api/course/{id}/notification/{notificationId}`               |
-| Edit Notification                  | PUT    | `/api/course/{id}/notification/{notificationId}`               |
-| Get Notification                   | GET    | `/api/course/{id}/notification/{notificationId}`               |
-| Get Views                          | GET    | `/api/course/{id}/notification/{notificationId}/views `        |
-| Get Viewers                        | GET    | `/api/course/{id}/notification/{notificationId}/listViewers  ` |
-| Get Number of unseen notifications | GET    | `/api/course/{id}/notification/unseen`                         |
-| mark as seen                       | PATCH  | `/api/course/{id}/notification/{notificationId}/seen`          |
-
-## Course Materials
-
-| Route Name      | Method | URL Pattern                              |
-| --------------- | ------ | ---------------------------------------- |
-| List materials  | GET    | `/api/course/{id}/material`              |
-| Add material    | POST   | `/api/course/{id}/material`              |
-| Remove material | DELETE | `/api/course/{id}/material/{materialId}` |
-| Edit material   | PUT    | `/api/course/{id}/material/{materialId}` |
-| Get material    | GET    | `/api/course/{id}/material/{materialId}` |
 
 ## Admin Notifications
 

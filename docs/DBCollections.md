@@ -1,6 +1,6 @@
 # Database Collections
 
-## Admin Notifications
+## Notifications
 
 ```typescript
 
@@ -14,8 +14,10 @@
 	seenBy: string[], // array of user ids,
 	seenByCount: number, // number of users who ave seen this notification
 	creatorId: string ,// id of the user who created this notification
-	creatorName: string, // name of the user who created this notification
-	audience : "Students"| "Faculty" | "Both" // audience of the notification
+	audience : "Students"| "Faculty" | "All" | "Course" // audience of the notification
+	courseId?: string // id of the course to which this notification belongs
+	attachments?: string[] // array of attachment urls (stored in supabase storage)
+	deadline?: Date // deadline for the notification
 }
 ```
 
@@ -119,39 +121,5 @@
 		}
 
 	},
-}
-```
-
-## Course Material
-
-```typescript
-
-{
-	_id: ObjectID,
-	courseId: string,
-	title: string,
-	body: string, // supports markdown
-	date: Date,
-	attachments: string[], // array of attachment urls (stored in firebase storage)
-	creatorId: string // id of the user who created this notification
-}
-```
-
-## Course Notifications
-
-```typescript
-
-{
-	_id: ObjectID,
-	courseId: string,
-	title: string,
-	body: string, // supports markdown
-	date: Date,
-	badgeText: string, // badge text
-	badgeColor: string, // badge color
-	seenBy: string[] ,// array of user ids,
-	seenByCount: number, // number of users who ave seen this notification
-	creatorId: string, // id of the faculty who created this notification
-
 }
 ```

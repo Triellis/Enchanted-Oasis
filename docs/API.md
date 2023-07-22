@@ -787,297 +787,7 @@ type User = {
 };
 ```
 
-## Course notifications
-
-### List notifications
-
-- **URL:** `/api/course/{id}/notifications`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-}
-```
-
-#### Response
-
-```typescript
-
-{
-	"notifications":Notification[],
-	"totalNotifications":number
-}
-
-```
-
-```typescript
-type Notification = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-  creatorId: string; // id of the faculty who created this notification
-  creatorName: string; // name of the user who created this notification
-};
-```
-
-### Create notification
-
-- **URL:** `/api/course/{id}/notifications`
-- **Method:** `POST`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-  title: string;
-  body: string; // supports markdown
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-}
-```
-
-#### Response will be status code
-
-### Delete notification
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}`
-- **Method:** `DELETE`
-- **Permissions:** `Faculty`
-
-#### Response will be status code
-
-### Update notification
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-  title: string;
-  body: string; // supports markdown
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-}
-```
-
-#### Response will be status code
-
-### Get notification ( it will mark notification as seen )
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-type Notification = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-  creatorId: string; // id of the faculty who created this notification
-};
-```
-
-### Get Views
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}/views`
-- **Method:** `GET`
-- **Permissions:** `Faculty`
-
-#### Response
-
-```typescript
-{
-
-	"totalViews":number
-}
-```
-
-### Get Viewers
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}/listViewers`
-- **Method:** `GET`
-- **Permissions:** `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-}
-```
-
-#### Response
-
-```typescript
-
-{
-	"users":User[],
-	"totalUsers":number
-}
-
-```
-
-```typescript
-type User = {
-  _id: ObjectID;
-  name: string;
-  email: string;
-  role: "Student" | "Faculty" | "Admin";
-  profilePicture: string;
-};
-```
-
-### get number of unseen notifications
-
-- **URL:** `/api/course/{id}/notifications/unseen`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-
-{
-	"unseenNotifications":number
-}
-
-```
-
-### Mark notification as seen
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}/seen`
-- **Method:** `PATCH`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response will be status code
-
-## Course Materials
-
-### List materials
-
-- **URL:** `/api/course/{id}/material`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-}
-```
-
-#### Response
-
-```typescript
-
-{
-	"materials":Material[],
-	"totalMaterials":number
-}
-
-```
-
-```typescript
-type Material = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  attachments: string[]; // array of attachment urls (stored in firebase storage)
-  creatorId: string; // id of the user who created this notification
-  creatorName: string; // name of the user who created this notification
-};
-```
-
-### Create material
-
-- **URL:** `/api/course/{id}/material`
-- **Method:** `POST`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	title: string,
-	body: string, // supports markdown
-	attachments: string[] // array of attachment urls (stored in firebase storage)
-}
-```
-
-#### Response will be status code
-
-### Delete material
-
-- **URL:** `/api/course/{id}/material/{materialId}`
-- **Method:** `DELETE`
-- **Permissions:** `Faculty`
-
-#### Response will be status code
-
-### Update material
-
-- **URL:** `/api/course/{id}/material/{materialId}`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	title: string,
-	body: string, // supports markdown
-	attachments: string[] // array of attachment urls (stored in firebase storage)
-}
-```
-
-#### Response will be status code
-
-### Get material
-
-- **URL:** `/api/course/{id}/material/{materialId}`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-type Material = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  attachments: string[]; // array of attachment urls (stored in firebase storage)
-  creatorId: string; // id of the user who created this notification
-  creatorName: string; // name of the user who created this notification
-};
-```
-
-## Admin notifications
+## notifications
 
 ### List notifications
 
@@ -1092,6 +802,7 @@ type Material = {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
 	"unreadOnly":boolean // show unread only if true
+	courseId?:string // filter by course id, if not provided then admin notifications will be returned
 }
 ```
 
@@ -1100,24 +811,10 @@ type Material = {
 ```typescript
 
 {
-	"notifications":Notification[],
+	"notifications":NotificationOnClient[],
 
 }
 
-```
-
-```typescript
-type Notification = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-  creator: User;
-  unseen: boolean; // true if the notification is unseen by the user
-};
 ```
 
 ### Create notification
@@ -1134,7 +831,9 @@ type Notification = {
   body: string; // supports markdown
   badgeText: string; // badge text
   badgeColor: string; // badge color in hex code (eg: #ffffff)
-  audience: "All" | "Faculty" | "Student";
+  audience: "All" | "Faculty" | "Student" | "Course";
+  courseId?:string // if audience is course then provide course-id
+
 }
 ```
 
@@ -1177,17 +876,7 @@ type Notification = {
 #### Response
 
 ```typescript
-type Notification = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-  creator: User; // id of the faculty who created this notification
-  creatorName: string; // name of the user who created this notification
-};
+type NotificationOnClient;
 ```
 
 ### Get Views
@@ -1246,6 +935,12 @@ type User = {
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Faculty` | `Student`
 
+#### Query Parameter
+
+```typescript
+	courseId?:string // filter by course id, if not provided then admin notifications will be returned
+```
+
 #### Response
 
 ```typescript
@@ -1261,6 +956,12 @@ type User = {
 - **URL:** `/api/notification/{notificationId}/seen`
 - **Method:** `PATCH`
 - **Permissions:** `Admin` | `Faculty` | `Student`
+
+#### Query Parameter
+
+```typescript
+	courseId?:string // filter by course id, if not provided then admin notifications will be returned
+```
 
 #### Response will be status code
 
