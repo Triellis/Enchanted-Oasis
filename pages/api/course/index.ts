@@ -28,26 +28,7 @@ async function POST(
   if (session?.user.role !== "Admin") {
     return res.status(403).send("Not an Admin");
   }
-  //   _id: ObjectId;
-  //   name: string;
-  //   code: string;
-  //   description: string;
-  //   credits: number;
-  //   schedule: {
-  //     [day in Day]: {
-  //       startTime: Date;
-  //       endTime: Date;
-  //     };
-  //   };
-  //   faculties: string[]; // faculty ids
-  //   students: string[]; // array of student ids
-  //   lectures: string[]; // array of lecture ids
-  //   gradingScheme: {
-  //     [gradeLetter: string]: {
-  //       minMarks: number;
-  //       maxMarks: number;
-  //     };
-  //   };
+
   const fields = [
     "name",
     "code",
