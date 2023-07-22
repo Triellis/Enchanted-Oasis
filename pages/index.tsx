@@ -18,21 +18,6 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React from "react";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 
-let x = 2;
-if (typeof window !== "undefined") {
-  if (window.innerWidth < 576) {
-    x = 2.1;
-  } else if (window.innerWidth < 768) {
-    x = 2.2;
-  } else if (window.innerWidth < 992) {
-    x = 2.2;
-  } else if (window.innerWidth < 1200) {
-    x = 2;
-  } else {
-    x = 1.9; // Default value for larger screens
-  }
-}
-
 export default function IndexPage() {
   const session = useSession();
   const sessionData = session.data as MySession;
@@ -45,7 +30,7 @@ export default function IndexPage() {
   // THE LANDING PAGE
   return (
     <Parallax
-      pages={x}
+      pages={2}
       style={{
         backgroundImage: "url(/assets/image/bg.png)",
         backgroundSize: "cover",
@@ -109,8 +94,6 @@ export default function IndexPage() {
           </Card>
         </div>
       </ParallaxLayer>
-
-      <ParallaxLayer offset={2} speed={0.5} />
     </Parallax>
   );
 }
