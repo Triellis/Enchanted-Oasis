@@ -34,7 +34,7 @@
   animation: jumpInfinite 1.5s infinite;
 }
 /* animation that slides down and comes back */
-/* @keyframes jumpInfinite {
+@keyframes jumpInfinite {
   0% {
     margin-bottom: 0;
   }
@@ -44,7 +44,7 @@
   100% {
     margin-bottom: 0;
   }
-} */
+}
 
 .appName {
   font-family: "New Rocker", cursive;
