@@ -57,38 +57,35 @@ export default function IndexPage() {
             className={styles.card}
           >
             <Stack>
-                <CardBody className={styles.cardBody}>
-                  <div className={styles.txtWrap} >
-                    <div className={styles.txt}>
-                      Embark on a magical journey of discovery, where spells and
-                      wonders await. Enter a realm of enchantment and unlock
-                      your true potential. Step into the
-                      <span className={styles.appNameTxt}>
-                        {" "}
-                        Enchanted Oasis{" "}
-                      </span>
-                      and let the magic unfold.
-                    </div>
-                    <div className={styles.btnPos}>
-                      <Button
-                        size={"lg"}
-                        onClick={() => signIn()}
-                        className={styles.btn}
-                        backgroundColor={"hsl(var(--s))"}
-                      >
-                        Sign in
-                      </Button>
-                    </div>
+              <CardBody className={styles.cardBody}>
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src="/assets/image/Trio.png"
+                    alt="Picture of the author"
+                    width={500}
+                    height={500}
+                  />
+                </div>
+                <div className={styles.txtWrap}>
+                  <div className={styles.txt}>
+                    Embark on a magical journey of discovery, where spells and
+                    wonders await. Enter a realm of enchantment and unlock your
+                    true potential. Step into the
+                    <span className={styles.appNameTxt}> Enchanted Oasis </span>
+                    and let the magic unfold.
                   </div>
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src="/assets/image/Trio.png"
-                      alt="Picture of the author"
-                      width={500}
-                      height={500}
-                    />
+                  <div className={styles.btnPos}>
+                    <Button
+                      size={"lg"}
+                      onClick={() => signIn()}
+                      className={styles.btn}
+                      backgroundColor={"hsl(var(--s))"}
+                    >
+                      Sign in
+                    </Button>
                   </div>
-                </CardBody>
+                </div>
+              </CardBody>
             </Stack>
           </Card>
         </div>
