@@ -143,8 +143,9 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
   border-radius: 10px !important;
   width: 80%;
+  /* scroll */
+  overflow-y: auto;
 }
-
 .cardBody {
   display: flex;
   align-items: center;
