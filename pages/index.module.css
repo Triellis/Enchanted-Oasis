@@ -47,7 +47,7 @@
 }
 
 .appName {
-  font-family: "New Rocker", cursive;
+  font-family: "New Rocker", Verdana, Geneva, Tahoma, sans-serif;
   background: linear-gradient(
     135deg,
     rgb(255, 162, 0) 5%,
@@ -60,7 +60,7 @@
   font-weight: 800;
 }
 .appNameTxt {
-  font-family: "New Rocker", cursive;
+  font-family: "New Rocker", Verdana, Geneva, Tahoma, sans-serif;
   background: linear-gradient(
     135deg,
     rgb(255, 162, 0) 5%,
