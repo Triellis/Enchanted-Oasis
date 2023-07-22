@@ -22,6 +22,7 @@
 
   height: 100%;
   justify-content: center;
+  align-items: center;
 }
 .headerTxt {
   font-size: 2.5rem;
@@ -118,12 +119,11 @@
   .heading {
     font-size: 1.5em;
     text-align: center;
-  }
+  } 
 
-  .btnPos {
-    margin-top: 1em;
+  .card{
+    height: 100%;
   }
-
   .cardBody {
     flex-direction: column;
   }
@@ -157,8 +157,6 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
   border-radius: 10px !important;
   width: 80%;
-  /* scroll */
-  overflow-y: auto;
 }
 .cardBody {
   display: flex;
