@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import {
   Button,
@@ -17,6 +16,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React from "react";
 import { ArrowRightIcon } from "@chakra-ui/icons";
+import { Image } from "@chakra-ui/react";
 
 export default function IndexPage() {
   const session = useSession();
@@ -58,10 +58,10 @@ export default function IndexPage() {
               <CardBody className={styles.cardBody}>
                 <div className={styles.imageWrapper}>
                   <Image
+                    borderRadius="full"
                     src="/assets/image/Trio.png"
-                    alt="Picture of the author"
-                    width={500}
-                    height={500}
+                    alt="Trio"
+                    boxSize={{ base: "150px", md:"280px" ,lg: "450px" }}
                   />
                 </div>
                 <div className={styles.txtWrap}>
