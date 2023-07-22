@@ -57,35 +57,38 @@ export default function IndexPage() {
             className={styles.card}
           >
             <Stack>
-              <div className={styles.imageBodyWrapper}>
                 <CardBody className={styles.cardBody}>
-                  <div className={styles.txt}>
-                    Embark on a magical journey of discovery, where spells and
-                    wonders await. Enter a realm of enchantment and unlock your
-                    true potential. Step into the
-                    <span className={styles.appNameTxt}> Enchanted Oasis </span>
-                    and let the magic unfold.
+                  <div className={styles.txtWrap} >
+                    <div className={styles.txt}>
+                      Embark on a magical journey of discovery, where spells and
+                      wonders await. Enter a realm of enchantment and unlock
+                      your true potential. Step into the
+                      <span className={styles.appNameTxt}>
+                        {" "}
+                        Enchanted Oasis{" "}
+                      </span>
+                      and let the magic unfold.
+                    </div>
+                    <div className={styles.btnPos}>
+                      <Button
+                        size={"lg"}
+                        onClick={() => signIn()}
+                        className={styles.btn}
+                        backgroundColor={"hsl(var(--s))"}
+                      >
+                        Sign in
+                      </Button>
+                    </div>
                   </div>
-                  <div className={styles.btnPos}>
-                    <Button
-                      size={"lg"}
-                      onClick={() => signIn()}
-                      className={styles.btn}
-                      backgroundColor={"hsl(var(--s))"}
-                    >
-                      Sign in
-                    </Button>
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      src="/assets/image/Trio.png"
+                      alt="Picture of the author"
+                      width={500}
+                      height={500}
+                    />
                   </div>
                 </CardBody>
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src="/assets/image/Trio.png"
-                    alt="Picture of the author"
-                    width={500}
-                    height={500}
-                  />
-                </div>
-              </div>
             </Stack>
           </Card>
         </div>

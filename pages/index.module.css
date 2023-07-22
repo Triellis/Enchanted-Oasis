@@ -57,16 +57,17 @@
   font-weight: 500;
 }
 
-.imageBodyWrapper {
+.txtWrap {
+  flex: 1;
   display: flex;
-  width: 100%;
-  flex-direction: row;
-  /* justify-content: center; */
-  align-items: center;
+  flex-direction: column;
+  height: 100%;
 }
 .imageWrapper {
   animation: float 2000ms ease-in-out infinite;
-  margin-right: 10px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes float {
@@ -80,7 +81,7 @@
     transform: translateY(0);
   }
 }
-@media (max-width: 980px) {
+@media (max-width: 768px) {
   .imageBodyWrapper {
     flex-direction: column;
   }
@@ -107,6 +108,10 @@
 
   .btnPos {
     margin-top: 1em;
+  }
+
+  .cardBody {
+    flex-direction: column;
   }
 }
 
@@ -138,24 +143,17 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
   border-radius: 10px !important;
   width: 80%;
-  /* fix the heiht of this card */
-  /* border: 1px solid rgba(0, 0, 0, 0.3) !important; */
 }
 
 .cardBody {
   display: flex;
   align-items: center;
-  flex-direction: column;
   height: 100%;
 }
 
 .txt {
-  justify-content: flex-start;
   font-size: 1.4rem;
   font-weight: 200;
-}
-.txt > :nth-child(1) {
-  align-content: flex-start;
 }
 
 .icon {
