@@ -71,7 +71,10 @@
 
 .imageBodyWrapper {
   display: flex;
+  width: 100%;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .imageWrapper {
   animation: float 2000ms ease-in-out infinite;
