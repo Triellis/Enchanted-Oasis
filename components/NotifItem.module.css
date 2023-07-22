@@ -14,16 +14,9 @@
   background-color: hsl(var(--b2));
   margin-block: 0.5em;
 
-  font-size: 1.4em;
+  font-size: 1.1em;
   box-shadow: -2px 2px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 15%);
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .notifItem {
-    font-size: 1.1em;
-  }
 }
 
 /* contents of the notifications */
