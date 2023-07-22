@@ -28,18 +28,6 @@
   font-size: 3rem;
   font-weight: 700;
 }
-.txt {
-  font-size: 1.4rem;
-  font-weight: 200;
-  text-align: justify;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 4em;
-
-  height: 100%;
-}
 
 .appName {
   font-family: "New Rocker", cursive;
@@ -73,13 +61,14 @@
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .imageWrapper {
   animation: float 2000ms ease-in-out infinite;
   margin-right: 10px;
 }
+
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -115,15 +104,20 @@
     text-align: center;
     margin-top: 10em;
   }
+
+  .btnPos {
+    margin-top: 1em;
+  }
 }
 
 .btnPos {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .btn {
-  width: 40%;
+  width: 10em;
 }
 .btn:hover {
   background-color: hsl(var(--sf)) !important;
@@ -143,6 +137,12 @@
   /* border: 1px solid rgba(0, 0, 0, 0.3) !important; */
 }
 
+.cardBody {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
 .infoCard {
   /* should be in the center of the page */
   display: flex;
@@ -151,11 +151,21 @@
   flex-direction: column;
 }
 
+.txt {
+  justify-content: flex-start;
+  font-size: 1.4rem;
+  font-weight: 200;
+}
+.txt > :nth-child(1) {
+  align-content: flex-start;
+}
+
 .icon {
   font-size: 1.4em;
   rotate: 90deg;
   animation: jumpInfinite 1.5s infinite;
 }
+
 /* animation that slides down and comes back */
 @keyframes jumpInfinite {
   0% {

@@ -58,19 +58,15 @@ export default function IndexPage() {
           >
             <Stack>
               <div className={styles.imageBodyWrapper}>
-                <CardBody>
-                  <p className={styles.txt}>
-                    <span>
-                      Embark on a magical journey of discovery, where spells and
-                      wonders await. Enter a realm of enchantment and unlock
-                      your true potential. Step into the
-                      <span className={styles.appNameTxt}>
-                        {" "}
-                        Enchanted Oasis{" "}
-                      </span>
-                      and let the magic unfold.
-                    </span>
-
+                <CardBody className={styles.cardBody}>
+                  <div className={styles.txt}>
+                    Embark on a magical journey of discovery, where spells and
+                    wonders await. Enter a realm of enchantment and unlock your
+                    true potential. Step into the
+                    <span className={styles.appNameTxt}> Enchanted Oasis </span>
+                    and let the magic unfold.
+                  </div>
+                  <div className={styles.btnPos}>
                     <Button
                       size={"lg"}
                       onClick={() => signIn()}
@@ -79,7 +75,7 @@ export default function IndexPage() {
                     >
                       Sign in
                     </Button>
-                  </p>
+                  </div>
                 </CardBody>
                 <div className={styles.imageWrapper}>
                   <Image
