@@ -61,7 +61,7 @@ export default function IndexPage() {
                     borderRadius="full"
                     src="/assets/image/Trio.png"
                     alt="Trio"
-                    boxSize={{ base: "280px", lg: "450px" }}
+                    boxSize={{ base: "320px", lg: "500px" }}
                   />
                 </div>
                 <div className={styles.txtWrap}>
