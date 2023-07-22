@@ -90,3 +90,28 @@ export type AdminNotificationOnClient = Omit<AdminNotificationCol, "seenBy"> & {
   seen?: boolean;
   creator: ReceivedUserDataOnClient;
 };
+
+export type Day = "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun";
+
+export type CourseCol = {
+  _id: ObjectId;
+  name: string;
+  code: string;
+  description: string;
+  credits: number;
+  schedule: {
+    [day in Day]: {
+      startTime: Date;
+      endTime: Date;
+    };
+  };
+  faculties: string[]; // faculty ids
+  students: string[]; // array of student ids
+  lectures: string[]; // array of lecture ids
+  gradingScheme: {
+    [gradeLetter: string]: {
+      minMarks: number;
+      maxMarks: number;
+    };
+  };
+};
