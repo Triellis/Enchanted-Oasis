@@ -38,15 +38,13 @@ export default function IndexPage() {
       }}
     >
       <ParallaxLayer offset={0} speed={0.5}>
-        <h1 className={styles.heading}>
-          <span className={styles.headingTxt}>Welcome to the</span>
-          <span className={styles.appName}> Enchanted Oasis</span>
-
+        <div className={styles.heading}>
+          <div className={styles.headerTxt}>Welcome to the</div>
+          <div className={styles.appName}> Enchanted Oasis</div>
           <div className={styles.icon}>
-            <div className={styles.arrow}></div>
             <ArrowRightIcon />
           </div>
-        </h1>
+        </div>
       </ParallaxLayer>
 
       <ParallaxLayer offset={1} speed={0.5}>
