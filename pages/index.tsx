@@ -21,11 +21,11 @@ import { ArrowRightIcon } from "@chakra-ui/icons";
 let x = 2;
 if (typeof window !== "undefined") {
   if (window.innerWidth < 576) {
-    x = 2.2;
+    x = 2.1;
   } else if (window.innerWidth < 768) {
-    x = 2.3;
+    x = 2.2;
   } else if (window.innerWidth < 992) {
-    x = 2.3;
+    x = 2.2;
   } else if (window.innerWidth < 1200) {
     x = 2;
   } else {
