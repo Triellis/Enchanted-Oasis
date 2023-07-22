@@ -61,7 +61,7 @@ export default function IndexPage() {
                     borderRadius="full"
                     src="/assets/image/Trio.png"
                     alt="Trio"
-                    boxSize={{ base: "150px", md:"280px" ,lg: "450px" }}
+                    boxSize={{ base: "280px", lg: "450px" }}
                   />
                 </div>
                 <div className={styles.txtWrap}>
@@ -74,7 +74,6 @@ export default function IndexPage() {
                   </div>
                   <div className={styles.btnPos}>
                     <Button
-                      size={"lg"}
                       onClick={() => signIn()}
                       className={styles.btn}
                       backgroundColor={"hsl(var(--s))"}

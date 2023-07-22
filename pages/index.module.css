@@ -106,7 +106,6 @@
     height: auto;
   }
 
-  .txt,
   .appNameTxt {
     font-size: 1em;
   }
@@ -129,6 +128,9 @@
   }
   .btnPos {
     margin-top: 1em;
+  }
+  .txt{
+    font-size: 1em !important;
   }
 }
 
@@ -169,6 +171,5 @@
 }
 
 .txt {
-  font-size: 1.4rem;
-  font-weight: 200;
+  font-size: 1.5rem;
 }
