@@ -36,13 +36,13 @@
 /* animation that slides down and comes back */
 @keyframes jumpInfinite {
   0% {
-    margin-bottom: 0;
+    transform: translateX(0);
   }
   50% {
-    margin-bottom: 20px;
+    transform: translateX(20px);
   }
   100% {
-    margin-bottom: 0;
+    transform: translateX(0);
   }
 }
 
@@ -129,7 +129,7 @@
   .btnPos {
     margin-top: 1em;
   }
-  .txt{
+  .txt {
     font-size: 1em !important;
   }
 }
