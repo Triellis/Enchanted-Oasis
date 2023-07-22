@@ -101,6 +101,7 @@
 {
 	_id: ObjectID,
 	name: string,
+	code: string,
 	description:string,
 	credits: number,
 	schedule:{
