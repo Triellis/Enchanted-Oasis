@@ -13,6 +13,19 @@ import { MySession } from "../lib/types";
 import styles from "./index.module.css";
 import { useSession, signIn, signOut } from "next-auth/react";
 
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import React from "react";
+
+let x = 2;
+// set x as per device width
+if (typeof window !== "undefined") {
+  if (window.innerWidth < 768) {
+    x = 2.3;
+  } else {
+    x = 2;
+  }
+}
+
 export default function IndexPage() {
   const session = useSession();
   const sessionData = session.data as MySession;
@@ -24,53 +37,69 @@ export default function IndexPage() {
 
   // THE LANDING PAGE
   return (
-    <>
-      <div className={styles.main}>
-        <Card
-          direction={{ base: "column", sm: "row" }}
-          variant="outline"
-          className={styles.card}
-        >
-          <Stack>
-            <div className={styles.imageBodyWrapper}>
-              <CardBody>
-                <h1 className={styles.heading}>
-                  Welcome to the
-                  <span className={styles.appName}> Enchanted Oasis</span>
-                </h1>
+    <Parallax
+      pages={x}
+      style={{
+        backgroundImage: "url(/assets/image/bg.png)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <ParallaxLayer offset={0} speed={0.5} />
 
-                <p className={styles.txt}>
-                  <span>
-                    Embark on a magical journey of discovery, where spells and
-                    wonders await. Enter a realm of enchantment and unlock your
-                    true potential. Step into the
-                    <span className={styles.appNameTxt}> Enchanted Oasis </span>
-                    and let the magic unfold.
-                  </span>
-                </p>
-              </CardBody>
-              <div className={styles.imageWrapper}>
-                <Image
-                  src="/assets/image/Trio.png"
-                  alt="Picture of the author"
-                  width={500}
-                  height={500}
-                />
+      <ParallaxLayer offset={1} speed={0.5}>
+        <div className={styles.infoCard}>
+          <Card
+            direction={{ base: "column", sm: "row" }}
+            variant="outline"
+            className={styles.card}
+          >
+            <Stack>
+              <div className={styles.imageBodyWrapper}>
+                <CardBody>
+                  <h1 className={styles.heading}>
+                    Welcome to the
+                    <span className={styles.appName}> Enchanted Oasis</span>
+                  </h1>
+
+                  <p className={styles.txt}>
+                    <span>
+                      Embark on a magical journey of discovery, where spells and
+                      wonders await. Enter a realm of enchantment and unlock
+                      your true potential. Step into the
+                      <span className={styles.appNameTxt}>
+                        {" "}
+                        Enchanted Oasis{" "}
+                      </span>
+                      and let the magic unfold.
+                    </span>
+                  </p>
+                </CardBody>
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src="/assets/image/Trio.png"
+                    alt="Picture of the author"
+                    width={500}
+                    height={500}
+                  />
+                </div>
               </div>
-            </div>
-            <CardFooter>
-              <Button
-                size={"lg"}
-                onClick={() => signIn()}
-                className={styles.btn}
-                backgroundColor={"hsl(var(--s))"}
-              >
-                Sign in
-              </Button>
-            </CardFooter>
-          </Stack>
-        </Card>
-      </div>
-    </>
+              <CardFooter>
+                <Button
+                  size={"lg"}
+                  onClick={() => signIn()}
+                  className={styles.btn}
+                  backgroundColor={"hsl(var(--s))"}
+                >
+                  Sign in
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </div>
+      </ParallaxLayer>
+
+      <ParallaxLayer offset={2} speed={0.5} />
+    </Parallax>
   );
 }
