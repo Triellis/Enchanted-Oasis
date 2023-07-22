@@ -19,12 +19,17 @@ import React from "react";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 
 let x = 2;
-// set x as per device width
 if (typeof window !== "undefined") {
-  if (window.innerWidth < 768) {
+  if (window.innerWidth < 576) {
+    x = 2.2;
+  } else if (window.innerWidth < 768) {
     x = 2.3;
+  } else if (window.innerWidth < 992) {
+    x = 2.3;
+  } else if (window.innerWidth < 1200) {
+    x = 2;
   } else {
-    x = 1.9;
+    x = 1.9; // Default value for larger screens
   }
 }
 
@@ -80,16 +85,16 @@ export default function IndexPage() {
                       </span>
                       and let the magic unfold.
                     </span>
-                  </p>
 
-                  <Button
-                    size={"lg"}
-                    onClick={() => signIn()}
-                    className={styles.btn}
-                    backgroundColor={"hsl(var(--s))"}
-                  >
-                    Sign in
-                  </Button>
+                    <Button
+                      size={"lg"}
+                      onClick={() => signIn()}
+                      className={styles.btn}
+                      backgroundColor={"hsl(var(--s))"}
+                    >
+                      Sign in
+                    </Button>
+                  </p>
                 </CardBody>
                 <div className={styles.imageWrapper}>
                   <Image

@@ -32,7 +32,13 @@
   font-size: 1.4rem;
   font-weight: 200;
   text-align: justify;
-  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4em;
+
+  height: 100%;
 }
 
 .appName {
@@ -108,20 +114,29 @@
   }
 }
 
-/* signin button effects */
+.btnPos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  width: 40%;
+}
 .btn:hover {
   background-color: hsl(var(--sf)) !important;
 }
 .btn:active {
   transform: scale(0.9);
 }
+
 .card {
   background-color: rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(10px) !important;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
   border-radius: 10px !important;
   width: 80%;
-  margin-bottom: 12em;
+  /* fix the heiht of this card */
+  height: 100%;
   /* border: 1px solid rgba(0, 0, 0, 0.3) !important; */
 }
 
