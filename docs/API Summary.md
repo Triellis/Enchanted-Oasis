@@ -37,7 +37,7 @@
 | list students             | GET    | `/api/course/{id}/student/list`        |
 | list faculties            | GET    | `/api/course/{id}/faculty/list`        |
 | Add faculty               | POST   | `/api/course/{id}/faculty`             |
-| Remove faculty            | DELETE | `/api/course/{id}/student/{facultyId}` |
+| Remove faculty            | DELETE | `/api/course/{id}/faculty/{facultyId}` |
 | Enroll Self               | POST   | `/api/course/{id}/enroll`              |
 | UnEnroll Self             | POST   | `/api/course/{id}/unEnroll`            |
 | ~~Read Grading Scheme~~   | GET    | `/api/course/{id}/gradingScheme`       |
