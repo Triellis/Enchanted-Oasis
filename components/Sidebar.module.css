@@ -77,8 +77,8 @@
   font-family: "New Rocker", cursive;
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 255, 1) 5%,
-    rgba(255, 0, 255, 1) 75%
+    rgb(255, 162, 0) 5%,
+    rgb(246, 255, 0) 75%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -86,5 +86,5 @@
   font-weight: 800;
   letter-spacing: -1px;
   text-align: center;
-  font-size: 2em;
+  font-size: 2.5em;
 }

@@ -11,14 +11,20 @@ import {
   Flex,
   Avatar,
   Badge,
-  Box,
-  Text,
   Divider,
   Center,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { AdminNotificationOnClient, MySession } from "@/lib/types";
-import { useMemo } from "react";
+import {
+  AdminNotificationOnClient,
+  MySession,
+  ReceivedUserDataOnClient,
+} from "@/lib/types";
+import { useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
+import UserList from "@/components/UserList";
+import Pagination from "@/components/Pagination";
+import ListViewersModal from "@/components/ListViewersModal";
 
 function useNotification(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -48,6 +54,7 @@ function NotificationComponent({
       }),
     []
   );
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className={styles.notifMain}>
       {/* title */}
@@ -87,7 +94,14 @@ function NotificationComponent({
         </span>
         {adminMode && (
           <span className={styles.viewsWrapper}>
-            {viewsFormatter.format(notification.seenByCount) + " "} views
+            <button className={styles.viewsBtn} onClick={onOpen}>
+              {viewsFormatter.format(notification.seenByCount) + " "} views
+            </button>
+            <ListViewersModal
+              notificationId={notification._id.toString()}
+              isOpen={isOpen}
+              onClose={onClose}
+            />
           </span>
         )}
       </div>

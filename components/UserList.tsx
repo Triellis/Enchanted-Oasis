@@ -7,12 +7,14 @@ export default function UserList({
   usersData,
   mutate,
   editMode = false,
+  forceSmall = false,
   isLoading,
   error,
 }: {
   usersData: ReceivedUserDataOnClient[];
   mutate: () => void;
   editMode?: boolean;
+  forceSmall?: boolean;
   isLoading: boolean;
   error: any;
 }) {
@@ -42,6 +44,7 @@ export default function UserList({
       <>
         {usersData.map((user) => (
           <UserListItem
+            forceSmall={forceSmall}
             mutate={mutate}
             userData={user}
             key={user._id.toString()}
@@ -53,21 +56,24 @@ export default function UserList({
   }
   return (
     <>
-      <div className={styles.tableHeader}>
-        <span>
-          <span>Profile</span>
-        </span>
-        <div className={styles.tableHeadersMain}>
-          <span>Name</span>
-          <span>Role</span>
-          <span>Email</span>
-          <span>Phone</span>
-          <span>Roll No.</span>
-          <span>House</span>
+      {!forceSmall && (
+        <div className={styles.tableHeader}>
+          <span>
+            <span>Profile</span>
+          </span>
+          <div className={styles.tableHeadersMain}>
+            <span>Name</span>
+            <span>Role</span>
+            <span>Email</span>
+            <span>Phone</span>
+            <span>Roll No.</span>
+            <span>House</span>
+          </div>
+          <span>Info</span>
+          {editMode && <span>Remove</span>}
         </div>
-        <span>Info</span>
-        {editMode && <span>Remove</span>}
-      </div>
+      )}
+
       <Divider orientation="horizontal" paddingBlock={"5px"} />
       {/* list of users */}
       {componentToRender}
