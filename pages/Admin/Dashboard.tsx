@@ -35,6 +35,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ReducerAction, useEffect, useReducer, useState } from "react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
+import Icon from "@/components/Icon";
+
 import { EditIcon } from "@chakra-ui/icons";
 // Color Swatch Component
 function ColorSwatch({
@@ -350,7 +352,7 @@ export default function Admin() {
         <IconButton
           aria-label="compose"
           className={styles.composeMsg}
-          icon={<EditIcon />}
+          icon={<Icon name={"feather"} />}
           onClick={onOpen}
         />
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
