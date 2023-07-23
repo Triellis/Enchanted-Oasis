@@ -1,6 +1,7 @@
 .courseListItem {
   padding: 5px;
   border-radius: 10px;
+  border: none;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   background-color: hsl(var(--b2));
 
