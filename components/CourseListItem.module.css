@@ -16,11 +16,16 @@
   flex-direction: column;
   justify-content: space-between;
   padding-inline: 1em;
+
+  transition: background-color 0.3s ease-in-out;
+}
+.courseListItem:hover {
+  background-color: hsl(var(--b3));
+}
+.courseListItem:active {
+  background-color: hsl(var(--b3));
 }
 
-.courseListItem:hover {
-  background-color: hsl(var(--p) / 90%);
-}
 .itemWrapper {
   gap: 1em;
   display: flex;
@@ -93,11 +98,12 @@
   padding: 0.5em !important;
 
   color: hsl(var(--nc));
-  background-color: hsl(var(--b1));
   border-radius: 10px;
+  background-color: hsl(var(--b1));
   box-shadow: -4px 4px 2px hsl(var(--b3));
+  padding: 1em !important;
   border: 1px solid hsl(var(--n));
-  margin-bottom: 0.5em;
+  margin: 0.5em;
 }
 
 .descHead {

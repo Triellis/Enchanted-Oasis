@@ -24,7 +24,7 @@ export default function CourseListItem({
 
   return (
     <div className={styles.courseListItem}>
-      <AccordionItem border={"none"}>
+      <AccordionItem border={"none"} >
         <div className={styles.itemWrapper}>
           <AccordionButton className={styles.openClose}>
             <AccordionIcon />
