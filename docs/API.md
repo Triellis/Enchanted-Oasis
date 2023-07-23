@@ -306,7 +306,7 @@ type Student = {
 
 ```typescript
 {
-  studentId: string;
+  studentIds: string[];
 }
 ```
 
@@ -354,7 +354,7 @@ type Faculty = {
 };
 ```
 
-### Add Faculty
+### Add Faculties
 
 - **URL:** `/api/course/{id}/faculty`
 - **Method:** `POST`
@@ -364,7 +364,7 @@ type Faculty = {
 
 ```typescript
 {
-  facultyId: string;
+  facultyIds: string[];
 }
 ```
 
