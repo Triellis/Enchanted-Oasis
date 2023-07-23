@@ -21,6 +21,8 @@ export default async function handler(
   }
   if (req.method === "GET") {
     return GET(req, res, session);
+  } else if (req.method === "DELETE") {
+    return DELETE(req, res, session);
   } else {
     return res.status(405).send("Method not allowed");
   }
@@ -47,4 +49,26 @@ async function GET(
   }
 
   return res.status(200).json(course);
+}
+
+async function DELETE(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: MySession
+) {
+  if (session?.user.role !== "Admin") {
+    return res.status(403).send("Not an Admin");
+  }
+
+  const id = req.query.id as string;
+
+  const client = await clientPromise;
+  const db = client.db("enchanted-oasis");
+  const courseCol = db.collection<CourseCol>("Courses");
+  const course = await courseCol.deleteOne({ _id: new ObjectId(id) });
+  if (!course.acknowledged) {
+    return res.status(404).send("Course not found");
+  }
+
+  return res.status(200).json("Course deleted");
 }
