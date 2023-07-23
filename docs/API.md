@@ -211,7 +211,7 @@ type Result = {
 
 - **URL:** `/api/course/{id}`
 - **Method:** `GET`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Response
 
@@ -393,7 +393,6 @@ type Faculty = {
 - **Permissions:** `Student`
 
 #### Response will be status code
-
 
 ## Houses
 
