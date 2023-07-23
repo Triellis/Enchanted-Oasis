@@ -34,9 +34,15 @@
   justify-content: space-between;
 }
 .courseName {
-  font-size: 1.4em;
+  font-size: 1.1em;
   font-weight: bold;
   color: hsl(var(--c));
+}
+
+.courseBack {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
 }
 .courseCode {
   font-size: 1.1em;

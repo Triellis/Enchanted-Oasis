@@ -31,10 +31,13 @@ export default function CourseListItem({
         <div className={styles.courseInfo}>
           {/* course name */}
           <div className={styles.courseName}>{name}</div>
-          {/* course code */}
-          <div className={styles.courseCode}>{code}</div>
-          {/* course credits */}
-          <div className={styles.courseCredits}>{credits}</div>
+
+          <div className={styles.courseBack}>
+            {/* course code */}
+            <div className={styles.courseCode}>{code}</div>
+            {/* course credits */}
+            <div className={styles.courseCredits}>{credits}</div>
+          </div>
         </div>
 
         {enrollmentMode && (
