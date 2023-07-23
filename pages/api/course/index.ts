@@ -29,15 +29,7 @@ async function POST(
     return res.status(403).send("Not an Admin");
   }
 
-  const fields = [
-    "name",
-    "code",
-    "description",
-    "credits",
-    "schedule",
-    "faculties",
-    "students",
-  ];
+  const fields = ["name", "code", "description", "credits", "schedule"];
 
   const course = req.body;
   // check for missing fields
@@ -57,6 +49,8 @@ async function POST(
 
   const db = (await clientPromise).db("enchanted-oasis");
   const coursesCollection = db.collection<CourseCol>("Courses");
+  course.students = [];
+  course.faculty = [];
   const insertResponse = await coursesCollection.insertOne(course);
   if (!insertResponse.acknowledged) {
     return res.status(500).send("Failed to insert");
