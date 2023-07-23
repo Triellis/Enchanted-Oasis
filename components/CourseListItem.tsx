@@ -14,7 +14,7 @@ export default function CourseListItem({
   _id,
   name,
   code,
-  descripton,
+  description,
   credits,
 }: any) {
   // item backend goes here
@@ -60,7 +60,7 @@ export default function CourseListItem({
       </div>
 
       <AccordionPanel pb={4} className={styles.courseDesc}>
-        {descripton}
+        {description}
       </AccordionPanel>
     </AccordionItem>
   );
