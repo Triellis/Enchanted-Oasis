@@ -25,6 +25,7 @@ async function GET(
   res: NextApiResponse,
   session: MySession
 ) {
+  const userId = session!.user.id;
   const page = req.query.page ? parseInt(req.query.page as string) : 1;
   const maxResults = req.query.maxResults
     ? parseInt(req.query.maxResults as string)
@@ -32,21 +33,30 @@ async function GET(
   const searchQuery = req.query.searchQuery
     ? (req.query.searchQuery as string)
     : "";
-
+  let type = req.query.type ? (req.query.type as string) : "all";
+  type = type.toLowerCase();
   const client = await clientPromise;
   const db = client.db("enchanted-oasis");
   const regex = new RegExp(searchQuery, "i");
-
   const courseCol = db.collection<CourseCol>("Courses");
+  let filter: any = {
+    $or: [{ name: regex }, { code: regex }, { description: regex }],
+  };
+  if (type === "enrolled") {
+    filter["students"] = { $exists: true, $elemMatch: { $eq: userId } };
+  } else if (type === "notenrolled") {
+    filter["students"] = {
+      $exists: true,
+      $not: { $elemMatch: { $eq: userId } },
+    };
+  } else if (type === "teaching") {
+    filter["faculties"] = { $exists: true, $elemMatch: { $eq: userId } };
+  }
+
   const courses = await courseCol
-    .find(
-      {
-        $or: [{ name: regex }, { code: regex }, { description: regex }],
-      },
-      {
-        projection: CourseListItemProjection,
-      }
-    )
+    .find(filter, {
+      projection: CourseListItemProjection,
+    })
     .skip((page - 1) * maxResults)
     .limit(maxResults)
     .sort({ name: 1 })
