@@ -1,0 +1,60 @@
+.courseListItem {
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--n));
+  background-color: hsl(var(--b2));
+
+  list-style-type: none;
+  margin: 5px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.courseInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  padding-block: 0.25em;
+  padding-inline: 0.25em;
+}
+
+.courseName {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: hsl(var(--c));
+}
+.courseCode {
+  font-size: 1.1em;
+  color: hsl(var(--nc));
+}
+.courseCredits {
+  font-size: 1.1em;
+  color: hsl(var(--nc));
+}
+
+.coursePlay {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  padding-block: 0.25em;
+  padding-inline: 0.25em;
+}
+.courseAdd {
+  color: hsl(var(--a)) !important;
+  border: hsl(var(--a)) 0.1em solid !important;
+  font-size: 1em;
+  cursor: pointer;
+}
+.courseRemove {
+  color: hsl(var(--nc)) !important;
+  border: hsl(var(--nc)) 0.1em solid !important;
+  font-size: 1em;
+  cursor: pointer;
+}
