@@ -2,8 +2,8 @@
   padding: 5px;
   border-radius: 10px;
 
-  border-top: 1px solid hsl(var(--n)/80%) !important;
-  border-bottom: 1px solid hsl(var(--n)/80%) !important;
+  border-top: 1px solid hsl(var(--n) / 80%) !important;
+  border-bottom: 1px solid hsl(var(--n) / 80%) !important;
 
   box-shadow: -4px 4px 2px hsl(var(--b3));
   background-color: hsl(var(--b2));
