@@ -2,8 +2,8 @@
   padding: 5px;
   border-radius: 10px;
 
-  border-top: 1px solid hsl(var(--n)/80%) !important;
-  border-bottom: 1px solid hsl(var(--n)/80%) !important;
+  border-top: 1px solid hsl(var(--n) / 80%) !important;
+  border-bottom: 1px solid hsl(var(--n) / 80%) !important;
 
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 10%);
@@ -18,6 +18,9 @@
   padding-inline: 1em;
 }
 
+.courseListItem:hover {
+  background-color: hsl(var(--p) / 90%);
+}
 .itemWrapper {
   gap: 1em;
   display: flex;
