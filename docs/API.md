@@ -394,66 +394,6 @@ type Faculty = {
 
 #### Response will be status code
 
-### Get Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-### Update Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-### Post Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `POST`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-#### Response will be status code
-
-### Delete Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `DELETE`
-- **Permissions:** `Faculty`
-
-#### Response will be status code
 
 ## Houses
 
