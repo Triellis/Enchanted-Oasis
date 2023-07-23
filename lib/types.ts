@@ -118,6 +118,14 @@ export type CourseListItemData = {
   credits: number;
 };
 
+export const CourseListItemProjection = {
+  _id: 1,
+  name: 1,
+  code: 1,
+  description: 1,
+  credits: 1,
+};
+
 export type CourseInformation = Omit<
   CourseCol,
   "faculties" | "students" | "lectures"
