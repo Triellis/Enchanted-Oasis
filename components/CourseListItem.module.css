@@ -52,6 +52,7 @@
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
+  gap: 0.5em;
 }
 .courseAdd {
   color: hsl(var(--a)) !important;
