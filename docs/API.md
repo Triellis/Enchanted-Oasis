@@ -159,6 +159,7 @@ type Result = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"type"?: "All" | "Enrolled" | "notEnrolled" | "Teaching" // filter parameter for student
 }
 ```
 
@@ -192,16 +193,8 @@ type Result = {
 		[day:string]:{
 			startTime:Date,
 			endTime:Date
-		}
+		}[]
 	}
-	faculties: string[], // faculty id
-	gradingScheme: {
-		[gradeLetter: string]: {
-			minMarks: number,
-			maxMarks: number
-		}
-
-	},
 }
 ```
 
