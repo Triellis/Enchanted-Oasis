@@ -19,6 +19,8 @@ export default function CourseListItem({
 }: any) {
   // item backend goes here
 
+  const enrollmentMode = false;
+
   return (
     <li className={styles.courseListItem}>
       <AccordionItem>
@@ -36,27 +38,31 @@ export default function CourseListItem({
             <div className={styles.courseCredits}>{credits}</div>
           </div>
 
-          <div className={styles.coursePlay}>
-            {/* add butotn */}
-            <IconButton
-              isRound
-              variant="outline"
-              aria-label="Add course"
-              className={styles.courseAdd}
-              icon={<AddIcon />}
-            />
-            {/* remove button */}
-            <IconButton
-              isRound
-              variant="outline"
-              aria-label="Remove Course"
-              className={styles.courseRemove}
-              icon={<MinusIcon />}
-            />
-          </div>
+          {enrollmentMode && (
+            <div className={styles.coursePlay}>
+              {/* add butotn */}
+              <IconButton
+                isRound
+                variant="outline"
+                aria-label="Add course"
+                className={styles.courseAdd}
+                icon={<AddIcon />}
+              />
+              {/* remove button */}
+              <IconButton
+                isRound
+                variant="outline"
+                aria-label="Remove Course"
+                className={styles.courseRemove}
+                icon={<MinusIcon />}
+              />
+            </div>
+          )}
         </div>
 
-        <AccordionPanel pb={4} className={styles.courseDesc} >{descripton}</AccordionPanel>
+        <AccordionPanel pb={4} className={styles.courseDesc}>
+          {descripton}
+        </AccordionPanel>
       </AccordionItem>
     </li>
   );
