@@ -6,6 +6,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Divider,
   IconButton,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
@@ -63,7 +64,9 @@ export default function CourseListItem({
       </div>
 
       <AccordionPanel pb={4} className={styles.courseDesc}>
-        {description}
+        <span className={styles.descHead}>{name}</span>
+        <Divider className={styles.descDiv} />
+        <span className={styles.descCon}>{description}</span>
       </AccordionPanel>
     </AccordionItem>
   );
