@@ -6,6 +6,7 @@
   border-bottom: 1px solid hsl(var(--n) / 80%) !important;
 
   box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 10%);
   background-color: hsl(var(--b2));
 
   margin-bottom: 0.5em;
@@ -49,11 +50,15 @@
 }
 .courseCode {
   font-size: 1.1em;
-  color: hsl(var(--nc));
+  color: hsl(var(--b1));
+  border-radius: 10px;
+  padding: 0.2em 0.5em;
+  font-weight: bold;
+  background-color: hsl(var(--a));
 }
 .courseCredits {
   font-size: 1.1em;
-  color: hsl(var(--nc));
+  color: hsl(var(--a));
 }
 
 .coursePlay {
