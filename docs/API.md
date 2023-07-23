@@ -289,11 +289,19 @@ type Student = {
 };
 ```
 
-### Add Student
+### Add Members
 
-- **URL:** `/api/course/{id}/student`
+- **URL:** `/api/course/{id}/member`
 - **Method:** `POST`
 - **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"memberType": "Student" | "Faculty"
+}
+```
 
 #### Request body
 
@@ -305,69 +313,19 @@ type Student = {
 
 #### Response will be status code
 
-### Remove Student
+### Remove Member
 
-- **URL:** `/api/course/{id}/student/{studentId}`
+- **URL:** `/api/course/{id}/member/{memberId}`
 - **Method:** `DELETE`
 - **Permissions:** `Admin`
-
-#### Response will be status code
-
-### List Faculties
-
-- **URL:** `/api/course/{id}/faculty/list`
-- **Method:** `GET`
-- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Query Parameters
 
 ```typescript
 {
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
+	"memberType": "Student" | "Faculty"
 }
 ```
-
-#### Response
-
-```typescript
-
-{
-	"students":Faculty[],
-	"totalStudents":number
-}
-
-```
-
-```typescript
-type Faculty = {
-  _id: ObjectID;
-  name: string;
-  email: string;
-};
-```
-
-### Add Faculties
-
-- **URL:** `/api/course/{id}/faculty`
-- **Method:** `POST`
-- **Permissions:** `Admin`
-
-#### Request body
-
-```typescript
-{
-  facultyIds: string[];
-}
-```
-
-#### Response will be status code
-
-### Remove Faculty
-
-- **URL:** `/api/course/{id}/faculty/{facultyId}`
-- **Method:** `DELETE`
-- **Permissions:** `Admin`
 
 #### Response will be status code
 

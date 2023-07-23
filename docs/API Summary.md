@@ -25,25 +25,22 @@
 
 ## Courses
 
-| Route Name                | Method | URL Pattern                            |
-| ------------------------- | ------ | -------------------------------------- |
-| List Courses              | GET    | `/api/course/list`                     |
-| Add Course                | POST   | `/api/course`                          |
-| Get Course                | GET    | `/api/course/{id}`                     |
-| Update Course             | PUT    | `/api/course/{id}`                     |
-| Remove Course             | Delete | `/api/course/{id}`                     |
-| Add Student               | POST   | `/api/course/{id}/student`             |
-| Remove Student            | DELETE | `/api/course/{id}/student/{studentId}` |
-| list students             | GET    | `/api/course/{id}/student/list`        |
-| list faculties            | GET    | `/api/course/{id}/faculty/list`        |
-| Add faculty               | POST   | `/api/course/{id}/faculty`             |
-| Remove faculty            | DELETE | `/api/course/{id}/faculty/{facultyId}` |
-| Enroll Self               | POST   | `/api/course/{id}/enroll`              |
-| UnEnroll Self             | POST   | `/api/course/{id}/unEnroll`            |
-| ~~Read Grading Scheme~~   | GET    | `/api/course/{id}/gradingScheme`       |
-| ~~Update Grading Scheme~~ | PUT    | `/api/course/{id}/gradingScheme`       |
-| ~~Create Grading Scheme~~ | POST   | `/api/course/{id}/gradingScheme`       |
-| ~~Delete Grading Scheme~~ | DELETE | `/api/course/{id}/gradingScheme`       |
+| Route Name                | Method | URL Pattern                           |
+| ------------------------- | ------ | ------------------------------------- |
+| List Courses              | GET    | `/api/course/list`                    |
+| Add Course                | POST   | `/api/course`                         |
+| Get Course                | GET    | `/api/course/{id}`                    |
+| Update Course             | PUT    | `/api/course/{id}`                    |
+| Remove Course             | Delete | `/api/course/{id}`                    |
+| Add Member                | POST   | `/api/course/{id}/member`             |
+| Remove Member             | DELETE | `/api/course/{id}/student/{memberId}` |
+| list Member               | GET    | `/api/course/{id}/student/member`     |
+| Enroll Self               | POST   | `/api/course/{id}/enroll`             |
+| UnEnroll Self             | POST   | `/api/course/{id}/unEnroll`           |
+| ~~Read Grading Scheme~~   | GET    | `/api/course/{id}/gradingScheme`      |
+| ~~Update Grading Scheme~~ | PUT    | `/api/course/{id}/gradingScheme`      |
+| ~~Create Grading Scheme~~ | POST   | `/api/course/{id}/gradingScheme`      |
+| ~~Delete Grading Scheme~~ | DELETE | `/api/course/{id}/gradingScheme`      |
 
 ## Houses
 
