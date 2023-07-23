@@ -6,7 +6,6 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Box,
   IconButton,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
