@@ -340,7 +340,7 @@ type Student = {
 ### Unenroll self
 
 - **URL:** `/api/course/{id}/unenroll`
-- **Method:** `POST1
+- **Method:** `DELETE`
 - **Permissions:** `Student`
 
 #### Response will be status code
