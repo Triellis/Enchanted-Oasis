@@ -62,7 +62,7 @@
 }
 .menuOut:hover {
   background-color: rgb(255, 69, 0) !important;
-  color: white;
+  color: black;
 }
 /* for the children of these which are the links */
 
