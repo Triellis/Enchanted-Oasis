@@ -1,19 +1,22 @@
-import { Accordion } from "@chakra-ui/react";
 import Layout from "../Layout";
 import CourseListItem from "@/components/CourseListItem";
+
+import { Accordion } from "@chakra-ui/react";
 
 function Courses() {
   return (
     <>
       <Layout>
         <div>
-          <CourseListItem
-            _id="1"
-            name="Introduction to Computer Science"
-            code="COMP 1000"
-            description="An introduction to the fundamentals of computer science. Topics include algorithm design and program development; data types; control structures; functions; arrays; and the mechanics of running, testing, and debugging. Students will learn to program in a high-level language such as Python or Java."
-            credits="3"
-          />
+          <Accordion allowMultiple>
+            <CourseListItem
+              _id="1"
+              name="Introduction to Computer Science"
+              code="COMP 1000"
+              descripton="This course introduces students to the fundamentals of computer science through the use of a high-level programming language. Students will learn to design, code, test, debug, document, and maintain programs using good software engineering practices. Topics include: problem solving, program design, program implementation, program testing, and program documentation."
+              credits="3"
+            />
+          </Accordion>
         </div>
       </Layout>
     </>

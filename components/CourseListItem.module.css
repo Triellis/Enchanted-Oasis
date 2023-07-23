@@ -7,23 +7,31 @@
 
   list-style-type: none;
   margin: 5px;
-  width: 100%;
 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemWrapper {
+  gap: 1em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-.courseInfo {
   width: 100%;
+
+  padding-block: 0.5em;
+  padding-inline: 0.5em;
+}
+
+.courseInfo {
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-
-  padding-block: 0.25em;
-  padding-inline: 0.25em;
+  justify-content: space-between;
 }
-
 .courseName {
   font-size: 1.4em;
   font-weight: bold;
@@ -39,12 +47,11 @@
 }
 
 .coursePlay {
+  flex: 0.5;
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  gap: 0.5em;
-  padding-block: 0.25em;
-  padding-inline: 0.25em;
 }
 .courseAdd {
   color: hsl(var(--a)) !important;
@@ -57,4 +64,18 @@
   border: hsl(var(--nc)) 0.1em solid !important;
   font-size: 1em;
   cursor: pointer;
+}
+
+.openClose {
+  flex: 0.1;
+}
+.courseDesc {
+  padding: 0.5em !important;
+  font-size: 1.1em;
+  color: hsl(var(--nc));
+  background-color: hsl(var(--b1));
+  border-radius: 10px;
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--n));
+  margin-bottom: 0.5em;
 }
