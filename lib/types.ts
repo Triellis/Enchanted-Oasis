@@ -108,10 +108,31 @@ export type CourseCol = {
   faculties: string[]; // faculty ids
   students: string[]; // array of student ids
   lectures: string[]; // array of lecture ids
-  gradingScheme: {
-    [gradeLetter: string]: {
-      minMarks: number;
-      maxMarks: number;
-    };
-  };
+};
+
+export type CourseListItemData = {
+  _id: ObjectId;
+  name: string;
+  code: string;
+  description: string;
+  credits: number;
+};
+
+export type CourseInformation = Omit<
+  CourseCol,
+  "faculties" | "students" | "lectures"
+> & {
+  numberOfStudents: number;
+};
+
+export const CourseInformationProjection = {
+  _id: 1,
+  name: 1,
+  code: 1,
+  description: 1,
+  credits: 1,
+  schedule: 1,
+  numberOfStudents: {
+    $size: "$students",
+  },
 };
