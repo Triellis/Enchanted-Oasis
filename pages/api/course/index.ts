@@ -61,5 +61,6 @@ async function POST(
   if (!insertResponse.acknowledged) {
     return res.status(500).send("Failed to insert");
   }
+
   return res.status(200).send("Course added");
 }
