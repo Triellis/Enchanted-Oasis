@@ -5,23 +5,21 @@
   /* border-top: 1px solid hsl(var(--n) / 80%) !important;
   border-bottom: 1px solid hsl(var(--n) / 80%) !important; */
 
-  box-shadow: -4px 4px 2px hsl(var(--b3));
+  box-shadow: -4px 4px 2px hsl(var(--b3) / 70%);
   border: 1px solid hsl(var(--nc) / 20%);
   background-color: hsl(var(--b2));
-
-  margin-bottom: 0.5em;
 
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-inline: 1em;
-
-  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
 }
 .courseListItem:hover {
-  background-color: hsl(var(--af) / 50%);
   border: 1px solid hsl(var(--nc) / 50%);
+  border-radius: 1em;
 }
 
 .itemWrapper {
