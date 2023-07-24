@@ -1,25 +1,29 @@
 import { Tabs, TabList, Tab, TabIndicator } from "@chakra-ui/react";
 import styles from "./TabsComponent.module.css";
 import { useState } from "react";
+import { TabsType } from "@/lib/types";
 
 interface TabsComponentProps {
-  role: string;
+  tab: string;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  setRole: React.Dispatch<React.SetStateAction<string>>;
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  tabs: TabsType;
+}
+
+function getColor(tabs: TabsType, value: string) {
+  for (let i = 0; i < tabs.length; i++) {
+    if (tabs[i].value === value) {
+      return tabs[i].color;
+    }
+  }
 }
 
 export default function TabsComponent({
   setPage,
-  setRole,
-  role,
+  setTab,
+  tab,
+  tabs,
 }: TabsComponentProps) {
-  const tabs = [
-    { label: "All", role: "All" },
-    { label: "Student", role: "Student" },
-    { label: "Faculty", role: "Faculty" },
-    { label: "Admin", role: "Admin" },
-  ];
-
   return (
     <Tabs
       className={styles.tabGrp}
@@ -27,34 +31,19 @@ export default function TabsComponent({
       variant="unstyled"
       defaultIndex={0}
       onChange={(index) => {
-        if (index === 0) {
-          setRole("All");
-        } else if (index === 1) {
-          setRole("Student");
-        } else if (index === 2) {
-          setRole("Faculty");
-        } else if (index === 3) {
-          setRole("Admin");
-        }
+        setTab(tabs[index].value); // Set the tab state to the selected tab value
+
         setPage(1); // Set the page state to 1 on click
       }}
     >
       <TabList className={styles.tabList}>
         {tabs.map((tab, index) => (
-          <Tab key={index}>{tab.label}</Tab>
+          <Tab key={tab.value}>{tab.label}</Tab>
         ))}
         <TabIndicator
           zIndex={-1}
           className={styles.tabIndicator}
-          backgroundColor={
-            role === "Student"
-              ? "blue.600"
-              : role === "Faculty"
-              ? "green.600"
-              : role === "Admin"
-              ? "red.600"
-              : "gray.600"
-          }
+          backgroundColor={getColor(tabs, tab)}
         />
       </TabList>
     </Tabs>

@@ -13,10 +13,11 @@ import useSWR from "swr";
 import {
   ReceivedUserDataOnClient,
   SentUserDataFromClient,
+  TabsType,
 } from "../../lib/types";
 import { fetcher } from "@/lib/functions";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "./Users.module.css";
 
 import NewUserModal from "@/components/NewUserModal";
@@ -68,6 +69,15 @@ export default function Users() {
     return <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />;
   }
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
+  const tabs: TabsType = useMemo(
+    () => [
+      { label: "All", value: "All", color: "gray.600" },
+      { label: "Student", value: "Student", color: "blue.600" },
+      { label: "Faculty", value: "Faculty", color: "green.600" },
+      { label: "Admin", value: "Admin", color: "red.600" },
+    ],
+    []
+  );
 
   return (
     <>
@@ -80,7 +90,12 @@ export default function Users() {
           />
 
           {/* Tabs here*/}
-          <TabsComponent role={role} setRole={setRole} setPage={setPage} />
+          <TabsComponent
+            tab={role}
+            setTab={setRole}
+            setPage={setPage}
+            tabs={tabs}
+          />
 
           {/* list of users */}
           <UserList
