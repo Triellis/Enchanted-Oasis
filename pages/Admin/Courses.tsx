@@ -4,6 +4,8 @@ import Layout from "../Layout";
 import { useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import Pagination from "@/components/Pagination/Pagination";
 
 function useCourses(
   page: number,
@@ -33,12 +35,15 @@ export default function Courses() {
   } else if (error) {
     componentToRender = <div>Error</div>;
   } else {
-    console.log(courses);
     componentToRender = <CourseList courses={courses} />;
   }
   return (
     <>
-      <Layout>{componentToRender}</Layout>
+      <Layout>
+        <SearchBar searchQuery={search} setSearchQuery={setSearch} />
+        {componentToRender}
+        <Pagination items={courses} page={page} setPage={setPage} />
+      </Layout>
     </>
   );
 }
