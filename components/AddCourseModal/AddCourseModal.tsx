@@ -51,7 +51,9 @@ function Days() {
 }
 
 // component to add times to the course
-function Time() {}
+function Time() {
+  return <div className={styles.time}>HEllo there</div>;
+}
 
 // component for the form for the course information:
 function CourseInfo() {
@@ -107,6 +109,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <CourseInfo />
             <div className={styles.when}>
               <Days />
+              <Time />
             </div>
           </ModalBody>
 
