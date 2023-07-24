@@ -36,8 +36,6 @@ function Days() {
 
   return (
     <div className={styles.days}>
-      <FormLabel>Days</FormLabel>
-
       {daysOfWeek.map((day, i) => (
         <Checkbox
           key={i}
@@ -57,7 +55,7 @@ function Days() {
 
 // component to add times to the course
 function Time() {
-  return <div className={styles.time}>HEllo there</div>;
+  return <div className={styles.time}></div>;
 }
 
 // component for the form for the course information:
@@ -119,8 +117,14 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
           <ModalBody className={styles.modalBody}>
             <CourseInfo />
             <div className={styles.when}>
-              <Days />
-              <Time />
+              <div>
+                <FormLabel>Days</FormLabel>
+                <Days />
+              </div>
+              <div>
+                <FormLabel>Time</FormLabel>
+                <Time />
+              </div>
             </div>
           </ModalBody>
 
