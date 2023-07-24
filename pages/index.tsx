@@ -8,7 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { MySession } from "@/lib/types";
+import { MySession } from "../lib/types";
 
 import styles from "./index.module.css";
 import { useSession, signIn, signOut } from "next-auth/react";
