@@ -2,7 +2,7 @@ import { fetcher } from "@/lib/functions";
 import { AdminNotificationOnClient } from "@/lib/types";
 import useSWR from "swr";
 import NotifItem from "@/components/NotifItem";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Pagination from "@/components/Pagination";
 
 import styles from "./NotifList.module.css";
@@ -14,6 +14,7 @@ import {
   TabList,
   Tabs,
 } from "@chakra-ui/react";
+import TabsComponent from "../TabsComponent/TabsComponent";
 
 function useNotifications(page: number, unseenOnly: boolean) {
   const { data, error, mutate } = useSWR(
@@ -30,47 +31,6 @@ function useNotifications(page: number, unseenOnly: boolean) {
   };
 }
 
-interface TabsComponentProps {
-  inbox: string;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  setInbox: React.Dispatch<React.SetStateAction<string>>;
-}
-
-function InboxTabs({ inbox, setPage, setInbox }: TabsComponentProps) {
-  const tabs = [
-    { label: "Unseen", inbox: "Unseen" },
-    { label: "All", inbox: "All" },
-  ];
-
-  return (
-    <Tabs
-      className={styles.tabGrp}
-      position="relative"
-      variant="unstyled"
-      defaultIndex={0}
-      onChange={(index) => {
-        if (index === 0) {
-          setInbox("Unseen");
-        } else if (index === 1) {
-          setInbox("All");
-        }
-        setPage(1); // Set the page state to 1 on click
-      }}
-    >
-      <TabList className={styles.tabList}>
-        {tabs.map((tab, index) => (
-          <Tab key={index}>{tab.label}</Tab>
-        ))}
-        <TabIndicator
-          zIndex={-1}
-          className={styles.tabIndicator}
-          backgroundColor={inbox === "Unseen" ? "red.600" : "gray.600"}
-        />
-      </TabList>
-    </Tabs>
-  );
-}
-
 export default function NotifList({
   adminMode = false,
 }: {
@@ -80,6 +40,14 @@ export default function NotifList({
   const [inbox, setInbox] = useState("Unseen");
 
   const [unseenOnly, setUnseenOnly] = useState(false);
+  const tabs = useMemo(
+    () => [
+      { value: "Unseen", label: "Unseen", color: "red.600" },
+      { value: "All", label: "All", color: "Gray" },
+    ],
+    []
+  );
+
   useEffect(() => {
     if (inbox === "Unseen") {
       setUnseenOnly(true);
@@ -129,7 +97,12 @@ export default function NotifList({
 
       {/* tabs here */}
       <div className={styles.wrapTab}>
-        <InboxTabs inbox={inbox} setPage={setPage} setInbox={setInbox} />
+        <TabsComponent
+          tabs={tabs}
+          setPage={setPage}
+          setTab={setInbox}
+          tab={inbox}
+        />
       </div>
 
       <div className={styles.notifList}>{componentToRender}</div>
