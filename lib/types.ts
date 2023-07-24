@@ -143,4 +143,7 @@ export const CourseInformationProjection = {
   numberOfStudents: {
     $size: "$students",
   },
+  numberOfFaculties: {
+    $size: "$faculties",
+  },
 };
