@@ -7,6 +7,8 @@ import { fetcher } from "@/lib/functions";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
 import styles from "./Courses.module.css";
+import classNames from "classnames";
+import { Button } from "@chakra-ui/react";
 
 function useCourses(
   page: number,
@@ -45,6 +47,10 @@ export default function Courses() {
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
           {componentToRender}
           <Pagination items={courses} page={page} setPage={setPage} />
+
+          <Button className={classNames(styles.courseAdd, "clicky")}>
+            Add course
+          </Button>
         </div>
       </Layout>
     </>
