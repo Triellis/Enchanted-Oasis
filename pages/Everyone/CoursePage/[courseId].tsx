@@ -43,22 +43,38 @@ function useMembers(
   };
 }
 
-function CoursePlate({ course }: { course: CourseInformation }) {
-  return (
-    <div className={styles.coursePlate}>
-      <div className={styles.courseName}>{course.name}</div>
-      <div className={styles.courseCode}>{course.code}</div>
-      <div className={styles.courseCredits}>{course.credits}</div>
-      <div className={styles.description}>{course.description}</div>
-      <div className={styles.numberOfStudents}>
-        {course.numberOfStudents} Students Enrolled
+function CoursePlate({
+  course,
+  isLoading,
+  error,
+}: {
+  course: CourseInformation;
+  isLoading: boolean;
+  error: any;
+}) {
+  let courseToRender;
+  if (isLoading) {
+    courseToRender = <div>Loading...</div>;
+  } else if (error) {
+    courseToRender = <div>Error</div>;
+  } else {
+    courseToRender = (
+      <div className={styles.coursePlate}>
+        <div className={styles.courseName}>{course.name}</div>
+        <div className={styles.courseCode}>{course.code}</div>
+        <div className={styles.courseCredits}>{course.credits}</div>
+        <div className={styles.description}>{course.description}</div>
+        <div className={styles.numberOfStudents}>
+          {course.numberOfStudents} Students Enrolled
+        </div>
+        <div className={styles.numberOfFaculties}>
+          {course.numberOfFaculties} Faculties
+        </div>
+        <div className={styles.schedule}>{course.schedule}</div>
       </div>
-      <div className={styles.numberOfFaculties}>
-        {course.numberOfFaculties} Faculties
-      </div>
-      <div className={styles.schedule}>{course.schedule}</div>
-    </div>
-  );
+    );
+  }
+  return courseToRender;
 }
 
 export default function CoursePage() {
@@ -68,7 +84,7 @@ export default function CoursePage() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [memberType, setMemberType] = useState<"student" | "faculty">(
-    "student"
+    "faculty"
   );
   const {
     members,
@@ -84,19 +100,11 @@ export default function CoursePage() {
     ],
     []
   );
-  let courseToRender;
-  if (isLoading) {
-    courseToRender = <div>Loading...</div>;
-  } else if (error) {
-    courseToRender = <div>Error</div>;
-  } else {
-    courseToRender = CoursePlate({ course });
-  }
 
   return (
     <Layout>
       <div className={styles.coursePage}>
-        <h1>{courseToRender}</h1>
+        <CoursePlate isLoading={isLoading} course={course} error={error} />
         <div className={styles.membersWrapper}>
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
           <TabsComponent
@@ -105,7 +113,6 @@ export default function CoursePage() {
             tab={memberType}
             tabs={tabs}
           />
-
           <UserList
             usersData={members}
             isLoading={isLoadingMembers}
@@ -113,6 +120,7 @@ export default function CoursePage() {
             mutate={mutateMembers}
           />
           <Pagination items={members} page={page} setPage={setPage} />
+          CoursePlate
         </div>
       </div>
     </Layout>
