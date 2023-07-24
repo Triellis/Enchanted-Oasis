@@ -2,8 +2,10 @@ import {
   Button,
   Checkbox,
   Divider,
+  Flex,
   FormControl,
   FormLabel,
+  IconButton,
   Input,
   Modal,
   ModalBody,
@@ -24,6 +26,7 @@ import {
 import React, { useState } from "react";
 import styles from "./AddCourseModal.module.css";
 import classNames from "classnames";
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 // component to select days for the course
 function Days() {
@@ -34,16 +37,19 @@ function Days() {
 function Time() {
   return (
     <div className={styles.time}>
-      <div>
-        {/* start time */}
-        <FormLabel>Start</FormLabel>
-        <Input type="time" />
+      <div className={styles.timeEntry}>
+        <div>
+          <label>Start</label>
+          <Input type="time" />
+        </div>
+        <div>
+          <label>End</label>
+          <Input type="time" />
+        </div>
       </div>
-
-      <div>
-        {/* End time */}
-        <FormLabel>End</FormLabel>
-        <Input type="time" />
+      <div className={styles.duplicate}>
+        <IconButton aria-label="add time" icon={<AddIcon />} />
+        <IconButton aria-label="add time" icon={<MinusIcon />} />
       </div>
     </div>
   );

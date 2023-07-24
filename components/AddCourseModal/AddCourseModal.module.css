@@ -61,9 +61,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.days > :nth-child(1) {
-  justify-content: flex-start;
-}
+
 .time {
   display: flex;
   flex-direction: row;
@@ -71,6 +69,17 @@
   justify-content: center;
   width: 100%;
   gap: 1em;
+}
+.timeEntry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1em;
+}
+.duplicate {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
 }
 
 @media (max-width: 426px) {
@@ -80,5 +89,15 @@
   }
   .when {
     flex-direction: column;
+  }
+  .timeEntry {
+    flex-direction: column;
+  }
+  .duplicate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 }
