@@ -20,7 +20,7 @@
   transition: background-color 0.3s ease-in-out;
 }
 .courseListItem:hover {
-  background-color: hsl(var(--b3));
+  background-color: hsl(var(--af) / 50%);
   border: 1px solid hsl(var(--nc) / 50%);
 }
 
@@ -64,7 +64,7 @@
 }
 .courseCredits {
   font-size: 1.1em;
-  color: hsl(var(--a));
+  color: hsl(var(--c));
 }
 
 .coursePlay {
@@ -98,7 +98,7 @@
   color: hsl(var(--nc));
   border-radius: 10px;
   background-color: hsl(var(--b1));
-  box-shadow: -4px 4px 2px hsl(var(--b3));
+  /* box-shadow: -4px 4px 2px rgb(0,0,0,0.2);   */
   padding: 1em !important;
   border: 1px solid hsl(var(--n));
   margin: 0.5em;
