@@ -83,9 +83,6 @@
   display: flex;
   gap: 0.5em;
 }
-.dup > * {
-  background-color: hsl(var(--b2)) !important;
-}
 
 @media (max-width: 500px) {
   .when {
