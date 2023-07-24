@@ -87,7 +87,6 @@ function CoursePlate({
               {course.numberOfFaculties} Faculties
             </div>
           </div>
-          {/* <div className={styles.schedule}>{course.schedule}</div> */}
         </div>
         <div className={styles.descriptionPlate}>
           <div className={styles.courseName}>About The Course</div>
