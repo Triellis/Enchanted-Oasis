@@ -27,16 +27,26 @@ import classNames from "classnames";
 
 // component to select days for the course
 function Days() {
-  return(
-    <div>
-      
-    </div>
-  )
+  return <div></div>;
 }
 
 // component to add times to the course
 function Time() {
-  return <div className={styles.time}></div>;
+  return (
+    <div className={styles.time}>
+      <div>
+        {/* start time */}
+        <FormLabel>Start</FormLabel>
+        <Input type="time" />
+      </div>
+
+      <div>
+        {/* End time */}
+        <FormLabel>End</FormLabel>
+        <Input type="time" />
+      </div>
+    </div>
+  );
 }
 
 // component for the form for the course information:
