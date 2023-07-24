@@ -12,6 +12,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
@@ -68,14 +73,20 @@ function CourseInfo() {
       <div className={styles.infoSub}>
         {/* course code */}
         <FormControl>
-          <FormLabel>Course Name</FormLabel>
+          <FormLabel>Course Code</FormLabel>
           <Input placeholder="Enter Course Name" />
         </FormControl>
 
         {/* credits */}
         <FormControl>
-          <FormLabel>Course Name</FormLabel>
-          <Input placeholder="Enter Course Name" />
+          <FormLabel>Course Credits</FormLabel>
+          <NumberInput allowMouseWheel keepWithinRange min={0}>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
         </FormControl>
       </div>
 
