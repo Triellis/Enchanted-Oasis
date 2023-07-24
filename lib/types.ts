@@ -131,6 +131,7 @@ export type CourseInformation = Omit<
   "faculties" | "students" | "lectures"
 > & {
   numberOfStudents: number;
+  numberOfFaculties: number;
 };
 
 export const CourseInformationProjection = {
@@ -147,3 +148,8 @@ export const CourseInformationProjection = {
     $size: "$faculties",
   },
 };
+export type TabsType = {
+  label: string;
+  value: string;
+  color: string;
+}[];

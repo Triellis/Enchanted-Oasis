@@ -11,14 +11,14 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
+import { useRouter } from "next/router";
 
 export default function CourseListItem({
   course,
 }: {
   course: CourseListItemData;
 }) {
-  // item backend goes here
-
+  const router = useRouter();
   const enrollmentMode = false;
 
   return (
@@ -29,7 +29,13 @@ export default function CourseListItem({
             <AccordionIcon />
           </AccordionButton>
 
-          <div className={styles.courseInfo}>
+          <div
+            className={styles.courseInfo}
+            tabIndex={1}
+            onClick={() => {
+              router.push(`/Everyone/CoursePage/${course._id}`);
+            }}
+          >
             {/* course name */}
             <div className={styles.courseName}>{course.name}</div>
 

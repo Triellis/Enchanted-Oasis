@@ -1,0 +1,13 @@
+.coursePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.membersWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  gap: 0.5em;
+}
