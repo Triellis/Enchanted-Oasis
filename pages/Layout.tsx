@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import styles from "./Layout.module.css";
-import Nav from "../components/Nav";
-import Sidebar from "../components/Sidebar";
+import Nav from "@/components/Nav";
+import Sidebar from "@/components/Sidebar";
 import { useState } from "react";
-import SidebarItem from "../components/SidebarItem";
-import { MySession } from "../lib/types";
+import SidebarItem from "@/components/SidebarItem";
+import { MySession } from "@/lib/types";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { toggleSidebar } from "@/lib/slices/isSidebarOpen";
 
