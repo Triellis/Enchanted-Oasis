@@ -33,7 +33,7 @@ function HouseCard({
             <Image
               src={`/assets/image/Houses/${house.name[0]}.png`}
               alt={house.name}
-              width={window.innerWidth < 450 ? window.innerWidth - 50 : 450}
+              width={window.innerWidth < 500 ? window.innerWidth - 50 : 400}
               style={{ borderRadius: 10 }}
               height={0}
             />
