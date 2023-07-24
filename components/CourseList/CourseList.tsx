@@ -1,7 +1,7 @@
 import CourseListItem from "@/components/CourseListItem";
 import { CourseListItemData } from "@/lib/types";
 import { Accordion } from "@chakra-ui/react";
-
+import styles from "./CourseList.module.css";
 export default function CourseList({
   courses,
 }: {
@@ -10,9 +10,7 @@ export default function CourseList({
   return (
     <Accordion
       allowMultiple
-      display={"flex"}
-      gap={"0.5em"}
-      flexDirection={"column"}
+      className={styles.courseList}
     >
       {courses.map((course) => (
         <CourseListItem key={course._id.toString()} course={course} />

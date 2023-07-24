@@ -6,6 +6,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
+import styles from "./Courses.module.css";
 
 function useCourses(
   page: number,
@@ -40,9 +41,11 @@ export default function Courses() {
   return (
     <>
       <Layout>
-        <SearchBar searchQuery={search} setSearchQuery={setSearch} />
-        {componentToRender}
-        <Pagination items={courses} page={page} setPage={setPage} />
+        <div className={styles.courses}>
+          <SearchBar searchQuery={search} setSearchQuery={setSearch} />
+          {componentToRender}
+          <Pagination items={courses} page={page} setPage={setPage} />
+        </div>
       </Layout>
     </>
   );
