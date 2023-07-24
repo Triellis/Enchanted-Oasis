@@ -8,13 +8,42 @@
   height: 100%;
 }
 .courseAdd {
-  position: fixed !important;
-  right: 2em;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  padding: 1em;
+  position: fixed;
+  z-index: 1;
+  right: 1.5em;
   bottom: 1em;
+  transition: width 200ms ease-in-out, scale 200ms ease-in-out;
+  width: 5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1em;
+  overflow: hidden;
+  background-color: hsl(var(--s) / 50%);
   backdrop-filter: blur(5px);
   border-radius: 0.8em;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);
-  z-index: 1;
-  background-color: hsl(var(--s) / 40%) !important;
+}
+.courseAdd:active {
+  scale: 0.9;
+}
+.courseAdd:hover {
+  width: 11em;
+}
+.courseAdd:hover::after {
+  content: "\00a0New Course";
+}
+.icon {
+  display: inline-block;
+  position: relative;
+  margin-right: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+.courseAdd:hover .icon {
+  transform: rotate(180deg);
 }

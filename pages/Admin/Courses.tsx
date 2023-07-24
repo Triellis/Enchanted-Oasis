@@ -12,6 +12,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
 
 import { Button, useDisclosure } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 
 function useCourses(
   page: number,
@@ -59,12 +60,10 @@ export default function Courses() {
           {componentToRender}
           <Pagination items={courses} page={page} setPage={setPage} />
 
-          <Button
-            className={classNames(styles.courseAdd, "clicky")}
-            onClick={onAddCourseOpen}
-          >
-            Add course
-          </Button>
+          <button className={styles.courseAdd} onClick={onAddCourseOpen}>
+            <AddIcon className={styles.icon} />
+            Add{" "}
+          </button>
         </div>
 
         <AddCourseModal
