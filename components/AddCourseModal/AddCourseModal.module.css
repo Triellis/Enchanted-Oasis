@@ -68,6 +68,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 1em;
 }
 
@@ -77,6 +79,6 @@
     align-items: flex-start;
   }
   .when {
-    flex-direction: row;
+    flex-direction: column;
   }
 }
