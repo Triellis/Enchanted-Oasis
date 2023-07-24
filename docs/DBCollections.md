@@ -101,6 +101,7 @@
 {
 	_id: ObjectID,
 	name: string,
+	code: string,
 	description:string,
 	credits: number,
 	schedule:{
@@ -112,13 +113,7 @@
 	faculties: string[], // faculty ids
 	students: string[], // array of student ids
 	lectures: string[], // array of lecture ids
-	gradingScheme: {
-		[gradeLetter: string]: {
-			minMarks: number,
-			maxMarks: number
-		}
 
-	},
 }
 ```
 
