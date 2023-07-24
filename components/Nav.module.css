@@ -36,7 +36,7 @@
 }
 
 .menuItem {
-  font-family: "New Rocker", cursive;
+  font-family: "New Rocker", sans-serif;
   padding: 0.8em !important;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
 }
 
 .menuOut {
-  font-family: "New Rocker", cursive;
+  font-family: "New Rocker", sans-serif;
   padding: 0.8em !important;
   display: flex;
   align-items: center;
