@@ -1,5 +1,5 @@
 import Layout from "../Layout";
-import CourseListItem from "@/components/CourseListItem";
+import CourseListItem from "@/components/CourseListItem/CourseListItem";
 
 import { Accordion } from "@chakra-ui/react";
 
