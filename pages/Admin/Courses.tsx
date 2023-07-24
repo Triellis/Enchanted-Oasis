@@ -5,22 +5,13 @@ import classNames from "classnames";
 import CourseList from "@/components/CourseList/CourseList";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
+import AddCourseModal from "@/components/AddCourseModal/AddCourseModal";
 
 import { useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
 
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 
 function useCourses(
   page: number,
@@ -37,29 +28,6 @@ function useCourses(
     error,
     mutate,
   };
-}
-
-function AddCourseModal({ isOpen, onClose, onOpen }: any) {
-  return (
-    <>
-      <Modal
-        onClose={onClose}
-        isOpen={isOpen}
-        isCentered
-        motionPreset="slideInBottom"
-      >
-        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>asdkjflasfdhkjh</ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
 }
 
 export default function Courses() {
