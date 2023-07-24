@@ -19,6 +19,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Select,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
@@ -28,15 +29,20 @@ import styles from "./AddCourseModal.module.css";
 import classNames from "classnames";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
-// component to select days for the course
-function Days() {
-  return <div></div>;
-}
-
 // component to add times to the course
-function Time() {
+function Schedule() {
   return (
     <div className={styles.time}>
+      <div>
+        <Select variant="filled" placeholder="Day">
+          <option value="m">Monday</option>
+          <option value="t">Tuesday</option>
+          <option value="w">Wednesday</option>
+          <option value="th">Thursday</option>
+          <option value="f">Friday</option>
+          <option value="s">Saturday</option>
+        </Select>
+      </div>
       <div className={styles.entry}>
         <Input type="time" />
         To
@@ -119,13 +125,8 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <CourseInfo />
             <div className={styles.when}>
               <div>
-                <FormLabel>Days</FormLabel>
-                <Days />
+                <Schedule />
               </div>
-              <Flex>
-                <FormLabel>Time</FormLabel>
-                <Time />
-              </Flex>
             </div>
           </ModalBody>
 
