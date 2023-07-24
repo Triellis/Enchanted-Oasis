@@ -31,16 +31,24 @@ import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 // component to add times to the course
 function Schedule() {
+  const week = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
   return (
     <div className={styles.time}>
       <div>
-        <Select variant="filled" placeholder="Day">
-          <option value="m">Monday</option>
-          <option value="t">Tuesday</option>
-          <option value="w">Wednesday</option>
-          <option value="th">Thursday</option>
-          <option value="f">Friday</option>
-          <option value="s">Saturday</option>
+        <Select variant="filled" className={styles.days}>
+          {week.map((day, index) => (
+            <option className={styles.dayEntry} key={index} value={day}>
+              {day}
+            </option>
+          ))}
         </Select>
       </div>
       <div className={styles.entry}>
