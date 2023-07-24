@@ -1,13 +1,15 @@
-import CourseList from "@/components/CourseList/CourseList";
 import Layout from "../Layout";
+import styles from "./Courses.module.css";
+import classNames from "classnames";
+
+import CourseList from "@/components/CourseList/CourseList";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import Pagination from "@/components/Pagination/Pagination";
 
 import { useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
-import SearchBar from "@/components/SearchBar/SearchBar";
-import Pagination from "@/components/Pagination/Pagination";
-import styles from "./Courses.module.css";
-import classNames from "classnames";
+
 import {
   Button,
   Modal,
