@@ -37,19 +37,23 @@ function Days() {
 function Time() {
   return (
     <div className={styles.time}>
-      <div className={styles.timeEntry}>
-        <div>
-          <label>Start</label>
-          <Input type="time" />
-        </div>
-        <div>
-          <label>End</label>
-          <Input type="time" />
-        </div>
+      <div className={styles.entry}>
+        <Input type="time" />
+        To
+        <Input type="time" />
       </div>
-      <div className={styles.duplicate}>
-        <IconButton aria-label="add time" icon={<AddIcon />} />
-        <IconButton aria-label="add time" icon={<MinusIcon />} />
+
+      <div className={styles.dup}>
+        <IconButton
+          aria-label="Add Time"
+          icon={<AddIcon />}
+          onClick={() => {}}
+        />
+        <IconButton
+          aria-label="Add Time"
+          icon={<MinusIcon />}
+          onClick={() => {}}
+        />
       </div>
     </div>
   );
