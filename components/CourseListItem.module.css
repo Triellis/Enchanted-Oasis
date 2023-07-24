@@ -92,9 +92,6 @@
   flex: 0.1;
   padding: 0.5em !important;
 }
-.openClose:hover {
-  background-color: transparent !important;
-}
 .courseDesc {
   padding: 0.5em !important;
 
