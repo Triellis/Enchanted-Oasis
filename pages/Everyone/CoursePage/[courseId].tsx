@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/functions";
-import { CourseInformation, ReceivedUserDataOnClient } from "@/lib/types";
+import { CourseInformation, Day, ReceivedUserDataOnClient } from "@/lib/types";
 import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -93,10 +93,50 @@ function CoursePlate({
           <div className={styles.courseName}>About The Course</div>
           <div className={styles.CourseDescription}>{course.description}</div>
         </div>
+        <div className={styles.schedulePlate}>
+          <div className={styles.courseName}>Schedule</div>
+          <ScheduleTable schedule={course.schedule} />
+        </div>
       </div>
     );
   }
   return courseToRender;
+}
+function extractTimeIn24HrsFormat(date: string) {
+  const dateObj = new Date(date);
+  const hours = String(dateObj.getHours()).padStart(2, "0");
+  const minutes = String(dateObj.getMinutes()).padStart(2, "0");
+
+  return `${hours}:${minutes}`;
+}
+
+function ScheduleTable({
+  schedule,
+}: {
+  schedule: CourseInformation["schedule"];
+}) {
+  return (
+    <div className={styles.scheduleTable}>
+      {Object.keys(schedule).map((day) => (
+        <div className={styles.tableElement} key={day}>
+          <div className={styles.day}>{day}</div>
+          <div className={styles.time}>
+            {schedule[day as Day].map((time) => {
+              return (
+                <span
+                  className={styles.timeElement}
+                >{`${extractTimeIn24HrsFormat(
+                  time.startTime.toString()
+                )} to ${extractTimeIn24HrsFormat(
+                  time.endTime.toString()
+                )}`}</span>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default function CoursePage() {

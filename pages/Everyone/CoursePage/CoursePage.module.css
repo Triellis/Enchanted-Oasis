@@ -117,3 +117,52 @@
   width: 100%;
   align-items: center;
 }
+.schedulePlate {
+  border: 1px solid hsl(var(--pc) / 30%);
+  width: 100%;
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: hsl(var(--b3) / 80%);
+  color: hsl(var(--pc));
+}
+
+.scheduleTable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.scheduleTable > .tableElement {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  /* justify-content: space-between; */
+  width: 100%;
+  align-items: center;
+}
+.tableElement > .day {
+  flex: 1;
+  background-color: hsl(var(--a));
+  padding: 0.2em 0.5em;
+  color: hsl(var(--b3));
+  border-radius: 0.5em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+.timeElement {
+  display: flex;
+  flex-direction: row;
+}
+.time {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1em;
+  flex: 10;
+  align-items: center;
+}
