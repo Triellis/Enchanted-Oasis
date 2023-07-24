@@ -10,21 +10,20 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { CourseListItemData } from "@/lib/types";
 
 export default function CourseListItem({
-  _id,
-  name,
-  code,
-  description,
-  credits,
-}: any) {
+  course,
+}: {
+  course: CourseListItemData;
+}) {
   // item backend goes here
 
   const enrollmentMode = false;
 
   return (
     <div className={styles.courseListItem}>
-      <AccordionItem border={"none"} >
+      <AccordionItem border={"none"}>
         <div className={styles.itemWrapper}>
           <AccordionButton className={styles.openClose}>
             <AccordionIcon />
@@ -32,13 +31,13 @@ export default function CourseListItem({
 
           <div className={styles.courseInfo}>
             {/* course name */}
-            <div className={styles.courseName}>{name}</div>
+            <div className={styles.courseName}>{course.name}</div>
 
             <div className={styles.courseBack}>
               {/* course code */}
-              <div className={styles.courseCode}>{code}</div>
+              <div className={styles.courseCode}>{course.code}</div>
               {/* course credits */}
-              <div className={styles.courseCredits}>{credits}</div>
+              <div className={styles.courseCredits}>{course.credits}</div>
             </div>
           </div>
 
@@ -65,9 +64,9 @@ export default function CourseListItem({
         </div>
 
         <AccordionPanel pb={4} className={styles.courseDesc}>
-          <span className={styles.descHead}>{name}</span>
+          <span className={styles.descHead}>{course.name}</span>
           <Divider className={styles.descDiv} />
-          <span className={styles.descCon}>{description}</span>
+          <span className={styles.descCon}>{course.description}</span>
         </AccordionPanel>
       </AccordionItem>
     </div>

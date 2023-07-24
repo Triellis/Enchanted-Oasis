@@ -1,0 +1,7 @@
+.courseList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+  max-width: 800px;
+}

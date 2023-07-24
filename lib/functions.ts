@@ -43,7 +43,12 @@ export function capitalizeFirstLetter(s: string) {
 }
 
 // @ts-ignore
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+export const fetcher = (...args) =>
+  // @ts-ignore
+
+  fetch(...args)
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
 
 export function getRoleColor(role: Role | "All") {
   let roleColor = "gray";
