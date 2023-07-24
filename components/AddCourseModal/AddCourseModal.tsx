@@ -1,5 +1,6 @@
 import {
   Button,
+  Checkbox,
   Divider,
   FormControl,
   FormLabel,
@@ -11,18 +12,40 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Stack,
   Textarea,
 } from "@chakra-ui/react";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AddCourseModal.module.css";
 import classNames from "classnames";
 
 // component to select days for the course
 function Days() {
+  const [checkedItems, setCheckedItems] = useState([false, false]);
+
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
+  const daysOfWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa"];
+
   return (
     <div className={styles.days}>
-      <div className={classNames(styles.day, styles.selected)}>M</div>
+      <FormLabel>Days</FormLabel>
+
+      {daysOfWeek.map((day, i) => (
+        <Checkbox
+          key={i}
+          isChecked={checkedItems[i]}
+          onChange={(e) => {
+            const newCheckedItems = [...checkedItems];
+            newCheckedItems[i] = e.target.checked;
+            setCheckedItems(newCheckedItems);
+          }}
+        >
+          {day}
+        </Checkbox>
+      ))}
     </div>
   );
 }
@@ -82,8 +105,9 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
           {/* modal content */}
           <ModalBody className={styles.modalBody}>
             <CourseInfo />
-            <Divider className={styles.divider} />
-            <FormLabel>Schedule</FormLabel>
+            <div className={styles.when}>
+              <Days />
+            </div>
           </ModalBody>
 
           {/* footer */}

@@ -1,5 +1,11 @@
 .modalBody {
-  /* use if required */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
 }
 .modalFooter {
   display: flex;
@@ -43,6 +49,25 @@
   height: 100%;
 }
 
-.divider {
-  margin-block: 1em;
+.when {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+}
+
+.days {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 1em;
+}
+/* days class have 6 children, make it responsive */
+@media (max-width: 768px) {
+  .days {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
