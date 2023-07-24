@@ -27,30 +27,11 @@ import classNames from "classnames";
 
 // component to select days for the course
 function Days() {
-  const [checkedItems, setCheckedItems] = useState([false, false]);
-
-  const allChecked = checkedItems.every(Boolean);
-  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
-
-  const daysOfWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa"];
-
-  return (
-    <div className={styles.days}>
-      {daysOfWeek.map((day, i) => (
-        <Checkbox
-          key={i}
-          isChecked={checkedItems[i]}
-          onChange={(e) => {
-            const newCheckedItems = [...checkedItems];
-            newCheckedItems[i] = e.target.checked;
-            setCheckedItems(newCheckedItems);
-          }}
-        >
-          {day}
-        </Checkbox>
-      ))}
+  return(
+    <div>
+      
     </div>
-  );
+  )
 }
 
 // component to add times to the course
