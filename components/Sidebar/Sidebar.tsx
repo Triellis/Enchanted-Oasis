@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
 import SidebarItem from "@/components/SidebarItem";
-import sideBarItemStyles from "./SidebarItem.module.css";
+import sideBarItemStyles from "@/components/SidebarItem/SidebarItem.module.css";
 import classNames from "classnames";
 import { signOut } from "next-auth/react";
 
