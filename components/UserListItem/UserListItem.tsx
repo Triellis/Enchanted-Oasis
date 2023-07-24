@@ -25,12 +25,12 @@ import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import styles from "./UserListItem.module.css";
 
 import { getRoleColor } from "@/lib/functions";
-import { ReceivedUserDataOnClient, SentUserDataFromClient } from "../lib/types";
+import { ReceivedUserDataOnClient, SentUserDataFromClient } from "@/lib/types";
 
 import classNames from "classnames";
 import React, { useState } from "react";
 
-import EditUserModal from "./EditUserModal";
+import EditUserModal from "@/components/EditUserModal";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {

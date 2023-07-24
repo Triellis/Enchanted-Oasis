@@ -7,8 +7,8 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import UserList from "./UserList";
-import Pagination from "./Pagination";
+import UserList from "@/components/UserList";
+import Pagination from "@/components/Pagination";
 import { ReceivedUserDataOnClient } from "@/lib/types";
 import { fetcher } from "@/lib/functions";
 import useSWR from "swr";

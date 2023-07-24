@@ -1,9 +1,9 @@
 import { fetcher } from "@/lib/functions";
 import { AdminNotificationOnClient } from "@/lib/types";
 import useSWR from "swr";
-import NotifItem from "./NotifItem";
+import NotifItem from "@/components/NotifItem";
 import { useEffect, useState } from "react";
-import Pagination from "./Pagination";
+import Pagination from "@/components/Pagination";
 
 import styles from "./NotifList.module.css";
 import {

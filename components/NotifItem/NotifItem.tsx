@@ -31,7 +31,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
-import ListViewersModal from "./ListViewersModal";
+import ListViewersModal from "@/components/ListViewersModal";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
