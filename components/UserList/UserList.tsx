@@ -1,5 +1,5 @@
 import { ReceivedUserDataOnClient } from "@/lib/types";
-import UserListItem from "./UserListItem";
+import UserListItem from "@/components/UserListItem";
 import { Divider, useToast } from "@chakra-ui/react";
 import styles from "./UserList.module.css";
 
