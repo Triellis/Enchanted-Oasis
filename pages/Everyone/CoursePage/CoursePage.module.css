@@ -95,10 +95,25 @@
 .enrollBtn {
   padding: 0.5em 1em;
   border-radius: 0.5em;
-  background-color: hsl(var(--b3));
-  color: hsl(var(--a));
+  background-color: hsl(var(--a)) !important;
+  border: 1px solid hsl(var(--b3)) !important;
+  color: hsl(var(--b3)) !important;
   font-weight: bold;
   font-size: 1.2em;
   cursor: pointer;
+
   transition: background-color 0.2s ease-in-out;
+}
+
+.enrollBtn:hover {
+  background-color: hsl(var(--b3)) !important;
+  color: hsl(var(--a)) !important;
+}
+
+.coursePlate > .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }

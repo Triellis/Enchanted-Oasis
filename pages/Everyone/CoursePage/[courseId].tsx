@@ -68,11 +68,15 @@ function CoursePlate({
     courseToRender = (
       <div className={styles.courseDataWrapper}>
         <div className={styles.coursePlate}>
-          <div className={styles.courseName}>{course.name}</div>
+          <div className={styles.header}>
+            <div className={styles.courseName}>{course.name}</div>
+            <Button size={"lg"} className={styles.enrollBtn}>
+              Enroll
+            </Button>
+          </div>
           <div className={styles.subHeader}>
             <div className={styles.courseCode}>{course.code}</div>
             <div className={styles.courseCredits}>{course.credits} credits</div>
-            <Button className={styles.enrollBtn}>Enroll</Button>
           </div>
 
           <div className={styles.footer}>
