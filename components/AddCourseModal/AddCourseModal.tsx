@@ -118,10 +118,10 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
                 <FormLabel>Days</FormLabel>
                 <Days />
               </div>
-              <div>
+              <Flex>
                 <FormLabel>Time</FormLabel>
                 <Time />
-              </div>
+              </Flex>
             </div>
           </ModalBody>
 
