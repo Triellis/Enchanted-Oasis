@@ -1,0 +1,117 @@
+.courseListItem {
+  padding: 5px;
+  border-radius: 10px;
+
+  /* border-top: 1px solid hsl(var(--n) / 80%) !important;
+  border-bottom: 1px solid hsl(var(--n) / 80%) !important; */
+
+  box-shadow: -4px 4px 2px hsl(var(--b3) / 70%);
+  border: 1px solid hsl(var(--nc) / 20%);
+  background-color: hsl(var(--b2));
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-inline: 1em;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+}
+.courseListItem:hover {
+  border: 1px solid hsl(var(--nc) / 50%);
+  border-radius: 1em;
+}
+
+.itemWrapper {
+  gap: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+
+  padding-block: 0.5em;
+  padding-inline: 0.5em;
+}
+
+.courseInfo {
+  flex: 5;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.courseName {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: hsl(var(--c));
+}
+
+.courseBack {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+.courseCode {
+  font-size: 1.1em;
+  color: hsl(var(--b1));
+  border-radius: 10px;
+  padding: 0.2em 0.5em;
+  font-weight: bold;
+  background-color: hsl(var(--a));
+}
+.courseCredits {
+  font-size: 1.1em;
+  color: hsl(var(--c));
+}
+
+.coursePlay {
+  flex: 0.5;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+.courseAdd {
+  color: hsl(var(--a)) !important;
+  border: hsl(var(--a)) 0.1em solid !important;
+  font-size: 1em;
+  cursor: pointer;
+}
+.courseRemove {
+  color: hsl(var(--nc)) !important;
+  border: hsl(var(--nc)) 0.1em solid !important;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.openClose {
+  flex: 0.1;
+  padding: 0.5em !important;
+}
+.openClose:hover {
+  background-color: transparent !important;
+}
+.courseDesc {
+  padding: 0.5em !important;
+
+  color: hsl(var(--nc));
+  border-radius: 10px;
+  background-color: hsl(var(--b1));
+  /* box-shadow: -4px 4px 2px rgb(0,0,0,0.2);   */
+  padding: 1em !important;
+  border: 1px solid hsl(var(--n));
+  margin: 0.5em;
+}
+
+.descHead {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.descDiv {
+  margin-block: 0.5em;
+}
+.descCon {
+  font-size: 1em;
+}
