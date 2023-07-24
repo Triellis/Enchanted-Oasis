@@ -120,7 +120,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
         isOpen={isOpen}
         isCentered
         motionPreset="slideInBottom"
-        size={{ sm: "2xl", base: "xs", lg: "3xl" }}
+        size={{ base: "full", md: "3xl" }}
         scrollBehavior={"inside"}
       >
         <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
