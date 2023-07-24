@@ -50,7 +50,8 @@ async function POST(
   const db = (await clientPromise).db("enchanted-oasis");
   const coursesCollection = db.collection<CourseCol>("Courses");
   course.students = [];
-  course.faculty = [];
+  course.faculties = [];
+
   const insertResponse = await coursesCollection.insertOne(course);
   if (!insertResponse.acknowledged) {
     return res.status(500).send("Failed to insert");

@@ -9,7 +9,14 @@ import { useMemo, useState } from "react";
 import UserList from "@/components/UserList/UserList";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
-import { Tab, TabIndicator, TabList, Tabs } from "@chakra-ui/react";
+import {
+  Button,
+  Divider,
+  Tab,
+  TabIndicator,
+  TabList,
+  Tabs,
+} from "@chakra-ui/react";
 import tabStyles from "@/components/TabsComponent/TabsComponent.module.css";
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
 function useCourse(courseId: string) {
@@ -59,18 +66,29 @@ function CoursePlate({
     courseToRender = <div>Error</div>;
   } else {
     courseToRender = (
-      <div className={styles.coursePlate}>
-        <div className={styles.courseName}>{course.name}</div>
-        <div className={styles.courseCode}>{course.code}</div>
-        <div className={styles.courseCredits}>{course.credits}</div>
-        <div className={styles.description}>{course.description}</div>
-        <div className={styles.numberOfStudents}>
-          {course.numberOfStudents} Students Enrolled
+      <div className={styles.courseDataWrapper}>
+        <div className={styles.coursePlate}>
+          <div className={styles.courseName}>{course.name}</div>
+          <div className={styles.subHeader}>
+            <div className={styles.courseCode}>{course.code}</div>
+            <div className={styles.courseCredits}>{course.credits} credits</div>
+            <Button className={styles.enrollBtn}>Enroll</Button>
+          </div>
+
+          <div className={styles.footer}>
+            <div className={styles.numberOfStudents}>
+              {course.numberOfStudents} Students Enrolled
+            </div>
+            <div className={styles.numberOfFaculties}>
+              {course.numberOfFaculties} Faculties
+            </div>
+          </div>
+          {/* <div className={styles.schedule}>{course.schedule}</div> */}
         </div>
-        <div className={styles.numberOfFaculties}>
-          {course.numberOfFaculties} Faculties
+        <div className={styles.descriptionPlate}>
+          <div className={styles.courseName}>About The Course</div>
+          <div className={styles.CourseDescription}>{course.description}</div>
         </div>
-        <div className={styles.schedule}>{course.schedule}</div>
       </div>
     );
   }
@@ -95,8 +113,8 @@ export default function CoursePage() {
 
   const tabs = useMemo(
     () => [
-      { label: "Faculties", value: "faculty", color: "blue.600" },
-      { label: "Students", value: "student", color: "green.600" },
+      { label: "Faculties", value: "faculty", color: "green.600" },
+      { label: "Students", value: "student", color: "blue.600" },
     ],
     []
   );
@@ -120,7 +138,6 @@ export default function CoursePage() {
             mutate={mutateMembers}
           />
           <Pagination items={members} page={page} setPage={setPage} />
-          CoursePlate
         </div>
       </div>
     </Layout>

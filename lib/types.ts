@@ -103,7 +103,7 @@ export type CourseCol = {
     [day in Day]: {
       startTime: Date;
       endTime: Date;
-    };
+    }[];
   };
   faculties: string[]; // faculty ids
   students: string[]; // array of student ids
