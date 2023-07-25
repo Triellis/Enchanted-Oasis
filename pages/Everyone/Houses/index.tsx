@@ -71,7 +71,7 @@ export default function Houses() {
             {componentToRender}
           </Grid>
         </div>
-        <Link href="./Houses/HouseQuiz">Button</Link>
+        <Link href="./Houses/HouseQuiz">House Sorting Ceremony</Link>
       </Layout>
     </>
   );
