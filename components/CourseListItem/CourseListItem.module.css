@@ -73,15 +73,9 @@
   align-items: center;
   gap: 0.5em;
 }
-.courseAdd {
-  color: hsl(var(--a)) !important;
-  border: hsl(var(--a)) 0.1em solid !important;
-  font-size: 1em;
-  cursor: pointer;
-}
-.courseRemove {
-  color: hsl(var(--nc)) !important;
-  border: hsl(var(--nc)) 0.1em solid !important;
+.courseDel {
+  color: hsl(var(--er)) !important;
+  border: hsl(var(--er)) 0.1em solid !important;
   font-size: 1em;
   cursor: pointer;
 }

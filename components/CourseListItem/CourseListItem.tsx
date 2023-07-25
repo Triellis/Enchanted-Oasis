@@ -10,7 +10,7 @@ import {
   IconButton,
   ListItem,
 } from "@chakra-ui/react";
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
 
 export default function CourseListItem({
@@ -38,23 +38,15 @@ export default function CourseListItem({
             </div>
           </div>
 
-          {enrollmentMode && (
+          {!enrollmentMode && (
             <div className={styles.coursePlay}>
               {/* add butotn */}
               <IconButton
                 isRound
                 variant="outline"
                 aria-label="Add course"
-                className={styles.courseAdd}
-                icon={<AddIcon />}
-              />
-              {/* remove button */}
-              <IconButton
-                isRound
-                variant="outline"
-                aria-label="Remove Course"
-                className={styles.courseRemove}
-                icon={<MinusIcon />}
+                className={styles.courseDel}
+                icon={<DeleteIcon />}
               />
             </div>
           )}
