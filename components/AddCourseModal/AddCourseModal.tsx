@@ -178,6 +178,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <CourseInfo />
             <div className={styles.when}>
               <div>
+                <FormLabel>Schedule</FormLabel>
                 <ScheduleList />
               </div>
             </div>
