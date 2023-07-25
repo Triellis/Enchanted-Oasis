@@ -141,6 +141,11 @@ async function GET(
             },
           },
           {
+            $sort: {
+              _id: -1,
+            },
+          },
+          {
             $project: userProjection,
           },
         ],
