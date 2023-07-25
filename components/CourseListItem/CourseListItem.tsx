@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./CourseListItem.module.css";
 import {
@@ -13,6 +13,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
@@ -30,6 +31,38 @@ function ConfirmDelModal({
   onClose: any;
   course: CourseListItemData;
 }) {
+  const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  // api call to delete course:
+  async function deleteCourse(courseID: string) {
+    setIsLoading(true);
+    const res = await fetch(`/api/course/${courseID}`, {
+      method: "DELETE",
+    });
+
+    console.log(courseID);
+
+    if (res.ok) {
+      toast({
+        title: "Course deleted.",
+        description: `The course ${course.name} has been deleted.`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error deleting course.",
+        description: `The course ${course.name} could not be deleted.`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    setIsLoading(false);
+  }
+
   return (
     <>
       <Modal
@@ -48,7 +81,10 @@ function ConfirmDelModal({
           </ModalBody>
           <ModalFooter>
             <Button
-              onClick={onClose}
+              onClick={() => {
+                deleteCourse(course._id.toString());
+                onClose();
+              }}
               className={classNames(styles.delCourse, "clicky")}
             >
               Delete

@@ -79,13 +79,13 @@
   gap: 0.5em;
 }
 .courseDel {
-  color: hsl(var(--er)) !important;
-  border: hsl(var(--er)) 0.1em solid !important;
+  border: transparent !important;
   font-size: 1em;
   cursor: pointer;
 }
 .courseDel:hover {
-  background-color: hsl(var(--erc)) !important;
+  color: hsl(var(--er)) !important;
+  background-color: transparent !important;
 }
 .delCourse {
   background-color: hsl(var(--er)) !important;
