@@ -179,3 +179,8 @@
 .profilePic {
   border: 2px solid hsl(var(--n)) !important;
 }
+.selectBtn {
+  background-color: transparent !important;
+  padding: 1.1em !important;
+  border: 1px solid hsl(var(--n)) !important;
+}

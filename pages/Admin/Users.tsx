@@ -10,12 +10,8 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 
 import useSWR from "swr";
-import {
-  ReceivedUserDataOnClient,
-  SentUserDataFromClient,
-  TabsType,
-} from "../../lib/types";
-import { fetcher } from "@/lib/functions";
+import { SentUserDataFromClient, TabsType } from "../../lib/types";
+import { useUserSearch } from "@/lib/functions";
 
 import React, { useMemo, useState } from "react";
 import styles from "./Users.module.css";
@@ -26,19 +22,6 @@ import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import UserList from "@/components/UserList";
 
-function useSearch(searchQuery: string, role: string, page: number) {
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
-    fetcher
-  );
-  return {
-    users: data as ReceivedUserDataOnClient[],
-    isLoading,
-    error: error,
-    mutate,
-  };
-}
-
 export default function Users() {
   const session = useSession();
 
@@ -47,7 +30,7 @@ export default function Users() {
   const [role, setRole] = useState("All");
   const [page, setPage] = useState(1);
 
-  const { users, isLoading, error, mutate } = useSearch(
+  const { users, isLoading, error, mutate } = useUserSearch(
     searchQuery,
     role,
     page

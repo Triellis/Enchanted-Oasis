@@ -20,7 +20,12 @@ import {
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
+import {
+  AddIcon,
+  CheckIcon,
+  DeleteIcon,
+  InfoOutlineIcon,
+} from "@chakra-ui/icons";
 
 import styles from "./UserListItem.module.css";
 
@@ -45,14 +50,21 @@ export default function UserListItem({
   mutate,
   editMode,
   forceSmall,
+  selectMode,
+  selectedUsers,
+  setSelectedUsers,
 }: {
   userData: ReceivedUserDataOnClient;
   mutate: () => void;
   editMode: boolean;
   forceSmall: boolean;
+  selectMode: boolean;
+  selectedUsers?: string[];
+  setSelectedUsers?: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const isSelected = selectedUsers?.includes(userData._id.toString());
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -166,15 +178,44 @@ export default function UserListItem({
         {/* Info button with popOver */}
         <Popover placement="auto-end">
           {/* Trigger -> info button */}
-          <PopoverTrigger>
-            <IconButton
-              isRound
-              variant="outline"
-              aria-label="Call Sage"
-              icon={<InfoOutlineIcon />}
-              className={classNames(styles.editButton, styles.btnGroup)}
-            />
-          </PopoverTrigger>
+          {selectMode ? (
+            <Button
+              className={classNames(styles.selectBtn)}
+              onClick={() => {
+                if (
+                  setSelectedUsers !== undefined &&
+                  selectedUsers !== undefined &&
+                  isSelected
+                ) {
+                  setSelectedUsers?.(
+                    selectedUsers?.filter(
+                      (id) => id !== userData._id.toString()
+                    )
+                  );
+                } else if (
+                  setSelectedUsers !== undefined &&
+                  selectedUsers !== undefined
+                ) {
+                  setSelectedUsers?.([
+                    ...(selectedUsers ?? []),
+                    userData._id.toString(),
+                  ]);
+                }
+              }}
+            >
+              {isSelected ? <CheckIcon color={"green"} /> : <AddIcon />}
+            </Button>
+          ) : (
+            <PopoverTrigger>
+              <IconButton
+                isRound
+                variant="outline"
+                aria-label="Call Sage"
+                icon={<InfoOutlineIcon />}
+                className={classNames(styles.editButton, styles.btnGroup)}
+              />
+            </PopoverTrigger>
+          )}
 
           {/* Content */}
           <Portal>
