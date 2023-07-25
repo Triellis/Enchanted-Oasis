@@ -132,7 +132,7 @@ function ScheduleTable({
             {schedule[day as Day].map((time) => {
               return (
                 <span
-                  key={time.startTime.toString()}
+                  key={time.startTime.toString() + day}
                   className={styles.timeElement}
                 >{`${extractTimeIn24HrsFormat(
                   time.startTime.toString()
