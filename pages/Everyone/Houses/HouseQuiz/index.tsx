@@ -9,6 +9,7 @@ import {
   Grid,
   GridItem,
   useToast,
+  Divider,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import styles from "./HouseQuiz.module.css";
@@ -202,7 +203,8 @@ const SortingHatForm: React.FC = () => {
         {questions.map((question, index) => (
           <GridItem key={question.id} className={styles.questionBox}>
             <VStack align="start">
-              <Text fontWeight="bold">{question.question}</Text>
+              <Text className={styles.question}>{question.question}</Text>
+              <Divider />
               <RadioGroup
                 onChange={(value) => handleOptionChange(index, parseInt(value))}
                 value={`${scores[index]}`}

@@ -3,6 +3,9 @@
   font-size: 2rem;
   margin: 1em;
 }
+.question {
+  font-size: 1.5rem;
+}
 
 .form {
   flex-direction: column;
