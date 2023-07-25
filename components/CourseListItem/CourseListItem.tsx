@@ -62,12 +62,6 @@ export default function CourseListItem({
             </div>
           )}
         </div>
-
-        <AccordionPanel pb={4} className={styles.courseDesc}>
-          <span className={styles.descHead}>{course.name}</span>
-          <Divider className={styles.descDiv} />
-          <span className={styles.descCon}>{course.description}</span>
-        </AccordionPanel>
       </AccordionItem>
     </div>
   );
