@@ -26,7 +26,8 @@ async function deleteCourse(
   toast: any,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   course: CourseListItemData,
-  mutate: any
+  mutate: any,
+  onClose: any
 ) {
   setIsLoading(true);
   const res = await fetch(`/api/course/${courseID}`, {
@@ -43,6 +44,7 @@ async function deleteCourse(
       isClosable: true,
     });
     mutate();
+    onClose();
   } else {
     toast({
       title: "Error deleting course.",
@@ -97,9 +99,9 @@ function ConfirmDelModal({
                   toast,
                   setIsLoading,
                   course,
-                  mutate
+                  mutate,
+                  onClose
                 );
-                onClose();
               }}
               className={classNames(styles.delCourse, "clicky")}
             >
