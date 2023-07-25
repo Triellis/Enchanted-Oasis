@@ -40,6 +40,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 1em;
 }
 .courseName {
   font-size: 1.1em;
