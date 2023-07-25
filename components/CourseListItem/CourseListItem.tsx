@@ -13,10 +13,10 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Text,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
+import classNames from "classnames";
 
 // modal to confirm user deletion:
 function ConfirmDelModal({
@@ -44,10 +44,15 @@ function ConfirmDelModal({
           <ModalCloseButton />
           <ModalBody>
             Are you sure you want to delete the course:{" "}
-            <Text>{course.name}</Text>
+            <span className={styles.name}>{course.name}</span>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            <Button
+              onClick={onClose}
+              className={classNames(styles.delCourse, "clicky")}
+            >
+              Delete
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

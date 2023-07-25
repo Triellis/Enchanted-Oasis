@@ -65,6 +65,11 @@
   color: hsl(var(--c));
 }
 
+.name{
+  font-weight: bold;
+  color: hsl(var(--er));
+  font-size: 1.1em;
+}
 .coursePlay {
   flex: 0.5;
   display: flex;
@@ -79,33 +84,11 @@
   font-size: 1em;
   cursor: pointer;
 }
-
-.openClose {
-  flex: 0.1;
-  padding: 0.5em !important;
+.delCourse{
+  background-color: hsl(var(--er)) !important;
+  color: hsl(var(--erc)) !important;
 }
-.openClose:hover {
-  background-color: transparent !important;
-}
-.courseDesc {
-  padding: 0.5em !important;
-
-  color: hsl(var(--nc));
-  border-radius: 10px;
-  background-color: hsl(var(--b1));
-  /* box-shadow: -4px 4px 2px rgb(0,0,0,0.2);   */
-  padding: 1em !important;
-  border: 1px solid hsl(var(--n));
-  margin: 0.5em;
-}
-
-.descHead {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-.descDiv {
-  margin-block: 0.5em;
-}
-.descCon {
-  font-size: 1em;
+.delCourse:hover{
+  color: hsl(var(--er)) !important;
+  background-color: hsl(var(--erc)) !important;
 }
