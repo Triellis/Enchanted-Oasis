@@ -53,6 +53,17 @@ html,
   font-family: "Ubuntu", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 0.4em;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc) / 30%);
+  border-radius: 200em;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--nc) / 60%);
+}
+
 .clicky {
   cursor: pointer;
   transition: scale 0.3s ease, transform 0.3s ease;
