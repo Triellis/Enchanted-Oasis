@@ -12,6 +12,7 @@ import Pagination from "@/components/Pagination/Pagination";
 import userStyles from "@/pages/Admin/Users.module.css";
 import {
   Button,
+  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -24,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
-import { AddIcon, CheckIcon } from "@chakra-ui/icons";
+import { AddIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 function useCourse(courseId: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -333,6 +334,57 @@ function EnrollUserModal({
   );
 }
 
+function UnEnrollButton({
+  userData,
+  courseId,
+  mutate,
+}: {
+  userData: ReceivedUserDataOnClient;
+  courseId: string;
+  mutate: () => void;
+}) {
+  const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const memberType = userData.role == "Student" ? "student" : "faculty";
+  const handleDelete = async () => {
+    setIsLoading(true);
+    const res = await fetch(
+      `/api/course/${courseId}/member/${userData._id.toString()}?memberType=${memberType}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (res.ok) {
+      toast({
+        description: `User ${userData.name} Unenrolled`,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      mutate();
+    } else {
+      toast({
+        title: "Error",
+        description: await res.text(),
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    setIsLoading(false);
+  };
+  return (
+    <IconButton
+      className={styles.unEnrollBtn}
+      onClick={handleDelete}
+      aria-label="Unenroll User"
+      isLoading={isLoading}
+      isRound={true}
+      icon={<CloseIcon color={"red.400"} />}
+    ></IconButton>
+  );
+}
+
 export default function CoursePage() {
   const router = useRouter();
   const { courseId } = router.query;
@@ -376,6 +428,14 @@ export default function CoursePage() {
             isLoading={isLoadingMembers}
             error={errorMembers}
             mutate={mutateMembers}
+            customMode={true}
+            CustomComponent={(d: ReceivedUserDataOnClient) => (
+              <UnEnrollButton
+                mutate={mutate}
+                userData={d}
+                courseId={courseId as string}
+              />
+            )}
           />
           <Pagination items={members} page={page} setPage={setPage} />
         </div>
