@@ -23,6 +23,24 @@ import React, { useState, useReducer } from "react";
 import styles from "./AddCourseModal.module.css";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
+type scheduleEntry = {
+  day: string;
+  startTime: string;
+  endTime: string;
+};
+type scheduleList = scheduleEntry[];
+
+
+// component for the scheduleList:
+function ScheduleList() {
+  return (
+    <div className={styles.when}>
+      <ScheduleEntry onAdd={() => {}} onRemove={() => {}} />
+    </div>
+  );
+}
+
+
 // component to for tne entries for the schedule:
 function ScheduleEntry({ onAdd, onRemove }: any) {
   const week = [
@@ -123,7 +141,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <CourseInfo />
             <div className={styles.when}>
               <div>
-                <ScheduleEntry />
+                <ScheduleList />
               </div>
             </div>
           </ModalBody>
