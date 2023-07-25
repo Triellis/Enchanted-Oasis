@@ -308,10 +308,11 @@ function ComposeMsgModal({
         </ModalBody>
 
         <ModalFooter className={styles.comFoot}>
-          <Button variant="outline" onClick={onClose}>
+          <Button className="modalNoBtn" onClick={onClose}>
             Cancel
           </Button>
           <Button
+            className="modalYesBtn"
             isLoading={isLoading}
             onClick={() => {
               if (!validation()) return;
