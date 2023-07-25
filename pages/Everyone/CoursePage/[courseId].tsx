@@ -209,6 +209,7 @@ function EnrollUserModal({
             selectedUsers={selectedUsers}
             setSelectedUsers={setSelectedUsers}
           />
+          <Pagination items={users} page={page} setPage={setPage} />
         </ModalBody>
 
         <ModalFooter display={"flex"} justifyContent={"center"}>
