@@ -42,8 +42,6 @@ function ConfirmDelModal({
       method: "DELETE",
     });
 
-    console.log(courseID);
-
     if (res.ok) {
       toast({
         title: "Course deleted.",
@@ -114,7 +112,13 @@ export default function CourseListItem({
     <div className={styles.courseListItem}>
       <ListItem border={"none"}>
         <div className={styles.itemWrapper}>
-          <div className={styles.courseInfo}>
+          <div
+            className={styles.courseInfo}
+            tabIndex={1}
+            onClick={() => {
+              router.push(`/Everyone/CoursePage/${course._id}`);
+            }}
+          >
             {/* course name */}
             <div className={styles.courseName}>{course.name}</div>
 
