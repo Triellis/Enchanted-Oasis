@@ -268,12 +268,12 @@ function ChangePasswordModal({
         </ModalBody>
 
         <ModalFooter className={styles.modalFooter}>
+          <Button className="modalNoBtn" onClick={onClose}>
+            Cancel
+          </Button>
           <Button
             isLoading={isLoading}
-            style={{
-              backgroundColor: "hsl(var(--s))",
-              color: "hsl(var(--sc))",
-            }}
+            className="modalYesBtn"
             onClick={() => {
               changePassPost(
                 oldPassword,
@@ -286,9 +286,6 @@ function ChangePasswordModal({
             }}
           >
             Change
-          </Button>
-          <Button variant="outline" onClick={onClose}>
-            Cancel
           </Button>
         </ModalFooter>
       </ModalContent>
