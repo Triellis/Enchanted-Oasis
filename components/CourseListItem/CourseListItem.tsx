@@ -20,6 +20,40 @@ import { CourseListItemData } from "@/lib/types";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 
+// api call to delete course:
+async function deleteCourse(
+  courseID: string,
+  toast: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  course: CourseListItemData
+) {
+  setIsLoading(true);
+  const res = await fetch(`/api/course/${courseID}`, {
+    method: "DELETE",
+  });
+
+  console.log(courseID);
+
+  if (res.ok) {
+    toast({
+      title: "Course deleted.",
+      description: `The course ${course.name} has been deleted.`,
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  } else {
+    toast({
+      title: "Error deleting course.",
+      description: `The course ${course.name} could not be deleted.`,
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
+  setIsLoading(false);
+}
+
 // modal to confirm user deletion:
 function ConfirmDelModal({
   isOpen,
@@ -34,35 +68,6 @@ function ConfirmDelModal({
 }) {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
-
-  // api call to delete course:
-  async function deleteCourse(courseID: string) {
-    setIsLoading(true);
-    const res = await fetch(`/api/course/${courseID}`, {
-      method: "DELETE",
-    });
-
-    console.log(courseID);
-
-    if (res.ok) {
-      toast({
-        title: "Course deleted.",
-        description: `The course ${course.name} has been deleted.`,
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-    } else {
-      toast({
-        title: "Error deleting course.",
-        description: `The course ${course.name} could not be deleted.`,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-    setIsLoading(false);
-  }
 
   return (
     <>
@@ -82,8 +87,14 @@ function ConfirmDelModal({
           </ModalBody>
           <ModalFooter>
             <Button
+              isLoading={isLoading}
               onClick={() => {
-                deleteCourse(course._id.toString());
+                deleteCourse(
+                  course._id.toString(),
+                  toast,
+                  setIsLoading,
+                  course
+                );
                 onClose();
               }}
               className={classNames(styles.delCourse, "clicky")}
