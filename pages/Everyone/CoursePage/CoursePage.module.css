@@ -172,3 +172,8 @@
 .enrollUserBtn:hover {
   width: 10.5em !important;
 }
+.selectBtn {
+	background-color: transparent !important;
+	padding: 1.1em !important;
+	border: 1px solid hsl(var(--n)) !important;
+  }

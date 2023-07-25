@@ -24,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, CheckIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 function useCourse(courseId: string) {
   const { data, error, isLoading, mutate } = useSWR(
@@ -186,6 +186,49 @@ async function enrollUsers(
   }
 }
 
+function Selector({
+  userData,
+  selectedUsers,
+  setSelectedUsers,
+}: {
+  userData: ReceivedUserDataOnClient;
+  selectedUsers: string[];
+  setSelectedUsers: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
+  const [isSelected, setIsSelected] = useState(false);
+  useEffect(() => {
+    if (selectedUsers.includes(userData._id.toString())) {
+      setIsSelected(true);
+    }
+  }, [selectedUsers]);
+  if (isSelected) {
+    return (
+      <Button
+        className={styles.selectBtn}
+        onClick={() => {
+          setSelectedUsers(
+            selectedUsers.filter((id) => id !== userData._id.toString())
+          );
+          setIsSelected(false);
+        }}
+      >
+        <CheckIcon color={"green.500"} />
+      </Button>
+    );
+  } else {
+    return (
+      <Button
+        className={styles.selectBtn}
+        onClick={() => {
+          setSelectedUsers([...selectedUsers, userData._id.toString()]);
+          setIsSelected(true);
+        }}
+      >
+        <AddIcon />
+      </Button>
+    );
+  }
+}
 function EnrollUserModal({
   isOpen,
   onClose,
@@ -254,9 +297,14 @@ function EnrollUserModal({
             isLoading={isLoading}
             error={error}
             mutate={mutate}
-            selectMode={true}
-            selectedUsers={selectedUsers}
-            setSelectedUsers={setSelectedUsers}
+            customMode={true}
+            CustomComponent={(d: ReceivedUserDataOnClient) => (
+              <Selector
+                userData={d}
+                selectedUsers={selectedUsers}
+                setSelectedUsers={setSelectedUsers}
+              />
+            )}
           />
           <Pagination items={members} page={page} setPage={setPage} />
         </ModalBody>

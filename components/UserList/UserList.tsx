@@ -10,9 +10,8 @@ export default function UserList({
   forceSmall = false,
   isLoading,
   error,
-  selectMode = false,
-  selectedUsers,
-  setSelectedUsers,
+  customMode = false,
+  CustomComponent,
 }: {
   usersData: ReceivedUserDataOnClient[];
   mutate: () => void;
@@ -20,9 +19,8 @@ export default function UserList({
   forceSmall?: boolean;
   isLoading: boolean;
   error: any;
-  selectMode?: boolean;
-  selectedUsers?: string[];
-  setSelectedUsers?: React.Dispatch<React.SetStateAction<string[]>>;
+  customMode?: boolean;
+  CustomComponent?: any;
 }) {
   let componentToRender;
   const toast = useToast();
@@ -55,9 +53,8 @@ export default function UserList({
             userData={user}
             key={user._id.toString()}
             editMode={editMode}
-            selectMode={selectMode}
-            selectedUsers={selectedUsers}
-            setSelectedUsers={setSelectedUsers}
+            customMode={customMode}
+            CustomComponent={CustomComponent}
           />
         ))}
       </>
