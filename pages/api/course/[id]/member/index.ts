@@ -34,7 +34,7 @@ async function POST(
   }
 
   const memberIds = req.body.memberIds as string[];
-  console.log(req.body);
+
   const memberType = req.query.memberType as "student" | "faculty";
   if (!memberType) {
     return res.status(400).send("Missing memberType");

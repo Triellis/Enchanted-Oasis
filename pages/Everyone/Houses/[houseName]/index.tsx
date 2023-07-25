@@ -146,8 +146,6 @@ function HousePlate({
   const isAdmin = (useSession().data as MySession)?.user.role === "Admin";
 
   useEffect(() => {
-    console.log(isEditPlateOpen);
-
     if (isFocused || isHovered) {
       setIsEditPlateOpen(true);
     } else {
