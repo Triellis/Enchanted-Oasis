@@ -1,0 +1,194 @@
+import {
+  Box,
+  Heading,
+  VStack,
+  Radio,
+  RadioGroup,
+  Button,
+  Text,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
+import styles from "./HouseQuiz.module.css";
+
+type Question = {
+  id: number;
+  question: string;
+  options: { label: string; points: number }[];
+};
+
+const questions: Question[] = [
+  {
+    id: 1,
+    question: "Which quality do you value most in yourself?",
+    options: [
+      { label: "Bravery", points: 10 },
+      { label: "Intelligence", points: 8 },
+      { label: "Loyalty", points: 6 },
+      { label: "Ambition", points: 4 },
+    ],
+  },
+  {
+    id: 2,
+    question: "How would you prefer to spend your free time?",
+    options: [
+      { label: "Exploring the outdoors", points: 6 },
+      { label: "Reading books", points: 8 },
+      { label: "Hanging out with friends", points: 4 },
+      { label: "Pursuing personal goals", points: 10 },
+    ],
+  },
+  {
+    id: 3,
+    question: "What kind of people do you admire?",
+    options: [
+      { label: "Those who stand up for what's right", points: 10 },
+      { label: "Those who are exceptionally talented", points: 8 },
+      { label: "Those who are always there for their loved ones", points: 6 },
+      { label: "Those who achieve great success", points: 4 },
+    ],
+  },
+  {
+    id: 4,
+    question: "Which magical creature fascinates you the most?",
+    options: [
+      { label: "Dragons", points: 4 },
+      { label: "Phoenixes", points: 6 },
+      { label: "Centaurs", points: 8 },
+      { label: "Merpeople", points: 10 },
+    ],
+  },
+  {
+    id: 5,
+    question: "How do you handle challenging situations?",
+    options: [
+      { label: "Face them head-on", points: 10 },
+      { label: "Analyze and strategize", points: 8 },
+      { label: "Seek support from others", points: 6 },
+      { label: "Find alternative solutions", points: 4 },
+    ],
+  },
+  {
+    id: 6,
+    question: "Which Hogwarts subject interests you the most?",
+    options: [
+      { label: "Defense Against the Dark Arts", points: 10 },
+      { label: "Potions", points: 6 },
+      { label: "Herbology", points: 8 },
+      { label: "Charms", points: 4 },
+    ],
+  },
+  {
+    id: 7,
+    question: "What kind of environment makes you feel most at home?",
+    options: [
+      { label: "Mountainous regions", points: 4 },
+      { label: "Urban cityscapes", points: 6 },
+      { label: "Countryside settings", points: 8 },
+      { label: "Coastal areas", points: 10 },
+    ],
+  },
+  {
+    id: 8,
+    question: "Which quote resonates with you the most?",
+    options: [
+      {
+        label: ' "It is our choices that show what we truly are."',
+        points: 10,
+      },
+      {
+        label:
+          ' "Words are, in my not-so-humble opinion, our most inexhaustible source of magic."',
+        points: 8,
+      },
+      {
+        label:
+          ' "Happiness can be found even in the darkest of times if one only remembers to turn on the light."',
+        points: 6,
+      },
+      {
+        label:
+          ' "We\'ve all got both light and dark inside us. What matters is the part we choose to act on."',
+        points: 4,
+      },
+    ],
+  },
+  {
+    id: 9,
+    question: "What role would you prefer in a group project?",
+    options: [
+      { label: "The leader", points: 4 },
+      { label: "The problem solver", points: 6 },
+      { label: "The peacemaker", points: 8 },
+      { label: "The motivator", points: 10 },
+    ],
+  },
+  {
+    id: 10,
+    question: "How do you define success?",
+    options: [
+      { label: "Accomplishing personal goals", points: 10 },
+      { label: "Acquiring knowledge and wisdom", points: 8 },
+      { label: "Building strong relationships", points: 6 },
+      { label: "Gaining power and influence", points: 4 },
+    ],
+  },
+];
+
+const SortingHatForm: React.FC = () => {
+  const [scores, setScores] = useState<number[]>(
+    Array(questions.length).fill(0)
+  );
+
+  const handleOptionChange = (questionIndex: number, points: number) => {
+    const newScores = [...scores];
+    newScores[questionIndex] = points;
+    setScores(newScores);
+  };
+
+  const calculateTotalPoints = () =>
+    scores.reduce((total, points) => total + points, 0);
+
+  const getHouseFromPoints = (totalPoints: number) => {
+    if (totalPoints >= 70) return "Slytherin";
+    if (totalPoints >= 60) return "Gryffindor";
+    if (totalPoints >= 50) return "Ravenclaw";
+    return "Hufflepuff";
+  };
+
+  const handleSubmit = () => {
+    const totalPoints = calculateTotalPoints();
+    const house = getHouseFromPoints(totalPoints);
+    // Do something with the result (e.g., show a message, send to server, etc.)
+    alert(`Congratulations! You belong to ${house}.`);
+  };
+
+  return (
+    <div>
+      <Heading className={styles.header}>Hogwarts House Sorting Quiz</Heading>
+      <VStack spacing={4}>
+        {questions.map((question, index) => (
+          <VStack key={question.id} align="start">
+            <Text fontWeight="bold">{question.question}</Text>
+            <RadioGroup
+              onChange={(value) => handleOptionChange(index, parseInt(value))}
+              value={`${scores[index]}`}
+            >
+              <VStack align="start">
+                {question.options.map((option) => (
+                  <Radio key={option.label} value={`${option.points}`}>
+                    {option.label} ({option.points} points)
+                  </Radio>
+                ))}
+              </VStack>
+            </RadioGroup>
+          </VStack>
+        ))}
+      </VStack>
+      <Button mt={6} colorScheme="teal" onClick={handleSubmit}>
+        Submit
+      </Button>
+    </div>
+  );
+};
+
+export default SortingHatForm;
