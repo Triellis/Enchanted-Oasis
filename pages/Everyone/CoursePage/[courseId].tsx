@@ -152,7 +152,8 @@ async function enrollUsers(
   selectedUsers: string[],
   memberType: any,
   toast: any,
-  onClose: any
+  onClose: any,
+  mutateMembers: any
 ) {
   const res = await fetch(
     ` /api/course/${cousreId}/member?memberType=${memberType}
@@ -175,6 +176,7 @@ async function enrollUsers(
       duration: 3000,
       isClosable: true,
     });
+    mutateMembers();
     onClose();
   } else {
     toast({
@@ -233,9 +235,11 @@ function Selector({
 function EnrollUserModal({
   isOpen,
   onClose,
+  mutateMembers,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  mutateMembers: () => void;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [role, setRole] = useState("Faculty");
@@ -299,9 +303,9 @@ function EnrollUserModal({
             error={error}
             mutate={mutate}
             customMode={true}
-            CustomComponent={(d: ReceivedUserDataOnClient) => (
+            CustomComponent={(user: ReceivedUserDataOnClient) => (
               <Selector
-                userData={d}
+                userData={user}
                 selectedUsers={selectedUsers}
                 setSelectedUsers={setSelectedUsers}
               />
@@ -319,7 +323,8 @@ function EnrollUserModal({
                 selectedUsers,
                 memberType,
                 toast,
-                onClose
+                onClose,
+                mutateMembers
               );
             }}
           >
@@ -429,10 +434,10 @@ export default function CoursePage() {
             error={errorMembers}
             mutate={mutateMembers}
             customMode={true}
-            CustomComponent={(d: ReceivedUserDataOnClient) => (
+            CustomComponent={(user: ReceivedUserDataOnClient) => (
               <UnEnrollButton
-                mutate={mutate}
-                userData={d}
+                mutate={mutateMembers}
+                userData={user}
                 courseId={courseId as string}
               />
             )}
@@ -449,7 +454,11 @@ export default function CoursePage() {
         <AddIcon className={userStyles.icon} />
         Enroll{" "}
       </button>
-      <EnrollUserModal isOpen={isOpen} onClose={onClose} />
+      <EnrollUserModal
+        mutateMembers={mutateMembers}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </Layout>
   );
 }
