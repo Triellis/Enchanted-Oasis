@@ -25,15 +25,15 @@ async function deleteCourse(
   courseID: string,
   toast: any,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  course: CourseListItemData
+  course: CourseListItemData,
+  mutate: any
 ) {
   setIsLoading(true);
   const res = await fetch(`/api/course/${courseID}`, {
     method: "DELETE",
   });
 
-  console.log(courseID);
-
+  console.log(mutate);
   if (res.ok) {
     toast({
       title: "Course deleted.",
@@ -42,6 +42,7 @@ async function deleteCourse(
       duration: 5000,
       isClosable: true,
     });
+    mutate();
   } else {
     toast({
       title: "Error deleting course.",
@@ -60,11 +61,13 @@ function ConfirmDelModal({
   onOpen,
   onClose,
   course,
+  mutate,
 }: {
   isOpen: any;
   onOpen: any;
   onClose: any;
   course: CourseListItemData;
+  mutate: () => void;
 }) {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -93,7 +96,8 @@ function ConfirmDelModal({
                   course._id.toString(),
                   toast,
                   setIsLoading,
-                  course
+                  course,
+                  mutate
                 );
                 onClose();
               }}
@@ -110,8 +114,10 @@ function ConfirmDelModal({
 
 export default function CourseListItem({
   course,
+  mutate,
 }: {
   course: CourseListItemData;
+  mutate: () => void;
 }) {
   const router = useRouter();
   const enrollmentMode = false;
@@ -164,6 +170,7 @@ export default function CourseListItem({
         onOpen={onDelOpen}
         onClose={onDelClose}
         course={course}
+        mutate={mutate}
       />
     </div>
   );

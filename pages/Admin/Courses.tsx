@@ -30,20 +30,17 @@ export default function Courses() {
   const [search, setSearch] = useState("");
   const { courses, isLoading, error, mutate } = useCourses(page, search, "all");
 
-  let componentToRender;
-  if (isLoading) {
-    componentToRender = <div>Loading...</div>;
-  } else if (error) {
-    componentToRender = <div>Error</div>;
-  } else {
-    componentToRender = <CourseList courses={courses} />;
-  }
   return (
     <>
       <Layout>
         <div className={styles.courses}>
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
-          {componentToRender}
+          <CourseList
+            courses={courses}
+            isLoading={isLoading}
+            error={error}
+            mutate={mutate}
+          />
           <Pagination items={courses} page={page} setPage={setPage} />
         </div>
       </Layout>
