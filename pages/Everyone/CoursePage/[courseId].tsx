@@ -285,7 +285,7 @@ function EnrollUserModal({
           flexDirection={"column"}
           alignItems={"center"}
         >
-          <div className={styles.search} >
+          <div className={styles.search}>
             <SearchBar
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
@@ -320,7 +320,11 @@ function EnrollUserModal({
           <Pagination items={members} page={page} setPage={setPage} />
         </ModalBody>
 
-        <ModalFooter display={"flex"} justifyContent={"center"}>
+        <ModalFooter className={styles.modalFooter}>
+          <Button variant={"outline"} colorScheme="red" onClick={onClose}>
+            Cancel
+          </Button>
+          
           <Button
             colorScheme="blue"
             onClick={() => {
@@ -335,9 +339,6 @@ function EnrollUserModal({
             }}
           >
             Enroll
-          </Button>
-          <Button colorScheme="red" onClick={onClose}>
-            Cancel
           </Button>
         </ModalFooter>
       </ModalContent>

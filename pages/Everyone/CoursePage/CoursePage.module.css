@@ -194,3 +194,12 @@
   width: 100%;
   margin-bottom: 1em;
 }
+
+.modalFooter {
+  display: flex !important;
+  align-items: center;
+  gap: 2em;
+}
+.modalFooter > * {
+  width: 100%;
+}
