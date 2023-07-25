@@ -1,15 +1,11 @@
 import {
   Button,
-  Checkbox,
-  Divider,
-  Flex,
   FormControl,
   FormLabel,
   IconButton,
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -26,7 +22,6 @@ import {
 
 import React, { useState } from "react";
 import styles from "./AddCourseModal.module.css";
-import classNames from "classnames";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 // component to add times to the course
