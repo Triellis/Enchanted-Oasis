@@ -186,7 +186,7 @@ export default function EditUserModal({
         </ModalBody>
 
         <ModalFooter className={styles.modalFooter}>
-          <Button onClick={onEditModalClose}>Discard Changes</Button>
+          <Button onClick={onEditModalClose} className={styles.modalCancel} >Discard Changes</Button>
 
           <Button
             isLoading={isLoading}
