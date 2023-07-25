@@ -2,16 +2,58 @@ import React from "react";
 
 import styles from "./CourseListItem.module.css";
 import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Divider,
+  Button,
   IconButton,
   ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  Text,
 } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
+
+// modal to confirm user deletion:
+function ConfirmDelModal({
+  isOpen,
+  onOpen,
+  onClose,
+  course,
+}: {
+  isOpen: any;
+  onOpen: any;
+  onClose: any;
+  course: CourseListItemData;
+}) {
+  return (
+    <>
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+        <ModalContent bg="hsl(var(--b1))">
+          <ModalHeader>Confirm Delete</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Are you sure you want to delete the course:{" "}
+            <Text>{course.name}</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
 
 export default function CourseListItem({
   course,
@@ -19,8 +61,12 @@ export default function CourseListItem({
   course: CourseListItemData;
 }) {
   // item backend goes here
-
   const enrollmentMode = false;
+  const {
+    isOpen: isDelOpen,
+    onOpen: onDelOpen,
+    onClose: onDelClose,
+  } = useDisclosure();
 
   return (
     <div className={styles.courseListItem}>
@@ -47,11 +93,19 @@ export default function CourseListItem({
                 aria-label="Add course"
                 className={styles.courseDel}
                 icon={<DeleteIcon />}
+                onClick={onDelOpen}
               />
             </div>
           )}
         </div>
       </ListItem>
+
+      <ConfirmDelModal
+        isOpen={isDelOpen}
+        onOpen={onDelOpen}
+        onClose={onDelClose}
+        course={course}
+      />
     </div>
   );
 }
