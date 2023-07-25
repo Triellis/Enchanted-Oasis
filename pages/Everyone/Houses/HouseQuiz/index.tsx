@@ -210,7 +210,7 @@ const SortingHatForm: React.FC = () => {
                 <VStack align="start">
                   {question.options.map((option) => (
                     <Radio key={option.label} value={`${option.points}`}>
-                      {option.label} ({option.points} points)
+                      {option.label}
                     </Radio>
                   ))}
                 </VStack>
