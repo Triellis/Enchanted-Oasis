@@ -19,12 +19,12 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import styles from "./AddCourseModal.module.css";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 // component to for tne entries for the schedule:
-function Schedule({ onAdd, onRemove }: any) {
+function ScheduleEntry({ onAdd, onRemove }: any) {
   const week = [
     "Monday",
     "Tuesday",
@@ -123,7 +123,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <CourseInfo />
             <div className={styles.when}>
               <div>
-                <Schedule />
+                <ScheduleEntry />
               </div>
             </div>
           </ModalBody>
