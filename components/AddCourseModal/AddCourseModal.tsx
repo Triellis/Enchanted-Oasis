@@ -23,23 +23,67 @@ import React, { useState, useReducer } from "react";
 import styles from "./AddCourseModal.module.css";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
-type scheduleEntry = {
+type ScheduleEntry = {
   day: string;
   startTime: string;
   endTime: string;
 };
-type scheduleList = scheduleEntry[];
+type ScheduleList = ScheduleEntry[];
 
+// initial state for the schedule list:
+const initialList: ScheduleList = [
+  {
+    day: "",
+    startTime: "",
+    endTime: "",
+  },
+];
 
-// component for the scheduleList:
+// defining the action types:
+type ListAction =
+  | { type: "ADD_ENTRY"; entry: ScheduleEntry }
+  | { type: "REMOVE_ENTRY"; index: number };
+
+// reducer function:
+function listReducer(state: ScheduleList, action: ListAction): ScheduleList {
+  switch (action.type) {
+    case "ADD_ENTRY":
+      return [...state, action.entry];
+    case "REMOVE_ENTRY":
+      return state.filter((_, index) => index !== action.index);
+    default:
+      return state;
+  }
+}
+
+// component for the list of schedule entries:
 function ScheduleList() {
+  // reducer for the schedule list:
+  const [scheduleList, dispatchList] = useReducer(listReducer, initialList);
+
+  // Function to handle adding a new entry to the scheduleList
+  const handleAddEntry = (entry: ScheduleEntry) => {
+    dispatchList({ type: "ADD_ENTRY", entry });
+  };
+
+  // Function to handle removing an entry from the scheduleList
+  const handleRemoveEntry = (index: number) => {
+    dispatchList({ type: "REMOVE_ENTRY", index });
+  };
+
   return (
     <div className={styles.when}>
-      <ScheduleEntry onAdd={() => {}} onRemove={() => {}} />
+      {scheduleList.map((entry, index) => (
+        <ScheduleEntry
+          key={index}
+          entry={entry}
+          onAdd={handleAddEntry}
+          onRemove={() => handleRemoveEntry(index)}
+        />
+      ))}
     </div>
   );
 }
-
 
 // component to for tne entries for the schedule:
 function ScheduleEntry({ onAdd, onRemove }: any) {
