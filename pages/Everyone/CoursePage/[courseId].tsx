@@ -20,6 +20,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
@@ -42,10 +43,11 @@ function useMembers(
   courseId: string,
   page: number,
   search: string,
-  memberType: "student" | "faculty"
+  memberType: "student" | "faculty",
+  notEnrolledOnly = false
 ) {
   const { data, error, isLoading, mutate } = useSWR(
-    `/api/course/${courseId}/member?page=${page}&memberType=${memberType}&searchQuery=${search}`,
+    `/api/course/${courseId}/member?page=${page}&memberType=${memberType}&searchQuery=${search}&&notEnrolledOnly=${notEnrolledOnly}`,
     fetcher
   );
   return {
@@ -144,6 +146,46 @@ function ScheduleTable({
   );
 }
 
+async function enrollUsers(
+  cousreId: string,
+  selectedUsers: string[],
+  memberType: any,
+  toast: any,
+  onClose: any
+) {
+  const res = await fetch(
+    ` /api/course/${cousreId}/member?memberType=${memberType}
+   
+  `,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        memberIds: selectedUsers,
+      }),
+    }
+  );
+  if (res.ok) {
+    toast({
+      title: "Users Enrolled",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    onClose();
+  } else {
+    toast({
+      title: "Error",
+      description: await res.text(),
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+}
+
 function EnrollUserModal({
   isOpen,
   onClose,
@@ -153,13 +195,20 @@ function EnrollUserModal({
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [role, setRole] = useState("Faculty");
+  const memberType = role == "Student" ? "student" : "faculty";
   const [page, setPage] = useState(1);
-  const { users, error, isLoading, mutate } = useUserSearch(
+  const router = useRouter();
+  const courseId = router.query.courseId;
+  const { members, error, isLoading, mutate } = useMembers(
+    courseId as string,
+    page,
     searchQuery,
-    role,
-    page
+    memberType,
+    true
   );
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const toast = useToast();
+
   useEffect(() => {
     setSelectedUsers([]);
   }, [isOpen, role]);
@@ -201,7 +250,7 @@ function EnrollUserModal({
           />
           <UserList
             forceSmall={true}
-            usersData={users}
+            usersData={members}
             isLoading={isLoading}
             error={error}
             mutate={mutate}
@@ -209,16 +258,26 @@ function EnrollUserModal({
             selectedUsers={selectedUsers}
             setSelectedUsers={setSelectedUsers}
           />
-          <Pagination items={users} page={page} setPage={setPage} />
+          <Pagination items={members} page={page} setPage={setPage} />
         </ModalBody>
 
         <ModalFooter display={"flex"} justifyContent={"center"}>
           <Button
-            // isLoading={isLoading}
-            className={styles.modalDelBtn}
-            variant="solid"
+            colorScheme="blue"
+            onClick={() => {
+              enrollUsers(
+                courseId as string,
+                selectedUsers,
+                memberType,
+                toast,
+                onClose
+              );
+            }}
           >
-            Yes
+            Enroll
+          </Button>
+          <Button colorScheme="red" onClick={onClose}>
+            Cancel
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -34,6 +34,7 @@ async function POST(
   }
 
   const memberIds = req.body.memberIds as string[];
+  console.log(req.body);
   const memberType = req.query.memberType as "student" | "faculty";
   if (!memberType) {
     return res.status(400).send("Missing memberType");
@@ -43,9 +44,9 @@ async function POST(
       .send("Invalid memberType, must be student or faculty");
   }
   if (!memberIds) {
-    return res.status(400).send("Missing studentIds");
+    return res.status(400).send("Missing memberIds");
   } else if (!Array.isArray(memberIds)) {
-    return res.status(400).send("studentIds must be an array");
+    return res.status(400).send("memberIds must be an array");
   }
   const courseId = req.query.id as string;
   if (!courseId) {
