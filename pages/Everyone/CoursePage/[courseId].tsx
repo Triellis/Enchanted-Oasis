@@ -1,24 +1,30 @@
-import { fetcher } from "@/lib/functions";
+import { fetcher, useUserSearch } from "@/lib/functions";
 import { CourseInformation, Day, ReceivedUserDataOnClient } from "@/lib/types";
 import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import styles from "./CoursePage.module.css";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import UserList from "@/components/UserList/UserList";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
+import userStyles from "@/pages/Admin/Users.module.css";
 import {
   Button,
-  Divider,
-  Tab,
-  TabIndicator,
-  TabList,
-  Tabs,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
-import tabStyles from "@/components/TabsComponent/TabsComponent.module.css";
+
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
+import { AddIcon } from "@chakra-ui/icons";
+import classNames from "classnames";
 function useCourse(courseId: string) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/course/${courseId}`,
@@ -138,6 +144,87 @@ function ScheduleTable({
   );
 }
 
+function EnrollUserModal({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [role, setRole] = useState("Faculty");
+  const [page, setPage] = useState(1);
+  const { users, error, isLoading, mutate } = useUserSearch(
+    searchQuery,
+    role,
+    page
+  );
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  useEffect(() => {
+    setSelectedUsers([]);
+  }, [isOpen, role]);
+  return (
+    <Modal
+      isCentered
+      size={{
+        base: "full",
+        md: "lg",
+      }}
+      isOpen={isOpen}
+      onClose={onClose}
+      scrollBehavior="inside"
+    >
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+
+      <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
+        <ModalHeader>Select Users to Enroll</ModalHeader>
+        <ModalCloseButton onClick={onClose} />
+        <ModalBody
+          overflowX={"hidden"}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+        >
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          {`${selectedUsers.length} ${role} selected`}
+          <TabsComponent
+            setPage={setPage}
+            setTab={setRole as any}
+            tab={role}
+            tabs={[
+              { label: "Faculty", value: "Faculty", color: "green.600" },
+              { label: "Student", value: "Student", color: "blue.600" },
+            ]}
+          />
+          <UserList
+            forceSmall={true}
+            usersData={users}
+            isLoading={isLoading}
+            error={error}
+            mutate={mutate}
+            selectMode={true}
+            selectedUsers={selectedUsers}
+            setSelectedUsers={setSelectedUsers}
+          />
+        </ModalBody>
+
+        <ModalFooter display={"flex"} justifyContent={"center"}>
+          <Button
+            // isLoading={isLoading}
+            className={styles.modalDelBtn}
+            variant="solid"
+          >
+            Yes
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 export default function CoursePage() {
   const router = useRouter();
   const { courseId } = router.query;
@@ -162,6 +249,8 @@ export default function CoursePage() {
     []
   );
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Layout>
       <div className={styles.coursePage}>
@@ -183,6 +272,16 @@ export default function CoursePage() {
           <Pagination items={members} page={page} setPage={setPage} />
         </div>
       </div>
+      <button
+        className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
+        onClick={() => {
+          onOpen();
+        }}
+      >
+        <AddIcon className={userStyles.icon} />
+        Enroll{" "}
+      </button>
+      <EnrollUserModal isOpen={isOpen} onClose={onClose} />
     </Layout>
   );
 }

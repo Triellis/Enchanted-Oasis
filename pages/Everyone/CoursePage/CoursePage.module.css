@@ -166,3 +166,9 @@
   flex: 10;
   align-items: center;
 }
+.enrollUserBtn {
+  width: 6em !important;
+}
+.enrollUserBtn:hover {
+  width: 10.5em !important;
+}
