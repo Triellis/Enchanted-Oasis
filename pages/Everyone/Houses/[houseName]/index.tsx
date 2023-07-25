@@ -287,12 +287,12 @@ function EditPointsModal({
           </NumberInput>
         </ModalBody>
         <ModalFooter className={styles.modalFooter}>
-          <Button variant="outline" onClick={onClose}>
+          <Button className="modalNoBtn" onClick={onClose}>
             Close
           </Button>
           <Button
             isLoading={isLoading}
-            bg="hsl(var(--s))"
+            className="modalYesBtn"
             onClick={async () => {
               await editPoints(
                 points,
