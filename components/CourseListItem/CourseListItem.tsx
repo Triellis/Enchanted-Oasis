@@ -44,7 +44,6 @@ async function deleteCourse(
       isClosable: true,
     });
     mutate();
-    onClose();
   } else {
     toast({
       title: "Error deleting course.",
@@ -54,6 +53,7 @@ async function deleteCourse(
       isClosable: true,
     });
   }
+  onClose();
   setIsLoading(false);
 }
 
