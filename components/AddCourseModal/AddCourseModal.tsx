@@ -24,8 +24,8 @@ import React, { useState } from "react";
 import styles from "./AddCourseModal.module.css";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
-// component to add times to the course
-function Schedule() {
+// component to for tne entries for the schedule:
+function Schedule({ onAdd, onRemove }: any) {
   const week = [
     "Monday",
     "Tuesday",
@@ -53,15 +53,11 @@ function Schedule() {
       </div>
 
       <div className={styles.dup}>
-        <IconButton
-          aria-label="Add Time"
-          icon={<AddIcon />}
-          onClick={() => {}}
-        />
+        <IconButton aria-label="Add Time" icon={<AddIcon />} onClick={onAdd} />
         <IconButton
           aria-label="Add Time"
           icon={<MinusIcon />}
-          onClick={() => {}}
+          onClick={onRemove}
         />
       </div>
     </div>
