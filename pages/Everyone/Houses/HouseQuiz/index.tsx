@@ -6,9 +6,13 @@ import {
   RadioGroup,
   Button,
   Text,
+  Grid,
+  GridItem,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import styles from "./HouseQuiz.module.css";
+import classNames from "classnames";
 
 type Question = {
   id: number;
@@ -155,36 +159,48 @@ const SortingHatForm: React.FC = () => {
     return "Hufflepuff";
   };
 
+  const toast = useToast();
+
   const handleSubmit = () => {
     const totalPoints = calculateTotalPoints();
     const house = getHouseFromPoints(totalPoints);
-    // Do something with the result (e.g., show a message, send to server, etc.)
-    alert(`Congratulations! You belong to ${house}.`);
+    toast({
+      title: `Congratulations!`,
+      description: `You belong to ${house}.`,
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   return (
     <div>
       <Heading className={styles.header}>Hogwarts House Sorting Quiz</Heading>
-      <VStack spacing={4}>
+      <Grid templateColumns="1fr" className={styles.form}>
         {questions.map((question, index) => (
-          <VStack key={question.id} align="start">
-            <Text fontWeight="bold">{question.question}</Text>
-            <RadioGroup
-              onChange={(value) => handleOptionChange(index, parseInt(value))}
-              value={`${scores[index]}`}
-            >
-              <VStack align="start">
-                {question.options.map((option) => (
-                  <Radio key={option.label} value={`${option.points}`}>
-                    {option.label} ({option.points} points)
-                  </Radio>
-                ))}
-              </VStack>
-            </RadioGroup>
-          </VStack>
+          <GridItem key={question.id} className={styles.questionBox}>
+            <VStack align="start">
+              <Text fontWeight="bold">{question.question}</Text>
+              <RadioGroup
+                onChange={(value) => handleOptionChange(index, parseInt(value))}
+                value={`${scores[index]}`}
+              >
+                <VStack align="start">
+                  {question.options.map((option) => (
+                    <Radio key={option.label} value={`${option.points}`}>
+                      {option.label} ({option.points} points)
+                    </Radio>
+                  ))}
+                </VStack>
+              </RadioGroup>
+            </VStack>
+          </GridItem>
         ))}
-      </VStack>
-      <Button mt={6} colorScheme="teal" onClick={handleSubmit}>
+      </Grid>
+      <Button
+        className={classNames(styles.submitBtn, "clicky")}
+        onClick={handleSubmit}
+      >
         Submit
       </Button>
     </div>
