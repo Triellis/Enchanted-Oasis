@@ -154,9 +154,10 @@ const SortingHatForm: React.FC = () => {
 
   const getHouseFromPoints = (totalPoints: number) => {
     if (totalPoints >= 70) return "Slytherin";
-    if (totalPoints >= 60) return "Gryffindor";
-    if (totalPoints >= 50) return "Ravenclaw";
-    return "Hufflepuff";
+    if (totalPoints >= 60 && totalPoints <= 69) return "Gryffindor";
+    if (totalPoints >= 50 && totalPoints <= 59) return "Ravenclaw";
+    if (totalPoints >= 40 && totalPoints <= 49) return "Hufflepuff";
+    return "Please respond to all the questions"; // Handle cases outside the defined ranges
   };
 
   const toast = useToast();
@@ -164,12 +165,33 @@ const SortingHatForm: React.FC = () => {
   const handleSubmit = () => {
     const totalPoints = calculateTotalPoints();
     const house = getHouseFromPoints(totalPoints);
+
+    if (house === "Please respond to all the questions") {
+      return toast({
+        title: `Please respond to all the questions`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    const houseColors: { [key: string]: string } = {
+      Slytherin: "green.900",
+      Gryffindor: "blue.900",
+      Ravenclaw: "yellow.900",
+      Hufflepuff: "red.900",
+    };
+
     toast({
       title: `Congratulations!`,
       description: `You belong to ${house}.`,
       status: "success",
       duration: 5000,
       isClosable: true,
+      containerStyle: {
+        background: houseColors[house],
+        color: "white",
+      },
     });
   };
 
