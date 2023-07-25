@@ -321,12 +321,12 @@ function EnrollUserModal({
         </ModalBody>
 
         <ModalFooter className={styles.modalFooter}>
-          <Button variant={"outline"} colorScheme="red" onClick={onClose}>
+          <Button className="modalNoBtn" onClick={onClose}>
             Cancel
           </Button>
-          
+
           <Button
-            colorScheme="blue"
+            className="modalYesBtn"
             onClick={() => {
               enrollUsers(
                 courseId as string,
