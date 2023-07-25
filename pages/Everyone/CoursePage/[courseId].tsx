@@ -275,7 +275,9 @@ function EnrollUserModal({
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
 
       <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
-        <ModalHeader>Select Users to Enroll</ModalHeader>
+        <ModalHeader className={styles.modalHeader}>
+          Select Users to Enroll
+        </ModalHeader>
         <ModalCloseButton onClick={onClose} />
         <ModalBody
           overflowX={"hidden"}
@@ -283,10 +285,13 @@ function EnrollUserModal({
           flexDirection={"column"}
           alignItems={"center"}
         >
-          <SearchBar
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
+          <div className={styles.search} >
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          </div>
+
           {`${selectedUsers.length} ${role} selected`}
           <TabsComponent
             setPage={setPage}
