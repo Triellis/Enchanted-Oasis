@@ -138,7 +138,7 @@ function CourseInfo() {
         {/* credits */}
         <FormControl>
           <FormLabel>Course Credits</FormLabel>
-          <NumberInput allowMouseWheel keepWithinRange min={0}>
+          <NumberInput allowMouseWheel keepWithinRange defaultValue={0} min={0}>
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
