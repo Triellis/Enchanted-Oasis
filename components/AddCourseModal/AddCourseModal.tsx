@@ -20,9 +20,63 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import styles from "./AddCourseModal.module.css";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+
+// initial state for the schedule list:
+type ScheduleState = {
+  count: number;
+};
+
+// type declaration for the actions of the schedule entry:
+type ScheduleAction = { type: "ADD" } | { type: "DELETE"; index: number };
+
+// initial state for the schedule list:
+const initialState: ScheduleState = {
+  count: 1,
+};
+
+// actions for the schedule entry:
+function scheduleReducer(state: ScheduleState, action: ScheduleAction) {
+  switch (action.type) {
+    case "ADD":
+      return { count: state.count + 1 };
+    case "DELETE":
+      if (state.count > 1) {
+        return { count: state.count - 1 };
+      } else {
+        return state;
+      }
+    default:
+      return state;
+  }
+}
+
+// component for the list of schedule entries:
+function ScheduleList() {
+  const [state, dispatch] = useReducer(scheduleReducer, initialState);
+
+  const handleAdd = () => {
+    dispatch({ type: "ADD" });
+  };
+
+  const handleDelete = (index: number) => {
+    dispatch({ type: "DELETE", index });
+  };
+
+  return (
+    <div className={styles.scheduleList}>
+      {[...Array(state.count)].map((_, index) => (
+        <Schedule
+          key={index}
+          onAdd={handleAdd}
+          onRemove={() => handleDelete(index)}
+        />
+      ))}
+    </div>
+  );
+}
 
 // component to for tne entries for the schedule:
 function Schedule({ onAdd, onRemove }: any) {
@@ -124,7 +178,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <CourseInfo />
             <div className={styles.when}>
               <div>
-                <Schedule />
+                <ScheduleList />
               </div>
             </div>
           </ModalBody>
