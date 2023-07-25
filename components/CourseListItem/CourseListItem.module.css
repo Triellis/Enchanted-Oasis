@@ -65,7 +65,7 @@
   color: hsl(var(--c));
 }
 
-.name{
+.name {
   font-weight: bold;
   color: hsl(var(--er));
   font-size: 1.1em;
@@ -84,11 +84,14 @@
   font-size: 1em;
   cursor: pointer;
 }
-.delCourse{
+.courseDel:hover {
+  background-color: hsl(var(--erc)) !important;
+}
+.delCourse {
   background-color: hsl(var(--er)) !important;
   color: hsl(var(--erc)) !important;
 }
-.delCourse:hover{
+.delCourse:hover {
   color: hsl(var(--er)) !important;
   background-color: hsl(var(--erc)) !important;
 }

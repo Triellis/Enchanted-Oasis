@@ -96,7 +96,7 @@ export default function CourseListItem({
                 isRound
                 variant="outline"
                 aria-label="Add course"
-                className={styles.courseDel}
+                className={classNames(styles.courseDel, "clicky")}
                 icon={<DeleteIcon />}
                 onClick={onDelOpen}
               />
