@@ -34,7 +34,6 @@ async function deleteCourse(
     method: "DELETE",
   });
 
-  console.log(mutate);
   if (res.ok) {
     toast({
       title: "Course deleted.",
