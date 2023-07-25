@@ -266,7 +266,7 @@ function EnrollUserModal({
       isCentered
       size={{
         base: "full",
-        md: "lg",
+        md: "xl",
       }}
       isOpen={isOpen}
       onClose={onClose}
