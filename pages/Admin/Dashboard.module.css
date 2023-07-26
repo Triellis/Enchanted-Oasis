@@ -64,7 +64,7 @@
   white-space: nowrap;
   overflow: hidden;
   backdrop-filter: blur(5px);
-  background-color: hsl(var(--s) / 40%) !important;
+  background-color: hsl(var(--s) / 70%) !important;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border-radius: 0.8em;
 }
