@@ -6,10 +6,12 @@
   width: 100%;
   left: 0;
   padding: 1em;
-  border: 1px solid hsl(var(--nc) / 20%);
+  border: 1px solid hsl(var(--pc) / 20%);
   transition: scale 0.3s ease;
   margin: 0.5em 0;
 
+  color: hsl(var(--pc));
+  
   /* set the font to imported font */
   font-size: 1.1em;
   font-family: "New Rocker", sans-serif;
