@@ -58,15 +58,16 @@
 /* for the children of these which are the links */
 
 .notificationIndicator {
+  background-color: hsl(var(--n));
+  color: hsl(var(--nc));
   padding: 0.3em;
-  border: 1px solid hsl(var(--pc) / 30%);
+  border: 1px solid transparent;
   border-radius: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.2em;
 }
-
 .notifCount {
   background-color: rgb(221, 0, 0);
   color: white;
@@ -185,7 +186,7 @@
   left: 50%;
 }
 
-.themeButton{
+.themeButton {
   background-color: hsl(var(--n)) !important;
   color: hsl(var(--nc)) !important;
 }
