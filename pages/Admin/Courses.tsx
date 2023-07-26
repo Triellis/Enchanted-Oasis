@@ -43,21 +43,17 @@ export default function Courses() {
     onClose: onAddCourseClose,
   } = useDisclosure();
 
-  let componentToRender;
-  if (isLoading) {
-    componentToRender = <div>Loading...</div>;
-  } else if (error) {
-    componentToRender = <div>Error</div>;
-  } else {
-    componentToRender = <CourseList courses={courses} />;
-  }
-
   return (
     <>
       <Layout>
         <div className={styles.courses}>
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
-          {componentToRender}
+          <CourseList
+            courses={courses}
+            isLoading={isLoading}
+            error={error}
+            mutate={mutate}
+          />
           <Pagination items={courses} page={page} setPage={setPage} />
 
           <button className={styles.courseAdd} onClick={onAddCourseOpen}>
