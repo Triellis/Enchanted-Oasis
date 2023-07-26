@@ -30,31 +30,40 @@
 
   /* light mode variants */
 
-  --pf-light: 198 93% 53%;
-  --sf-light: 234 89% 67%;
-  --af-light: 329 86% 63%;
-  --b2-light: 222 47% 4%;
-  --b3-light: 0 0% 0%;
-  --bc-light: 229 7% 80%;
-  --pc-light: 202 34% 14%;
-  --sc-light: 239 22% 15%;
-  --ac-light: 332 26% 15%;
-  --nc-light: 221 7% 82%;
-  --suc-light: 169 31% 13%;
-  --wac-light: 39 36% 14%;
-  --erc-light: 354 28% 15%;
-
-  --p-light: 198 93% 60%;
-  --s-light: 234 89% 74%;
-  --a-light: 329 86% 70%;
-  --n-light: 217 33% 17%;
-  --nf-light: 217 30% 22%;
-  --b1-light: 222 47% 11%;
-  --in-light: 198 90% 48%;
-  --inc-light: 0 0% 0%;
-  --su-light: 172 66% 50%;
-  --wa-light: 41 88% 64%;
-  --er-light: 351 95% 71%;
+  --pf-light: 203 83% 53%;
+  --sf-light: 335 78% 53%;
+  --af-light: 56 100% 53%;
+  --nf-light: 0 0% 3%;
+  --b2-light: 0 0% 93%;
+  --b3-light: 0 0% 86%;
+  --bc-light: 146 0% 19%;
+  --pc-light: 207 32% 14%;
+  --sc-light: 344 100% 93%;
+  --ac-light: 54 41% 14%;
+  --nc-light: 145 0% 80%;
+  --inc-light: 194 26% 12%;
+  --suc-light: 295 30% 87%;
+  --wac-light: 24 46% 13%;
+  --erc-light: 12 100% 91%;
+  --rounded-box-light: 1rem;
+  --rounded-btn-light: 0.5rem;
+  --rounded-badge-light: 1.9rem;
+  --animation-btn-light: 0.25s;
+  --animation-input-light: 0.2s;
+  --btn-text-case-light: uppercase;
+  --btn-focus-scale-light: 0.95;
+  --border-btn-light: 1px;
+  --tab-border-light: 1px;
+  --tab-radius-light: 0.5rem;
+  --p-light: 203 83% 60%;
+  --s-light: 335 78% 60%;
+  --a-light: 56 100% 60%;
+  --n-light: 0 0% 10%;
+  --b1-light: 0 0% 100%;
+  --in-light: 192 48% 52%;
+  --su-light: 291 48% 38%;
+  --wa-light: 25 85% 57%;
+  --er-light: 4 81% 56%;
 
   /* common */
   --rounded-box: 1rem;
