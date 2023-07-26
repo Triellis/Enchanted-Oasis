@@ -141,8 +141,8 @@ export default function NotifItem({
         <Flex gap={4}>
           <Avatar src={notification.creator.profilePicture} />
           <div>
-            <Text fontSize="sm">{notification.creator.name}</Text>
-            <Text fontSize="sm" color={"hsl(var(--nc)  )"}>
+            <Text fontSize="md">{notification.creator.name}</Text>
+            <Text fontSize="sm" color={"hsl(var(--bc)  )"}>
               {notification.creator.email}
             </Text>
           </div>
@@ -159,7 +159,7 @@ export default function NotifItem({
               {notification.title}
             </Text>
           </span>
-          <Text fontSize="sm" color={"hsl(var(--pc) /70% )"}>
+          <Text fontSize="sm" color={"hsl(var(--bc) /70% )"}>
             {notification.body}
           </Text>
         </div>
@@ -168,7 +168,7 @@ export default function NotifItem({
       <div className={styles.footer}>
         {/* Date and time without icons */}
 
-        <Text fontSize="sm" color="hsl(var(--nc) )">
+        <Text fontSize="sm" color="hsl(var(--bc) )">
           {formatDateTime(new Date(notification.date))}
         </Text>
 

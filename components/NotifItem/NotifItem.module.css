@@ -12,6 +12,7 @@
   padding: 1em;
   border-radius: 1em;
   background-color: hsl(var(--b2));
+  color: hsl(var(--pc));
   margin-block: 0.5em;
 
   font-size: 1.1em;
@@ -34,11 +35,11 @@
   gap: 0.5em;
 }
 .viewsText {
-  color: hsl(var(--nc));
+  color: hsl(var(--bc));
 }
 
 .viewsText:hover {
-  color: hsl(var(--s));
+  color: hsl(var(--p));
 }
 .badgesWrapper {
   display: flex;
@@ -61,7 +62,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: hsl(var(--nc));
+  color: hsl(var(--bc));
   font-size: 1.2em;
 }
 
