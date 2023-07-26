@@ -86,8 +86,8 @@ function Nav({
   return (
     <div className={styles.navbar}>
       {/* Hamburger Icon */}
-      <div className={styles.hamButton}>
-        <Button onClick={onToggle}>
+      <div className={styles.hamDiv}>
+        <Button onClick={onToggle} className={styles.hamButton}>
           <HamburgerIconAnimated />
         </Button>
       </div>
