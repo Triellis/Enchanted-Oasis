@@ -33,7 +33,20 @@ const navItems: {
     { text: "Houses", linkTo: "/Everyone/Houses" },
   ],
 };
+function toggleTheme(mainRef: React.RefObject<HTMLDivElement>) {
+  if (!mainRef.current) return;
+  let theme = localStorage.getItem("data-theme");
 
+  if (theme === "dark") {
+    mainRef.current.setAttribute("data-theme", "light");
+    localStorage.setItem("data-theme", "light");
+    theme = "light";
+  } else {
+    mainRef.current.setAttribute("data-theme", "dark");
+    localStorage.setItem("data-theme", "dark");
+    theme = "dark";
+  }
+}
 export default function Layout({ children }: { children: React.ReactNode }) {
   const session = useSession();
 
@@ -48,20 +61,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const mainRef = useRef<HTMLDivElement>(null);
   // logic for changing the theme:
-
-  function toggleTheme(mainRef: React.RefObject<HTMLDivElement>) {
-    let theme = localStorage.getItem("data-theme");
-
-    if (theme === "dark") {
-      mainRef.setAttribute("data-theme", "light");
-      localStorage.setItem("data-theme", "light");
-      theme = "light";
-    } else {
-      mainRef.setAttribute("data-theme", "dark");
-      localStorage.setItem("data-theme", "dark");
-      theme = "dark";
-    }
-  }
 
   return (
     <>

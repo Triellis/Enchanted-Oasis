@@ -29,30 +29,40 @@
   --bc-dark: 220 13% 69%;
 
   /* light mode variants */
-  --pf-light: 262 80% 63%;
-  --sf-light: 316 70% 63%;
-  --af-light: 175 70% 54%;
-  --in-light: 198 93% 80%;
-  --su-light: 158 64% 72%;
-  --wa-light: 43 96% 76%;
-  --er-light: 0 91% 85%;
-  --inc-light: 198 100% 52%;
-  --suc-light: 158 100% 50%;
-  --wac-light: 43 100% 51%;
-  --erc-light: 0 100% 57%;
-  --p-light: 262 80% 70%;
-  --pc-light: 0 0% 100%;
-  --s-light: 316 70% 70%;
-  --sc-light: 0 0% 100%;
-  --a-light: 175 70% 49%;
-  --ac-light: 0 0% 100%;
-  --n-light: 213 18% 40%;
-  --nf-light: 212 17% 37%;
-  --nc-light: 220 13% 84%;
-  --b1-light: 212 18% 24%;
-  --b2-light: 213 18% 20%;
-  --b3-light: 213 18% 17%;
-  --bc-light: 220 13% 84%;
+  --pf-light: 259 94% 44%;
+  --sf-light: 314 100% 40%;
+  --af-light: 174 75% 39%;
+  --nf-light: 214 20% 14%;
+  --in-light: 198 93% 60%;
+  --su-light: 158 64% 52%;
+  --wa-light: 43 96% 56%;
+  --er-light: 0 91% 71%;
+  --inc-light: 198 100% 12%;
+  --suc-light: 158 100% 10%;
+  --wac-light: 43 100% 11%;
+  --erc-light: 0 100% 14%;
+  --rounded-light-box: 1rem;
+  --rounded-light-btn: 0.5rem;
+  --rounded-light-badge: 1.9rem;
+  --animation-light-btn: 0.25s;
+  --animation-light-input: 0.2s;
+  --btn-light-text-case: uppercase;
+  --btn-light-focus-scale: 0.95;
+  --border-light-btn: 1px;
+  --tab-light-border: 1px;
+  --tab-light-radius: 0.5rem;
+  --p-light: 259 94% 51%;
+  --pc-light: 259 96% 91%;
+  --s-light: 314 100% 47%;
+  --sc-light: 314 100% 91%;
+  --a-light: 174 75% 46%;
+  --ac-light: 174 75% 11%;
+  --n-light: 214 20% 21%;
+  --nc-light: 212 19% 87%;
+  --b1-light: 0 0% 100%;
+  --b2-light: 0 0% 95%;
+  --b3-light: 180 2% 90%;
+  --bc-light: 215 28% 17%;
 
   /* common */
   --rounded-box: 1rem;
@@ -68,7 +78,7 @@
 }
 
 /* for light theme */
-body[data-theme="dark"] {
+main[data-theme="dark"] {
   /* dark mode variants of all */
   --pf: var(--pf-dark);
   --sf: var(--sf-dark);
@@ -96,7 +106,7 @@ body[data-theme="dark"] {
   --bc: var(--bc-dark);
 }
 
-body[data-theme="light"] {
+main[data-theme="light"] {
   --pf: var(--pf-light);
   --sf: var(--sf-light);
   --af: var(--af-light);
@@ -123,7 +133,7 @@ body[data-theme="light"] {
   --bc: var(--bc-light);
 }
 
-body {
+main {
   background-color: hsl(var(--b1)) !important;
   user-select: none;
 }
