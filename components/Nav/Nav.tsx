@@ -108,13 +108,13 @@ function Nav({
           </Link>
 
           <IconButton
-            variant="outline"
             aria-label="color mode"
             fontSize="20px"
             onClick={() => {
               toggleTheme();
               setSun((prev) => !prev);
             }}
+            className={styles.themeButton}
             icon={sun ? <SunIcon /> : <MoonIcon />}
           />
 

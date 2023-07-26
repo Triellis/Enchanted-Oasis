@@ -17,7 +17,6 @@
   border: 1px solid hsl(var(--pc) / 30%);
 }
 
-
 .endGroup {
   display: flex;
   align-items: center;
@@ -105,12 +104,12 @@
  hamburger icon
 */
 .hamButton {
-  /* background-color: hsl(var(--n)) !important; */
+  background-color: hsl(var(--n)) !important;
 }
 .hamButton:active {
   transform: scale(0.9);
 }
-.hamDiv{
+.hamDiv {
   display: flex;
   align-items: center;
 }
@@ -134,7 +133,7 @@
   position: absolute;
   height: 3px;
   width: 100%;
-  background: hsl(var(--bc));
+  background: white;
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -184,4 +183,8 @@
   top: 18px;
   width: 0%;
   left: 50%;
+}
+
+.themeButton{
+  background-color: hsl(var(--n)) !important;
 }
