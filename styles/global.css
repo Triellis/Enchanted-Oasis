@@ -2,17 +2,59 @@
 @import url("https://fonts.googleapis.com/css2?family=Asap:ital@0;1&family=Lato:ital@0;1&family=New+Rocker&family=Roboto+Slab&family=Ubuntu:ital@0;1&family=UnifrakturMaguntia&display=swap");
 
 :root {
-  --pf: 262 80% 43%;
-  --sf: 316 70% 43%;
-  --af: 175 70% 34%;
-  --in: 198 93% 60%;
-  --su: 158 64% 52%;
-  --wa: 43 96% 56%;
-  --er: 0 91% 71%;
-  --inc: 198 100% 12%;
-  --suc: 158 100% 10%;
-  --wac: 43 100% 11%;
-  --erc: 0 100% 14%;
+  /* dark mode variants */
+  --pf-dark: 262 80% 43%;
+  --sf-dark: 316 70% 43%;
+  --af-dark: 175 70% 34%;
+  --in-dark: 198 93% 60%;
+  --su-dark: 158 64% 52%;
+  --wa-dark: 43 96% 56%;
+  --er-dark: 0 91% 71%;
+  --inc-dark: 198 100% 12%;
+  --suc-dark: 158 100% 10%;
+  --wac-dark: 43 100% 11%;
+  --erc-dark: 0 100% 14%;
+  --p-dark: 262 80% 50%;
+  --pc-dark: 0 0% 100%;
+  --s-dark: 316 70% 50%;
+  --sc-dark: 0 0% 100%;
+  --a-dark: 175 70% 41%;
+  --ac-dark: 0 0% 100%;
+  --n-dark: 213 18% 20%;
+  --nf-dark: 212 17% 17%;
+  --nc-dark: 220 13% 69%;
+  --b1-dark: 212 18% 14%;
+  --b2-dark: 213 18% 12%;
+  --b3-dark: 213 18% 10%;
+  --bc-dark: 220 13% 69%;
+
+  /* light mode variants */
+  --pf-light: 262 80% 63%;
+  --sf-light: 316 70% 63%;
+  --af-light: 175 70% 54%;
+  --in-light: 198 93% 80%;
+  --su-light: 158 64% 72%;
+  --wa-light: 43 96% 76%;
+  --er-light: 0 91% 85%;
+  --inc-light: 198 100% 52%;
+  --suc-light: 158 100% 50%;
+  --wac-light: 43 100% 51%;
+  --erc-light: 0 100% 57%;
+  --p-light: 262 80% 70%;
+  --pc-light: 0 0% 100%;
+  --s-light: 316 70% 70%;
+  --sc-light: 0 0% 100%;
+  --a-light: 175 70% 49%;
+  --ac-light: 0 0% 100%;
+  --n-light: 213 18% 40%;
+  --nf-light: 212 17% 37%;
+  --nc-light: 220 13% 84%;
+  --b1-light: 212 18% 24%;
+  --b2-light: 213 18% 20%;
+  --b3-light: 213 18% 17%;
+  --bc-light: 220 13% 84%;
+
+  /* common */
   --rounded-box: 1rem;
   --rounded-btn: 0.5rem;
   --rounded-badge: 1.9rem;
@@ -23,19 +65,62 @@
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
-  --p: 262 80% 50%;
-  --pc: 0 0% 100%;
-  --s: 316 70% 50%;
-  --sc: 0 0% 100%;
-  --a: 175 70% 41%;
-  --ac: 0 0% 100%;
-  --n: 213 18% 20%;
-  --nf: 212 17% 17%;
-  --nc: 220 13% 69%;
-  --b1: 212 18% 14%;
-  --b2: 213 18% 12%;
-  --b3: 213 18% 10%;
-  --bc: 220 13% 69%;
+}
+
+/* for light theme */
+body[data-theme="dark"] {
+  /* dark mode variants of all */
+  --pf: var(--pf-dark);
+  --sf: var(--sf-dark);
+  --af: var(--af-dark);
+  --in: var(--in-dark);
+  --su: var(--su-dark);
+  --wa: var(--wa-dark);
+  --er: var(--er-dark);
+  --inc: var(--inc-dark);
+  --suc: var(--suc-dark);
+  --wac: var(--wac-dark);
+  --erc: var(--erc-dark);
+  --p: var(--p-dark);
+  --pc: var(--pc-dark);
+  --s: var(--s-dark);
+  --sc: var(--sc-dark);
+  --a: var(--a-dark);
+  --ac: var(--ac-dark);
+  --n: var(--n-dark);
+  --nf: var(--nf-dark);
+  --nc: var(--nc-dark);
+  --b1: var(--b1-dark);
+  --b2: var(--b2-dark);
+  --b3: var(--b3-dark);
+  --bc: var(--bc-dark);
+}
+
+body[data-theme="light"] {
+  --pf: var(--pf-light);
+  --sf: var(--sf-light);
+  --af: var(--af-light);
+  --in: var(--in-light);
+  --su: var(--su-light);
+  --wa: var(--wa-light);
+  --er: var(--er-light);
+  --inc: var(--inc-light);
+  --suc: var(--suc-light);
+  --wac: var(--wac-light);
+  --erc: var(--erc-light);
+  --p: var(--p-light);
+  --pc: var(--pc-light);
+  --s: var(--s-light);
+  --sc: var(--sc-light);
+  --a: var(--a-light);
+  --ac: var(--ac-light);
+  --n: var(--n-light);
+  --nf: var(--nf-light);
+  --nc: var(--nc-light);
+  --b1: var(--b1-light);
+  --b2: var(--b2-light);
+  --b3: var(--b3-light);
+  --bc: var(--bc-light);
 }
 
 body {
