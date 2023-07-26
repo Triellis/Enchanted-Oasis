@@ -142,6 +142,7 @@
 }
 .btn {
   width: 10em;
+  background-color: hsl(var(--s)) !important;
 }
 .btn:hover {
   background-color: hsl(var(--sf)) !important;

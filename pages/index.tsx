@@ -76,7 +76,6 @@ export default function IndexPage() {
                     <Button
                       onClick={() => signIn()}
                       className={styles.btn}
-                      backgroundColor={"hsl(var(--s))"}
                     >
                       Sign in
                     </Button>
