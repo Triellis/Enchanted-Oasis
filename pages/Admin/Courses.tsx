@@ -36,7 +36,7 @@ export default function Courses() {
   const [search, setSearch] = useState("");
   const { courses, isLoading, error, mutate } = useCourses(page, search, "all");
 
-  // for the modal:
+  // for the modal
   const {
     isOpen: isAddCourseOpen,
     onOpen: onAddCourseOpen,
