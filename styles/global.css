@@ -29,40 +29,31 @@
   --bc-dark: 220 13% 69%;
 
   /* light mode variants */
-  --pf-light: 259 94% 44%;
-  --sf-light: 314 100% 40%;
-  --af-light: 174 75% 39%;
-  --nf-light: 214 20% 14%;
-  --in-light: 198 93% 60%;
-  --su-light: 158 64% 52%;
-  --wa-light: 43 96% 56%;
-  --er-light: 0 91% 71%;
-  --inc-light: 198 100% 12%;
-  --suc-light: 158 100% 10%;
-  --wac-light: 43 100% 11%;
-  --erc-light: 0 100% 14%;
-  --rounded-light-box: 1rem;
-  --rounded-light-btn: 0.5rem;
-  --rounded-light-badge: 1.9rem;
-  --animation-light-btn: 0.25s;
-  --animation-light-input: 0.2s;
-  --btn-light-text-case: uppercase;
-  --btn-light-focus-scale: 0.95;
-  --border-light-btn: 1px;
-  --tab-light-border: 1px;
-  --tab-light-radius: 0.5rem;
-  --p-light: 259 94% 51%;
-  --pc-light: 259 96% 91%;
-  --s-light: 314 100% 47%;
-  --sc-light: 314 100% 91%;
-  --a-light: 174 75% 46%;
-  --ac-light: 174 75% 11%;
-  --n-light: 214 20% 21%;
-  --nc-light: 212 19% 87%;
-  --b1-light: 0 0% 100%;
-  --b2-light: 0 0% 95%;
-  --b3-light: 180 2% 90%;
-  --bc-light: 215 28% 17%;
+
+  --pf-light: 353 74% 60%;
+  --sf-light: 254 86% 70%;
+  --af-light: 181 56% 63%;
+  --nf-light: 336 43% 41%;
+  --b2-light: 318 46% 82%;
+  --b3-light: 318 46% 75%;
+  --pc-light: 356 26% 14%;
+  --sc-light: 256 20% 15%;
+  --ac-light: 181 16% 15%;
+  --inc-light: 239 85% 93%;
+  --suc-light: 126 38% 89%;
+  --wac-light: 29 59% 11%;
+  --erc-light: 11 100% 91%;
+  --p-light: 353 74% 67%;
+  --s-light: 254 86% 77%;
+  --a-light: 181 56% 70%;
+  --n-light: 336 43% 48%;
+  --nc-light: 318 46% 89%;
+  --b1-light: 318 46% 89%;
+  --bc-light: 344 38% 28%;
+  --in-light: 221 83% 53%;
+  --su-light: 142 76% 36%;
+  --wa-light: 32 95% 44%;
+  --er-light: 0 72% 51%;
 
   /* common */
   --rounded-box: 1rem;
@@ -136,6 +127,7 @@ main[data-theme="light"] {
 main {
   background-color: hsl(var(--b1)) !important;
   user-select: none;
+  color: hsl(var(--bc));
 }
 * {
   -webkit-tap-highlight-color: transparent;

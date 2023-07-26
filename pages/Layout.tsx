@@ -61,6 +61,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const mainRef = useRef<HTMLDivElement>(null);
   // logic for changing the theme:
+  useEffect(() => {
+    if (!mainRef.current) return;
+    toggleTheme(mainRef);
+  }, [mainRef.current]);
 
   return (
     <>
