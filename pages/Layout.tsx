@@ -33,38 +33,55 @@ const navItems: {
     { text: "Houses", linkTo: "/Everyone/Houses" },
   ],
 };
-function toggleTheme(mainRef: React.RefObject<HTMLDivElement>) {
-  if (!mainRef.current) return;
-  let theme = localStorage.getItem("data-theme");
 
-  if (theme === "dark") {
-    mainRef.current.setAttribute("data-theme", "light");
-    localStorage.setItem("data-theme", "light");
-    theme = "light";
-  } else {
-    mainRef.current.setAttribute("data-theme", "dark");
-    localStorage.setItem("data-theme", "dark");
-    theme = "dark";
-  }
-}
+// function toggleTheme(mainRef: React.RefObject<HTMLDivElement>) {
+//   if (!mainRef.current) return;
+//   let theme = localStorage.getItem("data-theme");
+
+//   if (theme === "dark") {
+//     mainRef.current.setAttribute("data-theme", "light");
+//     localStorage.setItem("data-theme", "light");
+//     theme = "light";
+//   } else {
+//     mainRef.current.setAttribute("data-theme", "dark");
+//     localStorage.setItem("data-theme", "dark");
+//     theme = "dark";
+//   }
+// }
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const session = useSession();
-
   const router = useRouter();
+
   if (session.status === "unauthenticated") {
     router.push("/");
   }
 
   const data = session.data as MySession;
   const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
+
   const dispatch = useAppDispatch();
 
+  const [theme, setTheme] = useState("light");
   const mainRef = useRef<HTMLDivElement>(null);
-  // logic for changing the theme:
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("data-theme", newTheme);
+    if (mainRef.current) {
+      mainRef.current.setAttribute("data-theme", newTheme);
+    }
+  };
+
   useEffect(() => {
     if (!mainRef.current) return;
-    toggleTheme(mainRef);
-  }, [mainRef.current]);
+    const savedTheme = localStorage.getItem("data-theme");
+    if (savedTheme) {
+      setTheme(savedTheme);
+      mainRef.current.setAttribute("data-theme", savedTheme);
+    }
+  }, []);
 
   return (
     <>
@@ -85,7 +102,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className={styles.content}>
           <Nav
             onToggle={() => dispatch(toggleSidebar())}
-            toggleTheme={() => toggleTheme(mainRef)}
+            toggleTheme={() => toggleTheme()}
           />
           <div className={styles.childContent}>{children}</div>
         </div>
