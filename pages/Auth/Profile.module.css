@@ -1,4 +1,7 @@
 /* header having a flex direction of row: */
+.container {
+  color: hsl(var(--pc));
+}
 .header {
   display: flex;
   flex-direction: row;
