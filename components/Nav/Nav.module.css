@@ -133,7 +133,7 @@
   position: absolute;
   height: 3px;
   width: 100%;
-  background: white;
+  background: hsl(var(--nc));
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -187,4 +187,5 @@
 
 .themeButton{
   background-color: hsl(var(--n)) !important;
+  color: hsl(var(--nc)) !important;
 }

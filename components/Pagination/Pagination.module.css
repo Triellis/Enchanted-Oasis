@@ -8,6 +8,7 @@
 
 .btn{
   background-color: hsl(var(--n)) !important;
+  color: hsl(var(--nc)) !important;
 }
 .txt{
   color: hsl(var(--ac)) !important;
