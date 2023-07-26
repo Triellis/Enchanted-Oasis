@@ -141,7 +141,7 @@ main {
 * {
   -webkit-tap-highlight-color: transparent;
 }
-body,
+body, 
 html,
 #__next {
   /* min-height: min-content; */
@@ -158,4 +158,8 @@ html,
 }
 .clicky:active {
   transform: scale(0.99);
+}
+
+.modalContent {
+  background-color: hsl(var(--b1)) !important;
 }

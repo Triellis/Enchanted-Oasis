@@ -82,7 +82,7 @@ function DeleteConfirmationModal({
     <Modal isCentered size={"sm"} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
 
-      <ModalContent borderRadius={10} backgroundColor="hsl(var(--b2))">
+      <ModalContent borderRadius={10} className="modalContent">
         <ModalHeader>Sure About Deleting?</ModalHeader>
         <ModalCloseButton onClick={onClose} />
 
