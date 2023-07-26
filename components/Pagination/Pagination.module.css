@@ -5,3 +5,10 @@
   align-items: center;
   gap: 1em;
 }
+
+.btn{
+  background-color: hsl(var(--n)) !important;
+}
+.txt{
+  color: hsl(var(--ac)) !important;
+}
