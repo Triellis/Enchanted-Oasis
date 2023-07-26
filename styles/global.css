@@ -27,6 +27,8 @@
   --b2-dark: 213 18% 12%;
   --b3-dark: 213 18% 10%;
   --bc-dark: 220 13% 69%;
+  --app1-dark: 38, 100%, 50%;
+  --app2-dark: 62, 100%, 50%;
 
   /* light mode variants */
 
@@ -64,6 +66,8 @@
   --su-light: 291 48% 38%;
   --wa-light: 25 85% 57%;
   --er-light: 4 81% 56%;
+  --app1-light: 40, 100%, 50%;
+  --app2-light: 66, 100%, 50%;
 
   /* common */
   --rounded-box: 1rem;
@@ -105,6 +109,8 @@ main[data-theme="dark"] {
   --b2: var(--b2-dark);
   --b3: var(--b3-dark);
   --bc: var(--bc-dark);
+  --app1: var(--app1-dark);
+  --app2: var(--app2-dark);
 }
 
 main[data-theme="light"] {
@@ -132,6 +138,8 @@ main[data-theme="light"] {
   --b2: var(--b2-light);
   --b3: var(--b3-light);
   --bc: var(--bc-light);
+  --app1: var(--app1-light);
+  --app2: var(--app2-light);
 }
 
 main {
@@ -141,7 +149,7 @@ main {
 * {
   -webkit-tap-highlight-color: transparent;
 }
-body, 
+body,
 html,
 #__next {
   /* min-height: min-content; */

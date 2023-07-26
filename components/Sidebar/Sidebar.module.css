@@ -77,8 +77,10 @@
   font-family: "New Rocker", sans-serif;
   background: linear-gradient(
     135deg,
-    rgb(255, 162, 0) 5%,
-    rgb(246, 255, 0) 75%
+    /* rgb(255, 162, 0) 5%,
+    rgb(246, 255, 0) 75% */
+    hsl(var(--app1))5%,
+    hsl(var(--app2)) 75%
   );
   -webkit-background-clip: text;
   background-clip: text;
