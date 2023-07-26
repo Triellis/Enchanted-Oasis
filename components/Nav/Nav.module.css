@@ -35,10 +35,10 @@
   transform: scale(0.9);
   border-radius: 0.8em;
   background-color: hsl(var(--b1)) !important;
+  color: hsl(var(--pc)) !important;
 }
 .menuItem:hover {
   background-color: hsl(var(--p)) !important;
-  color: hsl(var(--pc));
 }
 
 .menuOut {
