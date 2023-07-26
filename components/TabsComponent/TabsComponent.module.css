@@ -5,16 +5,7 @@
   justify-content: center;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  border: 1px solid hsl(var(--n));
   padding: 0.4em;
-}
-.tabGrp {
-  background-color: hsl(var(--b3));
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  width: calc(min-content + 50px);
-  position: relative; /* Add position relative to create stacking context */
 }
 .tabList {
   padding-inline: 5px;
@@ -30,4 +21,5 @@
   height: 70%;
   transition: transform 0.3s ease;
   transform: translateY(70%);
+
 }

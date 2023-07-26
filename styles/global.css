@@ -137,7 +137,6 @@ main[data-theme="light"] {
 main {
   background-color: hsl(var(--b1)) !important;
   user-select: none;
-  color: hsl(var(--bc));
 }
 * {
   -webkit-tap-highlight-color: transparent;
