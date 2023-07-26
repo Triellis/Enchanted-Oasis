@@ -12,7 +12,7 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { HamburgerIcon, BellIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, BellIcon, SunIcon, MoonIcon } from "@chakra-ui/icons";
 import styles from "./Nav.module.css";
 
 import Link from "next/link";
@@ -53,7 +53,14 @@ function useUser() {
     error,
   };
 }
-function Nav({ onToggle }: { onToggle: () => void }) {
+
+function Nav({
+  onToggle,
+  toggleTheme,
+}: {
+  onToggle: () => void;
+  toggleTheme: () => void;
+}) {
   const { userJson, isUserLoading, error: userError } = useUser();
   const session = useSession();
   const sessionData = session.data as MySession;
@@ -72,6 +79,9 @@ function Nav({ onToggle }: { onToggle: () => void }) {
       );
     }
   }
+
+  // for changing the icon of the button:
+  const [sun, setSun] = React.useState(true);
 
   return (
     <div className={styles.navbar}>
@@ -96,6 +106,17 @@ function Nav({ onToggle }: { onToggle: () => void }) {
               {notificationCountComponent}
             </button>
           </Link>
+
+          <IconButton
+            variant="outline"
+            aria-label="color mode"
+            fontSize="20px"
+            onClick={() => {
+              toggleTheme();
+              setSun((prev) => !prev);
+            }}
+            icon={sun ? <SunIcon /> : <MoonIcon />}
+          />
 
           <Menu>
             <MenuButton className="clicky">

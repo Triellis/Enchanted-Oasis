@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import styles from "./Layout.module.css";
 import Nav from "../components/Nav";
 import Sidebar from "../components/Sidebar";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SidebarItem from "../components/SidebarItem";
 import { MySession } from "../lib/types";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
@@ -45,6 +45,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const data = session.data as MySession;
   const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
   const dispatch = useAppDispatch();
+
+  const mainRef = useRef<HTMLDivElement>(null);
+  // logic for changing the theme:
+
+  function toggleTheme(mainRef: React.RefObject<HTMLDivElement>) {
+    let theme = localStorage.getItem("data-theme");
+
+    if (theme === "dark") {
+      mainRef.setAttribute("data-theme", "light");
+      localStorage.setItem("data-theme", "light");
+      theme = "light";
+    } else {
+      mainRef.setAttribute("data-theme", "dark");
+      localStorage.setItem("data-theme", "dark");
+      theme = "dark";
+    }
+  }
+
   return (
     <>
       <Head>
@@ -52,7 +70,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Cool! " />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className={styles.main} ref={mainRef}>
         <div className={styles.sidebar}>
           <Sidebar isOpen={isSidebarOpen}>
             {data &&
@@ -62,7 +80,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Sidebar>
         </div>
         <div className={styles.content}>
-          <Nav onToggle={() => dispatch(toggleSidebar())} />
+          <Nav
+            onToggle={() => dispatch(toggleSidebar())}
+            toggleTheme={() => toggleTheme(mainRef)}
+          />
           <div className={styles.childContent}>{children}</div>
         </div>
       </main>
