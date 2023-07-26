@@ -30,30 +30,31 @@
 
   /* light mode variants */
 
-  --pf-light: 353 74% 60%;
-  --sf-light: 254 86% 70%;
-  --af-light: 181 56% 63%;
-  --nf-light: 336 43% 41%;
-  --b2-light: 318 46% 82%;
-  --b3-light: 318 46% 75%;
-  --pc-light: 356 26% 14%;
-  --sc-light: 256 20% 15%;
-  --ac-light: 181 16% 15%;
-  --inc-light: 239 85% 93%;
-  --suc-light: 126 38% 89%;
-  --wac-light: 29 59% 11%;
-  --erc-light: 11 100% 91%;
-  --p-light: 353 74% 67%;
-  --s-light: 254 86% 77%;
-  --a-light: 181 56% 70%;
-  --n-light: 336 43% 48%;
-  --nc-light: 318 46% 89%;
-  --b1-light: 318 46% 89%;
-  --bc-light: 344 38% 28%;
-  --in-light: 221 83% 53%;
-  --su-light: 142 76% 36%;
-  --wa-light: 32 95% 44%;
-  --er-light: 0 72% 51%;
+  --pf-light: 198 93% 53%;
+  --sf-light: 234 89% 67%;
+  --af-light: 329 86% 63%;
+  --b2-light: 222 47% 4%;
+  --b3-light: 0 0% 0%;
+  --bc-light: 229 7% 80%;
+  --pc-light: 202 34% 14%;
+  --sc-light: 239 22% 15%;
+  --ac-light: 332 26% 15%;
+  --nc-light: 221 7% 82%;
+  --suc-light: 169 31% 13%;
+  --wac-light: 39 36% 14%;
+  --erc-light: 354 28% 15%;
+
+  --p-light: 198 93% 60%;
+  --s-light: 234 89% 74%;
+  --a-light: 329 86% 70%;
+  --n-light: 217 33% 17%;
+  --nf-light: 217 30% 22%;
+  --b1-light: 222 47% 11%;
+  --in-light: 198 90% 48%;
+  --inc-light: 0 0% 0%;
+  --su-light: 172 66% 50%;
+  --wa-light: 41 88% 64%;
+  --er-light: 351 95% 71%;
 
   /* common */
   --rounded-box: 1rem;
