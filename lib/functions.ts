@@ -146,3 +146,20 @@ export function useUserSearch(searchQuery: string, role: string, page: number) {
     mutate,
   };
 }
+
+export function useCourses(
+  page: number,
+  search: string,
+  type: "all" | "enrolled" | "notenrolled" | "teaching"
+) {
+  const { data, isLoading, error, mutate } = useSWR(
+    `/api/course/list?page=${page}&type=${type}&searchQuery=${search}`,
+    fetcher
+  );
+  return {
+    courses: data,
+    isLoading,
+    error,
+    mutate,
+  };
+}
