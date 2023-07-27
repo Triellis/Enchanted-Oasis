@@ -50,7 +50,6 @@ function ColorSwatch({
     "orange",
     "red",
     "purple",
-
     "yellow",
   ];
   return (
