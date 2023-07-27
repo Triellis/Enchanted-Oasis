@@ -259,22 +259,27 @@ function CourseDataReducer(state: any, action: any) {
       if (Object.keys(state.schedule).includes(day)) {
         if (method === "add") {
           const stateClone = structuredClone(state);
-
+      
           stateClone.schedule[day].push({ startTime, endTime });
-
+      
           return stateClone;
         } else {
-          return {
-            ...state,
-            schedule: {
-              ...state.schedule,
-              [day]: state.schedule[day].filter((entry: any) => {
-                return (
-                  entry.startTime !== startTime && entry.endTime !== endTime
-                );
-              }),
-            },
-          };
+          const remainingEntries = state.schedule[day].filter((entry: any) => {
+            return !(entry.startTime === startTime && entry.endTime === endTime);
+          });
+      
+          if (remainingEntries.length === 0) {
+            // If the last entry is being removed, do not update the state for that day.
+            return state;
+          } else {
+            return {
+              ...state,
+              schedule: {
+                ...state.schedule,
+                [day]: remainingEntries,
+              },
+            };
+          }
         }
       } else {
         return {
@@ -285,6 +290,7 @@ function CourseDataReducer(state: any, action: any) {
           },
         };
       }
+      
     case "reset":
       return action.payload;
     default:
@@ -368,7 +374,7 @@ export default function AddCourseModal({
         isCentered
         motionPreset="slideInBottom"
         size={{ base: "full", md: "3xl" }}
-        scrollBehavior={"inside"}
+        scrollBehavior="inside"
       >
         <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
         <ModalContent bg="hsl(var(--b1))">
