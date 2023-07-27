@@ -365,16 +365,17 @@ export default function CoursePage() {
         </div>
       </div>
 
-      <button
-        className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
-        onClick={() => {
-          onOpen();
-        }}
-      >
-        <AddIcon className={userStyles.icon} />
-        Enroll{" "}
-      </button>
-
+      {session?.user.role === "Admin" && (
+        <button
+          className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
+          onClick={() => {
+            onOpen();
+          }}
+        >
+          <AddIcon className={userStyles.icon} />
+          Enroll{" "}
+        </button>
+      )}
       <EnrollUserModal
         mutateMembers={mutateMembers}
         isOpen={isOpen}

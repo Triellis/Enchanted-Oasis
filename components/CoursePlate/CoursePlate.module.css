@@ -10,6 +10,7 @@
   align-items: flex-start;
   background-color: hsl(var(--a));
   color: hsl(var(--b3));
+  gap: 0.5em;
 }
 .coursePlate > .subHeader {
   display: flex;
@@ -159,4 +160,12 @@
   width: max-content;
   font-size: 0.8em !important;
   border: 1px solid hsl(var(--er)) !important;
+}
+.footer > button {
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+}
+.footer > button:hover {
+  background-color: hsl(var(--b3));
+  color: hsl(var(--a));
 }
