@@ -114,7 +114,6 @@ function useMembers(
 //   return courseToRender;
 // }
 
-
 // function extractTimeIn24HrsFormat(date: string) {
 //   const dateObj = new Date(date);
 //   const hours = String(dateObj.getHours()).padStart(2, "0");
@@ -209,7 +208,7 @@ function Selector({
     if (selectedUsers.includes(userData._id.toString())) {
       setIsSelected(true);
     }
-  }, [selectedUsers]);
+  }, [selectedUsers, userData._id]);
   if (isSelected) {
     return (
       <Button
