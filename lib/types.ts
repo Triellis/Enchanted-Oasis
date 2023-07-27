@@ -100,7 +100,7 @@ export type CourseCol = {
   description: string;
   credits: number;
   schedule: {
-    [day in Day]: {
+    [day in Day]?: {
       startTime: Date;
       endTime: Date;
     }[];
