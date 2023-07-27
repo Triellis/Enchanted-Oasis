@@ -121,7 +121,7 @@ export default function CourseListItem({
   mutate: () => void;
 }) {
   const router = useRouter();
-  const enrollmentMode = false;
+  const adminMode = router.pathname.includes("Admin");
   const {
     isOpen: isDelOpen,
     onOpen: onDelOpen,
@@ -150,7 +150,7 @@ export default function CourseListItem({
             </div>
           </div>
 
-          {!enrollmentMode && (
+          {adminMode && (
             <div className={styles.coursePlay}>
               {/* add butotn */}
               <IconButton
