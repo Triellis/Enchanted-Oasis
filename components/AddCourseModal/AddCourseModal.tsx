@@ -286,6 +286,8 @@ function CourseDataReducer(state: any, action: any) {
           },
         };
       }
+    case "reset":
+      return action.payload;
     default:
       return state;
   }
@@ -355,6 +357,10 @@ export default function AddCourseModal({
 
   const [courseData, dispatchData] = useReducer(CourseDataReducer, initialData);
   const toast = useToast();
+  useEffect(() => {
+    dispatchData({ type: "reset", payload: initialData });
+  }, [isOpen]);
+
   return (
     <>
       <Modal
