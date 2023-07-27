@@ -183,3 +183,6 @@
   width: 0%;
   left: 50%;
 }
+.avatarWrapper:hover > * {
+  filter: saturate(2);
+}
