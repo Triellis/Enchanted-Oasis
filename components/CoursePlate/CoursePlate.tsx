@@ -116,7 +116,8 @@ export default function CoursePlate({
   } else if (error) {
     courseToRender = <div>Error</div>;
   } else {
-    if (actionBtn == "enroll") {
+    if (actionBtn == "enroll" || actionBtn === null) {
+      console.log(actionBtn);
       membersComponent = (
         <div className={styles.footer}>
           <div className={styles.numberOfStudents}>
@@ -127,7 +128,7 @@ export default function CoursePlate({
           </div>
         </div>
       );
-    } else {
+    } else if (actionBtn == "unenroll") {
       membersComponent = (
         <div className={styles.footer}>
           <button className={styles.numberOfStudents} onClick={onStudentsOpen}>

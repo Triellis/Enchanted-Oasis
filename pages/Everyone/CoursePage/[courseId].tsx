@@ -328,7 +328,6 @@ export default function CoursePage() {
   );
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Layout>
       <div className={styles.coursePage}>
@@ -338,7 +337,6 @@ export default function CoursePage() {
           error={error}
           actionBtn={session?.user.role === "Student" ? "enroll" : null}
         />
-
         <div className={styles.membersWrapper}>
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
           <TabsComponent
