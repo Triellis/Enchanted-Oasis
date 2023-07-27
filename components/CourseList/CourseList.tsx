@@ -2,16 +2,19 @@ import CourseListItem from "@/components/CourseListItem";
 import { CourseListItemData } from "@/lib/types";
 import { List } from "@chakra-ui/react";
 import styles from "./CourseList.module.css";
+
 export default function CourseList({
   courses,
   isLoading,
   error,
   mutate,
+  adminMode = false,
 }: {
   courses: CourseListItemData[];
   isLoading: boolean;
   error: any;
   mutate: () => void;
+  adminMode?: boolean;
 }) {
   let componentToRender;
   if (isLoading) {
@@ -30,6 +33,7 @@ export default function CourseList({
             mutate={mutate}
             key={course._id.toString()}
             course={course}
+            adminMode={adminMode}
           />
         ))}
       </List>

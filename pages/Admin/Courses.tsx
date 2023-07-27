@@ -40,6 +40,7 @@ export default function Courses() {
             isLoading={isLoading}
             error={error}
             mutate={mutate}
+            adminMode={true}
           />
           <Pagination items={courses} page={page} setPage={setPage} />
         </div>

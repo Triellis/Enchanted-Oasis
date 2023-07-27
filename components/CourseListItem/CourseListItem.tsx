@@ -116,12 +116,14 @@ function ConfirmDelModal({
 export default function CourseListItem({
   course,
   mutate,
+  adminMode = false,
 }: {
   course: CourseListItemData;
   mutate: () => void;
+  adminMode?: boolean;
 }) {
   const router = useRouter();
-  const adminMode = router.pathname.includes("Admin");
+  // const adminMode = true;
   const {
     isOpen: isDelOpen,
     onOpen: onDelOpen,
