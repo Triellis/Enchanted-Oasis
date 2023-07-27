@@ -70,12 +70,12 @@ export default function CoursePlate({
           </div>
 
           <div className={styles.footer}>
-            <div className={styles.numberOfStudents}>
+            <button className={styles.numberOfStudents} onClick={() => {}}>
               {course.numberOfStudents} Students Enrolled
-            </div>
-            <div className={styles.numberOfFaculties}>
+            </button>
+            <button className={styles.numberOfFaculties} onClick={() => {}}>
               {course.numberOfFaculties} Faculties
-            </div>
+            </button>
           </div>
         </div>
         <div className={styles.descriptionPlate}>
