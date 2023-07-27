@@ -1,4 +1,9 @@
-import { fetcher, useCoursePage, useUserSearch } from "@/lib/functions";
+import {
+  fetcher,
+  useCourseMembers,
+  useCoursePage,
+  useUserSearch,
+} from "@/lib/functions";
 import {
   CourseInformation,
   Day,
@@ -36,25 +41,6 @@ import TabsComponent from "@/components/TabsComponent/TabsComponent";
 import { AddIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
-
-function useMembers(
-  courseId: string,
-  page: number,
-  search: string,
-  memberType: "student" | "faculty",
-  notEnrolledOnly = false
-) {
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/course/${courseId}/member?page=${page}&memberType=${memberType}&searchQuery=${search}&&notEnrolledOnly=${notEnrolledOnly}`,
-    fetcher
-  );
-  return {
-    members: data as ReceivedUserDataOnClient[],
-    isLoading,
-    error,
-    mutate,
-  };
-}
 
 async function enrollUsers(
   cousreId: string,
@@ -160,7 +146,7 @@ function EnrollUserModal({
   const [page, setPage] = useState(1);
   const router = useRouter();
   const courseId = router.query.courseId;
-  const { members, error, isLoading, mutate } = useMembers(
+  const { members, error, isLoading, mutate } = useCourseMembers(
     courseId as string,
     page,
     searchQuery,
@@ -331,7 +317,7 @@ export default function CoursePage() {
     isLoading: isLoadingMembers,
     error: errorMembers,
     mutate: mutateMembers,
-  } = useMembers(courseId as string, page, search, memberType);
+  } = useCourseMembers(courseId as string, page, search, memberType);
 
   const tabs = useMemo(
     () => [

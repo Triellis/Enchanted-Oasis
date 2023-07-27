@@ -176,3 +176,22 @@ export function useCoursePage(courseId: string) {
     mutate,
   };
 }
+
+export function useCourseMembers(
+  courseId: string,
+  page: number,
+  search: string,
+  memberType: "student" | "faculty",
+  notEnrolledOnly = false
+) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/course/${courseId}/member?page=${page}&memberType=${memberType}&searchQuery=${search}&&notEnrolledOnly=${notEnrolledOnly}`,
+    fetcher
+  );
+  return {
+    members: data as ReceivedUserDataOnClient[],
+    isLoading,
+    error,
+    mutate,
+  };
+}

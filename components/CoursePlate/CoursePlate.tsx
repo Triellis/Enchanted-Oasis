@@ -1,7 +1,8 @@
 import { CourseInformation, Day } from "@/lib/types";
-import { Button, Toast, useToast } from "@chakra-ui/react";
+import { Button, Toast, useDisclosure, useToast } from "@chakra-ui/react";
 import styles from "./CoursePlate.module.css";
 import { useState } from "react";
+import ListCourseMembersModal from "../ListCourseMembersModal/ListCourseMembersModal";
 
 function extractTimeIn24HrsFormat(date: string) {
   const dateObj = new Date(date);
@@ -78,6 +79,7 @@ export default function CoursePlate({
   actionBtn?: "enroll" | "unenroll" | null;
 }) {
   let actionComponent;
+  let membersComponent;
   const toast = useToast();
   if (actionBtn) {
     const [actionText, setActionText] = useState(actionBtn);
@@ -98,11 +100,60 @@ export default function CoursePlate({
     );
   }
   let courseToRender;
+  const {
+    isOpen: isFacultiesOpen,
+    onOpen: onFacultiesOpen,
+    onClose: onFacultiesClose,
+  } = useDisclosure();
+  const {
+    isOpen: isStudentsOpen,
+    onOpen: onStudentsOpen,
+    onClose: onStudentsClose,
+  } = useDisclosure();
+
   if (isLoading) {
     courseToRender = <div>Loading...</div>;
   } else if (error) {
     courseToRender = <div>Error</div>;
   } else {
+    if (actionBtn == "enroll") {
+      membersComponent = (
+        <div className={styles.footer}>
+          <div className={styles.numberOfStudents}>
+            {course.numberOfStudents} Students Enrolled
+          </div>
+          <div className={styles.numberOfFaculties}>
+            {course.numberOfFaculties} Faculties
+          </div>
+        </div>
+      );
+    } else {
+      membersComponent = (
+        <div className={styles.footer}>
+          <button className={styles.numberOfStudents} onClick={onStudentsOpen}>
+            {course.numberOfStudents} Students Enrolled
+          </button>
+          <button
+            className={styles.numberOfFaculties}
+            onClick={onFacultiesOpen}
+          >
+            {course.numberOfFaculties} Faculties
+          </button>
+          <ListCourseMembersModal
+            courseId={course._id.toString()}
+            isOpen={isFacultiesOpen}
+            memberType={"faculty"}
+            onClose={onFacultiesClose}
+          />
+          <ListCourseMembersModal
+            courseId={course._id.toString()}
+            isOpen={isStudentsOpen}
+            memberType={"student"}
+            onClose={onStudentsClose}
+          />
+        </div>
+      );
+    }
     courseToRender = (
       <div className={styles.courseDataWrapper}>
         <div className={styles.coursePlate}>
@@ -114,15 +165,7 @@ export default function CoursePlate({
             <div className={styles.courseCode}>{course.code}</div>
             <div className={styles.courseCredits}>{course.credits} credits</div>
           </div>
-
-          <div className={styles.footer}>
-            <button className={styles.numberOfStudents} onClick={() => {}}>
-              {course.numberOfStudents} Students Enrolled
-            </button>
-            <button className={styles.numberOfFaculties} onClick={() => {}}>
-              {course.numberOfFaculties} Faculties
-            </button>
-          </div>
+          {membersComponent}
         </div>
         {actionBtn == "enroll" && (
           <>
