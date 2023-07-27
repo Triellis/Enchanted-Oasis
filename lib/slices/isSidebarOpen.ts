@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface SidebarSlice {
   value: boolean;
 }
-console.log("object");
+
 export const sidebarSlice = createSlice({
   name: "isSidebarOpen",
   initialState: {

@@ -10,6 +10,8 @@ export default function UserList({
   forceSmall = false,
   isLoading,
   error,
+  customMode = false,
+  CustomComponent,
 }: {
   usersData: ReceivedUserDataOnClient[];
   mutate: () => void;
@@ -17,6 +19,8 @@ export default function UserList({
   forceSmall?: boolean;
   isLoading: boolean;
   error: any;
+  customMode?: boolean;
+  CustomComponent?: any;
 }) {
   let componentToRender;
   const toast = useToast();
@@ -49,6 +53,8 @@ export default function UserList({
             userData={user}
             key={user._id.toString()}
             editMode={editMode}
+            customMode={customMode}
+            CustomComponent={CustomComponent}
           />
         ))}
       </>

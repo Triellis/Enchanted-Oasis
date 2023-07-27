@@ -1,35 +1,144 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./CourseListItem.module.css";
 import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Divider,
+  Button,
   IconButton,
+  ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
+import { useRouter } from "next/router";
+import classNames from "classnames";
+
+// api call to delete course:
+async function deleteCourse(
+  courseID: string,
+  toast: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  course: CourseListItemData,
+  mutate: any,
+  onClose: any
+) {
+  setIsLoading(true);
+  const res = await fetch(`/api/course/${courseID}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    toast({
+      title: "Course deleted.",
+      description: `The course ${course.name} has been deleted.`,
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+    mutate();
+  } else {
+    toast({
+      title: "Error deleting course.",
+      description: `The course ${course.name} could not be deleted.`,
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
+  onClose();
+  setIsLoading(false);
+}
+
+// modal to confirm user deletion:
+function ConfirmDelModal({
+  isOpen,
+  onOpen,
+  onClose,
+  course,
+  mutate,
+}: {
+  isOpen: any;
+  onOpen: any;
+  onClose: any;
+  course: CourseListItemData;
+  mutate: () => void;
+}) {
+  const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  return (
+    <>
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
+        <ModalContent bg="hsl(var(--b1))">
+          <ModalHeader>Confirm Delete</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Are you sure you want to delete the course:{" "}
+            <span className={styles.name}>{course.name}</span>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              isLoading={isLoading}
+              onClick={() => {
+                deleteCourse(
+                  course._id.toString(),
+                  toast,
+                  setIsLoading,
+                  course,
+                  mutate,
+                  onClose
+                );
+              }}
+              className={classNames(styles.delCourse, "clicky")}
+            >
+              Delete
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
 
 export default function CourseListItem({
   course,
+  mutate,
 }: {
   course: CourseListItemData;
+  mutate: () => void;
 }) {
-  // item backend goes here
-
+  const router = useRouter();
   const enrollmentMode = false;
+  const {
+    isOpen: isDelOpen,
+    onOpen: onDelOpen,
+    onClose: onDelClose,
+  } = useDisclosure();
 
   return (
     <div className={styles.courseListItem}>
-      <AccordionItem border={"none"}>
+      <ListItem border={"none"}>
         <div className={styles.itemWrapper}>
-          <AccordionButton className={styles.openClose}>
-            <AccordionIcon />
-          </AccordionButton>
-
-          <div className={styles.courseInfo}>
+          <div
+            className={styles.courseInfo}
+            tabIndex={1}
+            onClick={() => {
+              router.push(`/Everyone/CoursePage/${course._id}`);
+            }}
+          >
             {/* course name */}
             <div className={styles.courseName}>{course.name}</div>
 
@@ -41,34 +150,29 @@ export default function CourseListItem({
             </div>
           </div>
 
-          {enrollmentMode && (
+          {!enrollmentMode && (
             <div className={styles.coursePlay}>
               {/* add butotn */}
               <IconButton
                 isRound
                 variant="outline"
                 aria-label="Add course"
-                className={styles.courseAdd}
-                icon={<AddIcon />}
-              />
-              {/* remove button */}
-              <IconButton
-                isRound
-                variant="outline"
-                aria-label="Remove Course"
-                className={styles.courseRemove}
-                icon={<MinusIcon />}
+                className={classNames(styles.courseDel, "clicky")}
+                icon={<DeleteIcon />}
+                onClick={onDelOpen}
               />
             </div>
           )}
         </div>
+      </ListItem>
 
-        <AccordionPanel pb={4} className={styles.courseDesc}>
-          <span className={styles.descHead}>{course.name}</span>
-          <Divider className={styles.descDiv} />
-          <span className={styles.descCon}>{course.description}</span>
-        </AccordionPanel>
-      </AccordionItem>
+      <ConfirmDelModal
+        isOpen={isDelOpen}
+        onOpen={onDelOpen}
+        onClose={onDelClose}
+        course={course}
+        mutate={mutate}
+      />
     </div>
   );
 }

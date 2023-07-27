@@ -100,10 +100,10 @@ export type CourseCol = {
   description: string;
   credits: number;
   schedule: {
-    [day in Day]: {
+    [day in Day]?: {
       startTime: Date;
       endTime: Date;
-    };
+    }[];
   };
   faculties: string[]; // faculty ids
   students: string[]; // array of student ids
@@ -122,7 +122,7 @@ export const CourseListItemProjection = {
   _id: 1,
   name: 1,
   code: 1,
-  description: 1,
+
   credits: 1,
 };
 
@@ -131,6 +131,7 @@ export type CourseInformation = Omit<
   "faculties" | "students" | "lectures"
 > & {
   numberOfStudents: number;
+  numberOfFaculties: number;
 };
 
 export const CourseInformationProjection = {
@@ -143,4 +144,12 @@ export const CourseInformationProjection = {
   numberOfStudents: {
     $size: "$students",
   },
+  numberOfFaculties: {
+    $size: "$faculties",
+  },
 };
+export type TabsType = {
+  label: string;
+  value: string;
+  color: string;
+}[];

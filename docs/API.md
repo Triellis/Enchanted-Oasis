@@ -254,9 +254,9 @@ type Result = {
 
 #### Response will be status code
 
-### List Students
+### List Members
 
-- **URL:** `/api/course/{id}/student/list`
+- **URL:** `/api/course/{id}/member`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Student`
 
@@ -265,7 +265,10 @@ type Result = {
 ```typescript
 {
 	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
+	"page"?: number, // pagination parameter, default is 1
+	"notEnrolledOnly"?: boolean // filter parameter for student
+	"memberType": "Student" | "Faculty"
+
 }
 ```
 
