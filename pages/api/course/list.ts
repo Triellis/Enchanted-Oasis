@@ -52,7 +52,7 @@ async function GET(
   } else if (type === "teaching") {
     filter["faculties"] = { $exists: true, $elemMatch: { $eq: userId } };
   }
-  console.log(filter);
+
   const courses = await courseCol
     .find(filter, {
       projection: CourseListItemProjection,
