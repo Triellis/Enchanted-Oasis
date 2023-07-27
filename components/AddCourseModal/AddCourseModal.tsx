@@ -61,19 +61,23 @@ function ScheduleEntry({
   dispatchData: any;
   entry: any;
 }) {
-  const week = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const [day, setDay] = useState(entry.day);
+  const [startTime, setStartTime] = useState(entry.startTime);
+  const [endTime, setEndTime] = useState(entry.endTime);
+  const [method, setMethod] = useState("add");
 
   return (
     <div className={styles.time}>
       <div>
-        <Select variant="filled" className={styles.days}>
+        <Select
+          variant="filled"
+          className={styles.days}
+          onChange={(e) => {
+            setDay(e.target.value);
+          }}
+          value={day}
+        >
           {week.map((day, index) => (
             <option className={styles.dayEntry} key={index} value={day}>
               {day}
@@ -82,14 +86,44 @@ function ScheduleEntry({
         </Select>
       </div>
       <div className={styles.entry}>
-        <Input type="time" />
+        <Input
+          type="time"
+          onChange={(e) => {
+            setStartTime(e.target.value);
+          }}
+          value={startTime}
+        />
         To
-        <Input type="time" />
+        <Input
+          type="time"
+          onChange={(e) => {
+            setEndTime(e.target.value);
+          }}
+          value={endTime}
+        />
       </div>
 
       <div className={styles.dup}>
-        <IconButton aria-label="Add Time" icon={<AddIcon />} />
-        <IconButton aria-label="Add Time" icon={<MinusIcon />} />
+        <IconButton
+          aria-label="Add Time"
+          icon={<AddIcon />}
+          onClick={() => {
+            dispatchData({
+              type: "schedule",
+              payload: { day, startTime, endTime, method },
+            });
+          }}
+        />
+        <IconButton
+          aria-label="Add Time"
+          icon={<MinusIcon />}
+          onClick={() => {
+            dispatchData({
+              type: "schedule",
+              payload: { day, startTime, endTime, method: "remove" },
+            });
+          }}
+        />
       </div>
     </div>
   );
@@ -178,17 +212,19 @@ function CourseDataReducer(state: any, action: any) {
     case "description":
       return { ...state, description: action.payload };
     case "schedule":
-      let Day = action.payload.day;
+      let day = action.payload.day;
+      console.log(day);
       let startTime = action.payload.startTime;
       let endTime = action.payload.endTime;
       let method = action.payload.method;
-      if (Object.keys(state.schedule).includes(Day)) {
+      console.log(state.schedule[day]);
+      if (Object.keys(state.schedule).includes(day)) {
         if (method === "add") {
           return {
             ...state,
             schedule: {
               ...state.schedule,
-              [Day]: [...state.schedule[Day], { startTime, endTime }],
+              [day]: [...state.schedule[day], { startTime, endTime }],
             },
           };
         } else {
@@ -196,7 +232,7 @@ function CourseDataReducer(state: any, action: any) {
             ...state,
             schedule: {
               ...state.schedule,
-              [Day]: state.schedule[Day].filter((entry: any) => {
+              [day]: state.schedule[day].filter((entry: any) => {
                 return (
                   entry.startTime !== startTime && entry.endTime !== endTime
                 );
@@ -209,7 +245,7 @@ function CourseDataReducer(state: any, action: any) {
           ...state,
           schedule: {
             ...state.schedule,
-            [Day]: [{ startTime, endTime }],
+            [day]: [{ startTime, endTime }],
           },
         };
       }
@@ -233,7 +269,9 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
       ],
     },
   };
+
   const [courseData, dispatchData] = useReducer(CourseDataReducer, initialData);
+  console.log(courseData);
   return (
     <>
       <Modal
