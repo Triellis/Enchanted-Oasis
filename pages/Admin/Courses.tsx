@@ -66,6 +66,7 @@ export default function Courses() {
           isOpen={isAddCourseOpen}
           onClose={onAddCourseClose}
           onOpen={onAddCourseOpen}
+          mutate={mutate}
         />
       </Layout>
     </>

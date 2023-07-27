@@ -17,9 +17,10 @@ import {
   NumberInputStepper,
   Select,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import styles from "./AddCourseModal.module.css";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { CourseCol, Day } from "@/lib/types";
@@ -27,6 +28,35 @@ type CourseData = Omit<
   CourseCol,
   "_id" | "faculties" | "students" | "lectures"
 >;
+function convertTimeToJSDate(timeStr: string) {
+  // Split the time string into hours and minutes
+  const [hours, minutes] = timeStr.split(":").map(Number);
+
+  // Get the current date to set the year, month, and day in the Date object
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const day = currentDate.getDate();
+
+  // Create a new Date object with the extracted time and the current date
+  const jsDate = new Date(year, month, day, hours, minutes);
+
+  return jsDate;
+}
+function convertTo24HourTime(jsDate: Date) {
+  // Get the hours and minutes from the Date object
+  const hours = jsDate.getHours();
+  const minutes = jsDate.getMinutes();
+
+  // Format the hours and minutes to ensure they have leading zeros if needed
+  const formattedHours = String(hours).padStart(2, "0");
+  const formattedMinutes = String(minutes).padStart(2, "0");
+
+  // Combine the formatted hours and minutes into a 24-hour time string
+  const timeStr = `${formattedHours}:${formattedMinutes}`;
+
+  return timeStr;
+}
 
 // component for the list of schedule entries:
 function ScheduleList({
@@ -37,13 +67,19 @@ function ScheduleList({
   dispatchData: any;
 }) {
   let scheduleList: any[] = [];
+
   if (courseData.schedule) {
     scheduleList = Object.keys(courseData.schedule).map((day) => {
-      return courseData.schedule[day as Day]!.map((entry: any) => {
+      const data = courseData.schedule[day as Day]!.map((entry: any) => {
+        console.log(entry);
         return { day, ...entry };
       });
+
+      return data;
     });
   }
+  scheduleList = scheduleList.flat().reverse();
+
   return (
     <div className={styles.when}>
       {scheduleList.map((entry, index) => (
@@ -66,6 +102,11 @@ function ScheduleEntry({
   const [startTime, setStartTime] = useState(entry.startTime);
   const [endTime, setEndTime] = useState(entry.endTime);
   const [method, setMethod] = useState("add");
+  useEffect(() => {
+    setDay(entry.day);
+    setStartTime(entry.startTime);
+    setEndTime(entry.endTime);
+  }, [entry]);
 
   return (
     <div className={styles.time}>
@@ -89,17 +130,17 @@ function ScheduleEntry({
         <Input
           type="time"
           onChange={(e) => {
-            setStartTime(e.target.value);
+            setStartTime(convertTimeToJSDate(e.target.value));
           }}
-          value={startTime}
+          value={convertTo24HourTime(startTime)}
         />
         To
         <Input
           type="time"
           onChange={(e) => {
-            setEndTime(e.target.value);
+            setEndTime(convertTimeToJSDate(e.target.value));
           }}
-          value={endTime}
+          value={convertTo24HourTime(endTime)}
         />
       </div>
 
@@ -213,20 +254,16 @@ function CourseDataReducer(state: any, action: any) {
       return { ...state, description: action.payload };
     case "schedule":
       let day = action.payload.day;
-      console.log(day);
       let startTime = action.payload.startTime;
       let endTime = action.payload.endTime;
       let method = action.payload.method;
-      console.log(state.schedule[day]);
       if (Object.keys(state.schedule).includes(day)) {
         if (method === "add") {
-          return {
-            ...state,
-            schedule: {
-              ...state.schedule,
-              [day]: [...state.schedule[day], { startTime, endTime }],
-            },
-          };
+          const stateClone = structuredClone(state);
+
+          stateClone.schedule[day].push({ startTime, endTime });
+
+          return stateClone;
         } else {
           return {
             ...state,
@@ -254,7 +291,53 @@ function CourseDataReducer(state: any, action: any) {
   }
 }
 
-export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
+async function postCourse(
+  courseData: CourseData,
+  toast: any,
+  onClose: any,
+  mutate: any
+) {
+  // remove empty array in schedule days
+  Object.keys(courseData.schedule).forEach((day) => {
+    if (courseData.schedule[day as Day]!.length === 0) {
+      delete courseData.schedule[day as Day];
+    }
+  });
+
+  const res = await fetch("/api/course", {
+    method: "POST",
+    body: JSON.stringify(courseData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (res.status === 200) {
+    toast({
+      title: "Course Added",
+      description: "Course has been added successfully",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  } else {
+    toast({
+      title: "Error",
+      description: "Course could not be added",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
+  onClose();
+  mutate();
+}
+
+export default function AddCourseModal({
+  isOpen,
+  onClose,
+  onOpen,
+  mutate,
+}: any) {
   const initialData: CourseData = {
     name: "",
     code: "",
@@ -271,7 +354,7 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
   };
 
   const [courseData, dispatchData] = useReducer(CourseDataReducer, initialData);
-  console.log(courseData);
+  const toast = useToast();
   return (
     <>
       <Modal
@@ -305,7 +388,10 @@ export default function AddCourseModal({ isOpen, onClose, onOpen }: any) {
             <Button variant={"outline"} onClick={onClose}>
               Close
             </Button>
-            <Button onClick={() => {}} bg="hsl(var(--s))">
+            <Button
+              bg="hsl(var(--s))"
+              onClick={() => postCourse(courseData, toast, onClose, mutate)}
+            >
               Add Course
             </Button>
           </ModalFooter>
