@@ -28,6 +28,7 @@ const navItems: {
     { text: "Dashboard", linkTo: "/Student/Dashboard" },
     { text: "Houses", linkTo: "/Everyone/Houses" },
     { text: "My Courses", linkTo: "/Student/MyCourses" },
+    { text: "Enroll Course", linkTo: "/Student/EnrollCourse" },
   ],
   Faculty: [
     { text: "Dashboard", linkTo: "/Faculty/Dashboard" },

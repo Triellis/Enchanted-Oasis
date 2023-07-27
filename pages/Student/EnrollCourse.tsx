@@ -3,16 +3,15 @@ import Layout from "../Layout";
 import { useState } from "react";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import CourseList from "@/components/CourseList/CourseList";
-import Pagination from "@/components/Pagination/Pagination";
+import Pagination from "@/components/Pagination";
 import AdminCoursesStyle from "./../Admin/Courses.module.css";
-
 export default function MyCourses() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const { courses, isLoading, error, mutate } = useCourses(
     page,
     search,
-    "enrolled"
+    "notenrolled"
   );
   return (
     <Layout>

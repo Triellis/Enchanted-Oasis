@@ -1,5 +1,10 @@
 import { fetcher, useUserSearch } from "@/lib/functions";
-import { CourseInformation, Day, ReceivedUserDataOnClient } from "@/lib/types";
+import {
+  CourseInformation,
+  Day,
+  MySession,
+  ReceivedUserDataOnClient,
+} from "@/lib/types";
 import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -30,6 +35,7 @@ import {
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
 import { AddIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
+import { useSession } from "next-auth/react";
 function useCourse(courseId: string) {
   const { data, error, isLoading, mutate } = useSWR(
     `/api/course/${courseId}`,
@@ -316,6 +322,7 @@ export default function CoursePage() {
   const router = useRouter();
   const { courseId } = router.query;
   const { course, isLoading, error, mutate } = useCourse(courseId as string);
+  const session = useSession().data as MySession;
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [memberType, setMemberType] = useState<"student" | "faculty">(
@@ -341,7 +348,12 @@ export default function CoursePage() {
   return (
     <Layout>
       <div className={styles.coursePage}>
-        <CoursePlate isLoading={isLoading} course={course} error={error} />
+        <CoursePlate
+          isLoading={isLoading}
+          course={course}
+          error={error}
+          actionBtn={session?.user.role === "Student" ? "unenroll" : null}
+        />
         <div className={styles.membersWrapper}>
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
           <TabsComponent
@@ -355,7 +367,7 @@ export default function CoursePage() {
             isLoading={isLoadingMembers}
             error={errorMembers}
             mutate={mutateMembers}
-            customMode={true}
+            customMode={session?.user.role === "Admin" ? true : false}
             CustomComponent={(user: ReceivedUserDataOnClient) => (
               <UnEnrollButton
                 mutate={mutateMembers}
