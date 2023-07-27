@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
-import styles from "./Courses.module.css";
+import styles from "./MyCoursePage.module.css";
 
 function useCourses(
   page: number,

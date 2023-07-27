@@ -27,10 +27,12 @@ const navItems: {
   Student: [
     { text: "Dashboard", linkTo: "/Student/Dashboard" },
     { text: "Houses", linkTo: "/Everyone/Houses" },
+    { text: "My Courses", linkTo: "/Everyone/MyCoursePage" },
   ],
   Faculty: [
     { text: "Dashboard", linkTo: "/Faculty/Dashboard" },
     { text: "Houses", linkTo: "/Everyone/Houses" },
+    { text: "My Courses", linkTo: "/Everyone/MyCoursePage" },
   ],
 };
 
