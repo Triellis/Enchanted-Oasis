@@ -390,11 +390,11 @@ export default function AddCourseModal({
 
           {/* footer */}
           <ModalFooter className={styles.modalFooter}>
-            <Button variant={"outline"} onClick={onClose}>
+            <Button className="modalNoBtn" onClick={onClose}>
               Close
             </Button>
             <Button
-              bg="hsl(var(--s))"
+              className="modalYesBtn"
               onClick={() => postCourse(courseData, toast, onClose, mutate)}
             >
               Add Course
