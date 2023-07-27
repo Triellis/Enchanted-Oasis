@@ -304,7 +304,8 @@ async function postCourse(
   courseData: CourseData,
   toast: any,
   onClose: any,
-  mutate: any
+  mutate: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   // remove empty array in schedule days
   Object.keys(courseData.schedule).forEach((day) => {
@@ -313,6 +314,7 @@ async function postCourse(
     }
   });
 
+  setIsLoading(true);
   const res = await fetch("/api/course", {
     method: "POST",
     body: JSON.stringify(courseData),
@@ -337,6 +339,7 @@ async function postCourse(
       isClosable: true,
     });
   }
+  setIsLoading(false);
   onClose();
   mutate();
 }
@@ -367,6 +370,8 @@ export default function AddCourseModal({
   useEffect(() => {
     dispatchData({ type: "reset", payload: initialData });
   }, [isOpen]);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -404,8 +409,11 @@ export default function AddCourseModal({
               Close
             </Button>
             <Button
+              isLoading={isLoading}
               className="modalYesBtn"
-              onClick={() => postCourse(courseData, toast, onClose, mutate)}
+              onClick={() =>
+                postCourse(courseData, toast, onClose, mutate, setIsLoading)
+              }
             >
               Add Course
             </Button>
