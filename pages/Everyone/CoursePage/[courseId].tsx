@@ -74,8 +74,10 @@ async function enrollUsers(
   memberType: any,
   toast: any,
   onClose: any,
-  mutateMembers: any
+  mutateMembers: any,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsLoading(true);
   const res = await fetch(
     ` /api/course/${cousreId}/member?memberType=${memberType}
    
@@ -108,6 +110,7 @@ async function enrollUsers(
       isClosable: true,
     });
   }
+  setIsLoading(false);
 }
 
 function Selector({
@@ -182,6 +185,9 @@ function EnrollUserModal({
   useEffect(() => {
     setSelectedUsers([]);
   }, [isOpen, role]);
+
+  const [isLooading, setIsLooading] = useState(false);
+
   return (
     <Modal
       isCentered
@@ -247,6 +253,7 @@ function EnrollUserModal({
           </Button>
 
           <Button
+            isLoading={isLooading}
             className="modalYesBtn"
             onClick={() => {
               enrollUsers(
@@ -255,7 +262,8 @@ function EnrollUserModal({
                 memberType,
                 toast,
                 onClose,
-                mutateMembers
+                mutateMembers,
+                setIsLooading
               );
             }}
           >
@@ -354,6 +362,7 @@ export default function CoursePage() {
           error={error}
           actionBtn={session?.user.role === "Student" ? "unenroll" : null}
         />
+
         <div className={styles.membersWrapper}>
           <SearchBar searchQuery={search} setSearchQuery={setSearch} />
           <TabsComponent
@@ -379,6 +388,7 @@ export default function CoursePage() {
           <Pagination items={members} page={page} setPage={setPage} />
         </div>
       </div>
+
       <button
         className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
         onClick={() => {
@@ -388,6 +398,7 @@ export default function CoursePage() {
         <AddIcon className={userStyles.icon} />
         Enroll{" "}
       </button>
+
       <EnrollUserModal
         mutateMembers={mutateMembers}
         isOpen={isOpen}
