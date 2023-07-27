@@ -259,15 +259,17 @@ function CourseDataReducer(state: any, action: any) {
       if (Object.keys(state.schedule).includes(day)) {
         if (method === "add") {
           const stateClone = structuredClone(state);
-      
+
           stateClone.schedule[day].push({ startTime, endTime });
-      
+
           return stateClone;
         } else {
           const remainingEntries = state.schedule[day].filter((entry: any) => {
-            return !(entry.startTime === startTime && entry.endTime === endTime);
+            return !(
+              entry.startTime === startTime && entry.endTime === endTime
+            );
           });
-      
+
           if (remainingEntries.length === 0) {
             // If the last entry is being removed, do not update the state for that day.
             return state;
@@ -290,7 +292,7 @@ function CourseDataReducer(state: any, action: any) {
           },
         };
       }
-      
+
     case "reset":
       return action.payload;
     default:
@@ -373,7 +375,7 @@ export default function AddCourseModal({
         isOpen={isOpen}
         isCentered
         motionPreset="slideInBottom"
-        size={{ base: "full", md: "3xl" }}
+        size={{ base: "xl", lg: "3xl" }}
         scrollBehavior="inside"
       >
         <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
@@ -383,13 +385,15 @@ export default function AddCourseModal({
 
           {/* modal content */}
           <ModalBody className={styles.modalBody}>
-            <CourseInfo courseData={courseData} dispatchData={dispatchData} />
-            <div className={styles.when}>
-              <div>
-                <ScheduleList
-                  courseData={courseData}
-                  dispatchData={dispatchData}
-                />
+            <div className={styles.modalBodyWrapper}>
+              <CourseInfo courseData={courseData} dispatchData={dispatchData} />
+              <div className={styles.when}>
+                <div>
+                  <ScheduleList
+                    courseData={courseData}
+                    dispatchData={dispatchData}
+                  />
+                </div>
               </div>
             </div>
           </ModalBody>
