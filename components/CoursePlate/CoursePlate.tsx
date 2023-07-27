@@ -1,4 +1,4 @@
-import { CourseInformation } from "@/lib/types";
+import { CourseInformation, Day } from "@/lib/types";
 import { Button } from "@chakra-ui/react";
 import styles from "./CoursePlate.module.css";
 
