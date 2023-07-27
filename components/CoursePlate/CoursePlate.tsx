@@ -72,11 +72,13 @@ export default function CoursePlate({
   isLoading,
   error,
   actionBtn = null,
+  membersModal = false,
 }: {
   course: CourseInformation;
   isLoading: boolean;
   error: any;
   actionBtn?: "enroll" | "unenroll" | null;
+  membersModal?: boolean;
 }) {
   let actionComponent;
   let membersComponent;
@@ -116,19 +118,7 @@ export default function CoursePlate({
   } else if (error) {
     courseToRender = <div>Error</div>;
   } else {
-    if (actionBtn == "enroll" || actionBtn === null) {
-      console.log(actionBtn);
-      membersComponent = (
-        <div className={styles.footer}>
-          <div className={styles.numberOfStudents}>
-            {course.numberOfStudents} Students Enrolled
-          </div>
-          <div className={styles.numberOfFaculties}>
-            {course.numberOfFaculties} Faculties
-          </div>
-        </div>
-      );
-    } else if (actionBtn == "unenroll") {
+    if (membersModal) {
       membersComponent = (
         <div className={styles.footer}>
           <button className={styles.numberOfStudents} onClick={onStudentsOpen}>
@@ -152,6 +142,17 @@ export default function CoursePlate({
             memberType={"student"}
             onClose={onStudentsClose}
           />
+        </div>
+      );
+    } else {
+      membersComponent = (
+        <div className={styles.footer}>
+          <div className={styles.numberOfStudents}>
+            {course.numberOfStudents} Students Enrolled
+          </div>
+          <div className={styles.numberOfFaculties}>
+            {course.numberOfFaculties} Faculties
+          </div>
         </div>
       );
     }

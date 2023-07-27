@@ -33,7 +33,7 @@ const navItems: {
   Faculty: [
     { text: "Dashboard", linkTo: "/Faculty/Dashboard" },
     { text: "Houses", linkTo: "/Everyone/Houses" },
-    { text: "My Courses", linkTo: "/Everyone/MyCoursePage" },
+    { text: "My Courses", linkTo: "/Faculty/MyCourses" },
   ],
 };
 
