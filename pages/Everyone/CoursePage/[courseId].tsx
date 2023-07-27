@@ -129,7 +129,7 @@ function ScheduleTable({
         <div className={styles.tableElement} key={day}>
           <div className={styles.day}>{day}</div>
           <div className={styles.time}>
-            {schedule[day as Day].map((time) => {
+            {schedule[day as Day]!.map((time) => {
               return (
                 <span
                   key={time.startTime.toString() + day}
