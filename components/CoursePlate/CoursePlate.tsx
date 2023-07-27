@@ -124,14 +124,20 @@ export default function CoursePlate({
             </button>
           </div>
         </div>
-        <div className={styles.descriptionPlate}>
-          <div className={styles.courseName}>About The Course</div>
-          <div className={styles.CourseDescription}>{course.description}</div>
-        </div>
-        <div className={styles.schedulePlate}>
-          <div className={styles.courseName}>Schedule</div>
-          <ScheduleTable schedule={course.schedule} />
-        </div>
+        {actionBtn == "enroll" && (
+          <>
+            <div className={styles.descriptionPlate}>
+              <div className={styles.courseName}>About The Course</div>
+              <div className={styles.CourseDescription}>
+                {course.description}
+              </div>
+            </div>
+            <div className={styles.schedulePlate}>
+              <div className={styles.courseName}>Schedule</div>
+              <ScheduleTable schedule={course.schedule} />
+            </div>
+          </>
+        )}
       </div>
     );
   }

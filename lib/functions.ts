@@ -1,5 +1,6 @@
 import { Collection, MongoClient } from "mongodb";
 import {
+  CourseInformation,
   ReceivedUserDataOnClient,
   Role,
   SentUserDataFromClient,
@@ -158,6 +159,18 @@ export function useCourses(
   );
   return {
     courses: data,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+export function useCoursePage(courseId: string) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/course/${courseId}`,
+    fetcher
+  );
+  return {
+    course: data as CourseInformation,
     isLoading,
     error,
     mutate,

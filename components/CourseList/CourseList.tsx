@@ -9,12 +9,14 @@ export default function CourseList({
   error,
   mutate,
   adminMode = false,
+  linkMode = "overview",
 }: {
   courses: CourseListItemData[];
   isLoading: boolean;
   error: any;
   mutate: () => void;
   adminMode?: boolean;
+  linkMode?: "overview" | "enrolled";
 }) {
   let componentToRender;
   if (isLoading) {
@@ -34,6 +36,7 @@ export default function CourseList({
             key={course._id.toString()}
             course={course}
             adminMode={adminMode}
+            linkMode={linkMode}
           />
         ))}
       </List>

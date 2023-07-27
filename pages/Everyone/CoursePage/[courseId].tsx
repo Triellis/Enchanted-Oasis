@@ -1,4 +1,4 @@
-import { fetcher, useUserSearch } from "@/lib/functions";
+import { fetcher, useCoursePage, useUserSearch } from "@/lib/functions";
 import {
   CourseInformation,
   Day,
@@ -36,18 +36,6 @@ import TabsComponent from "@/components/TabsComponent/TabsComponent";
 import { AddIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
-function useCourse(courseId: string) {
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/course/${courseId}`,
-    fetcher
-  );
-  return {
-    course: data as CourseInformation,
-    isLoading,
-    error,
-    mutate,
-  };
-}
 
 function useMembers(
   courseId: string,
@@ -329,7 +317,9 @@ function UnEnrollButton({
 export default function CoursePage() {
   const router = useRouter();
   const { courseId } = router.query;
-  const { course, isLoading, error, mutate } = useCourse(courseId as string);
+  const { course, isLoading, error, mutate } = useCoursePage(
+    courseId as string
+  );
   const session = useSession().data as MySession;
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -360,7 +350,7 @@ export default function CoursePage() {
           isLoading={isLoading}
           course={course}
           error={error}
-          actionBtn={session?.user.role === "Student" ? "unenroll" : null}
+          actionBtn={session?.user.role === "Student" ? "enroll" : null}
         />
 
         <div className={styles.membersWrapper}>

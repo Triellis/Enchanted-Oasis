@@ -23,6 +23,7 @@ export default function MyCourses() {
           error={error}
           isLoading={isLoading}
           mutate={mutate}
+          linkMode="enrolled"
         />
         <Pagination items={courses} page={page} setPage={setPage} />
       </div>
