@@ -71,7 +71,6 @@ function ScheduleList({
   if (courseData.schedule) {
     scheduleList = Object.keys(courseData.schedule).map((day) => {
       const data = courseData.schedule[day as Day]!.map((entry: any) => {
-        console.log(entry);
         return { day, ...entry };
       });
 
