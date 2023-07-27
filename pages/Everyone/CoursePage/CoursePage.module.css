@@ -12,6 +12,7 @@
 
   gap: 0.5em;
 }
+
 .coursePlate {
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);

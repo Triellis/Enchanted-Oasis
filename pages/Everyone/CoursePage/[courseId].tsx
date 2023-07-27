@@ -10,6 +10,9 @@ import UserList from "@/components/UserList/UserList";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
 import userStyles from "@/pages/Admin/Users.module.css";
+
+import CoursePlate from "@/components/CoursePlate/CoursePlate";
+
 import {
   Button,
   IconButton,
@@ -59,94 +62,96 @@ function useMembers(
   };
 }
 
-function CoursePlate({
-  course,
-  isLoading,
-  error,
-}: {
-  course: CourseInformation;
-  isLoading: boolean;
-  error: any;
-}) {
-  let courseToRender;
-  if (isLoading) {
-    courseToRender = <div>Loading...</div>;
-  } else if (error) {
-    courseToRender = <div>Error</div>;
-  } else {
-    courseToRender = (
-      <div className={styles.courseDataWrapper}>
-        <div className={styles.coursePlate}>
-          <div className={styles.header}>
-            <div className={styles.courseName}>{course.name}</div>
-            <Button size={"lg"} className={styles.enrollBtn}>
-              Enroll
-            </Button>
-          </div>
-          <div className={styles.subHeader}>
-            <div className={styles.courseCode}>{course.code}</div>
-            <div className={styles.courseCredits}>{course.credits} credits</div>
-          </div>
+// function CoursePlate({
+//   course,
+//   isLoading,
+//   error,
+// }: {
+//   course: CourseInformation;
+//   isLoading: boolean;
+//   error: any;
+// }) {
+//   let courseToRender;
+//   if (isLoading) {
+//     courseToRender = <div>Loading...</div>;
+//   } else if (error) {
+//     courseToRender = <div>Error</div>;
+//   } else {
+//     courseToRender = (
+//       <div className={styles.courseDataWrapper}>
+//         <div className={styles.coursePlate}>
+//           <div className={styles.header}>
+//             <div className={styles.courseName}>{course.name}</div>
+//             <Button size={"lg"} className={styles.enrollBtn}>
+//               Enroll
+//             </Button>
+//           </div>
+//           <div className={styles.subHeader}>
+//             <div className={styles.courseCode}>{course.code}</div>
+//             <div className={styles.courseCredits}>{course.credits} credits</div>
+//           </div>
 
-          <div className={styles.footer}>
-            <div className={styles.numberOfStudents}>
-              {course.numberOfStudents} Students Enrolled
-            </div>
-            <div className={styles.numberOfFaculties}>
-              {course.numberOfFaculties} Faculties
-            </div>
-          </div>
-        </div>
-        <div className={styles.descriptionPlate}>
-          <div className={styles.courseName}>About The Course</div>
-          <div className={styles.CourseDescription}>{course.description}</div>
-        </div>
-        <div className={styles.schedulePlate}>
-          <div className={styles.courseName}>Schedule</div>
-          <ScheduleTable schedule={course.schedule} />
-        </div>
-      </div>
-    );
-  }
-  return courseToRender;
-}
-function extractTimeIn24HrsFormat(date: string) {
-  const dateObj = new Date(date);
-  const hours = String(dateObj.getHours()).padStart(2, "0");
-  const minutes = String(dateObj.getMinutes()).padStart(2, "0");
+//           <div className={styles.footer}>
+//             <div className={styles.numberOfStudents}>
+//               {course.numberOfStudents} Students Enrolled
+//             </div>
+//             <div className={styles.numberOfFaculties}>
+//               {course.numberOfFaculties} Faculties
+//             </div>
+//           </div>
+//         </div>
+//         <div className={styles.descriptionPlate}>
+//           <div className={styles.courseName}>About The Course</div>
+//           <div className={styles.CourseDescription}>{course.description}</div>
+//         </div>
+//         <div className={styles.schedulePlate}>
+//           <div className={styles.courseName}>Schedule</div>
+//           <ScheduleTable schedule={course.schedule} />
+//         </div>
+//       </div>
+//     );
+//   }
+//   return courseToRender;
+// }
 
-  return `${hours}:${minutes}`;
-}
 
-function ScheduleTable({
-  schedule,
-}: {
-  schedule: CourseInformation["schedule"];
-}) {
-  return (
-    <div className={styles.scheduleTable}>
-      {Object.keys(schedule).map((day) => (
-        <div className={styles.tableElement} key={day}>
-          <div className={styles.day}>{day}</div>
-          <div className={styles.time}>
-            {schedule[day as Day].map((time) => {
-              return (
-                <span
-                  key={time.startTime.toString() + day}
-                  className={styles.timeElement}
-                >{`${extractTimeIn24HrsFormat(
-                  time.startTime.toString()
-                )} to ${extractTimeIn24HrsFormat(
-                  time.endTime.toString()
-                )}`}</span>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+// function extractTimeIn24HrsFormat(date: string) {
+//   const dateObj = new Date(date);
+//   const hours = String(dateObj.getHours()).padStart(2, "0");
+//   const minutes = String(dateObj.getMinutes()).padStart(2, "0");
+
+//   return `${hours}:${minutes}`;
+// }
+
+// function ScheduleTable({
+//   schedule,
+// }: {
+//   schedule: CourseInformation["schedule"];
+// }) {
+//   return (
+//     <div className={styles.scheduleTable}>
+//       {Object.keys(schedule).map((day) => (
+//         <div className={styles.tableElement} key={day}>
+//           <div className={styles.day}>{day}</div>
+//           <div className={styles.time}>
+//             {schedule[day as Day].map((time) => {
+//               return (
+//                 <span
+//                   key={time.startTime.toString() + day}
+//                   className={styles.timeElement}
+//                 >{`${extractTimeIn24HrsFormat(
+//                   time.startTime.toString()
+//                 )} to ${extractTimeIn24HrsFormat(
+//                   time.endTime.toString()
+//                 )}`}</span>
+//               );
+//             })}
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 async function enrollUsers(
   cousreId: string,
@@ -233,6 +238,7 @@ function Selector({
     );
   }
 }
+
 function EnrollUserModal({
   isOpen,
   onClose,
