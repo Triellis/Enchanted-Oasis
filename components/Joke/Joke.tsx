@@ -15,7 +15,11 @@ function useJoke() {
 }
 
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
-  return <button onClick={() => mutate()}>{joke}</button>;
+  return (
+    <button onClick={() => mutate()}>
+      <span>{joke}</span>
+    </button>
+  );
 }
 
 export default function Joke() {
