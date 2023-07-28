@@ -4,7 +4,12 @@ import { useCoursePage } from "@/lib/functions";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { MySession } from "@/lib/types";
+import EnrollMemberModal, {
+  EnrollBtn,
+} from "@/components/EnrollMemberModal/EnrollMemberModal";
+import { useDisclosure } from "@chakra-ui/react";
 export default function MyCoursePage() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const courseId = router.query.courseId;
   const { course, isLoading, error } = useCoursePage(courseId?.toString()!);
@@ -18,6 +23,12 @@ export default function MyCoursePage() {
         actionBtn={session?.user.role === "Student" ? "unenroll" : null}
         membersModal={true}
       />{" "}
+      {session?.user.role === "Faculty" && <EnrollBtn onOpen={onOpen} />}
+      <EnrollMemberModal
+        isOpen={isOpen}
+        onClose={onClose}
+        studentsOnly={session?.user.role === "Faculty"}
+      />
     </Layout>
   );
 }
