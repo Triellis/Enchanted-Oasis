@@ -169,7 +169,7 @@ export default function CoursePlate({
           </div>
           {membersComponent}
         </div>
-        {actionBtn == "enroll" && (
+        {!membersModal && (
           <>
             <div className={styles.descriptionPlate}>
               <div className={styles.courseName}>About The Course</div>
