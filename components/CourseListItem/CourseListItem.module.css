@@ -29,7 +29,17 @@
   width: 100%;
 
   padding-block: 0.5em;
-  padding-inline: 0.5em;
+}
+
+@media (max-width: 426px) {
+  .itemWrapper {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 375px) {
+  .itemWrapper {
+    font-size: 0.8em;
+  }
 }
 
 .courseInfo {
