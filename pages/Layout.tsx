@@ -48,6 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const data = session.data as MySession;
   const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
   const dispatch = useAppDispatch();
+
   return (
     <>
       <Head>
@@ -55,6 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Cool! " />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main className={styles.main}>
         <div className={styles.sidebar}>
           <Sidebar isOpen={isSidebarOpen}>
