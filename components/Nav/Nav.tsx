@@ -98,7 +98,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
           </Link>
 
           <Menu>
-            <MenuButton className="clicky">
+            <MenuButton className={styles.avatarWrapper}>
               {/* Avatar */}
               <Avatar
                 src={
@@ -106,6 +106,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
                     ? session.data?.user?.image!
                     : userJson.profilePicture
                 }
+                className={styles.avatar}
               />
             </MenuButton>
             <MenuList

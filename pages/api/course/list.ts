@@ -25,7 +25,7 @@ async function GET(
   res: NextApiResponse,
   session: MySession
 ) {
-  const userId = session!.user.id;
+  const userId = session!.user.id.toString();
   const page = req.query.page ? parseInt(req.query.page as string) : 1;
   const maxResults = req.query.maxResults
     ? parseInt(req.query.maxResults as string)

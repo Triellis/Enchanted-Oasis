@@ -9,27 +9,10 @@ import AddCourseModal from "@/components/AddCourseModal/AddCourseModal";
 
 import { useState } from "react";
 import useSWR from "swr";
-import { fetcher } from "@/lib/functions";
+import { fetcher, useCourses } from "@/lib/functions";
 
 import { Button, useDisclosure } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-
-function useCourses(
-  page: number,
-  search: string,
-  type: "all" | "enrolled" | "notenrolled" | "teaching"
-) {
-  const { data, isLoading, error, mutate } = useSWR(
-    `/api/course/list?page=${page}&type=${type}&searchQuery=${search}`,
-    fetcher
-  );
-  return {
-    courses: data,
-    isLoading,
-    error,
-    mutate,
-  };
-}
 
 export default function Courses() {
   const [page, setPage] = useState(1);
@@ -53,6 +36,7 @@ export default function Courses() {
             isLoading={isLoading}
             error={error}
             mutate={mutate}
+            adminMode={true}
           />
           <Pagination items={courses} page={page} setPage={setPage} />
 
