@@ -12,6 +12,10 @@ function useJoke() {
   return { joke: data, error, isLoading, mutate };
 }
 
+function JokeComponent({ joke }: { joke: string }) {
+  return <span>{joke}</span>;
+}
+
 export default function Joke() {
   const { joke, error, isLoading, mutate } = useJoke();
 
@@ -21,7 +25,7 @@ export default function Joke() {
   } else if (error) {
     componentsToRender = <h1>error</h1>;
   } else {
-    componentsToRender = <h1>{joke}</h1>;
+    componentsToRender = <JokeComponent joke={joke!} />;
   }
 
   return <div>{componentsToRender}</div>;
