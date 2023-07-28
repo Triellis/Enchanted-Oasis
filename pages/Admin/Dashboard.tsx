@@ -25,15 +25,16 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-
 import styles from "./Dashboard.module.css";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
 import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
+import Joke from "@/components/Joke";
+
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ReducerAction, useEffect, useReducer, useState } from "react";
-import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
 import { EditIcon } from "@chakra-ui/icons";
 // Color Swatch Component
@@ -344,6 +345,10 @@ export default function Admin() {
           path at our
           <span className={styles.appName}> Enchanted Oasis!</span>
         </div> */}
+        <div>
+          <Joke />
+        </div>
+
         <div className={styles.notifications}>
           <NotifList adminMode={true} />
         </div>
