@@ -29,8 +29,8 @@ async function POST(
   res: NextApiResponse,
   session: MySession
 ) {
-  if (session?.user.role !== "Admin") {
-    return res.status(403).send("Not an Admin");
+  if (session?.user.role !== "Admin" && session?.user.role !== "Faculty") {
+    return res.status(403).send("Not an Admin or Faculty ");
   }
 
   const memberIds = req.body.memberIds as string[];
@@ -42,6 +42,8 @@ async function POST(
     return res
       .status(400)
       .send("Invalid memberType, must be student or faculty");
+  } else if (session?.user.role === "Faculty" && memberType === "faculty") {
+    return res.status(403).send("Not an Admin");
   }
   if (!memberIds) {
     return res.status(400).send("Missing memberIds");
