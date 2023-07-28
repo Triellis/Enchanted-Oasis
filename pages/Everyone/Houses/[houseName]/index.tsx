@@ -358,6 +358,7 @@ function HousePage() {
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setPage={setPage}
           />
           <UserList
             isLoading={isLoading}

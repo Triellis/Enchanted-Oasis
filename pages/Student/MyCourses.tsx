@@ -17,7 +17,11 @@ export default function MyCourses() {
   return (
     <Layout>
       <div className={AdminCoursesStyle.courses}>
-        <SearchBar searchQuery={search} setSearchQuery={setSearch} />
+        <SearchBar
+          searchQuery={search}
+          setSearchQuery={setSearch}
+          setPage={setPage}
+        />
         <CourseList
           courses={courses}
           error={error}

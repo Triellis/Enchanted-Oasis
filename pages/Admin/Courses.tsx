@@ -30,7 +30,11 @@ export default function Courses() {
     <>
       <Layout>
         <div className={styles.courses}>
-          <SearchBar searchQuery={search} setSearchQuery={setSearch} />
+          <SearchBar
+            searchQuery={search}
+            setSearchQuery={setSearch}
+            setPage={setPage}
+          />
           <CourseList
             courses={courses}
             isLoading={isLoading}
