@@ -9,7 +9,7 @@ function useJoke() {
       return data;
     }
   );
-  return { joke: data, error, isLoading, mutate };
+  return { joke: data?.replaceAll('"', ""), error, isLoading, mutate };
 }
 
 function JokeComponent({ joke }: { joke: string }) {
