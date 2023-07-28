@@ -1,7 +1,7 @@
 /* make a navbar */
 .navbar {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: hsl(var(--b2));
+  background-color: hsl(var(--b2)/90%);
   /* margin: 10px; */
   display: flex;
   flex-direction: row;
@@ -15,6 +15,8 @@
   top: 0;
   box-shadow: -4px 4px 2px hsl(var(--b3));
   border: 1px solid hsl(var(--pc) / 30%);
+
+  backdrop-filter: blur(0.6em);
 }
 
 .hamButton {

@@ -4,7 +4,7 @@
   width: 350px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  background-color: hsl(var(--b2));
+  background-color: hsl(var(--b2)/90%);
   height: 100%;
   left: 0;
   border-right: 1px solid hsl(var(--pc) / 30%);
@@ -13,6 +13,8 @@
     opacity 400ms ease-in-out;
   overflow-y: scroll;
   overflow-x: hidden;
+
+  backdrop-filter: blur(0.6em);
 }
 .sidebar.closed {
   transform: translateX(-100%); /* Sidebar hidden */
