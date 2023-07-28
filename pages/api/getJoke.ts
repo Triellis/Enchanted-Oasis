@@ -395,11 +395,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getServerSession(req, res, authOptions);
-
-  if (!session) {
-    return res.status(403).send("Not logged in");
-  }
   if (req.method === "GET") {
     return GET(req, res);
   } else {

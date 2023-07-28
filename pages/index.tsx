@@ -17,6 +17,7 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React from "react";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
+import Joke from "@/components/Joke/Joke";
 
 export default function IndexPage() {
   const session = useSession();
@@ -41,6 +42,7 @@ export default function IndexPage() {
         <div className={styles.heading}>
           <div className={styles.headerTxt}>Welcome to the</div>
           <div className={styles.appName}> Enchanted Oasis</div>
+          <Joke />
           <div className={styles.icon}>
             <ArrowRightIcon />
           </div>
