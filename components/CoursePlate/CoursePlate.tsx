@@ -83,8 +83,8 @@ export default function CoursePlate({
   let actionComponent;
   let membersComponent;
   const toast = useToast();
+  const [actionText, setActionText] = useState(actionBtn);
   if (actionBtn) {
-    const [actionText, setActionText] = useState(actionBtn);
     actionComponent = (
       <Button
         size={"lg"}
@@ -94,7 +94,7 @@ export default function CoursePlate({
             if (text == "enroll") return "unenroll";
             else return "enroll";
           });
-          EnrollOrUnEnroll(actionText, course._id.toString(), toast);
+          EnrollOrUnEnroll(actionText!, course._id.toString(), toast);
         }}
       >
         {actionText}
