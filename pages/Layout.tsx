@@ -55,12 +55,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
 
       <main className={styles.main}>
-        <Sidebar isOpen={isSidebarOpen}>
-          {data &&
-            navItems[data?.user.role!].map((i) => {
-              return <SidebarItem {...i} key={i.linkTo} />;
-            })}
-        </Sidebar>
+        <div className={styles.sidebar}>
+          <Sidebar isOpen={isSidebarOpen}>
+            {data &&
+              navItems[data?.user.role!].map((i) => {
+                return <SidebarItem {...i} key={i.linkTo} />;
+              })}
+          </Sidebar>
+        </div>
         <div className={styles.content}>
           <Nav onToggle={() => dispatch(toggleSidebar())} />
           <div className={styles.childContent}>{children}</div>
