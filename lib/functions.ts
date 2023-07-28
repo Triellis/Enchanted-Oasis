@@ -1,5 +1,6 @@
 import { Collection, MongoClient } from "mongodb";
 import {
+  CourseInformation,
   ReceivedUserDataOnClient,
   Role,
   SentUserDataFromClient,
@@ -143,6 +144,54 @@ export function useUserSearch(searchQuery: string, role: string, page: number) {
     users: data as ReceivedUserDataOnClient[],
     isLoading,
     error: error,
+    mutate,
+  };
+}
+
+export function useCourses(
+  page: number,
+  search: string,
+  type: "all" | "enrolled" | "notenrolled" | "teaching"
+) {
+  const { data, isLoading, error, mutate } = useSWR(
+    `/api/course/list?page=${page}&type=${type}&searchQuery=${search}`,
+    fetcher
+  );
+  return {
+    courses: data,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+export function useCoursePage(courseId: string) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/course/${courseId}`,
+    fetcher
+  );
+  return {
+    course: data as CourseInformation,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+
+export function useCourseMembers(
+  courseId: string,
+  page: number,
+  search: string,
+  memberType: "student" | "faculty",
+  notEnrolledOnly = false
+) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/course/${courseId}/member?page=${page}&memberType=${memberType}&searchQuery=${search}&&notEnrolledOnly=${notEnrolledOnly}`,
+    fetcher
+  );
+  return {
+    members: data as ReceivedUserDataOnClient[],
+    isLoading,
+    error,
     mutate,
   };
 }

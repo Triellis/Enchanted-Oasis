@@ -116,17 +116,26 @@ function ConfirmDelModal({
 export default function CourseListItem({
   course,
   mutate,
+  adminMode,
+  linkMode,
 }: {
   course: CourseListItemData;
   mutate: () => void;
+  linkMode: "overview" | "enrolled";
+  adminMode?: boolean;
 }) {
   const router = useRouter();
-  const enrollmentMode = false;
+  // const adminMode = true;
   const {
     isOpen: isDelOpen,
     onOpen: onDelOpen,
     onClose: onDelClose,
   } = useDisclosure();
+
+  let link =
+    linkMode == "overview"
+      ? `/Everyone/CoursePage/${course._id} `
+      : `/Everyone/MyCoursePage/${course._id}`;
 
   return (
     <div className={styles.courseListItem}>
@@ -136,7 +145,7 @@ export default function CourseListItem({
             className={styles.courseInfo}
             tabIndex={1}
             onClick={() => {
-              router.push(`/Everyone/CoursePage/${course._id}`);
+              router.push(link);
             }}
           >
             {/* course name */}
@@ -150,7 +159,7 @@ export default function CourseListItem({
             </div>
           </div>
 
-          {!enrollmentMode && (
+          {adminMode && (
             <div className={styles.coursePlay}>
               {/* add butotn */}
               <IconButton

@@ -21,6 +21,10 @@ export default async function handler(
 }
 
 async function DELETE(req: NextApiRequest, res: NextApiResponse, session: any) {
+  if (session?.user.role !== "Admin") {
+    return res.status(403).send("Not an Admin");
+  }
+
   const courseId = req.query.id as string;
   const memberId = req.query.memberId as string;
   if (!courseId) {
