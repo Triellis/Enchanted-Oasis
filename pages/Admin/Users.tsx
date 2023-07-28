@@ -70,6 +70,7 @@ export default function Users() {
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setPage={setPage}
           />
 
           {/* Tabs here*/}

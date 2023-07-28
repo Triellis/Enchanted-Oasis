@@ -32,11 +32,13 @@ function useSearch(searchQuery: string, role: string, page: number) {
 interface SearchBarProps {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function SearchBar({
   searchQuery,
   setSearchQuery,
+  setPage,
 }: SearchBarProps) {
   return (
     <div className={styles.searchBar}>
@@ -48,7 +50,10 @@ export default function SearchBar({
           <Input
             type="text"
             placeholder="Search"
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setPage(1);
+            }}
           />
         </InputGroup>
       </FormControl>

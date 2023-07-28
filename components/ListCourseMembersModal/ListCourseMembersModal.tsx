@@ -44,7 +44,11 @@ export default function ListCourseMembersModal({
             {" "}
             {memberType === "faculty" ? "Faculties " : "Students"}
           </Heading>
-          <SearchBar searchQuery={search} setSearchQuery={setSearch} />
+          <SearchBar
+            searchQuery={search}
+            setSearchQuery={setSearch}
+            setPage={setPage}
+          />
           <UserList
             error={error}
             isLoading={isLoading}

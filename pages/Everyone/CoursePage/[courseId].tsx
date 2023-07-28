@@ -190,6 +190,7 @@ function EnrollUserModal({
             <SearchBar
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
+              setPage={setPage}
             />
           </div>
 
@@ -338,7 +339,11 @@ export default function CoursePage() {
           actionBtn={session?.user.role === "Student" ? "enroll" : null}
         />
         <div className={styles.membersWrapper}>
-          <SearchBar searchQuery={search} setSearchQuery={setSearch} />
+          <SearchBar
+            searchQuery={search}
+            setSearchQuery={setSearch}
+            setPage={setPage}
+          />
           <TabsComponent
             setPage={setPage}
             setTab={setMemberType as any}
