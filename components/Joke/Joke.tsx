@@ -10,11 +10,12 @@ function useJoke() {
       return data;
     }
   );
+  console.log(data);
   return { joke: data?.replaceAll('"', ""), error, isLoading, mutate };
 }
 
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
-  return <button onClick={mutate}>{joke}</button>;
+  return <button onClick={() => mutate()}>{joke}</button>;
 }
 
 export default function Joke() {
