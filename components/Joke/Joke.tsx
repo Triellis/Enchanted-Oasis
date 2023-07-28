@@ -10,7 +10,7 @@ function useJoke() {
       return data;
     }
   );
-  console.log(data);
+
   return { joke: data?.replaceAll('"', ""), error, isLoading, mutate };
 }
 
