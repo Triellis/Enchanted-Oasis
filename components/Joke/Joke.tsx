@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import styles from "./Joke.module.css";
 
 function useJoke() {
   const { data, error, isLoading, mutate } = useSWR(
@@ -12,8 +13,8 @@ function useJoke() {
   return { joke: data?.replaceAll('"', ""), error, isLoading, mutate };
 }
 
-function JokeComponent({ joke }: { joke: string }) {
-  return <span>{joke}</span>;
+function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
+  return <button onClick={mutate}>{joke}</button>;
 }
 
 export default function Joke() {
@@ -25,8 +26,8 @@ export default function Joke() {
   } else if (error) {
     componentsToRender = <h1>error</h1>;
   } else {
-    componentsToRender = <JokeComponent joke={joke!} />;
+    componentsToRender = <JokeComponent joke={joke!} mutate={mutate} />;
   }
 
-  return <div>{componentsToRender}</div>;
+  return <div className={styles.joke}>{componentsToRender}</div>;
 }

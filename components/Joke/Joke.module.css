@@ -1,0 +1,8 @@
+.joke {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  /* make this text attention grabbing */
+  font-size: 1.1rem;
+}
