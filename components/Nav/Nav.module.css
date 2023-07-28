@@ -18,7 +18,7 @@
 }
 
 .hamButton {
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 1s ease, transform 1s ease;
   display: flex;
   align-items: center;
 }
@@ -140,10 +140,10 @@
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: 0.25s ease-in-out;
-  -moz-transition: 0.25s ease-in-out;
-  -o-transition: 0.25s ease-in-out;
-  transition: 0.25s ease-in-out;
+  -webkit-transition: 400ms ease-in-out;
+  -moz-transition: 400ms ease-in-out;
+  -o-transition: 400ms ease-in-out;
+  transition: 400ms ease-in-out;
 }
 .hamburger span:nth-child(1) {
   top: 4px;
