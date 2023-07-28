@@ -5,8 +5,6 @@
   - [Courses](#courses)
   - [Houses](#houses)
   - [User](#user)
-  - [Course Notifications](#course-notifications)
-  - [Course Materials](#course-materials)
   - [Admin Notifications](#admin-notifications)
   - [Lectures](#lectures)
 
