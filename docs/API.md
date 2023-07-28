@@ -157,6 +157,7 @@ type Result = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"type"?: "All" | "Enrolled" | "notEnrolled" | "Teaching" // filter parameter for student
 }
 ```
 
@@ -190,16 +191,8 @@ type Result = {
 		[day:string]:{
 			startTime:Date,
 			endTime:Date
-		}
+		}[]
 	}
-	faculties: string[], // faculty id
-	gradingScheme: {
-		[gradeLetter: string]: {
-			minMarks: number,
-			maxMarks: number
-		}
-
-	},
 }
 ```
 
@@ -209,7 +202,7 @@ type Result = {
 
 - **URL:** `/api/course/{id}`
 - **Method:** `GET`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Response
 
@@ -259,9 +252,9 @@ type Result = {
 
 #### Response will be status code
 
-### List Students
+### List Members
 
-- **URL:** `/api/course/{id}/student/list`
+- **URL:** `/api/course/{id}/member`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Student`
 
@@ -270,7 +263,10 @@ type Result = {
 ```typescript
 {
 	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
+	"page"?: number, // pagination parameter, default is 1
+	"notEnrolledOnly"?: boolean // filter parameter for student
+	"memberType": "Student" | "Faculty"
+
 }
 ```
 
@@ -294,85 +290,43 @@ type Student = {
 };
 ```
 
-### Add Student
+### Add Members
 
-- **URL:** `/api/course/{id}/student`
+- **URL:** `/api/course/{id}/member`
 - **Method:** `POST`
 - **Permissions:** `Admin`
-
-#### Request body
-
-```typescript
-{
-  studentId: string;
-}
-```
-
-#### Response will be status code
-
-### Remove Student
-
-- **URL:** `/api/course/{id}/student/{studentId}`
-- **Method:** `DELETE`
-- **Permissions:** `Admin`
-
-#### Response will be status code
-
-### List Faculties
-
-- **URL:** `/api/course/{id}/faculty/list`
-- **Method:** `GET`
-- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Query Parameters
 
 ```typescript
 {
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
+	"memberType": "Student" | "Faculty"
 }
 ```
-
-#### Response
-
-```typescript
-
-{
-	"students":Faculty[],
-	"totalStudents":number
-}
-
-```
-
-```typescript
-type Faculty = {
-  _id: ObjectID;
-  name: string;
-  email: string;
-};
-```
-
-### Add Faculty
-
-- **URL:** `/api/course/{id}/faculty`
-- **Method:** `POST`
-- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-  facultyId: string;
+  studentIds: string[];
 }
 ```
 
 #### Response will be status code
 
-### Remove Faculty
+### Remove Member
 
-- **URL:** `/api/course/{id}/faculty/{facultyId}`
+- **URL:** `/api/course/{id}/member/{memberId}`
 - **Method:** `DELETE`
 - **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"memberType": "Student" | "Faculty"
+}
+```
 
 #### Response will be status code
 
@@ -387,69 +341,8 @@ type Faculty = {
 ### Unenroll self
 
 - **URL:** `/api/course/{id}/unenroll`
-- **Method:** `POST1
-- **Permissions:** `Student`
-
-#### Response will be status code
-
-### Get Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-### Update Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-### Post Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `POST`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-#### Response will be status code
-
-### Delete Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
 - **Method:** `DELETE`
-- **Permissions:** `Faculty`
+- **Permissions:** `Student`
 
 #### Response will be status code
 

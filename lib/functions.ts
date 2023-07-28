@@ -1,6 +1,12 @@
 import { Collection, MongoClient } from "mongodb";
-import { Role, SentUserDataFromClient, UserCol } from "./types";
+import {
+  ReceivedUserDataOnClient,
+  Role,
+  SentUserDataFromClient,
+  UserCol,
+} from "./types";
 import md5 from "md5";
+import useSWR from "swr";
 
 export async function validateLogin(
   email: string,
@@ -43,7 +49,12 @@ export function capitalizeFirstLetter(s: string) {
 }
 
 // @ts-ignore
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+export const fetcher = (...args) =>
+  // @ts-ignore
+
+  fetch(...args)
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
 
 export function getRoleColor(role: Role | "All") {
   let roleColor = "gray";
@@ -121,4 +132,17 @@ export function escapeMarkdown(text: string) {
   const resultText = text.replace(markdownRegex, "");
 
   return resultText;
+}
+
+export function useUserSearch(searchQuery: string, role: string, page: number) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
+    fetcher
+  );
+  return {
+    users: data as ReceivedUserDataOnClient[],
+    isLoading,
+    error: error,
+    mutate,
+  };
 }

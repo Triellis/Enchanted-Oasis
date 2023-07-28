@@ -20,17 +20,22 @@ import {
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-import { DeleteIcon, InfoOutlineIcon } from "@chakra-ui/icons";
+import {
+  AddIcon,
+  CheckIcon,
+  DeleteIcon,
+  InfoOutlineIcon,
+} from "@chakra-ui/icons";
 
 import styles from "./UserListItem.module.css";
 
 import { getRoleColor } from "@/lib/functions";
-import { ReceivedUserDataOnClient, SentUserDataFromClient } from "../lib/types";
+import { ReceivedUserDataOnClient, SentUserDataFromClient } from "@/lib/types";
 
 import classNames from "classnames";
 import React, { useState } from "react";
 
-import EditUserModal from "./EditUserModal";
+import EditUserModal from "@/components/EditUserModal";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {
@@ -45,11 +50,15 @@ export default function UserListItem({
   mutate,
   editMode,
   forceSmall,
+  customMode,
+  CustomComponent,
 }: {
   userData: ReceivedUserDataOnClient;
   mutate: () => void;
   editMode: boolean;
   forceSmall: boolean;
+  customMode: boolean;
+  CustomComponent: any;
 }) {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -176,6 +185,7 @@ export default function UserListItem({
             />
           </PopoverTrigger>
 
+          {customMode && CustomComponent(userData)}
           {/* Content */}
           <Portal>
             <PopoverContent zIndex={20} className={styles.popMain}>
