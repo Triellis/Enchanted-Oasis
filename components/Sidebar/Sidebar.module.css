@@ -12,15 +12,6 @@
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
   overflow-y: scroll;
 }
-
-.sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-.sidebar.open {
-  transform: translateX(0); /* Sidebar shown */
-}
-
 .sidebar.closed {
   transform: translateX(-100%); /* Sidebar hidden */
   width: 0;
