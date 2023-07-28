@@ -691,9 +691,9 @@ type User = {
 ```typescript
 {
 	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-	"unreadOnly":boolean // show unread only if true
-	courseId?:string // filter by course id, if not provided then admin notifications will be returned
+	"page"?: number, // pagination parameter, default is 1
+	"unreadOnly":boolean, // show unread only if true
+	"courseId"?:string // filter by course id, if not provided then admin notifications will be returned
 }
 ```
 

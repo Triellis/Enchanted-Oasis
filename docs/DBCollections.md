@@ -17,7 +17,7 @@
 	audience : "Students"| "Faculty" | "All" | "Course" // audience of the notification
 	courseId?: string // id of the course to which this notification belongs
 	attachments?: string[] // array of attachment urls (stored in supabase storage)
-	deadline?: Date // deadline for the notification
+
 }
 ```
 
@@ -38,27 +38,33 @@
 ```typescript
 
 {
-	_id: ObjectID,
-	name: string,
-	role: "Student" | "Faculty" | "Admin",
-	email: string,
-	passwordHash: string,
-	house: string,
-	profilePicture: string,
-	phone: string,
-	rollNumber: string,
+	_id: ObjectID;
+	name: string;
+	role: "Student" | "Faculty" | "Admin";
+	email: string;
+	passwordHash: string;
+	house: string;
+	profilePicture: string;
+	phone: string;
+	rollNumber: string;
 
-	courses: string[], // array of course ids
+	courses: string[]; // array of course ids
 
 	notifications: {
-		[notificationId: string]: {
-			seen: boolean,
-
-		}
-	}, // array of notification ids
-
-	unseenNotificationsCount: number // number of notifications not seen by this user
-}
+		admin: {
+			[notificationId: string]: {
+				seen: boolean;
+			};
+		};
+		course: {
+			[courseId: string]: {
+				[notificationId: string]: {
+					seen: boolean;
+				};
+			};
+		};
+	}; // array of notification ids
+};
 ```
 
 ## Lectures

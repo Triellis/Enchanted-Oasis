@@ -4,6 +4,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import {
   AdminNotificationCol,
   AdminNotificationOnClient,
+  CourseCol,
   MySession,
   UserCol,
   userProjection,
@@ -52,13 +53,21 @@ async function POST(
     return res.status(400).send("Missing body parameter: badgeColor");
   } else if (
     !audience ||
-    (audience !== "All" && audience !== "Student" && audience !== "Faculty")
+    (audience !== "All" &&
+      audience !== "Student" &&
+      audience !== "Faculty" &&
+      audience !== "Course")
   ) {
     return res
       .status(400)
       .send(
         "Missing body parameter: audience or invalid audience type, must be All, Student, or Faculty"
       );
+  }
+
+  const courseId = reqBody.courseId;
+  if (audience === "Course" && !courseId) {
+    res.status(400).send("Missing body parameter: courseId");
   }
   const notifID = new ObjectId();
   const notificationDoc = {
@@ -86,24 +95,48 @@ async function POST(
   let filter; // Add your filter criteria here if needed
   if (audience === "All") {
     filter = {};
-  } else {
+  } else if (audience === "Student" || audience === "Faculty") {
     filter = { role: { $in: [audience, "Admin"] } };
+  } else if (audience === "Course") {
+    const courseCol = await db.collection<CourseCol>("Courses");
+    const course = await courseCol.findOne({
+      _id: new ObjectId(courseId),
+    });
+    if (!course) {
+      return res.status(404).send("Course Not found!");
+    }
+
+    let members: string[] = [];
+    members = members.concat(course.students);
+    members = members.concat(course.faculties);
+    console.log(members);
+    filter = {
+      _id: { $in: members.map((member) => new ObjectId(member)) },
+    };
   }
-
-  const update = {
-    $set: {
-      [`notifications.${[notifID.toString()]}`]: {
-        seen: false,
+  let update;
+  if (audience !== "Course") {
+    update = {
+      $set: {
+        [`notifications.admin.${[notifID.toString()]}`]: {
+          seen: false,
+        },
       },
-    },
-
-    $inc: { unseenNotificationsCount: 1 },
-  } as UpdateFilter<UserCol>["notifications"]; // Replace 'myArrayField' with your field name
+    } as UpdateFilter<UserCol>["notifications"]; // Replace 'myArrayField' with your field name
+  } else {
+    update = {
+      $set: {
+        [`notifications.course.${courseId}.${[notifID.toString()]}`]: {
+          seen: false,
+        },
+      },
+    } as UpdateFilter<UserCol>["notifications"]; // Replace 'myArrayField' with your field name
+  }
 
   const options = { upsert: true };
 
   const updateResponse = await usersCollection.updateMany(
-    filter,
+    filter!,
     update,
     options
   );
