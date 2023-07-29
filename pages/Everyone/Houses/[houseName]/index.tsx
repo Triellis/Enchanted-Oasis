@@ -30,6 +30,7 @@ import Pagination from "@/components/Pagination";
 import UserList from "@/components/UserList";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 // function to search users
 function useSearch(searchQuery: string, page: number, id: string) {
@@ -157,7 +158,16 @@ function HousePlate({
   const [isLoadingMinus, setIsLoadingMinus] = useState(false);
 
   return (
-    <div className={styles.housePlate}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.09,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+      className={styles.housePlate}
+    >
       <span
         className={styles.houseImage}
         style={{
@@ -228,7 +238,7 @@ function HousePlate({
           </div>
         </>
       )}
-    </div>
+    </motion.div>
   );
 }
 
