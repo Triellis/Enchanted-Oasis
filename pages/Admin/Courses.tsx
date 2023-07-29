@@ -44,12 +44,7 @@ export default function Courses() {
             adminMode={true}
           />
           <Pagination items={courses} page={page} setPage={setPage} />
-
-          {/* <button className={styles.courseAdd} onClick={onAddCourseOpen}>
-            <AddIcon className={styles.icon} />
-            Add{" "}
-          </button> */}
-
+          
           {/* floating button here: */}
           <FloatingButton
             onOpen={onAddCourseOpen}
