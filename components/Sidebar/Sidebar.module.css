@@ -9,8 +9,8 @@
   left: 0;
   border-right: 1px solid hsl(var(--pc) / 30%);
 
-  transition: transform 400ms ease-in-out, width 400ms ease-in-out,
-    opacity 400ms ease-in-out;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   overflow-y: scroll;
   overflow-x: hidden;
 }
