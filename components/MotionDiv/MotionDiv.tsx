@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
-export default function MotionDiv(props: any) {
-  const isMobile = window.innerWidth < 768;
+function MotionDiv(props: any) {
+  let isMobile = window.innerWidth < 768;
 
   if (isMobile) {
     return <div {...props}></div>;
@@ -9,3 +11,7 @@ export default function MotionDiv(props: any) {
     return <motion.div {...props}></motion.div>;
   }
 }
+
+export default dynamic(() => Promise.resolve(MotionDiv), {
+  ssr: false,
+});
