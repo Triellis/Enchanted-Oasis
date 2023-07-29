@@ -347,12 +347,10 @@ export default function Admin() {
         <div className={styles.notifications}>
           <NotifList adminMode={true} />
         </div>
-        <IconButton
-          aria-label="compose"
-          className={styles.composeMsg}
-          icon={<EditIcon />}
-          onClick={onOpen}
-        />
+        <button className={styles.composeMsg} onClick={onOpen}>
+          <EditIcon className={styles.icon} />
+          Comopse{" "}
+        </button>
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
         {/* Compose mesaage modal */}
       </Layout>
