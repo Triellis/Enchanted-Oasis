@@ -17,15 +17,14 @@ function useJoke() {
 }
 
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
-  const isComingFromLeft = Math.random() < 0.5;
 
   return (
     <button onClick={() => mutate()}>
       <MotionDiv
         key={joke}
-        initial={{ opacity: 0, x: isComingFromLeft ? "-100%" : "100%" }}
+        initial={{ opacity: 0}}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ type: "spring", duration: 1.2, ease: "easeInOut" }}
+        transition={{ type: "spring", duration: 2, ease: "easeInOut" }}
       >
         {joke}
       </MotionDiv>
