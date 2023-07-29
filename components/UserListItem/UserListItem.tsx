@@ -37,6 +37,7 @@ import React, { useState } from "react";
 
 import EditUserModal from "@/components/EditUserModal";
 import { motion } from "framer-motion";
+import MotionDiv from "../MotionDiv";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {
@@ -166,7 +167,7 @@ export default function UserListItem({
   };
 
   return (
-    <motion.li
+    <MotionDiv
       variants={itemVariants}
       initial="hidden"
       animate="visible"
@@ -319,6 +320,6 @@ export default function UserListItem({
           userData={userData}
         />
       </div>
-    </motion.li>
+    </MotionDiv>
   );
 }
