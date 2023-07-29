@@ -162,5 +162,6 @@ export type CourseNotifCol = {
   date: Date;
   badgeText: string; // badge text
   badgeColor: string; // badge color
+  creatorId: string;
   attachment?: string; // attachment url
 };
