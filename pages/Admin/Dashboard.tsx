@@ -345,7 +345,6 @@ export default function Admin() {
           <NotifList adminMode={true} />
         </div>
 
-
         {/* floating button here */}
         <FloatingButton
           onOpen={onOpen}
