@@ -38,7 +38,7 @@ async function POST(
     return res.status(403).send("Not an Faculty");
   }
 
-  const fields = ["title", "body", "badge", "badgeColor"];
+  const fields = ["title", "body", "badgeColor", "badgeText"];
 
   const notification = req.body;
   // check for missing fields

@@ -3,8 +3,9 @@ import MotionDiv from "../MotionDiv";
 import classNames from "classnames";
 import { Avatar, Badge, Flex, Spacer, Text } from "@chakra-ui/react";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
-import styles from "@/components/NotifItem/NotifItem.module.css";
+import AdminNotifStyles from "@/components/NotifItem/NotifItem.module.css";
 import Link from "next/link";
+import { DeleteIcon } from "@chakra-ui/icons";
 export default function CourseNotifItem({
   notification,
   mutate,
@@ -18,8 +19,8 @@ export default function CourseNotifItem({
   };
 
   return (
-    <div className={classNames(styles.notifItem)}>
-      <div className={styles.header}>
+    <div className={classNames(AdminNotifStyles.notifItem)}>
+      <div className={AdminNotifStyles.header}>
         {/* Avatar, name, email */}
         <Flex gap={4}>
           <Avatar src={notification.creator.profilePicture} />
@@ -32,12 +33,12 @@ export default function CourseNotifItem({
         </Flex>
       </div>
       <Link
-        className={styles.link}
+        className={AdminNotifStyles.link}
         href={`/Everyone/Notification/${notification._id}`}
       >
-        <div className={styles.body}>
+        <div className={AdminNotifStyles.body}>
           {/* Title and Content */}
-          <span className={styles.title}>
+          <span className={AdminNotifStyles.title}>
             <Text fontWeight="bold" fontSize="1.1em">
               {notification.title}
             </Text>
@@ -48,7 +49,7 @@ export default function CourseNotifItem({
         </div>
       </Link>
 
-      <div className={styles.footer}>
+      <div className={AdminNotifStyles.footer}>
         {/* Date and time without icons */}
 
         <Text fontSize="sm" color="hsl(var(--nc) )">
@@ -57,13 +58,16 @@ export default function CourseNotifItem({
 
         {/* Badge */}
         <Flex>
-          <div className={styles.badgesWrapper}>
+          <div className={AdminNotifStyles.badgesWrapper}>
             <Badge colorScheme={notification.badgeColor}>
               {" "}
               {notification.badgeText}{" "}
             </Badge>
           </div>
           <Spacer />
+          <button className={AdminNotifStyles.del} aria-label="delete">
+            <DeleteIcon />
+          </button>
         </Flex>
       </div>
     </div>
