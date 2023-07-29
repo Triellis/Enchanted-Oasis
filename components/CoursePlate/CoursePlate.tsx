@@ -161,16 +161,7 @@ export default function CoursePlate({
     courseToRender = (
       <div className={styles.courseDataWrapper}>
         {/* plate 1 */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.09,
-            ease: [0, 0.71, 0.2, 1.01],
-          }}
-          className={styles.coursePlate}
-        >
+        <div className={styles.coursePlate}>
           <div className={styles.header}>
             <div className={styles.courseName}>{course.name}</div>
             {actionComponent}
@@ -180,41 +171,23 @@ export default function CoursePlate({
             <div className={styles.courseCredits}>{course.credits} credits</div>
           </div>
           {membersComponent}
-        </motion.div>
+        </div>
 
         {!membersModal && (
           <>
             {/* plate 2 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.05,
-                ease: [0, 0.71, 0.2, 1.01],
-              }}
-              className={styles.descriptionPlate}
-            >
+            <div className={styles.descriptionPlate}>
               <div className={styles.courseName}>About The Course</div>
               <div className={styles.CourseDescription}>
                 {course.description}
               </div>
-            </motion.div>
+            </div>
 
             {/* plate 3 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.07,
-                ease: [0, 0.71, 0.2, 1.01],
-              }}
-              className={styles.schedulePlate}
-            >
+            <div className={styles.schedulePlate}>
               <div className={styles.courseName}>Schedule</div>
               <ScheduleTable schedule={course.schedule} />
-            </motion.div>
+            </div>
           </>
         )}
       </div>
