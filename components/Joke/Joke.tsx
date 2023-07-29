@@ -58,7 +58,7 @@ export default function Joke() {
 
   let componentsToRender;
   if (isLoading) {
-    componentsToRender = <h1>loading</h1>;
+    componentsToRender = <Loader />;
   } else if (error) {
     componentsToRender = <h1>error</h1>;
   } else {
@@ -68,7 +68,6 @@ export default function Joke() {
   return (
     <div className={styles.joke}>
       {componentsToRender}
-      <Loader />
     </div>
   );
 }
