@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import styles from "./Joke.module.css";
+import MotionDiv from "../MotionDiv";
 
 function useJoke() {
   const { data, error, isLoading, mutate } = useSWR(
@@ -17,7 +18,14 @@ function useJoke() {
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
   return (
     <button onClick={() => mutate()}>
-      <span>{joke}</span>
+      <MotionDiv
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+      >
+        {joke}
+      </MotionDiv>
     </button>
   );
 }
