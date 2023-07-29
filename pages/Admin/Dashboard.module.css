@@ -48,7 +48,7 @@
   margin: 0.5em 0;
 }
 
-.composeMsg {
+/* .composeMsg {
   display: flex;
   align-items: center;
   border: none;
@@ -84,7 +84,7 @@
   position: relative;
   margin-right: 8px;
   transition: transform 0.3s ease-in-out;
-}
+} */
 
 
 .targetLabel {

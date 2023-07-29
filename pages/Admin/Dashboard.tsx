@@ -31,6 +31,7 @@ import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
 import Joke from "@/components/Joke";
+import FloatingButton from "@/components/FloatingButton";
 
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -352,10 +353,23 @@ export default function Admin() {
         <div className={styles.notifications}>
           <NotifList adminMode={true} />
         </div>
-        <button className={styles.composeMsg} onClick={onOpen}>
+
+        {/* <button className={styles.composeMsg} onClick={onOpen}>
           <EditIcon className={styles.icon} />
           Comopse{" "}
-        </button>
+        </button> */}
+
+        {/* floating button here */}
+        <FloatingButton
+          onOpen={onOpen}
+          SideIcon={EditIcon}
+          HalfText={"Compose"}
+          RemainingText={"New Message"}
+          initialWidth={7.8}
+          finalWidth={14.3}
+          rotateBy={0}
+        />
+
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
         {/* Compose mesaage modal */}
       </Layout>
