@@ -337,15 +337,6 @@ export default function Admin() {
   return (
     <>
       <Layout>
-        {/* greetings part */}
-        {/* <div className={styles.greeting}>
-          <span>
-            Welcome <span className={styles.name}>{name}</span>!{" "}
-          </span>
-          Let <span className={styles.glowingText}>Lumos</span> illuminate your
-          path at our
-          <span className={styles.appName}> Enchanted Oasis!</span>
-        </div> */}
         <div>
           <Joke />
         </div>
@@ -354,10 +345,6 @@ export default function Admin() {
           <NotifList adminMode={true} />
         </div>
 
-        {/* <button className={styles.composeMsg} onClick={onOpen}>
-          <EditIcon className={styles.icon} />
-          Comopse{" "}
-        </button> */}
 
         {/* floating button here */}
         <FloatingButton
