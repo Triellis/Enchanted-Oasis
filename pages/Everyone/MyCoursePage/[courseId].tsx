@@ -14,6 +14,7 @@ export default function MyCoursePage() {
   const courseId = router.query.courseId;
   const { course, isLoading, error } = useCoursePage(courseId?.toString()!);
   const session = useSession().data as MySession;
+
   return (
     <Layout>
       <CoursePlate
@@ -27,7 +28,7 @@ export default function MyCoursePage() {
       <EnrollMemberModal
         isOpen={isOpen}
         onClose={onClose}
-        studentsOnly={session?.user.role === "Faculty"}
+        studentsOnly={session ? session?.user.role === "Faculty" : true}
       />
     </Layout>
   );
