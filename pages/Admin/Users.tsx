@@ -98,17 +98,6 @@ export default function Users() {
           <Pagination page={page} setPage={setPage} items={users} />
         </div>
 
-        {/* <button
-          className={styles.addUserButton}
-          onClick={() => {
-            onOpen();
-            setOverlay(<OverlayOne />);
-          }}
-        >
-          <AddIcon className={styles.icon} />
-          Add{" "}
-        </button> */}
-
         {/* floating button */}
         <FloatingButton
           onOpen={onOpen}

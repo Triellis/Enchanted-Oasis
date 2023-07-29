@@ -3,7 +3,6 @@ import Layout from "../Layout";
 
 import {
   Button,
-  IconButton,
   Input,
   Modal,
   ModalBody,
@@ -357,7 +356,6 @@ export default function Admin() {
         />
 
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
-        {/* Compose mesaage modal */}
       </Layout>
     </>
   );
