@@ -21,6 +21,7 @@ import { AddIcon, CheckIcon } from "@chakra-ui/icons";
 import styles from "./EnrollMemberModal.module.css";
 import classNames from "classnames";
 import userStyles from "@/pages/Admin/Users.module.css";
+import FloatingButton from "../FloatingButton";
 
 async function enrollUsers(
   cousreId: string,
@@ -242,14 +243,23 @@ export default function EnrollMemberModal({
 
 export function EnrollBtn({ onOpen }: { onOpen: () => void }) {
   return (
-    <button
-      className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
-      onClick={() => {
-        onOpen();
-      }}
-    >
-      <AddIcon className={userStyles.icon} />
-      Enroll{" "}
-    </button>
+    // <button
+    //   className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
+    //   onClick={() => {
+    //     onOpen();
+    //   }}
+    // >
+    //   <AddIcon className={userStyles.icon} />
+    //   Enroll{" "}
+    // </button>
+    <FloatingButton
+      onOpen={onOpen}
+      SideIcon={AddIcon}
+      HalfText="Enroll"
+      RemainingText="New Users"
+      initialWidth={6.3}
+      finalWidth={11.4}
+      rotateBy={180}
+    />
   );
 }
