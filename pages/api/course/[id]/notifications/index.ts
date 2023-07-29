@@ -100,6 +100,6 @@ async function GET(
     .skip(skip)
     .limit(maxResults)
     .toArray();
-
+  console.log(notifications);
   return res.status(200).json(notifications);
 }
