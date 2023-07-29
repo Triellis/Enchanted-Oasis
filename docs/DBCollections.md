@@ -130,6 +130,7 @@
 	badgeText: string, // badge text
 	badgeColor: string, // badge color
 	attachment?: string, // attachment url
+	creatorId:string
 
 }
 ```
