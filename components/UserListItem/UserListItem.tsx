@@ -161,7 +161,7 @@ export default function UserListItem({
   const isFaculty = userData.role === "Faculty";
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -100 },
+    hidden: { opacity: 0, x: -1100 },
     visible: { opacity: 1, x: 0 },
   };
 
