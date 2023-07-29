@@ -4,10 +4,10 @@ import { useCoursePage } from "@/lib/functions";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { MySession } from "@/lib/types";
-import EnrollMemberModal, {
-  EnrollBtn,
-} from "@/components/EnrollMemberModal/EnrollMemberModal";
+import EnrollMemberModal from "@/components/EnrollMemberModal";
+import FloatingButton from "@/components/FloatingButton";
 import { useDisclosure } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 export default function MyCoursePage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
@@ -23,7 +23,17 @@ export default function MyCoursePage() {
         actionBtn={session?.user.role === "Student" ? "unenroll" : null}
         membersModal={true}
       />{" "}
-      {session?.user.role === "Faculty" && <EnrollBtn onOpen={onOpen} />}
+      {session?.user.role === "Faculty" && (
+        <FloatingButton
+          onOpen={onOpen}
+          SideIcon={AddIcon}
+          HalfText="Enroll"
+          RemainingText="New Users"
+          initialWidth={6.3}
+          finalWidth={11.4}
+          rotateBy={180}
+        />
+      )}
       <EnrollMemberModal
         isOpen={isOpen}
         onClose={onClose}

@@ -6,6 +6,7 @@ import CourseList from "@/components/CourseList/CourseList";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
 import AddCourseModal from "@/components/AddCourseModal/AddCourseModal";
+import FloatingButton from "@/components/FloatingButton";
 
 import { useState } from "react";
 import useSWR from "swr";
@@ -43,11 +44,17 @@ export default function Courses() {
             adminMode={true}
           />
           <Pagination items={courses} page={page} setPage={setPage} />
-
-          <button className={styles.courseAdd} onClick={onAddCourseOpen}>
-            <AddIcon className={styles.icon} />
-            Add{" "}
-          </button>
+          
+          {/* floating button here: */}
+          <FloatingButton
+            onOpen={onAddCourseOpen}
+            SideIcon={AddIcon}
+            HalfText={"Add"}
+            RemainingText={"New Course"}
+            initialWidth={5.5}
+            finalWidth={11}
+            rotateBy={0}
+          />
         </div>
 
         <AddCourseModal
