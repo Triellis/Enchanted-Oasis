@@ -21,10 +21,10 @@ const Button = defineStyleConfig({
 const Badge = defineStyleConfig({
   baseStyle: {
     borderRadius: "0.5em",
-    padding: "1px 5px",
-    letterSpacing: "0.1em",
+    padding: "3px",
   },
 });
+
 const Popover = {
   baseStyle: {
     popper: {
