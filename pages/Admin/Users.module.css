@@ -149,6 +149,7 @@
 .addUserButton:hover::after {
   content: "\00a0New User";
 }
+
 .icon {
   display: inline-block;
   position: relative;
