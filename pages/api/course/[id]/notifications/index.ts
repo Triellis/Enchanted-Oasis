@@ -16,6 +16,8 @@ export default async function handler(
   }
   if (req.method === "POST") {
     return POST(req, res, session);
+  } else if (req.method === "GET") {
+    return GET(req, res, session);
   } else {
     return res.status(405).send("Method not allowed");
   }
@@ -51,6 +53,7 @@ async function POST(
   const db = (await clientPromise).db("enchanted-oasis");
   const courseNotifCollection = db.collection<CourseCol>("CourseNotifications");
   notification.courseId = req.query.id;
+  notification.date = new Date();
 
   const insertResponse = await courseNotifCollection.insertOne(notification);
   if (!insertResponse.acknowledged) {
@@ -58,4 +61,41 @@ async function POST(
   }
 
   return res.status(200).send("Notification added");
+}
+
+async function GET(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: MySession
+) {
+  if (session?.user.role !== "Faculty" && session?.user.role !== "Student") {
+    return res.status(403).send("Not an Faculty or Student");
+  }
+  const maxResults = req.query.maxResults
+    ? parseInt(req.query.maxResults as string)
+    : 10;
+  const page = req.query.page ? Number(req.query.page as string) : 1;
+  const skip = (page - 1) * maxResults;
+  const searchQuery = req.query.searchQuery
+    ? (req.query.searchQuery as string)
+    : "";
+  const searchRegex = new RegExp(searchQuery, "i");
+  const db = (await clientPromise).db("enchanted-oasis");
+  const courseNotifCollection = db.collection<CourseCol>("CourseNotifications");
+  const courseId = req.query.id;
+  const notifications = await courseNotifCollection
+    .find({
+      courseId,
+      $or: [
+        { title: { $regex: searchRegex } },
+        { body: { $regex: searchRegex } },
+        { badge: { $regex: searchRegex } },
+      ],
+    })
+    .sort({ date: -1 })
+    .skip(skip)
+    .limit(maxResults)
+    .toArray();
+
+  return res.status(200).json(notifications);
 }
