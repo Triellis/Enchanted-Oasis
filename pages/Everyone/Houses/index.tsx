@@ -6,6 +6,8 @@ import { fetcher } from "@/lib/functions";
 import useSWR from "swr";
 import { HouseCol } from "@/lib/types";
 
+import { motion } from "framer-motion";
+
 function useLeaderboard() {
   const { data, error, isLoading } = useSWR(`/api/house/list`, fetcher);
 
@@ -26,23 +28,33 @@ function HouseCard({
   rank: number;
 }) {
   return (
-    <Link href={`./Houses/${house.name}?houseId=${house._id}`}>
-      <GridItem>
-        <Card className={styles.housePic}>
-          <CardBody padding={0} position={"relative"}>
-            <Image
-              src={`/assets/image/Houses/${house.name[0]}.png`}
-              alt={house.name}
-              width={window.innerWidth < 500 ? window.innerWidth - 50 : 400}
-              style={{ borderRadius: 10 }}
-              height={0}
-            />
-            <div className={styles.rankDisplay}>{rank}</div>
-            <div className={styles.housePoints}>{house.points}</div>
-          </CardBody>
-        </Card>
-      </GridItem>
-    </Link>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+    >
+      <Link href={`./Houses/${house.name}?houseId=${house._id}`}>
+        <GridItem>
+          <Card className={styles.housePic}>
+            <CardBody padding={0} position={"relative"}>
+              <Image
+                src={`/assets/image/Houses/${house.name[0]}.png`}
+                alt={house.name}
+                width={window.innerWidth < 500 ? window.innerWidth - 50 : 400}
+                style={{ borderRadius: 10 }}
+                height={0}
+              />
+              <div className={styles.rankDisplay}>{rank}</div>
+              <div className={styles.housePoints}>{house.points}</div>
+            </CardBody>
+          </Card>
+        </GridItem>
+      </Link>
+    </motion.div>
   );
 }
 
