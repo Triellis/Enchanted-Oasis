@@ -241,8 +241,8 @@ export default function EnrollMemberModal({
   );
 }
 
-export function EnrollBtn({ onOpen }: { onOpen: () => void }) {
-  return (
+// export function EnrollBtn({ onOpen }: { onOpen: () => void }) {
+//   return (
     // <button
     //   className={classNames(userStyles.addUserButton, styles.enrollUserBtn)}
     //   onClick={() => {
@@ -252,14 +252,14 @@ export function EnrollBtn({ onOpen }: { onOpen: () => void }) {
     //   <AddIcon className={userStyles.icon} />
     //   Enroll{" "}
     // </button>
-    <FloatingButton
-      onOpen={onOpen}
-      SideIcon={AddIcon}
-      HalfText="Enroll"
-      RemainingText="New Users"
-      initialWidth={6.3}
-      finalWidth={11.4}
-      rotateBy={180}
-    />
-  );
-}
+//     <FloatingButton
+//       onOpen={onOpen}
+//       SideIcon={AddIcon}
+//       HalfText="Enroll"
+//       RemainingText="New Users"
+//       initialWidth={6.3}
+//       finalWidth={11.4}
+//       rotateBy={180}
+//     />
+//   );
+// }
