@@ -17,12 +17,11 @@ function useJoke() {
 }
 
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
-
   return (
     <button onClick={() => mutate()}>
       <MotionDiv
         key={joke}
-        initial={{ opacity: 0}}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ type: "spring", duration: 2, ease: "easeInOut" }}
       >
