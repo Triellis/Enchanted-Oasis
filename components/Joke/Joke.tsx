@@ -1,7 +1,6 @@
 import useSWR from "swr";
 import styles from "./Joke.module.css";
 import MotionDiv from "../MotionDiv";
-import { Spinner } from "@chakra-ui/react";
 
 function useJoke() {
   const { data, error, isLoading, mutate } = useSWR(
