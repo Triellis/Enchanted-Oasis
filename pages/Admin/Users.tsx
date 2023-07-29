@@ -21,6 +21,7 @@ import TabsComponent from "@/components/TabsComponent";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import UserList from "@/components/UserList";
+import FloatingButton from "@/components/FloatingButton";
 
 export default function Users() {
   const session = useSession();
@@ -99,7 +100,7 @@ export default function Users() {
           <Pagination page={page} setPage={setPage} items={users} />
         </div>
 
-        <button
+        {/* <button
           className={styles.addUserButton}
           onClick={() => {
             onOpen();
@@ -108,7 +109,19 @@ export default function Users() {
         >
           <AddIcon className={styles.icon} />
           Add{" "}
-        </button>
+        </button> */}
+
+        {/* floating button */}
+
+        <FloatingButton
+          onOpen={onOpen}
+          SideIcon={AddIcon}
+          HalfText={"Add"}
+          RemainingText={"New User"}
+          initialWidth={5}
+          finalWidth={9.5}
+          rotateBy={180}
+        />
 
         {/* Modal window to add new users */}
         <NewUserModal

@@ -1,19 +1,21 @@
 .floatBtn {
   display: flex;
   align-items: center;
-  border: none;
-  cursor: pointer;
   padding: 1em;
+
   position: fixed;
   z-index: 1;
   right: 1.5em;
   bottom: 1em;
-  transition: width 200ms ease-in-out, scale 200ms ease-in-out;
-  width: 5em;
+
+  /* width: 5em; */
   text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1em;
   overflow: hidden;
+  transition: width 200ms ease-in-out, scale 200ms ease-in-out;
+  cursor: pointer;
+
+  line-height: 1em;
+  white-space: nowrap;
   background-color: hsl(var(--s) / 50%);
   backdrop-filter: blur(5px);
   border-radius: 0.8em;
@@ -23,12 +25,13 @@
 .floatBtn:active {
   scale: 0.9;
 }
-.floatBtn:hover {
+
+/* .floatBtn:hover {
   width: 9.5em;
-}
-.floatBtn:hover::after {
+} */
+/* .floatBtn:hover::after {
   content: "\00a0New User";
-}
+} */
 
 .icon {
   display: inline-block;
@@ -36,6 +39,6 @@
   margin-right: 8px;
   transition: transform 0.3s ease-in-out;
 }
-.floatBtn:hover .icon {
+/* .floatBtn:hover .icon {
   transform: rotate(180deg);
-}
+} */
