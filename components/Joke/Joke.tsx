@@ -32,7 +32,7 @@ function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
 }
 
 function Loader() {
-  return <Spinner color="hsl(var(--a))" />;
+  return <span>Joke Loading...</span>;
 }
 
 export default function Joke() {
