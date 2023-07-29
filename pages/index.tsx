@@ -1,12 +1,9 @@
 import { useRouter } from "next/router";
 import {
   Button,
-  useColorMode,
   Card,
   CardBody,
-  CardFooter,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import { MySession } from "../lib/types";
 
