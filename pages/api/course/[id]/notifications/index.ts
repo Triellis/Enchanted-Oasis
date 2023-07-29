@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 
-import { CourseCol, MySession } from "@/lib/types";
+import { CourseCol, CourseNotifCol, MySession } from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { authOptions } from "../../../auth/[...nextauth]";
 
@@ -51,7 +51,9 @@ async function POST(
   }
 
   const db = (await clientPromise).db("enchanted-oasis");
-  const courseNotifCollection = db.collection<CourseCol>("CourseNotifications");
+  const courseNotifCollection = db.collection<CourseNotifCol>(
+    "CourseNotifications"
+  );
   notification.courseId = req.query.id;
   notification.date = new Date();
 
@@ -81,7 +83,9 @@ async function GET(
     : "";
   const searchRegex = new RegExp(searchQuery, "i");
   const db = (await clientPromise).db("enchanted-oasis");
-  const courseNotifCollection = db.collection<CourseCol>("CourseNotifications");
+  const courseNotifCollection = db.collection<CourseNotifCol>(
+    "CourseNotifications"
+  );
   const courseId = req.query.id;
   const notifications = await courseNotifCollection
     .find({
