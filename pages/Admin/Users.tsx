@@ -118,8 +118,8 @@ export default function Users() {
           SideIcon={AddIcon}
           HalfText={"Add"}
           RemainingText={"New User"}
-          initialWidth={5}
-          finalWidth={9.5}
+          initialWidth={5.5}
+          finalWidth={10}
           rotateBy={180}
         />
 
