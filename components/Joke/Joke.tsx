@@ -31,11 +31,7 @@ function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
 }
 
 function Loader() {
-  const balls = [
-    { delay: 0, color: "hsl(var(--nc))" },
-    { delay: 0.1, color: "hsl(var(--nc))" },
-    { delay: 0.2, color: "hsl(var(--nc))" },
-  ];
+  const balls = [{ delay: 0 }, { delay: 0.1 }, { delay: 0.2 }];
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -46,7 +42,7 @@ function Loader() {
             width: "0.5em",
             height: "0.5em",
             borderRadius: "50%",
-            backgroundColor: ball.color,
+            backgroundColor: "hsl(var(--nc))",
             margin: "1px",
           }}
           animate={{ y: [0, -20, 0], scale: [1, 0.8, 1] }}
