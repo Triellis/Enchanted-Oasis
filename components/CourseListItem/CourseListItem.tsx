@@ -19,6 +19,8 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { CourseListItemData } from "@/lib/types";
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import { motion } from "framer-motion";
+import MotionDiv from "../MotionDiv";
 
 // api call to delete course:
 async function deleteCourse(
@@ -118,11 +120,13 @@ export default function CourseListItem({
   mutate,
   adminMode,
   linkMode,
+  transition,
 }: {
   course: CourseListItemData;
   mutate: () => void;
   linkMode: "overview" | "enrolled";
   adminMode?: boolean;
+  transition?: any;
 }) {
   const router = useRouter();
   // const adminMode = true;
@@ -132,13 +136,24 @@ export default function CourseListItem({
     onClose: onDelClose,
   } = useDisclosure();
 
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   let link =
     linkMode == "overview"
       ? `/Everyone/CoursePage/${course._id} `
       : `/Everyone/MyCoursePage/${course._id}`;
 
   return (
-    <div className={styles.courseListItem}>
+    <MotionDiv
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      transition={transition}
+      className={styles.courseListItem}
+    >
       <ListItem border={"none"}>
         <div className={styles.itemWrapper}>
           <div
@@ -182,6 +197,6 @@ export default function CourseListItem({
         course={course}
         mutate={mutate}
       />
-    </div>
+    </MotionDiv>
   );
 }

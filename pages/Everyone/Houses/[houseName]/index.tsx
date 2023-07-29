@@ -264,7 +264,7 @@ function EditPointsModal({
       isOpen={isOpen}
       motionPreset="slideInBottom"
     >
-      <ModalOverlay />
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
         <ModalHeader>Edit Points</ModalHeader>
         <ModalBody>

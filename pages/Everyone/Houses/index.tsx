@@ -5,6 +5,7 @@ import Image from "next/image";
 import { fetcher } from "@/lib/functions";
 import useSWR from "swr";
 import { HouseCol } from "@/lib/types";
+import MotionDiv from "@/components/MotionDiv/MotionDiv";
 
 function useLeaderboard() {
   const { data, error, isLoading } = useSWR(`/api/house/list`, fetcher);
@@ -28,19 +29,28 @@ function HouseCard({
   return (
     <Link href={`./Houses/${house.name}?houseId=${house._id}`}>
       <GridItem>
-        <Card className={styles.housePic}>
-          <CardBody padding={0} position={"relative"}>
-            <Image
-              src={`/assets/image/Houses/${house.name[0]}.png`}
-              alt={house.name}
-              width={window.innerWidth < 500 ? window.innerWidth - 50 : 400}
-              style={{ borderRadius: 10 }}
-              height={0}
-            />
-            <div className={styles.rankDisplay}>{rank}</div>
-            <div className={styles.housePoints}>{house.points}</div>
-          </CardBody>
-        </Card>
+        <MotionDiv
+          initial={{ opacity: 0, y: 100 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { ease: "easeOut", duration: 0.3 },
+          }}
+        >
+          <Card className={styles.housePic}>
+            <CardBody padding={0} position={"relative"}>
+              <Image
+                src={`/assets/image/Houses/${house.name[0]}.png`}
+                alt={house.name}
+                width={window.innerWidth < 500 ? window.innerWidth - 50 : 400}
+                style={{ borderRadius: 10 }}
+                height={0}
+              />
+              <div className={styles.rankDisplay}>{rank}</div>
+              <div className={styles.housePoints}>{house.points}</div>
+            </CardBody>
+          </Card>
+        </MotionDiv>
       </GridItem>
     </Link>
   );

@@ -39,6 +39,11 @@ export default function NotifList({
   const [page, setPage] = useState(1);
   const [inbox, setInbox] = useState("Unseen");
 
+  const transition = {
+    duration: 0.3,
+    ease: "easeInOut",
+  };
+
   const [unseenOnly, setUnseenOnly] = useState(false);
   const tabs = useMemo(
     () => [
@@ -76,11 +81,12 @@ export default function NotifList({
     } else {
       componentToRender = (
         <>
-          {notifications.map((notification) => (
+          {notifications.map((notification, index) => (
             <NotifItem
               key={notification._id.toString()}
               notification={notification}
               adminMode={adminMode}
+              transition={{ ...transition, delay: index * 0.09 }}
             />
           ))}
         </>
