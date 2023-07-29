@@ -170,8 +170,8 @@ export default function UserListItem({
       variants={itemVariants}
       initial="hidden"
       animate="visible"
-      className={styles.userListItem}
       transition={transition}
+      className={styles.userListItem}
     >
       <div className={styles.userInfo}>
         {/* profile picture */}

@@ -19,6 +19,12 @@ export default function CourseList({
   linkMode?: "overview" | "enrolled";
 }) {
   let componentToRender;
+
+  const transition = {
+    duration: 0.3,
+    ease: "easeInOut",
+  };
+
   if (isLoading) {
     componentToRender = <div>Loading...</div>;
   }
@@ -30,13 +36,14 @@ export default function CourseList({
   } else if (courses) {
     componentToRender = (
       <List className={styles.courseList}>
-        {courses.map((course) => (
+        {courses.map((course, index) => (
           <CourseListItem
             mutate={mutate}
             key={course._id.toString()}
             course={course}
             adminMode={adminMode}
             linkMode={linkMode}
+            transition={{ ...transition, delay: index * 0.09 }}
           />
         ))}
       </List>
