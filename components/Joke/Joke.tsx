@@ -32,8 +32,6 @@ function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
 }
 
 function Loader() {
-  const balls = [{ delay: 0 }, { delay: 0.1 }, { delay: 0.2 }];
-
   return <Spinner color="hsl(var(--a))" />;
 }
 
