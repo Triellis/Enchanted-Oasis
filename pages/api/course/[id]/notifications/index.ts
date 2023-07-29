@@ -1,9 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 
-import { CourseCol, CourseNotifCol, MySession } from "@/lib/types";
+import {
+  CourseCol,
+  CourseNotifCol,
+  MySession,
+  userProjection,
+} from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { authOptions } from "../../../auth/[...nextauth]";
+import { ObjectId } from "mongodb";
 
 export default async function handler(
   req: NextApiRequest,
@@ -56,6 +62,7 @@ async function POST(
   );
   notification.courseId = req.query.id;
   notification.date = new Date();
+  notification.creatorId = session.user.id;
 
   const insertResponse = await courseNotifCollection.insertOne(notification);
   if (!insertResponse.acknowledged) {
@@ -86,19 +93,54 @@ async function GET(
   const courseNotifCollection = db.collection<CourseNotifCol>(
     "CourseNotifications"
   );
-  const courseId = req.query.id;
-  const notifications = await courseNotifCollection
-    .find({
-      courseId,
-      $or: [
-        { title: { $regex: searchRegex } },
-        { body: { $regex: searchRegex } },
-        { badge: { $regex: searchRegex } },
+  const courseId = req.query.id as string;
+  const notifProjection: any = {
+    _id: 1,
+    title: 1,
+    body: {
+      $concat: [
+        { $substr: ["$body", 0, 150] }, // Specify the number of characters to keep (e.g., 10)
+        "...", // Add ellipsis or any desired truncation indicator
       ],
-    })
-    .sort({ date: -1 })
-    .skip(skip)
-    .limit(maxResults)
+    },
+    badgeText: 1,
+    badgeColor: 1,
+    audience: 1,
+    creatorId: 1,
+    date: 1,
+    creator: 1,
+  };
+
+  const notifications = await courseNotifCollection
+    .aggregate([
+      {
+        $match: { courseId: courseId },
+      },
+      {
+        $lookup: {
+          from: "Users",
+          localField: "creatorId",
+          foreignField: "_id",
+          as: "creator",
+          pipeline: [
+            {
+              $project: userProjection,
+            },
+            {
+              $limit: 1, // Limit the number of creators to 1
+            },
+          ],
+        },
+      },
+      {
+        $addFields: {
+          creator: { $arrayElemAt: ["$creator", 0] }, // Get the first creator from the 'creators' array
+        },
+      },
+      {
+        $project: notifProjection,
+      },
+    ])
     .toArray();
   console.log(notifications);
   return res.status(200).json(notifications);
