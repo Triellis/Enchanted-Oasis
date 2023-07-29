@@ -21,8 +21,8 @@ export default async function handler(
 }
 
 async function DELETE(req: NextApiRequest, res: NextApiResponse, session: any) {
-  if (session?.user.role !== "Admin") {
-    return res.status(403).send("Not an Admin");
+  if (session?.user.role !== "Admin" && session.user.role !== "Faculty") {
+    return res.status(403).send("Not an Admin or faculty");
   }
 
   const courseId = req.query.id as string;
@@ -40,6 +40,9 @@ async function DELETE(req: NextApiRequest, res: NextApiResponse, session: any) {
     return res
       .status(400)
       .send("Invalid memberType, must be student or faculty");
+  }
+  if (session.user.role === "Faculty" && memberType === "faculty") {
+    return res.status(403).send("A Faculty can not remove another faculty");
   }
   const db = (await clientPromise).db("enchanted-oasis");
   const coursesCollection = db.collection("Courses");

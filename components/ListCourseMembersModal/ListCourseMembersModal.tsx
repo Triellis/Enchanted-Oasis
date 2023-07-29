@@ -9,10 +9,12 @@ import {
 import { useState } from "react";
 import UserList from "@/components/UserList";
 import Pagination from "@/components/Pagination";
-import { ReceivedUserDataOnClient } from "@/lib/types";
+import { MySession, ReceivedUserDataOnClient } from "@/lib/types";
 import { fetcher, useCourseMembers } from "@/lib/functions";
 import useSWR from "swr";
 import SearchBar from "../SearchBar/SearchBar";
+import { UnEnrollButton } from "@/pages/Everyone/CoursePage/[courseId]";
+import { useSession } from "next-auth/react";
 
 export default function ListCourseMembersModal({
   courseId,
@@ -33,6 +35,7 @@ export default function ListCourseMembersModal({
     search,
     memberType
   );
+  const session = useSession().data as MySession;
   return (
     <Modal isCentered size={"md"} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
@@ -55,6 +58,16 @@ export default function ListCourseMembersModal({
             mutate={mutate}
             usersData={members}
             forceSmall={true}
+            customMode={
+              session?.user.role === "Faculty" && memberType === "student"
+            }
+            CustomComponent={(user: ReceivedUserDataOnClient) => (
+              <UnEnrollButton
+                courseId={courseId}
+                userData={user}
+                mutate={mutate}
+              />
+            )}
           />
           <Pagination items={members} page={page} setPage={setPage} />
         </Box>

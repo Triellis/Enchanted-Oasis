@@ -45,7 +45,7 @@ import EnrollMemberModal, {
   EnrollBtn,
 } from "@/components/EnrollMemberModal/EnrollMemberModal";
 
-function UnEnrollButton({
+export function UnEnrollButton({
   userData,
   courseId,
   mutate,
