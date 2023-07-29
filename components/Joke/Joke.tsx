@@ -30,6 +30,33 @@ function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
   );
 }
 
+function Loader() {
+  const balls = [
+    { delay: 0, color: "hsl(var(--nc))" },
+    { delay: 0.1, color: "hsl(var(--nc))" },
+    { delay: 0.2, color: "hsl(var(--nc))" },
+  ];
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      {balls.map((ball, index) => (
+        <MotionDiv
+          key={index}
+          style={{
+            width: "0.5em",
+            height: "0.5em",
+            borderRadius: "50%",
+            backgroundColor: ball.color,
+            margin: "1px",
+          }}
+          animate={{ y: [0, -20, 0], scale: [1, 0.8, 1] }}
+          transition={{ duration: 1, repeat: Infinity, delay: ball.delay }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Joke() {
   const { joke, error, isLoading, mutate } = useJoke();
 
@@ -42,5 +69,10 @@ export default function Joke() {
     componentsToRender = <JokeComponent joke={joke!} mutate={mutate} />;
   }
 
-  return <div className={styles.joke}>{componentsToRender}</div>;
+  return (
+    <div className={styles.joke}>
+      {componentsToRender}
+      <Loader />
+    </div>
+  );
 }
