@@ -153,3 +153,15 @@ export type TabsType = {
   value: string;
   color: string;
 }[];
+
+export type CourseNotifCol = {
+  _id: ObjectId;
+  courseId: string;
+  title: string;
+  body: string; // supports markdown
+  date: Date;
+  badgeText: string; // badge text
+  badgeColor: string; // badge color
+  creatorId: string;
+  attachment?: string; // attachment url
+};
