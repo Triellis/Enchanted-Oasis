@@ -94,7 +94,7 @@ export default function UserListItem({
   };
 
   // for dynamic rendering of components as per screen size
-  const [isSmall, setIsSmall] = React.useState(false);
+  const [isSmall, setIsSmall] = React.useState(true);
 
   React.useEffect(() => {
     window.addEventListener("resize", () => handleResize(setIsSmall));
