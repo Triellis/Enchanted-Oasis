@@ -1,19 +1,48 @@
 import CoursePlate from "@/components/CoursePlate/CoursePlate";
 import Layout from "@/pages/Layout";
-import { useCoursePage } from "@/lib/functions";
+import { fetcher, useCoursePage } from "@/lib/functions";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { MySession } from "@/lib/types";
 import EnrollMemberModal, {
   EnrollBtn,
 } from "@/components/EnrollMemberModal/EnrollMemberModal";
-import { useDisclosure } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
+import useSWR, { mutate } from "swr";
+import { useState } from "react";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import CourseNotifList from "@/components/CourseNotifList";
+import Pagination from "@/components/Pagination/Pagination";
+function useCourseNotifications(
+  courseId: string,
+  page: number,
+  search: string
+) {
+  const { data, isLoading, error, mutate } = useSWR(
+    `/api/course/${courseId}/notifications?page=${page}&searchQuery=${search}`,
+    fetcher
+  );
+  return {
+    notifications: data,
+    error,
+    isLoading,
+    mutate,
+  };
+}
 export default function MyCoursePage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const courseId = router.query.courseId;
   const { course, isLoading, error } = useCoursePage(courseId?.toString()!);
   const session = useSession().data as MySession;
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const {
+    notifications,
+    error: notificationsError,
+    isLoading: isNotificationsLoading,
+    mutate: mutateNotifications,
+  } = useCourseNotifications(courseId as string, page, search);
 
   return (
     <Layout>
@@ -24,6 +53,19 @@ export default function MyCoursePage() {
         actionBtn={session?.user.role === "Student" ? "unenroll" : null}
         membersModal={true}
       />{" "}
+      <Button>Post Message</Button>
+      <SearchBar
+        searchQuery={search}
+        setSearchQuery={setSearch}
+        setPage={setPage}
+      />
+      <CourseNotifList
+        error={notificationsError}
+        isLoading={isNotificationsLoading}
+        mutate={mutateNotifications}
+        notifications={notifications}
+      />
+      <Pagination items={notifications} page={page} setPage={setPage} />
       {session?.user.role === "Faculty" && <EnrollBtn onOpen={onOpen} />}
       <EnrollMemberModal
         isOpen={isOpen}
