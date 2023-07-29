@@ -3,6 +3,8 @@ import UserListItem from "@/components/UserListItem";
 import { Divider, useToast } from "@chakra-ui/react";
 import styles from "./UserList.module.css";
 
+import { motion } from "framer-motion";
+
 export default function UserList({
   usersData,
   mutate,
@@ -25,6 +27,11 @@ export default function UserList({
   let componentToRender;
   const toast = useToast();
 
+  const transition = {
+    duration: 0.3,
+    ease: "easeInOut",
+  };
+
   if (isLoading) {
     componentToRender = <div>Loading...</div>;
   }
@@ -46,7 +53,7 @@ export default function UserList({
   } else if (usersData) {
     componentToRender = (
       <>
-        {usersData.map((user) => (
+        {usersData.map((user, index) => (
           <UserListItem
             forceSmall={forceSmall}
             mutate={mutate}
@@ -55,11 +62,13 @@ export default function UserList({
             editMode={editMode}
             customMode={customMode}
             CustomComponent={CustomComponent}
+            transition={{ ...transition, delay: index * 0.09 }}
           />
         ))}
       </>
     );
   }
+
   return (
     <>
       {!forceSmall && (

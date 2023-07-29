@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import styles from "./Joke.module.css";
+import MotionDiv from "../MotionDiv";
 
 function useJoke() {
   const { data, error, isLoading, mutate } = useSWR(
@@ -17,9 +18,20 @@ function useJoke() {
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
   return (
     <button onClick={() => mutate()}>
-      <span>{joke}</span>
+      <MotionDiv
+        key={joke}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ type: "spring", duration: 2, ease: "easeInOut" }}
+      >
+        {joke}
+      </MotionDiv>
     </button>
   );
+}
+
+function Loader() {
+  return <span>Joke Loading...</span>;
 }
 
 export default function Joke() {
@@ -27,9 +39,9 @@ export default function Joke() {
 
   let componentsToRender;
   if (isLoading) {
-    componentsToRender = <h1>loading</h1>;
+    componentsToRender = <Loader />;
   } else if (error) {
-    componentsToRender = <h1>error</h1>;
+    componentsToRender = <h1>error loading the joke {":("} </h1>;
   } else {
     componentsToRender = <JokeComponent joke={joke!} mutate={mutate} />;
   }

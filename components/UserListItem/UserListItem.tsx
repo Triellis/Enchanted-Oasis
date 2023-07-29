@@ -36,6 +36,8 @@ import classNames from "classnames";
 import React, { useState } from "react";
 
 import EditUserModal from "@/components/EditUserModal";
+import { motion } from "framer-motion";
+import MotionDiv from "../MotionDiv";
 
 function handleResize(setIsSmall: any) {
   if (window.innerWidth < 768) {
@@ -52,6 +54,7 @@ export default function UserListItem({
   forceSmall,
   customMode,
   CustomComponent,
+  transition,
 }: {
   userData: ReceivedUserDataOnClient;
   mutate: () => void;
@@ -59,6 +62,7 @@ export default function UserListItem({
   forceSmall: boolean;
   customMode: boolean;
   CustomComponent: any;
+  transition: any;
 }) {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +94,7 @@ export default function UserListItem({
   };
 
   // for dynamic rendering of components as per screen size
-  const [isSmall, setIsSmall] = React.useState(false);
+  const [isSmall, setIsSmall] = React.useState(true);
 
   React.useEffect(() => {
     window.addEventListener("resize", () => handleResize(setIsSmall));
@@ -157,8 +161,19 @@ export default function UserListItem({
   const isAdmin = userData.role === "Admin";
   const isFaculty = userData.role === "Faculty";
 
+  const itemVariants = {
+    hidden: { opacity: 0, x: -800 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   return (
-    <li className={styles.userListItem}>
+    <MotionDiv
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      transition={transition}
+      className={styles.userListItem}
+    >
       <div className={styles.userInfo}>
         {/* profile picture */}
         <span>
@@ -305,6 +320,6 @@ export default function UserListItem({
           userData={userData}
         />
       </div>
-    </li>
+    </MotionDiv>
   );
 }

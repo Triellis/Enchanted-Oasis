@@ -4,6 +4,8 @@ import styles from "./CoursePlate.module.css";
 import { useState } from "react";
 import ListCourseMembersModal from "../ListCourseMembersModal/ListCourseMembersModal";
 
+import { motion } from "framer-motion";
+
 function extractTimeIn24HrsFormat(date: string) {
   const dateObj = new Date(date);
   const hours = String(dateObj.getHours()).padStart(2, "0");
@@ -158,6 +160,7 @@ export default function CoursePlate({
     }
     courseToRender = (
       <div className={styles.courseDataWrapper}>
+        {/* plate 1 */}
         <div className={styles.coursePlate}>
           <div className={styles.header}>
             <div className={styles.courseName}>{course.name}</div>
@@ -169,14 +172,18 @@ export default function CoursePlate({
           </div>
           {membersComponent}
         </div>
+
         {!membersModal && (
           <>
+            {/* plate 2 */}
             <div className={styles.descriptionPlate}>
               <div className={styles.courseName}>About The Course</div>
               <div className={styles.CourseDescription}>
                 {course.description}
               </div>
             </div>
+
+            {/* plate 3 */}
             <div className={styles.schedulePlate}>
               <div className={styles.courseName}>Schedule</div>
               <ScheduleTable schedule={course.schedule} />

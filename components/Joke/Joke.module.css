@@ -3,24 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   font-size: 1rem;
   margin-bottom: 1em;
-}
 
-/* Add styling for the button containing the joke */
-.joke button {
   border: none;
-  background-color: hsl(var(--b3)/40%);
+  background-color: hsl(var(--b3) / 40%);
   padding: 0.3em;
   border-radius: 0.3em;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-.joke button span {
+
   font-family: "Roboto Slab", sans-serif;
   font-style: italic;
   color: hsl(var(--nc));
   text-decoration: underline rgba(119, 119, 119, 0.5) 0.01em;
   text-underline-offset: 5px;
+}
+
+.loader {
+  display: flex;
+  flex-direction: row;
 }

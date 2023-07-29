@@ -33,6 +33,9 @@ import Link from "next/link";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
 import ListViewersModal from "@/components/ListViewersModal";
 
+import { motion } from "framer-motion";
+import MotionDiv from "../MotionDiv";
+
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
 async function deleteNotification(
@@ -106,9 +109,11 @@ function DeleteConfirmationModal({
 export default function NotifItem({
   notification,
   adminMode = false,
+  transition,
 }: {
   notification: AdminNotificationOnClient;
   adminMode?: boolean;
+  transition: any;
 }) {
   const viewsFormatter = useMemo(
     () =>
@@ -129,8 +134,17 @@ export default function NotifItem({
     onClose: onViewsClose,
   } = useDisclosure();
 
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   return (
-    <div
+    <MotionDiv
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      transition={transition}
       className={classNames(
         styles.notifItem,
         !notification.seen && styles.unreadNotif
@@ -214,6 +228,6 @@ export default function NotifItem({
           )}
         </Flex>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
