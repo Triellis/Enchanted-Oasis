@@ -20,6 +20,7 @@ import { CourseListItemData } from "@/lib/types";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import MotionDiv from "../MotionDiv";
 
 // api call to delete course:
 async function deleteCourse(
@@ -146,7 +147,7 @@ export default function CourseListItem({
       : `/Everyone/MyCoursePage/${course._id}`;
 
   return (
-    <motion.div
+    <MotionDiv
       variants={itemVariants}
       initial="hidden"
       animate="visible"
@@ -196,6 +197,6 @@ export default function CourseListItem({
         course={course}
         mutate={mutate}
       />
-    </motion.div>
+    </MotionDiv>
   );
 }

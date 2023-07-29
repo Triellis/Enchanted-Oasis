@@ -34,6 +34,7 @@ import { formatDateTime, getRoleColor } from "@/lib/functions";
 import ListViewersModal from "@/components/ListViewersModal";
 
 import { motion } from "framer-motion";
+import MotionDiv from "../MotionDiv";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
@@ -139,7 +140,7 @@ export default function NotifItem({
   };
 
   return (
-    <motion.div
+    <MotionDiv
       variants={itemVariants}
       initial="hidden"
       animate="visible"
@@ -227,6 +228,6 @@ export default function NotifItem({
           )}
         </Flex>
       </div>
-    </motion.div>
+    </MotionDiv>
   );
 }
