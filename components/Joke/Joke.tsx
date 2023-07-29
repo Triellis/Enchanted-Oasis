@@ -17,13 +17,15 @@ function useJoke() {
 }
 
 function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
+  const isComingFromLeft = Math.random() < 0.5;
+
   return (
     <button onClick={() => mutate()}>
       <MotionDiv
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
+        key={joke}
+        initial={{ opacity: 0, x: isComingFromLeft ? "-100%" : "100%" }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ type: "spring", duration: 1.2, ease: "easeInOut" }}
       >
         {joke}
       </MotionDiv>
@@ -42,7 +44,7 @@ export default function Joke() {
   if (isLoading) {
     componentsToRender = <Loader />;
   } else if (error) {
-    componentsToRender = <h1>error</h1>;
+    componentsToRender = <h1>error loading the joke {":("} </h1>;
   } else {
     componentsToRender = <JokeComponent joke={joke!} mutate={mutate} />;
   }
