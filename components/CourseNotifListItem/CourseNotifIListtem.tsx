@@ -6,6 +6,7 @@ import { formatDateTime, getRoleColor } from "@/lib/functions";
 import AdminNotifStyles from "@/components/NotifItem/NotifItem.module.css";
 import Link from "next/link";
 import { DeleteIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 export default function CourseNotifItem({
   notification,
   mutate,
@@ -17,7 +18,8 @@ export default function CourseNotifItem({
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
   };
-
+  const router = useRouter();
+  const courseId = router.query.courseId;
   return (
     <div className={classNames(AdminNotifStyles.notifItem)}>
       <div className={AdminNotifStyles.header}>
@@ -34,7 +36,7 @@ export default function CourseNotifItem({
       </div>
       <Link
         className={AdminNotifStyles.link}
-        href={`/Everyone/Notification/${notification._id}`}
+        href={`/Everyone/Notification/${notification._id}?courseId=${courseId}`}
       >
         <div className={AdminNotifStyles.body}>
           {/* Title and Content */}
