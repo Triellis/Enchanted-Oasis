@@ -44,7 +44,7 @@ import { useSession } from "next-auth/react";
 import EnrollMemberModal from "@/components/EnrollMemberModal/EnrollMemberModal";
 import FloatingButton from "@/components/FloatingButton";
 
-function UnEnrollButton({
+export function UnEnrollButton({
   userData,
   courseId,
   mutate,

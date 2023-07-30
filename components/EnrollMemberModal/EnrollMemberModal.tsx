@@ -148,6 +148,7 @@ export default function EnrollMemberModal({
   const [isLoading, setIsLoading] = useState(false);
   const tabs = useMemo(() => {
     if (studentsOnly) {
+      setRole("Student");
       return [{ label: "Student", value: "Student", color: "blue.600" }];
     } else {
       return [

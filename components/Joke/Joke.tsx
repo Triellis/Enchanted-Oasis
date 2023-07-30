@@ -31,7 +31,7 @@ function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
 }
 
 function Loader() {
-  return <span>Joke Loading...</span>;
+  return <span>Joking...</span>;
 }
 
 export default function Joke() {
