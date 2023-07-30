@@ -1,5 +1,6 @@
 import { CourseNotifOnClient } from "@/lib/types";
 import NotifItem from "../NotifItem/NotifItem";
+import CourseNotifItem from "../CourseNotifListItem";
 
 export default function CourseNotifList({
   isLoading,
@@ -19,7 +20,13 @@ export default function CourseNotifList({
     componentsToRender = <div>Error</div>;
   } else {
     componentsToRender = notifications.map((notification) => {
-      return <div>{"Yo"}</div>;
+      return (
+        <CourseNotifItem
+          key={notification._id.toString()}
+          notification={notification}
+          mutate={mutate}
+        />
+      );
     });
   }
   return <div>{componentsToRender}</div>;
