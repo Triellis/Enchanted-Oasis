@@ -41,9 +41,8 @@ import TabsComponent from "@/components/TabsComponent/TabsComponent";
 import { AddIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
-import EnrollMemberModal, {
-  EnrollBtn,
-} from "@/components/EnrollMemberModal/EnrollMemberModal";
+import EnrollMemberModal from "@/components/EnrollMemberModal/EnrollMemberModal";
+import FloatingButton from "@/components/FloatingButton";
 
 export function UnEnrollButton({
   userData,
@@ -164,7 +163,15 @@ export default function CoursePage() {
       </div>
 
       {(session?.user.role === "Admin" || session?.user.role === "Faculty") && (
-        <EnrollBtn onOpen={onOpen} />
+        <FloatingButton
+          onOpen={onOpen}
+          SideIcon={AddIcon}
+          HalfText="Enroll"
+          RemainingText="New Users"
+          initialWidth={6.3}
+          finalWidth={11.4}
+          rotateBy={180}
+        />
       )}
       <EnrollMemberModal
         mutateMembers={mutateMembers}

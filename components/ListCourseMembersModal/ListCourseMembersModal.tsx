@@ -6,7 +6,7 @@ import {
   ModalContent,
   ModalOverlay,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserList from "@/components/UserList";
 import Pagination from "@/components/Pagination";
 import { MySession, ReceivedUserDataOnClient } from "@/lib/types";
@@ -36,6 +36,9 @@ export default function ListCourseMembersModal({
     memberType
   );
   const session = useSession().data as MySession;
+  useEffect(() => {
+    mutate();
+  }, [isOpen]);
   return (
     <Modal isCentered size={"md"} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
