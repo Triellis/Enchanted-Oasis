@@ -143,6 +143,7 @@ export default function EnrollMemberModal({
 
   useEffect(() => {
     setSelectedUsers([]);
+    mutate();
   }, [isOpen, role]);
 
   const [isLoading, setIsLoading] = useState(false);
