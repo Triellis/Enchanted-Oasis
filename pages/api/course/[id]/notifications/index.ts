@@ -114,7 +114,14 @@ async function GET(
   const notifications = await courseNotifCollection
     .aggregate([
       {
-        $match: { courseId: courseId },
+        $match: {
+          courseId: courseId,
+          $or: [
+            { title: { $regex: searchRegex } },
+            { body: { $regex: searchRegex } },
+            { badgeText: { $regex: searchRegex } },
+          ],
+        },
       },
       {
         $lookup: {
@@ -141,7 +148,10 @@ async function GET(
         $project: notifProjection,
       },
     ])
+    .sort({ date: -1 })
+    .skip(skip)
+    .limit(maxResults)
     .toArray();
-  console.log(notifications);
+
   return res.status(200).json(notifications);
 }
