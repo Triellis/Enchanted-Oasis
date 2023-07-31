@@ -22,7 +22,6 @@ function Sidebar({
       <div className={styles.menu}>
         {/* Header of sidebar */}
         <div>
-          {/* <h1 className={styles.appName}>Enchanted Oasis</h1> */}
           <AppTitle sizeNumber={2.5} />
           <br />
           <nav>{children}</nav>
