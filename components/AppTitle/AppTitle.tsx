@@ -6,8 +6,10 @@ export default function AppTitle({ sizeNumber }: { sizeNumber?: number }) {
     fontSize: `${sizeNumber}em`,
   };
   return (
-    <h1 style={titleSize} className={styles.appName}>
-      Enchanted Oasis
-    </h1>
+    <div className={styles.appTitle}>
+      <h1 style={titleSize} className={styles.appName}>
+        Enchanted Oasis
+      </h1>
+    </div>
   );
 }

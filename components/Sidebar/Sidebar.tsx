@@ -6,6 +6,8 @@ import sideBarItemStyles from "@/components/SidebarItem/SidebarItem.module.css";
 import classNames from "classnames";
 import { signOut } from "next-auth/react";
 
+import dynamic from "next/dynamic";
+
 function Sidebar({
   isOpen,
   children,
@@ -13,6 +15,8 @@ function Sidebar({
   isOpen: boolean;
   children: React.ReactNode;
 }) {
+  let isMobile = window.innerWidth < 768;
+
   return (
     // contraction and retraction of sidebar
     <div
@@ -22,7 +26,7 @@ function Sidebar({
       <div className={styles.menu}>
         {/* Header of sidebar */}
         <div>
-          <AppTitle sizeNumber={2.5} />
+          {!isMobile && <AppTitle sizeNumber={2.5} />}
           <br />
           <nav>{children}</nav>
         </div>
@@ -39,4 +43,7 @@ function Sidebar({
   );
 }
 
-export default Sidebar;
+// export default Sidebar in new manner:
+export default dynamic(() => Promise.resolve(Sidebar), {
+  ssr: false,
+});

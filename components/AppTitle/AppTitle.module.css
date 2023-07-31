@@ -1,4 +1,9 @@
-/* getting the EO font style */
+.appTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .appName {
   font-family: "New Rocker", sans-serif;
   background: linear-gradient(
