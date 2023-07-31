@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
-import SidebarItem from "@/components/SidebarItem";
+
+import AppTitle from "../AppTitle/AppTitle";
 import sideBarItemStyles from "@/components/SidebarItem/SidebarItem.module.css";
 import classNames from "classnames";
 import { signOut } from "next-auth/react";
@@ -21,7 +22,8 @@ function Sidebar({
       <div className={styles.menu}>
         {/* Header of sidebar */}
         <div>
-          <h1 className={styles.appName}>Enchanted Oasis</h1>
+          {/* <h1 className={styles.appName}>Enchanted Oasis</h1> */}
+          <AppTitle sizeNumber={2.5} />
           <br />
           <nav>{children}</nav>
         </div>
