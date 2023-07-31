@@ -1,12 +1,21 @@
-import { CourseNotifOnClient } from "@/lib/types";
+import { CourseNotifOnClient, MySession } from "@/lib/types";
 import MotionDiv from "../MotionDiv";
 import classNames from "classnames";
-import { Avatar, Badge, Flex, Spacer, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Badge,
+  Flex,
+  Spacer,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
 import AdminNotifStyles from "@/components/NotifItem/NotifItem.module.css";
 import Link from "next/link";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import { DeleteConfirmationModal } from "../NotifItem/NotifItem";
+import { useSession } from "next-auth/react";
 export default function CourseNotifItem({
   notification,
   mutate,
@@ -14,12 +23,10 @@ export default function CourseNotifItem({
   notification: CourseNotifOnClient;
   mutate: () => void;
 }) {
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0 },
-  };
   const router = useRouter();
-  const courseId = router.query.courseId;
+  const courseId = router.query.courseId as string;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const session = useSession().data as MySession;
   return (
     <div className={classNames(AdminNotifStyles.notifItem)}>
       <div className={AdminNotifStyles.header}>
@@ -67,9 +74,22 @@ export default function CourseNotifItem({
             </Badge>
           </div>
           <Spacer />
-          <button className={AdminNotifStyles.del} aria-label="delete">
-            <DeleteIcon />
-          </button>
+          {session!.user.role === "Faculty" && (
+            <button
+              className={AdminNotifStyles.del}
+              aria-label="delete"
+              onClick={onOpen}
+            >
+              <DeleteIcon />
+            </button>
+          )}
+          <DeleteConfirmationModal
+            isOpen={isOpen}
+            onClose={onClose}
+            notificationId={notification._id.toString()}
+            courseId={courseId}
+            mutate={mutate}
+          />
         </Flex>
       </div>
     </div>

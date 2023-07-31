@@ -93,6 +93,7 @@ export default function MyCoursePage() {
         isOpen={isMsgModalOpen}
         onClose={onMsgModalClose}
         courseId={courseId as string}
+        mutate={mutate}
       />
     </Layout>
   );

@@ -94,12 +94,14 @@ function mutateData(
       return state;
   }
 }
+
 async function sendMessage(
   data: NotifData,
   courseId: string | undefined,
   onClose: any,
   toast: any,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  mutate: any | undefined
 ) {
   setIsLoading(true);
   let url;
@@ -125,6 +127,8 @@ async function sendMessage(
       duration: 3000,
       isClosable: true,
     });
+
+    if (mutate) mutate();
     onClose();
   } else {
     toast({
@@ -141,10 +145,12 @@ export default function SendMessageModal({
   isOpen,
   onClose,
   courseId,
+  mutate,
 }: {
   isOpen: boolean;
   onClose: () => void;
   courseId?: string;
+  mutate?: any;
 }) {
   const toast = useToast();
   const [data, dispatchData] = useReducer(mutateData, {
@@ -193,6 +199,10 @@ export default function SendMessageModal({
       });
       dispatchData({
         type: "body",
+        payload: "",
+      });
+      dispatchData({
+        type: "attachment",
         payload: "",
       });
     }
@@ -327,7 +337,8 @@ export default function SendMessageModal({
             isLoading={isLoading}
             onClick={() => {
               if (!validation()) return;
-              sendMessage(data, courseId, onClose, toast, setIsLoading);
+
+              sendMessage(data, courseId, onClose, toast, setIsLoading, mutate);
             }}
           >
             Send Message

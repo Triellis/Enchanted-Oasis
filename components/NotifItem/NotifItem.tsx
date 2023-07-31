@@ -33,19 +33,27 @@ import Link from "next/link";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
 import ListViewersModal from "@/components/ListViewersModal";
 
-import { motion } from "framer-motion";
+import { m, motion } from "framer-motion";
 import MotionDiv from "../MotionDiv";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
 //  with the notificationId as a query parameter
 async function deleteNotification(
   notificationId: string,
+  courseId: string | undefined,
   toast: any,
   onClose: any,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  mutate?: any
 ) {
   setIsLoading(true);
-  const res = await fetch(`/api/notification/${notificationId}`, {
+  let url;
+  if (courseId) {
+    url = `/api/course/${courseId}/notifications/${notificationId}`;
+  } else {
+    url = `/api/notification/${notificationId}`;
+  }
+  const res = await fetch(url, {
     method: "DELETE",
   });
   if (res.ok) {
@@ -56,6 +64,9 @@ async function deleteNotification(
       duration: 3000,
       isClosable: true,
     });
+    if (mutate) {
+      mutate();
+    }
     onClose();
   } else {
     toast({
@@ -69,14 +80,18 @@ async function deleteNotification(
   setIsLoading(false);
 }
 
-function DeleteConfirmationModal({
+export function DeleteConfirmationModal({
   notificationId,
+  courseId,
   isOpen,
   onClose,
+  mutate,
 }: {
   notificationId: string;
+  courseId?: string;
   isOpen: boolean;
   onClose: any;
+  mutate?: any;
 }) {
   const toast = useToast();
   const [isLoading, setIsLoading] = React.useState(false);
@@ -95,7 +110,14 @@ function DeleteConfirmationModal({
             className={styles.modalDelBtn}
             variant="solid"
             onClick={() =>
-              deleteNotification(notificationId, toast, onClose, setIsLoading)
+              deleteNotification(
+                notificationId,
+                courseId,
+                toast,
+                onClose,
+                setIsLoading,
+                mutate
+              )
             }
           >
             Yes
