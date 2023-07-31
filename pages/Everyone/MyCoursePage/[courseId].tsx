@@ -30,8 +30,14 @@ function useCourseNotifications(
 import EnrollMemberModal from "@/components/EnrollMemberModal";
 import FloatingButton from "@/components/FloatingButton";
 import { AddIcon } from "@chakra-ui/icons";
+import SendMessageModal from "@/components/SendMessageModal/SendMessageModal";
 export default function MyCoursePage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isMsgModalOpen,
+    onOpen: onMsgModalOpen,
+    onClose: onMsgModalClose,
+  } = useDisclosure();
   const router = useRouter();
   const courseId = router.query.courseId;
   const { course, isLoading, error } = useCoursePage(courseId?.toString()!);
@@ -54,7 +60,7 @@ export default function MyCoursePage() {
         actionBtn={session?.user.role === "Student" ? "unenroll" : null}
         membersModal={true}
       />{" "}
-      <Button>Post Message</Button>
+      <Button onClick={onMsgModalOpen}>Post Message</Button>
       <SearchBar
         searchQuery={search}
         setSearchQuery={setSearch}
@@ -82,6 +88,11 @@ export default function MyCoursePage() {
         isOpen={isOpen}
         onClose={onClose}
         studentsOnly={session ? session?.user.role === "Faculty" : true}
+      />
+      <SendMessageModal
+        isOpen={isMsgModalOpen}
+        onClose={onMsgModalClose}
+        courseId={courseId as string}
       />
     </Layout>
   );

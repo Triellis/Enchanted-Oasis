@@ -1,0 +1,138 @@
+.colorPalette {
+  /* 4*3 grid with vertical scroll */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 0.2em;
+}
+.swatch {
+  border-radius: 0.3em;
+  opacity: 0.8;
+}
+
+.comBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.comFoot {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center;
+  gap: 1em;
+}
+.comFoot > * {
+  width: 100%;
+}
+.comFoot > :nth-child(2) {
+  background-color: hsl(var(--p)) !important;
+}
+
+.targetLabel {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+.targetLabel > * {
+  width: 100%;
+}
+.target > * {
+  background-color: hsl(var(--b1)) !important;
+}
+
+.colorLabel {
+  display: flex;
+  gap: 0.2em;
+}
+
+.popContent {
+  background-color: hsl(var(--b3)) !important;
+  height: min-content !important;
+  padding: 0.5em;
+
+  width: min-content !important;
+}
+
+.tabs {
+  width: 100%;
+}
+
+.grp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0em;
+
+  padding: 0em !important;
+  padding-top: 0.3em !important;
+}
+.textArea {
+  min-height: 20em !important;
+  background-color: hsl(var(--b3));
+  width: 100%;
+  border-radius: 1em 1em 0 0;
+  padding: 1em;
+  outline: none;
+
+  margin: 0; /* Add this line to remove any margin */
+}
+.textArea:focus {
+  border: 1px solid hsl(var(--nc) / 40%);
+  border-bottom: none;
+}
+
+/* for the scroll bar */
+.textArea::-webkit-scrollbar {
+  width: 0.4em;
+}
+.textArea::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc) / 30%);
+  border-radius: 200em;
+}
+.textArea::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--nc) / 60%);
+}
+
+.bodyFoot {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: hsl(var(--b3));
+  border-radius: 0 0 1em 1em;
+
+  padding: 0.3em;
+  margin: 0; /* Add this line to remove any margin */
+  color: hsl(var(--nc));
+  font-size: 0.8em;
+}
+.textArea:focus + .bodyFoot {
+  border: 1px solid hsl(var(--nc) / 40%);
+  border-top: none;
+}
+.markDownArea {
+  height: 21.5em !important;
+
+  background-color: hsl(var(--b3));
+  border-radius: 1em;
+  padding: 1em;
+
+  justify-content: flex-end;
+  overflow-y: scroll;
+}
+.markDownArea::-webkit-scrollbar {
+  width: 0.4em;
+}
+.markDownArea::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc) / 30%);
+  border-radius: 200em;
+}
+.markDownArea::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--nc) / 60%);
+}
