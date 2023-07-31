@@ -7,9 +7,15 @@ export default function AppTitle({ sizeNumber }: { sizeNumber?: number }) {
   };
   return (
     <div className={styles.appTitle}>
-      <h1 style={titleSize} className={styles.appName}>
+      <button
+        style={titleSize}
+        className={styles.appName}
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
         Enchanted Oasis
-      </h1>
+      </button>
     </div>
   );
 }
