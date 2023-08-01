@@ -343,7 +343,11 @@ export default function Admin() {
         </div>
 
         <div>
-          <FilePreview url={"session.data?.user?.name"} />
+          <FilePreview
+            url={
+              "https://docs.google.com/document/d/1jEc2LXQZvkCWxxKKpalJ0bgD-6B4C7tJytfkJWnyd8k/edit"
+            }
+          />
         </div>
 
         <div className={styles.notifications}>
