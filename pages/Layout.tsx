@@ -49,6 +49,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
   const dispatch = useAppDispatch();
 
+  if (session.status == "loading") {
+    return <div>Loading...</div>;
+  }
+  console.log(session.status);
   return (
     <>
       <Head>
@@ -68,7 +72,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className={styles.content}>
           <Nav onToggle={() => dispatch(toggleSidebar())} />
-          <div className={styles.childContent}>{children}</div>
+          <div className={styles.childContent}>
+            {session.status === "authenticated" && children}
+          </div>
         </div>
       </main>
     </>
