@@ -38,7 +38,7 @@ async function POST(
     return res.status(403).send("Not an Faculty");
   }
 
-  const fields = ["title", "body", "badge", "badgeColor"];
+  const fields = ["title", "body", "badgeColor", "badgeText"];
 
   const notification = req.body;
   // check for missing fields
@@ -114,7 +114,14 @@ async function GET(
   const notifications = await courseNotifCollection
     .aggregate([
       {
-        $match: { courseId: courseId },
+        $match: {
+          courseId: courseId,
+          $or: [
+            { title: { $regex: searchRegex } },
+            { body: { $regex: searchRegex } },
+            { badgeText: { $regex: searchRegex } },
+          ],
+        },
       },
       {
         $lookup: {
@@ -141,7 +148,10 @@ async function GET(
         $project: notifProjection,
       },
     ])
+    .sort({ date: -1 })
+    .skip(skip)
+    .limit(maxResults)
     .toArray();
-  console.log(notifications);
+
   return res.status(200).json(notifications);
 }

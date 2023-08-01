@@ -26,11 +26,15 @@ import UserList from "@/components/UserList";
 import Pagination from "@/components/Pagination";
 import ListViewersModal from "@/components/ListViewersModal";
 
-function useNotification(id: string) {
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/notification/${id}`,
-    fetcher
-  );
+function useNotification(id: string, courseId: string | undefined) {
+  let url;
+  if (courseId) {
+    url = `/api/course/${courseId}/notifications/${id}`;
+  } else {
+    url = `/api/notification/${id}`;
+  }
+
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher);
   return {
     notification: data as AdminNotificationOnClient,
     isLoading,
@@ -123,8 +127,10 @@ export default function NotificationPage() {
   const router = useRouter();
   const session = useSession();
   const sessionData = session.data as MySession;
+  const courseId = router.query.courseId as string | undefined;
   const { notification, isLoading, error } = useNotification(
-    router.query.notificationId as string
+    router.query.notificationId as string,
+    courseId
   );
 
   let notificationComponent;

@@ -165,3 +165,7 @@ export type CourseNotifCol = {
   creatorId: string;
   attachment?: string; // attachment url
 };
+
+export type CourseNotifOnClient = Omit<CourseNotifCol, "courseId"> & {
+  creator: ReceivedUserDataOnClient;
+};
