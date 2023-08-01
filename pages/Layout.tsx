@@ -52,7 +52,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   if (session.status == "loading") {
     return <div>Loading...</div>;
   }
-  console.log(session.status);
+
   return (
     <>
       <Head>
