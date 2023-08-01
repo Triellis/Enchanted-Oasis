@@ -33,6 +33,7 @@ import EnrollMemberModal from "@/components/EnrollMemberModal";
 import FloatingButton from "@/components/FloatingButton";
 import { AddIcon } from "@chakra-ui/icons";
 import SendMessageModal from "@/components/SendMessageModal/SendMessageModal";
+import classNames from "classnames";
 
 export default function MyCoursePage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -64,11 +65,17 @@ export default function MyCoursePage() {
           actionBtn={session?.user.role === "Student" ? "unenroll" : null}
           membersModal={true}
         />
-        <div className={styles.postBtn}>
-          <Button className="clicky" onClick={onMsgModalOpen}>
-            Post Message
-          </Button>
-        </div>
+        {session?.user.role === "Faculty" && (
+          <div className={styles.postBtnWrapper}>
+            <Button
+              className={classNames(styles.postBtn)}
+              onClick={onMsgModalOpen}
+            >
+              Post Message
+            </Button>
+          </div>
+        )}
+
         <div className={styles.searchBar}>
           <SearchBar
             searchQuery={search}
