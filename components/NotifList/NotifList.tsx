@@ -8,11 +8,6 @@ import Pagination from "@/components/Pagination";
 import styles from "./NotifList.module.css";
 import {
   Divider,
-  Flex,
-  Tab,
-  TabIndicator,
-  TabList,
-  Tabs,
 } from "@chakra-ui/react";
 import TabsComponent from "../TabsComponent/TabsComponent";
 

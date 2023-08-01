@@ -1,5 +1,4 @@
 import { CourseNotifOnClient } from "@/lib/types";
-import NotifItem from "../NotifItem/NotifItem";
 import CourseNotifItem from "../CourseNotifListItem";
 import styles from "./CourseNotifList.module.css";
 

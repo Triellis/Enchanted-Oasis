@@ -3,15 +3,12 @@ import {
   Avatar,
   Badge,
   Text,
-  Box,
   Spacer,
-  IconButton,
   Modal,
   ModalContent,
   ModalOverlay,
   ModalHeader,
   ModalCloseButton,
-  ModalBody,
   ModalFooter,
   Button,
   useDisclosure,
@@ -19,21 +16,13 @@ import {
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import styles from "./NotifItem.module.css";
-import {
-  CalendarIcon,
-  DeleteIcon,
-  EmailIcon,
-  TimeIcon,
-  ViewIcon,
-} from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { AdminNotificationOnClient } from "@/lib/types";
-import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { formatDateTime, getRoleColor } from "@/lib/functions";
 import ListViewersModal from "@/components/ListViewersModal";
 
-import { m, motion } from "framer-motion";
 import MotionDiv from "../MotionDiv";
 
 //  function should send a DELETE request to this URL /api/notification/[notificationId]
