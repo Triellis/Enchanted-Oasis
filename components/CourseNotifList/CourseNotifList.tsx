@@ -23,7 +23,7 @@ export default function CourseNotifList({
     componentsToRender = <div>Loading...</div>;
   } else if (error) {
     componentsToRender = <div>Error</div>;
-  } else {
+  } else if (notifications.length !== 0) {
     componentsToRender = notifications.map((notification, index) => {
       return (
         <>
@@ -36,6 +36,8 @@ export default function CourseNotifList({
         </>
       );
     });
+  } else {
+    componentsToRender = <div>No notifications</div>;
   }
   return <div className={styles.notifList}>{componentsToRender}</div>;
 }
