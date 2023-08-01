@@ -31,6 +31,7 @@ import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
 import Joke from "@/components/Joke";
 import FloatingButton from "@/components/FloatingButton";
+import FilePreview from "@/components/FilePreview";
 
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -333,11 +334,16 @@ export default function Admin() {
   let name = session.data?.user?.name;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Layout>
         <div>
           <Joke />
+        </div>
+
+        <div>
+          <FilePreview url={"session.data?.user?.name"} />
         </div>
 
         <div className={styles.notifications}>

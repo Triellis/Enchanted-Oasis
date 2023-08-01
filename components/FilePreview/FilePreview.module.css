@@ -1,0 +1,22 @@
+.pill{
+	/* pill shaped required */
+	border-radius: 50px;
+	padding: 0.3em 0.6em;
+	border: 1px solid hsl(var(--nc));
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.icon{
+	/* use if requied */
+	display: flex;
+	align-items: center;
+	margin-right: 0.1em;	
+}
+.fileName{
+	/* file name */
+	font-size: 1rem;
+	font-weight: 500;
+}
