@@ -1,5 +1,7 @@
 import CoursePlate from "@/components/CoursePlate/CoursePlate";
 import Layout from "@/pages/Layout";
+import styles from "./MyCoursePage.module.css";
+
 import { fetcher, useCoursePage } from "@/lib/functions";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -31,6 +33,7 @@ import EnrollMemberModal from "@/components/EnrollMemberModal";
 import FloatingButton from "@/components/FloatingButton";
 import { AddIcon } from "@chakra-ui/icons";
 import SendMessageModal from "@/components/SendMessageModal/SendMessageModal";
+
 export default function MyCoursePage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -53,48 +56,54 @@ export default function MyCoursePage() {
 
   return (
     <Layout>
-      <CoursePlate
-        course={course}
-        error={error}
-        isLoading={isLoading}
-        actionBtn={session?.user.role === "Student" ? "unenroll" : null}
-        membersModal={true}
-      />{" "}
-      <Button onClick={onMsgModalOpen}>Post Message</Button>
-      <SearchBar
-        searchQuery={search}
-        setSearchQuery={setSearch}
-        setPage={setPage}
-      />
-      <CourseNotifList
-        error={notificationsError}
-        isLoading={isNotificationsLoading}
-        mutate={mutateNotifications}
-        notifications={notifications}
-      />
-      <Pagination items={notifications} page={page} setPage={setPage} />
-      {session?.user.role === "Faculty" && (
-        <FloatingButton
-          onOpen={onOpen}
-          SideIcon={AddIcon}
-          HalfText="Enroll"
-          RemainingText="New Users"
-          initialWidth={6.3}
-          finalWidth={11.4}
-          rotateBy={180}
+      <div className={styles.notifWrapper}>
+        <CoursePlate
+          course={course}
+          error={error}
+          isLoading={isLoading}
+          actionBtn={session?.user.role === "Student" ? "unenroll" : null}
+          membersModal={true}
         />
-      )}
-      <EnrollMemberModal
-        isOpen={isOpen}
-        onClose={onClose}
-        studentsOnly={session ? session?.user.role === "Faculty" : true}
-      />
-      <SendMessageModal
-        isOpen={isMsgModalOpen}
-        onClose={onMsgModalClose}
-        courseId={courseId as string}
-        mutate={mutateNotifications}
-      />
+        <div className={styles.postBtn}>
+          <Button onClick={onMsgModalOpen}>Post Message</Button>
+        </div>
+        <div className={styles.searchBar} >
+          <SearchBar
+            searchQuery={search}
+            setSearchQuery={setSearch}
+            setPage={setPage}
+          />
+        </div>
+        <CourseNotifList
+          error={notificationsError}
+          isLoading={isNotificationsLoading}
+          mutate={mutateNotifications}
+          notifications={notifications}
+        />
+        <Pagination items={notifications} page={page} setPage={setPage} />
+        {session?.user.role === "Faculty" && (
+          <FloatingButton
+            onOpen={onOpen}
+            SideIcon={AddIcon}
+            HalfText="Enroll"
+            RemainingText="New Users"
+            initialWidth={6.3}
+            finalWidth={11.4}
+            rotateBy={180}
+          />
+        )}
+        <EnrollMemberModal
+          isOpen={isOpen}
+          onClose={onClose}
+          studentsOnly={session ? session?.user.role === "Faculty" : true}
+        />
+        <SendMessageModal
+          isOpen={isMsgModalOpen}
+          onClose={onMsgModalClose}
+          courseId={courseId as string}
+          mutate={mutateNotifications}
+        />
+      </div>
     </Layout>
   );
 }

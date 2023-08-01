@@ -7,3 +7,25 @@
   width: 100%;
   height: 100%;
 }
+
+.notifWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+.postBtn{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
