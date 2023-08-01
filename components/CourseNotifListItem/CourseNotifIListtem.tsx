@@ -16,19 +16,38 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { DeleteConfirmationModal } from "../NotifItem/NotifItem";
 import { useSession } from "next-auth/react";
+
 export default function CourseNotifItem({
   notification,
   mutate,
-}: {
+}: // transition
+{
   notification: CourseNotifOnClient;
   mutate: () => void;
+  // transition: any;
 }) {
   const router = useRouter();
   const courseId = router.query.courseId as string;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const session = useSession().data as MySession;
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   return (
-    <div className={classNames(AdminNotifStyles.notifItem)}>
+    <MotionDiv
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      transition={
+        {
+          /*transition*/
+        }
+      }
+      className={classNames(AdminNotifStyles.notifItem)}
+    >
       <div className={AdminNotifStyles.header}>
         {/* Avatar, name, email */}
         <Flex gap={4}>
@@ -92,6 +111,6 @@ export default function CourseNotifItem({
           />
         </Flex>
       </div>
-    </div>
+    </MotionDiv>
   );
 }

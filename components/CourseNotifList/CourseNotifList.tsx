@@ -13,6 +13,11 @@ export default function CourseNotifList({
   notifications: CourseNotifOnClient[];
   mutate: () => void;
 }) {
+  const transition = {
+    duration: 0.3,
+    ease: "easeInOut",
+  };
+
   let componentsToRender;
   if (isLoading) {
     componentsToRender = <div>Loading...</div>;
@@ -26,6 +31,7 @@ export default function CourseNotifList({
             key={notification._id.toString()}
             notification={notification}
             mutate={mutate}
+            // transition={{ ...transition, delay: index * 0.09 }}
           />
         </>
       );
