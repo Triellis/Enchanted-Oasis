@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface SidebarSlice {
   value: boolean;
 }
-console.log("object");
+
 export const sidebarSlice = createSlice({
   name: "isSidebarOpen",
   initialState: {
@@ -12,10 +12,13 @@ export const sidebarSlice = createSlice({
     toggleSidebar: (state) => {
       state.value = !state.value;
     },
+    setIsSidebarOpen: (state, action) => {
+      state.value = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleSidebar } = sidebarSlice.actions;
+export const { toggleSidebar, setIsSidebarOpen } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

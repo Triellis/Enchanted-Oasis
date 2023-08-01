@@ -1,0 +1,172 @@
+.coursePlate {
+  box-shadow: -4px 4px 2px hsl(var(--b3));
+  border: 1px solid hsl(var(--pc) / 30%);
+  width: 100%;
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: hsl(var(--a));
+  color: hsl(var(--b3));
+  gap: 0.5em;
+}
+.coursePlate > .subHeader {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.courseName {
+  font-size: 3em;
+  font-weight: 600;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -0.05em;
+  grid-column: 1/3;
+  text-overflow: initial;
+}
+
+.courseCode {
+  background-color: hsl(var(--b3));
+  padding: 0.2em 0.5em;
+  color: hsl(var(--a));
+  border-radius: 0.5em;
+  font-weight: bold;
+  width: max-content;
+}
+.courseCredits {
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+}
+.numberOfStudents {
+  grid-row: 3;
+}
+
+.numberOfFaculties {
+  grid-row: 2;
+}
+
+.numberOfStudents,
+.numberOfFaculties {
+  grid-column: 2;
+  justify-self: end;
+  color: hsl(var(--b3) / 70%);
+}
+
+.coursePlate > .footer {
+  display: flex;
+  gap: 1em;
+  /* flex-direction: column; */
+}
+.descriptionPlate {
+  border: 1px solid hsl(var(--pc) / 30%);
+  width: 100%;
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: hsl(var(--b3) / 80%);
+  color: hsl(var(--pc));
+}
+
+.courseDataWrapper {
+  display: grid;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+.enrollBtn {
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  background-color: hsl(var(--a)) !important;
+  border: 1px solid hsl(var(--b3)) !important;
+  color: hsl(var(--b3)) !important;
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer;
+  text-transform: capitalize !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.enrollBtn:hover {
+  background-color: hsl(var(--b3)) !important;
+  color: hsl(var(--a)) !important;
+}
+
+.coursePlate > .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.schedulePlate {
+  border: 1px solid hsl(var(--pc) / 30%);
+  width: 100%;
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: hsl(var(--b3) / 80%);
+  color: hsl(var(--pc));
+}
+
+.scheduleTable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.scheduleTable > .tableElement {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  /* justify-content: space-between; */
+  width: 100%;
+  align-items: center;
+}
+.tableElement > .day {
+  flex: 1;
+  background-color: hsl(var(--a));
+  padding: 0.2em 0.5em;
+  color: hsl(var(--b3));
+  border-radius: 0.5em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+.timeElement {
+  display: flex;
+  flex-direction: row;
+}
+.time {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1em;
+  flex: 10;
+  align-items: center;
+}
+.unEnrollBtn {
+  background-color: transparent !important;
+  padding: 0.7em !important;
+  color: hsl(var(--er)) !important;
+  height: min-content;
+  width: max-content;
+  font-size: 0.8em !important;
+  border: 1px solid hsl(var(--er)) !important;
+}
+.footer > button {
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+}
+.footer > button:hover {
+  background-color: hsl(var(--b3));
+  color: hsl(var(--a));
+}

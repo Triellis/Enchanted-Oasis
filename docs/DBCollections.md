@@ -101,6 +101,7 @@
 {
 	_id: ObjectID,
 	name: string,
+	code: string,
 	description:string,
 	credits: number,
 	schedule:{
@@ -112,28 +113,7 @@
 	faculties: string[], // faculty ids
 	students: string[], // array of student ids
 	lectures: string[], // array of lecture ids
-	gradingScheme: {
-		[gradeLetter: string]: {
-			minMarks: number,
-			maxMarks: number
-		}
 
-	},
-}
-```
-
-## Course Material
-
-```typescript
-
-{
-	_id: ObjectID,
-	courseId: string,
-	title: string,
-	body: string, // supports markdown
-	date: Date,
-	attachments: string[], // array of attachment urls (stored in firebase storage)
-	creatorId: string // id of the user who created this notification
 }
 ```
 
@@ -149,9 +129,8 @@
 	date: Date,
 	badgeText: string, // badge text
 	badgeColor: string, // badge color
-	seenBy: string[] ,// array of user ids,
-	seenByCount: number, // number of users who ave seen this notification
-	creatorId: string, // id of the faculty who created this notification
+	attachment?: string, // attachment url
+	creatorId:string
 
 }
 ```

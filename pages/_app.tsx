@@ -11,11 +11,29 @@ import { theme } from "../lib/theme";
 import "../styles/global.css";
 import store from "@/lib/store";
 import { Provider } from "react-redux";
+import { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { setIsSidebarOpen } from "@/lib/slices/isSidebarOpen";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps<{ session: Session }>) {
+  useEffect(() => {
+    // This useEffect will be triggered only once when the app mounts
+    function handleResize() {
+      const isDesktop = window.innerWidth >= 768;
+      if (isDesktop) store.dispatch(setIsSidebarOpen(true));
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [store]);
   return (
     <SessionProvider session={session}>
       <ChakraProvider theme={theme}>

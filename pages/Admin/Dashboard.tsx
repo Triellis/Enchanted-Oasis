@@ -3,7 +3,6 @@ import Layout from "../Layout";
 
 import {
   Button,
-  IconButton,
   Input,
   Modal,
   ModalBody,
@@ -25,15 +24,17 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-
 import styles from "./Dashboard.module.css";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
 import remarkGfm from "remark-gfm";
 import NotifList from "@/components/NotifList";
+import Joke from "@/components/Joke";
+import FloatingButton from "@/components/FloatingButton";
+
 import classNames from "classnames";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ReducerAction, useEffect, useReducer, useState } from "react";
-import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
 import Icon from "@/components/Icon";
 
@@ -52,7 +53,6 @@ function ColorSwatch({
     "orange",
     "red",
     "purple",
-
     "yellow",
   ];
   return (
@@ -310,10 +310,11 @@ function ComposeMsgModal({
         </ModalBody>
 
         <ModalFooter className={styles.comFoot}>
-          <Button variant="outline" onClick={onClose}>
+          <Button className="modalNoBtn" onClick={onClose}>
             Cancel
           </Button>
           <Button
+            className="modalYesBtn"
             isLoading={isLoading}
             onClick={() => {
               if (!validation()) return;
@@ -337,26 +338,26 @@ export default function Admin() {
   return (
     <>
       <Layout>
-        {/* greetings part */}
-        {/* <div className={styles.greeting}>
-          <span>
-            Welcome <span className={styles.name}>{name}</span>!{" "}
-          </span>
-          Let <span className={styles.glowingText}>Lumos</span> illuminate your
-          path at our
-          <span className={styles.appName}> Enchanted Oasis!</span>
-        </div> */}
+        <div>
+          <Joke />
+        </div>
+
         <div className={styles.notifications}>
           <NotifList adminMode={true} />
         </div>
-        <IconButton
-          aria-label="compose"
-          className={styles.composeMsg}
-          icon={<Icon name={"feather"} />}
-          onClick={onOpen}
+
+        {/* floating button here */}
+        <FloatingButton
+          onOpen={onOpen}
+          SideIcon={EditIcon}
+          HalfText={"Compose"}
+          RemainingText={"New Message"}
+          initialWidth={7.8}
+          finalWidth={14.3}
+          rotateBy={0}
         />
+
         <ComposeMsgModal isOpen={isOpen} onClose={onClose} />
-        {/* Compose mesaage modal */}
       </Layout>
     </>
   );

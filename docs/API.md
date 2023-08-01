@@ -159,6 +159,7 @@ type Result = {
 {
 	"maxResults"?: number, // pagination parameter default is 10
 	"page"?: number // pagination parameter, default is 1
+	"type"?: "All" | "Enrolled" | "notEnrolled" | "Teaching" // filter parameter for student
 }
 ```
 
@@ -192,16 +193,8 @@ type Result = {
 		[day:string]:{
 			startTime:Date,
 			endTime:Date
-		}
+		}[]
 	}
-	faculties: string[], // faculty id
-	gradingScheme: {
-		[gradeLetter: string]: {
-			minMarks: number,
-			maxMarks: number
-		}
-
-	},
 }
 ```
 
@@ -211,7 +204,7 @@ type Result = {
 
 - **URL:** `/api/course/{id}`
 - **Method:** `GET`
-- **Permissions:** `Admin` | `Student`
+- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Response
 
@@ -261,9 +254,9 @@ type Result = {
 
 #### Response will be status code
 
-### List Students
+### List Members
 
-- **URL:** `/api/course/{id}/student/list`
+- **URL:** `/api/course/{id}/member`
 - **Method:** `GET`
 - **Permissions:** `Admin` | `Student`
 
@@ -272,7 +265,10 @@ type Result = {
 ```typescript
 {
 	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
+	"page"?: number, // pagination parameter, default is 1
+	"notEnrolledOnly"?: boolean // filter parameter for student
+	"memberType": "Student" | "Faculty"
+
 }
 ```
 
@@ -296,85 +292,43 @@ type Student = {
 };
 ```
 
-### Add Student
+### Add Members
 
-- **URL:** `/api/course/{id}/student`
+- **URL:** `/api/course/{id}/member`
 - **Method:** `POST`
 - **Permissions:** `Admin`
-
-#### Request body
-
-```typescript
-{
-  studentId: string;
-}
-```
-
-#### Response will be status code
-
-### Remove Student
-
-- **URL:** `/api/course/{id}/student/{studentId}`
-- **Method:** `DELETE`
-- **Permissions:** `Admin`
-
-#### Response will be status code
-
-### List Faculties
-
-- **URL:** `/api/course/{id}/faculty/list`
-- **Method:** `GET`
-- **Permissions:** `Admin` | `Student` | `Faculty`
 
 #### Query Parameters
 
 ```typescript
 {
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
+	"memberType": "Student" | "Faculty"
 }
 ```
-
-#### Response
-
-```typescript
-
-{
-	"students":Faculty[],
-	"totalStudents":number
-}
-
-```
-
-```typescript
-type Faculty = {
-  _id: ObjectID;
-  name: string;
-  email: string;
-};
-```
-
-### Add Faculty
-
-- **URL:** `/api/course/{id}/faculty`
-- **Method:** `POST`
-- **Permissions:** `Admin`
 
 #### Request body
 
 ```typescript
 {
-  facultyId: string;
+  studentIds: string[];
 }
 ```
 
 #### Response will be status code
 
-### Remove Faculty
+### Remove Member
 
-- **URL:** `/api/course/{id}/faculty/{facultyId}`
+- **URL:** `/api/course/{id}/member/{memberId}`
 - **Method:** `DELETE`
 - **Permissions:** `Admin`
+
+#### Query Parameters
+
+```typescript
+{
+	"memberType": "Student" | "Faculty"
+}
+```
 
 #### Response will be status code
 
@@ -389,69 +343,8 @@ type Faculty = {
 ### Unenroll self
 
 - **URL:** `/api/course/{id}/unenroll`
-- **Method:** `POST1
-- **Permissions:** `Student`
-
-#### Response will be status code
-
-### Get Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-### Update Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-### Post Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
-- **Method:** `POST`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	[gradeLetter: string]: {
-		minMarks: number,
-		maxMarks: number
-	}
-}
-```
-
-#### Response will be status code
-
-### Delete Grading Scheme
-
-- **URL:** `/api/course/{id}/gradingScheme`
 - **Method:** `DELETE`
-- **Permissions:** `Faculty`
+- **Permissions:** `Student`
 
 #### Response will be status code
 
@@ -843,6 +736,7 @@ type Notification = {
   body: string; // supports markdown
   badgeText: string; // badge text
   badgeColor: string; // badge color
+  attachment?: string; // attachment url
 }
 ```
 
@@ -853,25 +747,6 @@ type Notification = {
 - **URL:** `/api/course/{id}/notifications/{notificationId}`
 - **Method:** `DELETE`
 - **Permissions:** `Faculty`
-
-#### Response will be status code
-
-### Update notification
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-  title: string;
-  body: string; // supports markdown
-  badgeText: string; // badge text
-  badgeColor: string; // badge color
-}
-```
 
 #### Response will be status code
 
@@ -893,187 +768,6 @@ type Notification = {
   badgeText: string; // badge text
   badgeColor: string; // badge color
   creatorId: string; // id of the faculty who created this notification
-};
-```
-
-### Get Views
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}/views`
-- **Method:** `GET`
-- **Permissions:** `Faculty`
-
-#### Response
-
-```typescript
-{
-
-	"totalViews":number
-}
-```
-
-### Get Viewers
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}/listViewers`
-- **Method:** `GET`
-- **Permissions:** `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-}
-```
-
-#### Response
-
-```typescript
-
-{
-	"users":User[],
-	"totalUsers":number
-}
-
-```
-
-```typescript
-type User = {
-  _id: ObjectID;
-  name: string;
-  email: string;
-  role: "Student" | "Faculty" | "Admin";
-  profilePicture: string;
-};
-```
-
-### get number of unseen notifications
-
-- **URL:** `/api/course/{id}/notifications/unseen`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-
-{
-	"unseenNotifications":number
-}
-
-```
-
-### Mark notification as seen
-
-- **URL:** `/api/course/{id}/notifications/{notificationId}/seen`
-- **Method:** `PATCH`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response will be status code
-
-## Course Materials
-
-### List materials
-
-- **URL:** `/api/course/{id}/material`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Query Parameters
-
-```typescript
-{
-	"maxResults"?: number, // pagination parameter default is 10
-	"page"?: number // pagination parameter, default is 1
-}
-```
-
-#### Response
-
-```typescript
-
-{
-	"materials":Material[],
-	"totalMaterials":number
-}
-
-```
-
-```typescript
-type Material = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  attachments: string[]; // array of attachment urls (stored in firebase storage)
-  creatorId: string; // id of the user who created this notification
-  creatorName: string; // name of the user who created this notification
-};
-```
-
-### Create material
-
-- **URL:** `/api/course/{id}/material`
-- **Method:** `POST`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	title: string,
-	body: string, // supports markdown
-	attachments: string[] // array of attachment urls (stored in firebase storage)
-}
-```
-
-#### Response will be status code
-
-### Delete material
-
-- **URL:** `/api/course/{id}/material/{materialId}`
-- **Method:** `DELETE`
-- **Permissions:** `Faculty`
-
-#### Response will be status code
-
-### Update material
-
-- **URL:** `/api/course/{id}/material/{materialId}`
-- **Method:** `PUT`
-- **Permissions:** `Faculty`
-
-#### Request body
-
-```typescript
-{
-	title: string,
-	body: string, // supports markdown
-	attachments: string[] // array of attachment urls (stored in firebase storage)
-}
-```
-
-#### Response will be status code
-
-### Get material
-
-- **URL:** `/api/course/{id}/material/{materialId}`
-- **Method:** `GET`
-- **Permissions:** `Student` | `Faculty`
-
-#### Response
-
-```typescript
-type Material = {
-  _id: ObjectID;
-  courseId: string;
-  title: string;
-  body: string; // supports markdown
-  date: Date;
-  attachments: string[]; // array of attachment urls (stored in firebase storage)
-  creatorId: string; // id of the user who created this notification
-  creatorName: string; // name of the user who created this notification
 };
 ```
 

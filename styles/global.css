@@ -53,6 +53,17 @@ html,
   font-family: "Ubuntu", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 0.4em;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--nc) / 30%);
+  border-radius: 200em;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--nc) / 60%);
+}
+
 .clicky {
   cursor: pointer;
   transition: scale 0.3s ease, transform 0.3s ease;
@@ -62,4 +73,25 @@ html,
 }
 .clicky:active {
   transform: scale(0.99);
+}
+
+.modalYesBtn {
+  background-color: hsl(var(--p)) !important;
+  color: hsl(var(--pc)) !important;
+  cursor: pointer;
+  transition: scale 0.3s ease, transform 0.3s ease;
+}
+.modalYesBtn:hover {
+  background-color: hsl(var(--pf)) !important;
+}
+.modalYesBtn:active {
+  transform: scale(0.9);
+}
+
+.modalNoBtn {
+  cursor: pointer;
+  transition: scale 0.3s ease, transform 0.3s ease;
+}
+.modalNoBtn:active {
+  transform: scale(0.9);
 }

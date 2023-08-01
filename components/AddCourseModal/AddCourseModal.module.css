@@ -1,0 +1,100 @@
+.modalBodyWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+}
+.modalFooter {
+  display: flex;
+  gap: 1em;
+  justify-content: center !important;
+}
+.modalFooter > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+}
+.infoSub {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+}
+.infoDes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.when {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+}
+
+.days {
+  background-color: hsl(var(--b2)) !important;
+}
+.dayEntry {
+  color: hsl(var(--c)) !important;
+  background-color: hsl(var(--b3)) !important;
+}
+
+.time {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1em;
+}
+.entry {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.dup {
+  display: flex;
+  gap: 0.5em;
+}
+
+@media (max-width: 768px) {
+  .when {
+    flex-direction: column;
+  }
+  .entry {
+    flex-direction: column;
+    gap: 0.1em;
+  }
+  .dup {
+    flex-direction: column;
+  }
+}

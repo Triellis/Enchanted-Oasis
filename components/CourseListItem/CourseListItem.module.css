@@ -1,0 +1,109 @@
+.courseListItem {
+  padding: 5px;
+  border-radius: 10px;
+
+  /* border-top: 1px solid hsl(var(--n) / 80%) !important;
+  border-bottom: 1px solid hsl(var(--n) / 80%) !important; */
+
+  box-shadow: -4px 4px 2px hsl(var(--b3) / 70%);
+  border: 1px solid hsl(var(--nc) / 20%);
+  background-color: hsl(var(--b2));
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-inline: 1em;
+  transition: border-color 0.2s ease-in-out;
+}
+.courseListItem:hover {
+  border: 1px solid hsl(var(--nc) / 50%);
+  border-radius: 1em;
+}
+
+.itemWrapper {
+  gap: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+
+  padding-block: 0.5em;
+}
+
+@media (max-width: 426px) {
+  .itemWrapper {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 375px) {
+  .itemWrapper {
+    font-size: 0.8em;
+  }
+}
+
+.courseInfo {
+  flex: 5;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+.courseName {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: hsl(var(--c));
+}
+
+.courseBack {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+.courseCode {
+  font-size: 1.1em;
+  color: hsl(var(--b1));
+  border-radius: 10px;
+  padding: 0.2em 0.5em;
+  font-weight: bold;
+  background-color: hsl(var(--a));
+}
+.courseCredits {
+  font-size: 1.1em;
+  color: hsl(var(--c));
+}
+
+.name {
+  font-weight: bold;
+  color: hsl(var(--er));
+  font-size: 1.1em;
+}
+.coursePlay {
+  flex: 0.5;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+.courseDel {
+  border: transparent !important;
+  font-size: 1em;
+  cursor: pointer;
+}
+.courseDel:hover {
+  color: hsl(var(--er)) !important;
+  background-color: transparent !important;
+}
+.delCourse {
+  background-color: hsl(var(--er)) !important;
+  color: hsl(var(--erc)) !important;
+}
+.delCourse:hover {
+  color: hsl(var(--er)) !important;
+  background-color: hsl(var(--erc)) !important;
+}

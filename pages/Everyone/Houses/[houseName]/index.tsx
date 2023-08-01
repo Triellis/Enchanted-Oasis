@@ -146,8 +146,6 @@ function HousePlate({
   const isAdmin = (useSession().data as MySession)?.user.role === "Admin";
 
   useEffect(() => {
-    console.log(isEditPlateOpen);
-
     if (isFocused || isHovered) {
       setIsEditPlateOpen(true);
     } else {
@@ -266,7 +264,7 @@ function EditPointsModal({
       isOpen={isOpen}
       motionPreset="slideInBottom"
     >
-      <ModalOverlay />
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
       <ModalContent bg="hsl(var(--b2))">
         <ModalHeader>Edit Points</ModalHeader>
         <ModalBody>
@@ -289,12 +287,12 @@ function EditPointsModal({
           </NumberInput>
         </ModalBody>
         <ModalFooter className={styles.modalFooter}>
-          <Button variant="outline" onClick={onClose}>
+          <Button className="modalNoBtn" onClick={onClose}>
             Close
           </Button>
           <Button
             isLoading={isLoading}
-            bg="hsl(var(--s))"
+            className="modalYesBtn"
             onClick={async () => {
               await editPoints(
                 points,
@@ -360,6 +358,7 @@ function HousePage() {
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setPage={setPage}
           />
           <UserList
             isLoading={isLoading}

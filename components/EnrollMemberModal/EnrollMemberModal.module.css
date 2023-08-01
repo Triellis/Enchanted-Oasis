@@ -1,0 +1,23 @@
+.selectBtn {
+  background-color: transparent !important;
+  padding: 1.1em !important;
+  border: 1px solid hsl(var(--n)) !important;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.modalFooter {
+  display: flex !important;
+  align-items: center;
+  gap: 2em;
+}
+.modalFooter > * {
+  width: 100%;
+}

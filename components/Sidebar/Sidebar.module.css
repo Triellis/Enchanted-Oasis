@@ -1,0 +1,88 @@
+/* sidebar */
+.sidebar {
+  left: -300px; /* Sidebar initially hidden */
+  width: 350px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: hsl(var(--b2)/90%);
+  height: 100%;
+  left: 0;
+  border-right: 1px solid hsl(var(--pc) / 30%);
+
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  backdrop-filter: blur(0.6em);
+}
+.sidebar.closed {
+  transform: translateX(-100%); /* Sidebar hidden */
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+/* menu inside the sidebar */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px;
+  width: 350px;
+}
+
+/* Responsive modifications */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 250px;
+    border-radius: 0 25px 25px 0;
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+  }
+  .menu {
+    width: 250px;
+  }
+}
+
+/* for the logout button */
+.logOut {
+  color: rgb(255, 69, 0);
+  border: rgb(255, 69, 0) 1px solid !important;
+  background-color: hsl(var(--b2)) !important;
+}
+.logOut:hover {
+  background-color: rgb(255, 69, 0) !important;
+  color: rgb(0, 0, 0);
+}
+.logOut:active {
+  /* animation  */
+  background-color: rgb(255, 69, 0) !important;
+  color: rgb(0, 0, 0);
+  transform: scale(0.9);
+}
+
+/* getting the EO font style */
+.appName {
+  font-family: "New Rocker", sans-serif;
+  background: linear-gradient(
+    135deg,
+    rgb(255, 162, 0) 5%,
+    rgb(246, 255, 0) 75%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-align: center;
+  font-size: 2.5em;
+}

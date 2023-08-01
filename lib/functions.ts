@@ -1,6 +1,13 @@
 import { Collection, MongoClient } from "mongodb";
-import { Role, SentUserDataFromClient, UserCol } from "./types";
+import {
+  CourseInformation,
+  ReceivedUserDataOnClient,
+  Role,
+  SentUserDataFromClient,
+  UserCol,
+} from "./types";
 import md5 from "md5";
+import useSWR from "swr";
 
 export async function validateLogin(
   email: string,
@@ -43,7 +50,12 @@ export function capitalizeFirstLetter(s: string) {
 }
 
 // @ts-ignore
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+export const fetcher = (...args) =>
+  // @ts-ignore
+
+  fetch(...args)
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
 
 export function getRoleColor(role: Role | "All") {
   let roleColor = "gray";
@@ -121,4 +133,65 @@ export function escapeMarkdown(text: string) {
   const resultText = text.replace(markdownRegex, "");
 
   return resultText;
+}
+
+export function useUserSearch(searchQuery: string, role: string, page: number) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/allUsers/search?searchQuery=${searchQuery}&page=${page}&role=${role}`,
+    fetcher
+  );
+  return {
+    users: data as ReceivedUserDataOnClient[],
+    isLoading,
+    error: error,
+    mutate,
+  };
+}
+
+export function useCourses(
+  page: number,
+  search: string,
+  type: "all" | "enrolled" | "notenrolled" | "teaching"
+) {
+  const { data, isLoading, error, mutate } = useSWR(
+    `/api/course/list?page=${page}&type=${type}&searchQuery=${search}`,
+    fetcher
+  );
+  return {
+    courses: data,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+export function useCoursePage(courseId: string) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/course/${courseId}`,
+    fetcher
+  );
+  return {
+    course: data as CourseInformation,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+
+export function useCourseMembers(
+  courseId: string,
+  page: number,
+  search: string,
+  memberType: "student" | "faculty",
+  notEnrolledOnly = false
+) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/course/${courseId}/member?page=${page}&memberType=${memberType}&searchQuery=${search}&&notEnrolledOnly=${notEnrolledOnly}`,
+    fetcher
+  );
+  return {
+    members: data as ReceivedUserDataOnClient[],
+    isLoading,
+    error,
+    mutate,
+  };
 }
