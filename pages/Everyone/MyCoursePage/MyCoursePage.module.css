@@ -29,3 +29,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.notifs{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

@@ -65,21 +65,25 @@ export default function MyCoursePage() {
           membersModal={true}
         />
         <div className={styles.postBtn}>
-          <Button onClick={onMsgModalOpen}>Post Message</Button>
+          <Button className="clicky" onClick={onMsgModalOpen}>
+            Post Message
+          </Button>
         </div>
-        <div className={styles.searchBar} >
+        <div className={styles.searchBar}>
           <SearchBar
             searchQuery={search}
             setSearchQuery={setSearch}
             setPage={setPage}
           />
         </div>
-        <CourseNotifList
-          error={notificationsError}
-          isLoading={isNotificationsLoading}
-          mutate={mutateNotifications}
-          notifications={notifications}
-        />
+        <div className={styles.notifs}>
+          <CourseNotifList
+            error={notificationsError}
+            isLoading={isNotificationsLoading}
+            mutate={mutateNotifications}
+            notifications={notifications}
+          />
+        </div>
         <Pagination items={notifications} page={page} setPage={setPage} />
         {session?.user.role === "Faculty" && (
           <FloatingButton
@@ -92,6 +96,8 @@ export default function MyCoursePage() {
             rotateBy={180}
           />
         )}
+
+        {/* modals */}
         <EnrollMemberModal
           isOpen={isOpen}
           onClose={onClose}
