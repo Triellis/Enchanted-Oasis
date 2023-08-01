@@ -109,6 +109,7 @@ async function GET(
     creatorId: 1,
     date: 1,
     creator: 1,
+    attachment: 1,
   };
 
   const notifications = await courseNotifCollection

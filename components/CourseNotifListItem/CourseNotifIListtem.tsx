@@ -16,6 +16,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { DeleteConfirmationModal } from "../NotifItem/NotifItem";
 import { useSession } from "next-auth/react";
+import FilePreview from "../FilePreview";
 
 export default function CourseNotifItem({
   notification,
@@ -108,6 +109,11 @@ export default function CourseNotifItem({
             mutate={mutate}
           />
         </Flex>
+      </div>
+      <div>
+        {notification.attachment && (
+          <FilePreview url={notification.attachment} />
+        )}
       </div>
     </MotionDiv>
   );
