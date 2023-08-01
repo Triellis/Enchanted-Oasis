@@ -20,11 +20,11 @@ import { useSession } from "next-auth/react";
 export default function CourseNotifItem({
   notification,
   mutate,
-}: // transition
-{
+  transition,
+}: {
   notification: CourseNotifOnClient;
   mutate: () => void;
-  // transition: any;
+  transition: any;
 }) {
   const router = useRouter();
   const courseId = router.query.courseId as string;
@@ -41,11 +41,9 @@ export default function CourseNotifItem({
       variants={itemVariants}
       initial="hidden"
       animate="visible"
-      transition={
-        {
-          /*transition*/
-        }
-      }
+      transition={{
+        transition,
+      }}
       className={classNames(AdminNotifStyles.notifItem)}
     >
       <div className={AdminNotifStyles.header}>

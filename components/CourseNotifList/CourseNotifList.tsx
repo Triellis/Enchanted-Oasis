@@ -24,14 +24,14 @@ export default function CourseNotifList({
   } else if (error) {
     componentsToRender = <div>Error</div>;
   } else {
-    componentsToRender = notifications.map((notification) => {
+    componentsToRender = notifications.map((notification, index) => {
       return (
         <>
           <CourseNotifItem
             key={notification._id.toString()}
             notification={notification}
             mutate={mutate}
-            // transition={{ ...transition, delay: index * 0.09 }}
+            transition={{ ...transition, delay: index * 0.09 }}
           />
         </>
       );
