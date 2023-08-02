@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import {
   AdminNotificationOnClient,
+  CourseNotifOnClient,
   MySession,
   ReceivedUserDataOnClient,
 } from "@/lib/types";
@@ -25,6 +26,7 @@ import { useSession } from "next-auth/react";
 import UserList from "@/components/UserList";
 import Pagination from "@/components/Pagination";
 import ListViewersModal from "@/components/ListViewersModal";
+import FilePreview from "@/components/FilePreview";
 
 function useNotification(id: string, courseId: string | undefined) {
   let url;
@@ -36,7 +38,7 @@ function useNotification(id: string, courseId: string | undefined) {
 
   const { data, error, isLoading, mutate } = useSWR(url, fetcher);
   return {
-    notification: data as AdminNotificationOnClient,
+    notification: data as AdminNotificationOnClient & CourseNotifOnClient,
     isLoading,
     error: error,
     mutate,
@@ -47,7 +49,7 @@ function NotificationComponent({
   notification,
   adminMode = false,
 }: {
-  notification: AdminNotificationOnClient;
+  notification: AdminNotificationOnClient & CourseNotifOnClient;
   adminMode?: boolean;
 }) {
   const viewsFormatter = useMemo(
@@ -81,9 +83,11 @@ function NotificationComponent({
 
       <div className={styles.notifDetails}>
         <span className={styles.badgeWrapper}>
-          <Badge colorScheme={getRoleColor(notification.audience)}>
-            {notification.audience}
-          </Badge>
+          {notification.audience && (
+            <Badge colorScheme={getRoleColor(notification.audience)}>
+              {notification.audience}
+            </Badge>
+          )}
         </span>
         <span className={styles.badgeWrapper}>
           <Badge colorScheme={notification.badgeColor}>
@@ -119,6 +123,7 @@ function NotificationComponent({
       >
         {notification.body}
       </ReactMarkdown>
+      {notification.attachment && <FilePreview url={notification.attachment} />}
     </div>
   );
 }
