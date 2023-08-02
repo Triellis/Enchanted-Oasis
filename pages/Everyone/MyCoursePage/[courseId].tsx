@@ -6,7 +6,7 @@ import { fetcher, useCoursePage } from "@/lib/functions";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { MySession } from "@/lib/types";
-
+ 
 import { Button, useDisclosure } from "@chakra-ui/react";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";

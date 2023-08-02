@@ -164,7 +164,7 @@ export default function SendMessageModal({
 
   function validation() {
     for (let field of Object.keys(data)) {
-      if ((data as any)[field].trim() === "") {
+      if (field !== "attachment" && (data as any)[field].trim() === "") {
         toast({
           title: `${field} is empty`,
           description: `Please enter a ${field}`,
