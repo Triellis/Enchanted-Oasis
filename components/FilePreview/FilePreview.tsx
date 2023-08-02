@@ -12,7 +12,14 @@ export default function FilePreview({ url }: { url: string }) {
   }
   return (
     <Link href={url} rel="noopener noreferrer" target="_blank">
-      <div className={styles.filePreview}>{slicedUrl}</div>
+      <div className={styles.filePreview}>
+        <img
+          src="/assets/icons/file.svg"
+          alt="file preview"
+          className={styles.icon}
+        />
+        {slicedUrl}
+      </div>
     </Link>
   );
 }
