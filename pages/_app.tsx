@@ -12,7 +12,6 @@ import "../styles/global.css";
 import store from "@/lib/store";
 import { Provider } from "react-redux";
 import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { setIsSidebarOpen } from "@/lib/slices/isSidebarOpen";
 
 export default function App({

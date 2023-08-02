@@ -120,7 +120,7 @@ function Nav({ onToggle }: { onToggle: () => void }) {
               </Link>
               <MenuItem
                 className={styles.menuOut}
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: "/" })}
                 color={"rgb(255,69,0)"}
               >
                 Logout{" "}

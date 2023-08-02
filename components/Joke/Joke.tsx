@@ -24,7 +24,7 @@ function JokeComponent({ joke, mutate }: { joke: string; mutate: any }) {
         animate={{ opacity: 1, x: 0 }}
         transition={{ type: "spring", duration: 2, ease: "easeInOut" }}
       >
-        {joke}
+        <div className={styles.txt}>{joke}</div>
       </MotionDiv>
     </button>
   );
