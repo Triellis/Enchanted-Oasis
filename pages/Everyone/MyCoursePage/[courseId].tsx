@@ -31,7 +31,7 @@ function useCourseNotifications(
 }
 import EnrollMemberModal from "@/components/EnrollMemberModal";
 import FloatingButton from "@/components/FloatingButton";
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, EditIcon } from "@chakra-ui/icons";
 import SendMessageModal from "@/components/SendMessageModal/SendMessageModal";
 import classNames from "classnames";
 
@@ -69,9 +69,9 @@ export default function MyCoursePage() {
           <div className={styles.postBtnWrapper}>
             <Button
               className={classNames(styles.postBtn)}
-              onClick={onMsgModalOpen}
+              onClick={onOpen}
             >
-              Post Message
+              Enroll Students
             </Button>
           </div>
         )}
@@ -94,13 +94,13 @@ export default function MyCoursePage() {
         <Pagination items={notifications} page={page} setPage={setPage} />
         {session?.user.role === "Faculty" && (
           <FloatingButton
-            onOpen={onOpen}
-            SideIcon={AddIcon}
-            HalfText="Enroll"
-            RemainingText="New Users"
-            initialWidth={6.3}
-            finalWidth={11.4}
-            rotateBy={180}
+            onOpen={onMsgModalOpen}
+            SideIcon={EditIcon}
+            HalfText="Post"
+            RemainingText="New Message"
+            initialWidth={5.5}
+            finalWidth={12.3}
+            rotateBy={0}
           />
         )}
 
