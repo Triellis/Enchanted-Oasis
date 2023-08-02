@@ -27,14 +27,6 @@ export default function Admin() {
           <Joke />
         </div>
 
-        <div>
-          <FilePreview
-            url={
-              "https://docs.google.com/document/d/1jEc2LXQZvkCWxxKKpalJ0bgD-6B4C7tJytfkJWnyd8k/edit"
-            }
-          />
-        </div>
-
         <div className={styles.notifications}>
           <NotifList adminMode={true} />
         </div>
