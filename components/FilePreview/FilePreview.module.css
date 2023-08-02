@@ -1,5 +1,17 @@
-.fileComponent {
-  border: 1px solid hsl(var(--pc) / 80%);
-  padding: 1em;
-  border-radius: 1em;
+.filePreview {
+  width: 30%;
+  overflow-y: hidden;
+  max-width: min-content;
+  white-space: nowrap; /* Prevent text from wrapping to a new line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.7em;
+  color: #3366cc;
+  border: 1px solid #3366cc;
+  padding: 0.7em;
+  border-radius: 0.7em;
+}
+.filePreview:hover {
+  background-color: #3366cc;
+  color: hsl(var(--b1));
 }

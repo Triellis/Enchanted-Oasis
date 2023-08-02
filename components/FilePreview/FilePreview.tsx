@@ -1,27 +1,18 @@
 import React from "react";
 import styles from "./FilePreview.module.css";
-import { AddIcon } from "@chakra-ui/icons";
-import { getLinkPreview, getPreviewFromContent } from "link-preview-js";
 
 import Link from "next/link";
-function FileComponent({ data }: { data: LinkPreviewData }) {
-  return (
-    <div className={styles.fileComponent}>
-      <div className={styles.fileInfo}>
-        <div className={styles.fileName}>{data.title}</div>
-      </div>
-    </div>
-  );
-}
-export default function FilePreview({ url }: { url: string }) {
-  // fetch the name and type of the file from the url and then display it:
-  const name = url.split("/").pop();
-  const type = name?.split(".").pop();
-  const icon = <AddIcon />;
-  getLinkPreview("https://www.youtube.com/watch?v=MejbOFk7H6c").then((data) =>
-    console.debug(data)
-  );
-  let preview;
 
-  return preview;
+export default function FilePreview({ url }: { url: string }) {
+  let slicedUrl;
+  if (url.length > 50) {
+    slicedUrl = url.slice(0, 50) + "...";
+  } else {
+    slicedUrl = url;
+  }
+  return (
+    <Link href={url} rel="noopener noreferrer" target="_blank">
+      <div className={styles.filePreview}>{slicedUrl}</div>
+    </Link>
+  );
 }

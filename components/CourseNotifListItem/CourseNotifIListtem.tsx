@@ -110,11 +110,8 @@ export default function CourseNotifItem({
           />
         </Flex>
       </div>
-      <div>
-        {notification.attachment && (
-          <FilePreview url={notification.attachment} />
-        )}
-      </div>
+
+      {notification.attachment && <FilePreview url={notification.attachment} />}
     </MotionDiv>
   );
 }
