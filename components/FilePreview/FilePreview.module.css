@@ -1,9 +1,8 @@
 .filePreview {
-  width: 30%;
+  width: max-content;
   overflow-y: hidden;
-  max-width: min-content;
+  /* max-width: min-content; */
   white-space: nowrap; /* Prevent text from wrapping to a new line */
-  overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.7em;
   color: hsl(var(--af));
@@ -12,8 +11,13 @@
   border-radius: 0.7em;
   font-weight: bold;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .filePreview:hover {
   background-color: hsl(var(--af));
-  color: hsl(var(--b1));
+  color: hsl(var(--c));
 }
