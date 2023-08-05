@@ -11,6 +11,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Divider,
 } from "@chakra-ui/react";
 import { HamburgerIcon, BellIcon } from "@chakra-ui/icons";
 import styles from "./Nav.module.css";
@@ -24,6 +25,8 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/functions";
 import { MySession, ReceivedUserDataOnClient } from "@/lib/types";
 import { useAppSelector } from "@/lib/hooks";
+import dynamic from "next/dynamic";
+import AppTitle from "../AppTitle/AppTitle";
 
 function HamburgerIconAnimated() {
   const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen.value);
@@ -73,6 +76,8 @@ function Nav({ onToggle }: { onToggle: () => void }) {
     }
   }
 
+  const isMobile = window.innerWidth < 768;
+
   return (
     <div className={styles.navbar}>
       {/* Hamburger Icon */}
@@ -82,55 +87,57 @@ function Nav({ onToggle }: { onToggle: () => void }) {
         </Button>
       </div>
 
-      {/* Last Group of Icons */}
-      <div>
-        <div className={styles.endGroup}>
-          <Link href={`/${sessionData?.user.role}/Dashboard`}>
-            <button
-              className={classNames(styles.notificationIndicator, "clicky")}
-            >
-              <BellIcon
-                h={4}
-                className={notificationCountComponent && styles.ringBell}
-              />
-              {notificationCountComponent}
-            </button>
-          </Link>
+      {isMobile && <AppTitle sizeNumber={1.5} />}
 
-          <Menu>
-            <MenuButton className={styles.avatarWrapper}>
-              {/* Avatar */}
-              <Avatar
-                src={
-                  isUserLoading || !userJson
-                    ? session.data?.user?.image!
-                    : userJson.profilePicture
-                }
-                className={styles.avatar}
-              />
-            </MenuButton>
-            <MenuList
-              backgroundColor={"hsl(var(--b2))"}
-              className={styles.customList}
-              boxSize={""}
-              borderRadius={"var(--rounded-box)"}
+      {/* Last Group of Icons */}
+      <div className={styles.endGroup}>
+        <Link href={`/${sessionData?.user.role}/Dashboard`}>
+          <button
+            className={classNames(styles.notificationIndicator, "clicky")}
+          >
+            <BellIcon
+              h={4}
+              className={notificationCountComponent && styles.ringBell}
+            />
+            {notificationCountComponent}
+          </button>
+        </Link>
+        <Menu>
+          <MenuButton className={styles.avatarWrapper}>
+            {/* Avatar */}
+            <Avatar
+              src={
+                isUserLoading || !userJson
+                  ? session.data?.user?.image!
+                  : userJson.profilePicture
+              }
+              className={styles.avatar}
+            />
+          </MenuButton>
+          <MenuList
+            backgroundColor={"hsl(var(--b2))"}
+            className={styles.customList}
+            boxSize={""}
+            borderRadius={"var(--rounded-box)"}
+          >
+            <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
+              <MenuItem className={styles.menuItem}>My Profile</MenuItem>
+            </Link>
+            <MenuItem
+              className={styles.menuOut}
+              onClick={() => signOut({ callbackUrl: "/" })}
+              color={"rgb(255,69,0)"}
             >
-              <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
-                <MenuItem className={styles.menuItem}>My Profile</MenuItem>
-              </Link>
-              <MenuItem
-                className={styles.menuOut}
-                onClick={() => signOut({ callbackUrl: "/" })}
-                color={"rgb(255,69,0)"}
-              >
-                Logout{" "}
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
+              Logout{" "}
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </div>
     </div>
   );
 }
 
-export default Nav;
+// export default Nav in new manner
+export default dynamic(() => Promise.resolve(Nav), {
+  ssr: false,
+});

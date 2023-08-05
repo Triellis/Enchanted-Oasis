@@ -1,0 +1,21 @@
+.appTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.appName {
+  font-family: "New Rocker", sans-serif;
+  background: linear-gradient(
+    135deg,
+    rgb(255, 162, 0) 5%,
+    rgb(246, 255, 0) 75%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-align: center;
+}
