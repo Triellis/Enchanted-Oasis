@@ -102,38 +102,36 @@ function Nav({ onToggle }: { onToggle: () => void }) {
             {notificationCountComponent}
           </button>
         </Link>
-
-          <Menu>
-            <MenuButton className={styles.avatarWrapper}>
-              {/* Avatar */}
-              <Avatar
-                src={
-                  isUserLoading || !userJson
-                    ? session.data?.user?.image!
-                    : userJson.profilePicture
-                }
-                className={styles.avatar}
-              />
-            </MenuButton>
-            <MenuList
-              backgroundColor={"hsl(var(--b2))"}
-              className={styles.customList}
-              boxSize={""}
-              borderRadius={"var(--rounded-box)"}
+        <Menu>
+          <MenuButton className={styles.avatarWrapper}>
+            {/* Avatar */}
+            <Avatar
+              src={
+                isUserLoading || !userJson
+                  ? session.data?.user?.image!
+                  : userJson.profilePicture
+              }
+              className={styles.avatar}
+            />
+          </MenuButton>
+          <MenuList
+            backgroundColor={"hsl(var(--b2))"}
+            className={styles.customList}
+            boxSize={""}
+            borderRadius={"var(--rounded-box)"}
+          >
+            <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
+              <MenuItem className={styles.menuItem}>My Profile</MenuItem>
+            </Link>
+            <MenuItem
+              className={styles.menuOut}
+              onClick={() => signOut({ callbackUrl: "/" })}
+              color={"rgb(255,69,0)"}
             >
-              <Link href="/Auth/Profile" style={{ textDecoration: "none" }}>
-                <MenuItem className={styles.menuItem}>My Profile</MenuItem>
-              </Link>
-              <MenuItem
-                className={styles.menuOut}
-                onClick={() => signOut({ callbackUrl: "/" })}
-                color={"rgb(255,69,0)"}
-              >
-                Logout{" "}
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
+              Logout{" "}
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </div>
     </div>
   );
