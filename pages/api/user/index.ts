@@ -179,6 +179,11 @@ async function DELETE(
   const user = await usersCollection.findOne({
     _id: new ObjectId(userId),
   });
+  if (!user) {
+    return res.status(404).send("User not found");
+  } else if (user.role === "Admin") {
+    return res.status(403).send("You can not delete an admin");
+  }
   const fileDelete = await deleteFile(user!.profilePicture);
   const deleteRes = await usersCollection.deleteOne({
     _id: new ObjectId(userId),
