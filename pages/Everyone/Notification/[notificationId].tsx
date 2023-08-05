@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import {
   AdminNotificationOnClient,
+  CourseNotifOnClient,
   MySession,
   ReceivedUserDataOnClient,
 } from "@/lib/types";
@@ -25,14 +26,19 @@ import { useSession } from "next-auth/react";
 import UserList from "@/components/UserList";
 import Pagination from "@/components/Pagination";
 import ListViewersModal from "@/components/ListViewersModal";
+import FilePreview from "@/components/FilePreview";
 
-function useNotification(id: string) {
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/notification/${id}`,
-    fetcher
-  );
+function useNotification(id: string, courseId: string | undefined) {
+  let url;
+  if (courseId) {
+    url = `/api/course/${courseId}/notifications/${id}`;
+  } else {
+    url = `/api/notification/${id}`;
+  }
+
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher);
   return {
-    notification: data as AdminNotificationOnClient,
+    notification: data as AdminNotificationOnClient & CourseNotifOnClient,
     isLoading,
     error: error,
     mutate,
@@ -43,7 +49,7 @@ function NotificationComponent({
   notification,
   adminMode = false,
 }: {
-  notification: AdminNotificationOnClient;
+  notification: AdminNotificationOnClient & CourseNotifOnClient;
   adminMode?: boolean;
 }) {
   const viewsFormatter = useMemo(
@@ -77,9 +83,11 @@ function NotificationComponent({
 
       <div className={styles.notifDetails}>
         <span className={styles.badgeWrapper}>
-          <Badge colorScheme={getRoleColor(notification.audience)}>
-            {notification.audience}
-          </Badge>
+          {notification.audience && (
+            <Badge colorScheme={getRoleColor(notification.audience)}>
+              {notification.audience}
+            </Badge>
+          )}
         </span>
         <span className={styles.badgeWrapper}>
           <Badge colorScheme={notification.badgeColor}>
@@ -115,6 +123,7 @@ function NotificationComponent({
       >
         {notification.body}
       </ReactMarkdown>
+      {notification.attachment && <FilePreview url={notification.attachment} />}
     </div>
   );
 }
@@ -123,8 +132,10 @@ export default function NotificationPage() {
   const router = useRouter();
   const session = useSession();
   const sessionData = session.data as MySession;
+  const courseId = router.query.courseId as string | undefined;
   const { notification, isLoading, error } = useNotification(
-    router.query.notificationId as string
+    router.query.notificationId as string,
+    courseId
   );
 
   let notificationComponent;

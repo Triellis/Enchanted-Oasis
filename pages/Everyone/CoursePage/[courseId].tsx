@@ -1,45 +1,20 @@
-import {
-  fetcher,
-  useCourseMembers,
-  useCoursePage,
-  useUserSearch,
-} from "@/lib/functions";
-import {
-  CourseInformation,
-  Day,
-  MySession,
-  ReceivedUserDataOnClient,
-} from "@/lib/types";
+import { useCourseMembers, useCoursePage } from "@/lib/functions";
+import { MySession, ReceivedUserDataOnClient } from "@/lib/types";
 import Layout from "@/pages/Layout";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import styles from "./CoursePage.module.css";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import UserList from "@/components/UserList/UserList";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Pagination from "@/components/Pagination/Pagination";
-import userStyles from "@/pages/Admin/Users.module.css";
 
 import CoursePlate from "@/components/CoursePlate/CoursePlate";
 
-import {
-  Button,
-  IconButton,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
+import { IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 
 import TabsComponent from "@/components/TabsComponent/TabsComponent";
-import { AddIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import classNames from "classnames";
+import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { useSession } from "next-auth/react";
 import EnrollMemberModal from "@/components/EnrollMemberModal/EnrollMemberModal";
 import FloatingButton from "@/components/FloatingButton";

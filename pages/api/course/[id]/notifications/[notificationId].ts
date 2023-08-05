@@ -1,7 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 
-import { CourseCol, CourseNotifCol, MySession } from "@/lib/types";
+import {
+  CourseCol,
+  CourseNotifCol,
+  MySession,
+  userProjection,
+} from "@/lib/types";
 import { clientPromise } from "@/lib/DB";
 import { authOptions } from "../../../auth/[...nextauth]";
 import { ObjectId } from "mongodb";
@@ -59,11 +64,41 @@ async function GET(
   const courseNotifCollection = db.collection<CourseNotifCol>(
     "CourseNotifications"
   );
-  const notification = await courseNotifCollection.findOne({
-    _id: new ObjectId(req.query.notificationId as string),
-  });
-  if (!notification) {
+  const notification = await courseNotifCollection
+    .aggregate([
+      {
+        $match: {
+          _id: new ObjectId(req.query.notificationId as string),
+        },
+      },
+      {
+        $lookup: {
+          from: "Users",
+          localField: "creatorId",
+          foreignField: "_id",
+          as: "creator",
+          pipeline: [
+            {
+              $project: userProjection,
+            },
+            {
+              $limit: 1, // Limit the number of creators to 1
+            },
+          ],
+        },
+      },
+      {
+        $addFields: {
+          creator: { $arrayElemAt: ["$creator", 0] }, // Get the first creator from the 'creators' array
+        },
+      },
+      {
+        $limit: 1,
+      },
+    ])
+    .toArray();
+  if (notification.length === 0) {
     return res.status(404).send("Notification not found");
   }
-  return res.status(200).json(notification);
+  return res.status(200).json(notification[0]);
 }

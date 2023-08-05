@@ -1,0 +1,28 @@
+.filePreview {
+  width: max-content;
+  overflow-y: hidden;
+  /* max-width: min-content; */
+  white-space: nowrap; /* Prevent text from wrapping to a new line */
+  text-overflow: clip;
+  font-size: 0.7em;
+  color: hsl(var(--af));
+  border: 1px solid hsl(var(--af));
+  padding: 0.2em 0.7em;
+  border-radius: 7em;
+
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+}
+.filePreview:hover {
+  background-color: hsl(var(--af));
+  color: hsl(var(--c));
+}
+
+.icon {
+  scale: 0.8;
+}

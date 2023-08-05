@@ -34,7 +34,7 @@ function Sidebar({
         {/* Footer of the sidebar! */}
         <button
           className={classNames(styles.logOut, sideBarItemStyles.item)}
-          onClick={() => signOut()}
+          onClick={() => signOut({ callbackUrl: "/" })}
         >
           Logout
         </button>

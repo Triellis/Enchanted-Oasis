@@ -25,6 +25,7 @@ const Badge = defineStyleConfig({
     letterSpacing: "0.1em",
     justifyContent: "center",
     alignItems: "center",
+    maxWidth: "fit-content",
   },
 });
 const Popover = {
