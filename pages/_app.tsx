@@ -13,6 +13,7 @@ import store from "@/lib/store";
 import { Provider } from "react-redux";
 import { useEffect } from "react";
 import { setIsSidebarOpen } from "@/lib/slices/isSidebarOpen";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 export default function App({
   Component,
@@ -37,6 +38,7 @@ export default function App({
     <SessionProvider session={session}>
       <ChakraProvider theme={theme}>
         <Provider store={store}>
+          <GoogleAnalytics />
           <Component {...pageProps} />
         </Provider>
       </ChakraProvider>
