@@ -263,7 +263,7 @@ export default function UserListItem({
         </Popover>
 
         {/* Delete IconButton */}
-        {editMode && (
+        {editMode && userData.role !== "Admin" && (
           <IconButton
             isRound
             variant="outline"
