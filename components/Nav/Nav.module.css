@@ -4,7 +4,7 @@
   /* margin: 10px; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+
   padding: 5px;
   border-radius: 10px;
   padding-inline: 10px;
@@ -16,7 +16,7 @@
   border: 1px solid hsl(var(--pc) / 30%);
 
   backdrop-filter: blur(0.6em);
-  gap: 0.1em;
+  gap: 1.1em;
 }
 
 .hamButton {
@@ -33,9 +33,9 @@
   height: 100%;
   align-items: center;
   gap: 10px;
-
   align-self: flex-end;
   justify-content: flex-end;
+  margin-left: auto;
 }
 
 .menuItem {

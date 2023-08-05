@@ -11,6 +11,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Divider,
 } from "@chakra-ui/react";
 import { HamburgerIcon, BellIcon } from "@chakra-ui/icons";
 import styles from "./Nav.module.css";
