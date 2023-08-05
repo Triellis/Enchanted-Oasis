@@ -38,7 +38,7 @@ export default function App({
     <SessionProvider session={session}>
       <ChakraProvider theme={theme}>
         <Provider store={store}>
-          <GoogleAnalytics />
+          <GoogleAnalytics trackPageViews />
           <Component {...pageProps} />
         </Provider>
       </ChakraProvider>
