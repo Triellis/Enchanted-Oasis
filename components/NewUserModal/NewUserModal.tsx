@@ -1,4 +1,4 @@
-  import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -163,7 +163,7 @@ export default function NewUserModal({
             <GridItem colSpan={2}>
               <FormControl>
                 {/* Profile Picture */}
-                <FormLabel>Profile Picture</FormLabel>
+                <FormLabel>Avatar</FormLabel>
                 <form className={styles.picIn}>
                   <label
                     htmlFor="myFileInput"
