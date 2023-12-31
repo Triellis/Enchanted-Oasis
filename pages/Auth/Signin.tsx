@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import {
   Button,
+  Flex,
   Input,
   InputGroup,
   InputRightElement,
@@ -16,8 +17,34 @@ import {
 } from "@chakra-ui/react";
 
 import styles from "./Signin.module.css";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { UnlockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import classNames from "classnames";
+
+function AutoPassBtn({
+  btnLabel,
+  email,
+  password,
+  setStates,
+}: {
+  btnLabel: string;
+  email: string;
+  password: string;
+  setStates: any;
+}) {
+  return (
+    <Button
+      onClick={() => {
+        setStates.email(email);
+        setStates.password(password);
+      }}
+      size={"sm"}
+      variant={"solid"}
+      rightIcon={<UnlockIcon />}
+    >
+      {btnLabel}
+    </Button>
+  );
+}
 
 export default function SignIn({
   csrfToken,
@@ -108,6 +135,26 @@ export default function SignIn({
         >
           Sign in
         </Button>
+        <Flex gap={4}>
+          <AutoPassBtn
+            btnLabel={"Admin"}
+            email={"admin@hogwards.edu"}
+            password={"admin888"}
+            setStates={{ email: setEmail, password: setPassword }}
+          />
+          <AutoPassBtn
+            btnLabel={"Faculty"}
+            email={"faculty@hogwards.edu"}
+            password={"faculty888"}
+            setStates={{ email: setEmail, password: setPassword }}
+          />
+          <AutoPassBtn
+            btnLabel={"Student"}
+            email={"student@hogwards.edu"}
+            password={"student888"}
+            setStates={{ email: setEmail, password: setPassword }}
+          />
+        </Flex>
       </div>
     </div>
   );
