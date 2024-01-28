@@ -41,6 +41,7 @@ function AutoPassBtn({
       variant={"solid"}
       rightIcon={<UnlockIcon />}
       backgroundColor={"hsl(var(--s)/0.5)"}
+      _hover={{ backgroundColor: "hsl(var(--s)/0.8)" }}
     >
       {btnLabel}
     </Button>
