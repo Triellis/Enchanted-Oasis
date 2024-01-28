@@ -40,6 +40,7 @@ function AutoPassBtn({
       size={"sm"}
       variant={"solid"}
       rightIcon={<UnlockIcon />}
+      backgroundColor={"hsl(var(--s)/0.5)"}
     >
       {btnLabel}
     </Button>
