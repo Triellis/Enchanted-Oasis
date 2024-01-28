@@ -1,7 +1,7 @@
 // theme.ts
 
 // 1. import `extendTheme` function
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, type ThemeConfig, theme as chakraTheme } from "@chakra-ui/react";
 import { defineStyleConfig } from "@chakra-ui/react";
 
 // 2. Add your color mode config
@@ -28,6 +28,7 @@ const Badge = defineStyleConfig({
     maxWidth: "fit-content",
   },
 });
+
 const Popover = {
   baseStyle: {
     popper: {
@@ -36,7 +37,7 @@ const Popover = {
   },
 };
 // 3. extend the theme
-const theme = extendTheme({
+export const theme = extendTheme({
   config,
   components: {
     Button,
@@ -45,4 +46,3 @@ const theme = extendTheme({
   },
 });
 
-export { theme };
