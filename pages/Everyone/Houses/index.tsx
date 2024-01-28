@@ -1,6 +1,7 @@
 import Layout from "../../Layout";
 import styles from "./Houses.module.css";
-import { Card, CardBody, Grid, GridItem, Link } from "@chakra-ui/react";
+import { Card, CardBody, Grid, GridItem } from "@chakra-ui/react";
+import Link from "next/link";
 import Image from "next/image";
 import { fetcher } from "@/lib/functions";
 import useSWR from "swr";
