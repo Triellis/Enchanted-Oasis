@@ -10,6 +10,8 @@
   - [Admin Notifications](#admin-notifications)
   - [Lectures](#lectures)
 
+> **Note:** `Lectures` and `Results` routes were cancelled due to time constraints.
+
 # Api Routes Summary
 
 ## Results
