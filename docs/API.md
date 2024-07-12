@@ -6,7 +6,7 @@
   - [Houses](#houses)
   - [User](#user)
   - [Course Notifications](#course-notifications)
-  - [Course Materials](#course-materials)
+  - [Course Materials](#course-materials) **(Cancelled)**
   - [Admin Notifications](#admin-notifications)
   - [Lectures](#lectures) **(Cancelled)**
 

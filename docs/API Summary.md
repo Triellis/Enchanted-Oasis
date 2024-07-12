@@ -2,13 +2,13 @@
 
 - [Index](#index)
 - [Api Routes Summary](#api-routes-summary)
-	- [Results](#results)
-	- [Courses](#courses)
-	- [Houses](#houses)
-	- [User](#user)
-	- [Course Notifications](#course-notifications)
-	- [Admin Notifications](#admin-notifications)
-	- [Lectures](#lectures)
+  - [Results](#results)
+  - [Courses](#courses)
+  - [Houses](#houses)
+  - [User](#user)
+  - [Course Notifications](#course-notifications)
+  - [Admin Notifications](#admin-notifications)
+  - [Lectures](#lectures)
 
 # Api Routes Summary
 
